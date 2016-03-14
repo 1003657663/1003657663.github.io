@@ -2,19 +2,25 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>三栏布局</title>
+    <title>任务3-三栏布局</title>
     <style>
         body {
             padding: 20px;
             margin: 0;
             font-size: 14px;
+            font-family: sans-serif;
         }
 
-        .all {
+        p {
+            padding: 0;
+            margin: 0;
+        }
+
+        .container {
             background: #eee;
             border: 1px #999 solid;
-            text-align: center;
             min-width: 500px;
+            overflow: auto;
         }
 
         .left, .right, .introduce {
@@ -43,36 +49,45 @@
         .right {
             float: right;
             width: 78px;
+            padding-bottom: 0;
+        }
+
+        .right .logo {
+            padding-bottom: 20px;
         }
 
         .pad {
-            padding: 20px 160px 0 240px;
+            padding: 20px 160px 20px 240px;
         }
 
-        .clear {
-            clear: both;
+        .introduce {
+            line-height: 26px;
+            text-indent: 2em;
         }
     </style>
 <body>
-<div class="all">
+<div class="container">
     <div class="left">
-        <span class="name">卓越前端</span>
+        <span class="name"><a href="http://ife.baidu.com/group/profile">卓越前端</a></span>
         <img class="logo" src="logo.jpg" width="80px" height="80px"/>
     </div>
 
     <div class="right">
-        <img class="logo" src="logo.jpg" width="80px" height="80px"/>
-        <img class="logo" src="logo.jpg" width="80px" height="80px"/>
-        <img class="logo" src="logo.jpg" width="80px" height="80px"/>
+        <a href="http://ife.baidu.com/user/profile?userId=4476"><img class="logo" src="shuo.jpg" width="80px" height="80px"/></a>
+        <a href="http://ife.baidu.com/user/profile?userId=4475"><img class="logo" src="liming.jpg" width="80px" height="80px"/></a>
+        <a href="http://ife.baidu.com/user/profile?userId=4412"><img class="logo" src="chao.jpg" width="80px" height="80px"/></a>
     </div>
     <div class="pad">
-        <div class="introduce">
-            关于你们团队的介绍关于你们团队的介绍关于你们团队的介绍关于你们团队的介绍关于你们团队的介绍关于你们团队的介绍关于你们团队的介绍关于你们团队的介绍
-            关于你们团队的介绍关于你们团队的介绍关于你们团队的介绍关于你们团队的介绍关于你们团队的介绍关于你们团队的介绍关于你们团队的介绍关于你们团队的介绍
-        </div>
+        <article class="introduce">
+            <p><strong>我们团队介绍</strong></p>
+
+            <p>
+                我们是来自郑州大学软件工程专业卓越班的学生，我们都对前端有所了解，并且写了一点代码，但是我们的学习都不是很系统，毕竟前端学校很少教，都是我们自学。
+                我们想通过百度的这次活动，更好的掌握前端知识。如果有问题，请大家不要吝啬指出，希望大家支持我们，谢谢大家。
+            </p>
+        </article>
     </div>
-    <div class="clear">
-    </div>
+
 </div>
 </body>
 </head>
