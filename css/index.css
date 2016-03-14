@@ -1,0 +1,171 @@
+.main-container{
+    margin-top: 100px;
+}
+.navbar-default .navbar-nav > li > a:hover {
+    background: #e7e7e7 !important;
+}
+
+.article-bread {
+    background: transparent !important;
+}
+
+.article-content {
+    font-size: 16px;
+    letter-spacing: 3px;
+    text-indent: 30px;
+    font-family: "Lucida Grande", Lucida Sans Unicode, Hiragino Sans GB, WenQuanYi Micro Hei, Verdana, Aril, sans-serif;
+    line-height: 1.7em;
+    padding-bottom: 20px;
+}
+
+.article-main {
+    background: #fff;
+    padding: 15px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 3px rgba(0, 0, 0, .1);
+}
+.foot-hr{
+    border-top-width: 3px;
+    border-color: #c1c1c1;
+}
+.animated {
+    -webkit-animation-duration: .5s;
+    -moz-animation-duration: .5s;
+    -o-animation-duration: .5s;
+    animation-duration: .5s;
+    -webkit-animation-fill-mode: both;
+    -moz-animation-fill-mode: both;
+    -o-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+
+.swingInX {
+    -webkit-transform-origin: top;
+    -moz-transform-origin: top;
+    -ie-transform-origin: top;
+    -o-transform-origin: top;
+    transform-origin: top;
+    -webkit-backface-visibility: visible!important;
+    -webkit-animation-name: swingInX;
+    -moz-backface-visibility: visible!important;
+    -moz-animation-name: swingInX;
+    -o-backface-visibility: visible!important;
+    -o-animation-name: swingInX;
+    backface-visibility: visible!important;
+    animation-name: swingInX;
+}
+
+.swingOutX {
+    -webkit-transform-origin: top;
+    -webkit-animation-name: swingOutX;
+    -webkit-backface-visibility: visible!important;
+    -moz-animation-name: swingOutX;
+    -moz-backface-visibility: visible!important;
+    -o-animation-name: swingOutX;
+    -o-backface-visibility: visible!important;
+    animation-name: swingOutX;
+    backface-visibility: visible!important;
+}
+
+@-webkit-keyframes swingInX {
+    0% {
+        -webkit-transform: perspective(400px) rotateX(-90deg)
+    }
+    100% {
+        -webkit-transform: perspective(400px) rotateX(0deg)
+    }
+}
+
+@-moz-keyframes swingInX {
+    0% {
+        -moz-transform: perspective(400px) rotateX(-90deg)
+    }
+    100% {
+        -moz-transform: perspective(400px) rotateX(0deg)
+    }
+}
+
+@-o-keyframes swingInX {
+    0% {
+        -o-transform: perspective(400px) rotateX(-90deg)
+    }
+    100% {
+        -o-transform: perspective(400px) rotateX(0deg)
+    }
+}
+
+@keyframes swingInX {
+    0% {
+        transform: perspective(400px) rotateX(-90deg)
+    }
+    100% {
+        transform: perspective(400px) rotateX(0deg)
+    }
+}
+
+.animated.swingInX {
+    -webkit-transform-origin: top;
+    -moz-transform-origin: top;
+    -ie-transform-origin: top;
+    -o-transform-origin: top;
+    transform-origin: top;
+    -webkit-backface-visibility: visible !important;
+    -webkit-animation-name: swingInX;
+    -moz-backface-visibility: visible !important;
+    -moz-animation-name: swingInX;
+    -o-backface-visibility: visible !important;
+    -o-animation-name: swingInX;
+    backface-visibility: visible !important;
+    animation-name: swingInX
+}
+
+@-webkit-keyframes swingOutX {
+    0% {
+        -webkit-transform: perspective(400px) rotateX(0deg)
+    }
+    100% {
+        -webkit-transform: perspective(400px) rotateX(-90deg)
+    }
+}
+
+@-moz-keyframes swingOutX {
+    0% {
+        -moz-transform: perspective(400px) rotateX(0deg)
+    }
+    100% {
+        -moz-transform: perspective(400px) rotateX(-90deg)
+    }
+}
+
+@-o-keyframes swingOutX {
+    0% {
+        -o-transform: perspective(400px) rotateX(0deg)
+    }
+    100% {
+        -o-transform: perspective(400px) rotateX(-90deg)
+    }
+}
+
+@keyframes swingOutX {
+    0% {
+        transform: perspective(400px) rotateX(0deg)
+    }
+    100% {
+        transform: perspective(400px) rotateX(-90deg)
+    }
+}
+
+.animated.swingOutX {
+    -webkit-transform-origin: top;
+    -webkit-animation-name: swingOutX;
+    -webkit-backface-visibility: visible !important;
+    -moz-animation-name: swingOutX;
+    -moz-backface-visibility: visible !important;
+    -o-animation-name: swingOutX;
+    -o-backface-visibility: visible !important;
+    animation-name: swingOutX;
+    backface-visibility: visible !important
+}
