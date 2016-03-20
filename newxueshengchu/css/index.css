@@ -2,3 +2,53 @@ html,body{
     margin: 0;
     height: 100%;
 }
+
+
+.headPhoto{
+    width: 100%;
+    height: 60%;
+    background: #f0ad4e;
+    position: relative;
+transition: height 2s linear;
+}
+.headtitle{
+    width: 200px;
+    height: 50px;
+    text-align: center;
+    font-size: 50px;
+    font-weight: bolder;
+    color: #FFFFFF;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin:-25px 0 0 -100px;
+}
+
+.centerNews{
+    width: 100%;
+    height: 40%;
+    background: #65ff27;
+    color: #FFFFFF;
+    position: relative;
+    /*transition: height 1s linear;*/
+}
+/*.centerNews:hover{
+    height: 60%;
+}*/
+.centerNews .new{
+    height: 190px;
+    padding: 10px 10px 0 10px;
+    text-align: center;
+    background: #FFFFFF;
+    color: #000;
+    border-radius: 10px;
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+
+    position: absolute;
+    top: 50%;
+    /*left: 50%;*/
+    margin: -100px 0 0 -75px;
+}

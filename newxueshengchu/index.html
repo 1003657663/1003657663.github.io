@@ -3,125 +3,18 @@
 <head>
     <meta charset="utf-8">
     <title>学生处</title>
-    <link rel="stylesheet" type="text/css" href="css/index.css">
     <style>
-        .headPhoto{
-            width: 100%;
-            height: 60%;
-            background: #f0ad4e;
-            position: relative;2
-            transition: height 2s linear;
-        }
-        .headtitle{
-            width: 200px;
-            height: 50px;
-            text-align: center;
-            font-size: 50px;
-            font-weight: bolder;
-            color: #FFFFFF;
-
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            margin:-25px 0 0 -100px;
-        }
-
-        .centerNews{
-            width: 100%;
-            height: 40%;
-            background: #65ff27;
-            color: #FFFFFF;
-            position: relative;
-            /*transition: height 1s linear;*/
-        }
-        /*.centerNews:hover{
-            height: 60%;
-        }*/
-        .centerNews .new{
-            width: 150px;
-            height: 190px;
-            padding-top: 10px;
-            text-align: center;
-            background: #FFFFFF;
-            color: #000;
-            border-radius: 10px;
-
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            margin: -100px 0 0 -75px;
-        }
-
-        #new1{
-            animation: leftNew1 3s;
-            animation-fill-mode: forwards;
-        }
-        #new2{
-            animation: leftNew2 3s;
-            animation-fill-mode: forwards;
-        }
-        #new4{
-            animation: leftNew4 3s;
-            animation-fill-mode: forwards;
-        }
-        #new5{
-            animation: leftNew5 3s;
-            animation-fill-mode: forwards;
-        }
-
-        @keyframes leftNew1 {
-            from {  left: 50%; }
-            to {  left: 16.6%; }
-        }
-        @keyframes leftNew2 {
-            from {  left: 50%; }
-            to {  left: 33.2%; }
-        }
-        @keyframes leftNew4 {
-            from {  left: 50%; }
-            to {  left: 66.6%; }
-        }
-        @keyframes leftNew5 {
-            from {  left: 50%; }
-            to {  left: 83.2%; }
-        }
     </style>
+
+    <link rel="stylesheet" type="text/css" media="screen and (max-width:767px)" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" media="screen and (min-width:768px)" href="css/index.css">
     <script src="js/jquery.min.js"></script>
     <script>
-        $(document).ready(function () {
-            var headPhotoH = '60%';
-            var centerNewsH = '40%';
-
-            var small = '40%';
-            var big = '60%';
-
-            $(".headPhoto").css("height",headPhotoH);
-            $(".centerNews").css("height",centerNewsH);
-            $(".headPhoto").mouseover(function() {
-                if(this.style.height==small) {
-                    $(this).animate({height: big}, 1000);
-                    $(".centerNews").animate({height: small}, 1000);
-                }
-            });
-            $(".centerNews").mouseout(function(){
-                if(this.style.height==big) {
-                    $(this).animate({height: small}, 1000);
-                    $(".headPhoto").animate({height: big}, 1000);
-                }
-            });
-            $(".headPhoto").mouseout(function(){
-                if(this.style.height==big) {
-                    $(this).animate({height: small}, 1000);
-                    $(".centerNews").animate({height: big}, 1000);
-                }
-            });
-            $(".centerNews").mouseover(function(){
-                if(this.style.height==small) {
-                    $(this).animate({height: big}, 1000);
-                    $(".headPhoto").animate({height: small}, 1000);
-                }
-            });
-        })
+        if(screen && screen.width>=768){
+            document.write('<script src="js/indexPC.js" ><\/script>');
+        }else{
+            document.write('<script src="js/indexMobile.js" ><\/script>');
+        }
     </script>
 </head>
 <body>
@@ -130,12 +23,17 @@
         学生处
     </div>
 </div>
-<div class="centerNews">
-    <div class="new" id="new1">新闻1</div>
-    <div class="new" id="new2">新闻2</div>
-    <div class="new" id="new3">新闻3</div>
-    <div class="new" id="new4">新闻4</div>
-    <div class="new" id="new5">新闻5</div>
+<div class="container-fluid centerNews">
+    <div class="row">
+        <div class="col-xs-12 new" id="new1">
+            <p class="titleText">新闻1</p>
+            <p>我是一个新闻</p>
+        </div>
+        <div class="col-xs-12 new" id="new2">新闻2</div>
+        <div class="col-xs-12 new" id="new3">新闻3</div>
+        <div class="col-xs-12 new" id="new4">新闻4</div>
+        <div class="col-xs-12 new" id="new5">新闻5</div>
+    </div>
 </div>
 <div class="bottom">
 
