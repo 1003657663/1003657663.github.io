@@ -1,0 +1,70 @@
+html,body{
+    height: 100%;
+}
+body{
+    background-image: url("../images/bg.jpg");
+    background-size: cover;
+}
+a:hover{
+    text-decoration: none;
+}
+.navbar-brand{
+    font-size: 25px;
+    font-family: serif;
+}
+.navbar-brand .school-icon{
+    height: 35px;
+    position: relative;
+    top: -5px;
+}
+
+/*顶部导航栏*/
+.mynavbar ul{
+    float: right;
+}
+.mynavbar ul li:hover{
+    background: #c1c1c1;
+}
+
+
+
+
+
+
+/*中间新闻部分*/
+.centerNews{
+    margin-top: 200px;
+    width: 100%;
+    height: 40%;
+    color: #FFFFFF;
+    position: relative;
+}
+
+.centerNews .new{
+    height: 300px;
+    padding-top: 5px;
+    text-align: center;
+    background: #FFFFFF;
+    color: #000;
+    border-radius: 10px;
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+
+    position: absolute;
+    top: 50%;
+    margin: -100px 0 0 -75px;
+}
+.centerNews .new p{
+    word-break: break-all;
+    word-wrap: break-word;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    text-align: left;
+    color: #030303;
+}
+.centerNews .new .titleText{
+    text-align: center;
+    border-bottom: 2px red solid;
+}

@@ -15,6 +15,7 @@ $(document).ready(function () {
         //-------------
 
         news.width(newsWidth);
+        news.css({"paddingLeft":padWidthOneNew+'px',"paddingRight":padWidthOneNew+'px'});
         newsWidth += padWidthOneNew*2;
         var marginLeft = -1*newsWidth/2;
         news.css({"margin-left":marginLeft+'px',"left":windowWidth/2+'px'});
@@ -33,7 +34,7 @@ $(document).ready(function () {
 
         newsWidth -=padWidthOneNew*2;
         var time = 300;
-        news.mouseover(function () {
+        news.mouseenter(function () {
             var bei = 2;
             var willMarginLeft = (parseInt($(this).css("marginLeft")) + (newsWidth * bei - newsWidth) / 2 * -1) * -1;
             var willLeftMoveWidth = (newsWidth * bei - newsWidth) / 2;
@@ -58,7 +59,7 @@ $(document).ready(function () {
                 }, time);
             }
         });
-        news.mouseout(function () {
+        news.mouseleave(function () {
             $(this).animate({width: newsWidth, marginLeft: marginLeft}, time);
         });
     }

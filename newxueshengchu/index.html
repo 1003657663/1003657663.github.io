@@ -1,39 +1,114 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 <head>
     <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="renderer" content="webkit">
     <title>学生处</title>
     <style>
+        /*处理window phone手机的网页显示问题*/
+        @-ms-viewport       { width: device-width; }
+        @-webkit-viewport   { width: device-width; }
+        @-moz-viewport      { width: device-width; }
+        @-ms-viewport       { width: device-width; }
+        @-o-viewport        { width: device-width; }
+        @viewport           { width: device-width; }
     </style>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" media="screen and (min-width:768px)" href="css/indexPC.css">
+    <link rel="stylesheet" type="text/css" media="screen and (max-width:767px)" href="css/indexMobile.css">
 
-    <link rel="stylesheet" type="text/css" media="screen and (max-width:767px)" href="css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" media="screen and (min-width:768px)" href="css/index.css">
     <script src="js/jquery.min.js"></script>
     <script>
+        if (navigator.userAgent.match(/IEMobile\/10\.0/)) {
+            var msViewportStyle = document.createElement('style');
+            msViewportStyle.appendChild(
+                    document.createTextNode(
+                            '@-ms-viewport{width:auto!important}'
+                    )
+            );
+            document.querySelector('head').appendChild(msViewportStyle)
+        }
         if(screen && screen.width>=768){
             document.write('<script src="js/indexPC.js" ><\/script>');
         }else{
-            alert("xiao ping");
             document.write('<script src="js/indexMobile.js" ><\/script>');
+            document.write('<script src="js/bootstrap.min.js"><\/script>');
         }
     </script>
 </head>
 <body>
-<div class="headPhoto">
-    <div class="headtitle">
-        学生处
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#"><span><image class="school-icon" src="images/school.png"/></span><span>郑大学生处</span></a>
+        </div>
+        <div class="collapse navbar-collapse mynavbar" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li><a href="#">部门简介</a></li>
+                <li><a href="#">管理规定</a></li>
+                <li><a href="#">表格下载</a></li>
+                <li><a href="#">服务指南</a></li>
+                <li><a href="#">理论学习</a></li>
+            </ul>
+        </div>
     </div>
-</div>
+</nav>
+
 <div class="container-fluid centerNews">
     <div class="row">
-        <div class="col-xs-12 new" id="new1">
-            <p class="titleText">新闻1</p>
-            <p>我是一个新闻</p>
+        <div class="col-xs-12 panel panel-default new" id="new1">
+            <a href="#"><p class="titleText">新闻NEW</p></a>
+            <a href="#"><p>关于推荐2016年度“三区”人才支持计划科技人员专项计划选派人员的通知</p></a>
+            <a href="#"><p>关于举办郑州大学2016年研究生排球联赛的通知</p></a>
+            <a href="#"><p>关于举办郑州大学2016年研究生篮球联赛的通知</p></a>
+            <a href="#"><p>《郑州大学研究生》杂志（季刊）2016年第一期征稿启事</p></a>
+            <a href="#"><p>信息公开：郑州大学2016年第6次校长办公会议议决事项</p></a>
+            <a href="#"><p>现代分析与计算中心仪器培训通知</p></a>
         </div>
-        <div class="col-xs-12 new" id="new2">新闻2</div>
-        <div class="col-xs-12 new" id="new3">新闻3</div>
-        <div class="col-xs-12 new" id="new4">新闻4</div>
-        <div class="col-xs-12 new" id="new5">新闻5</div>
+        <div class="col-xs-12 panel panel-default new" id="new2">
+            <a href="#"><p class="titleText">通知</p></a>
+            <a href="#"><p>关于推荐2016年度“三区”人才支持计划科技人员专项计划选派人员的通知</p></a>
+            <a href="#"><p>关于举办郑州大学2016年研究生排球联赛的通知</p></a>
+            <a href="#"><p>关于举办郑州大学2016年研究生篮球联赛的通知</p></a>
+            <a href="#"><p>《郑州大学研究生》杂志（季刊）2016年第一期征稿启事</p></a>
+            <a href="#"><p>信息公开：郑州大学2016年第6次校长办公会议议决事项</p></a>
+            <a href="#"><p>现代分析与计算中心仪器培训通知</p></a>
+        </div>
+        <div class="col-xs-12 panel panel-default new" id="new3">
+            <a href="#"><p class="titleText">国际交流</p></a>
+            <a href="#"><p>关于推荐2016年度“三区”人才支持计划科技人员专项计划选派人员的通知</p></a>
+            <a href="#"><p>关于举办郑州大学2016年研究生排球联赛的通知</p></a>
+            <a href="#"><p>关于举办郑州大学2016年研究生篮球联赛的通知</p></a>
+            <a href="#"><p>《郑州大学研究生》杂志（季刊）2016年第一期征稿启事</p></a>
+            <a href="#"><p>信息公开：郑州大学2016年第6次校长办公会议议决事项</p></a>
+            <a href="#"><p>现代分析与计算中心仪器培训通知</p></a>
+        </div>
+        <div class="col-xs-12 panel panel-default new" id="new4">
+            <a href="#"><p class="titleText">院系风采</p></a>
+            <a href="#"><p>关于推荐2016年度“三区”人才支持计划科技人员专项计划选派人员的通知</p></a>
+            <a href="#"><p>关于举办郑州大学2016年研究生排球联赛的通知</p></a>
+            <a href="#"><p>关于举办郑州大学2016年研究生篮球联赛的通知</p></a>
+            <a href="#"><p>《郑州大学研究生》杂志（季刊）2016年第一期征稿启事</p></a>
+            <a href="#"><p>信息公开：郑州大学2016年第6次校长办公会议议决事项</p></a>
+            <a href="#"><p>现代分析与计算中心仪器培训通知</p></a>
+        </div>
+        <div class="col-xs-12 panel panel-default new" id="new5">
+            <a href="#"><p class="titleText">领导讲话</p></a>
+            <a href="#"><p>关于推荐2016年度“三区”人才支持计划科技人员专项计划选派人员的通知</p></a>
+            <a href="#"><p>关于举办郑州大学2016年研究生排球联赛的通知</p></a>
+            <a href="#"><p>关于举办郑州大学2016年研究生篮球联赛的通知</p></a>
+            <a href="#"><p>《郑州大学研究生》杂志（季刊）2016年第一期征稿启事</p></a>
+            <a href="#"><p>信息公开：郑州大学2016年第6次校长办公会议议决事项</p></a>
+            <a href="#"><p>现代分析与计算中心仪器培训通知</p></a>
+        </div>
     </div>
 </div>
 <div class="bottom">

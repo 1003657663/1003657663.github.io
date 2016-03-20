@@ -1,0 +1,42 @@
+html,body{
+    height: 100%;
+}
+body{
+    background-size: cover;
+}
+
+a:hover{
+    text-decoration: none;
+}
+.navbar-brand{
+    font-size: 25px;
+    font-family: serif;
+}
+.navbar-brand .school-icon{
+    height: 35px;
+    position: relative;
+    top: -5px;
+}
+
+
+.centerNews .new{
+    padding-top: 5px;
+    background: #FFFFFF;
+    color: #000;
+    border-radius: 10px;
+}
+
+.centerNews .new p{
+    word-break: break-all;
+    word-wrap: break-word;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    text-align: left;
+    color: #030303;
+}
+
+.centerNews .new .titleText{
+    text-align: center;
+    border-bottom: 2px red solid;
+}
