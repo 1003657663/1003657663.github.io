@@ -3,14 +3,28 @@ html,body{
 }
 body{
     background-size: cover;
+    padding-top: 50px;
 }
 
 a:hover{
     text-decoration: none;
 }
+.mynav{
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    border-bottom: 1px #c1c1c1 solid;
+}
 .navbar-brand{
     font-size: 25px;
     font-family: serif;
+}
+.navbar-brand span{
+    height: 35px;
+    position: relative;
+    top: -5px;
 }
 .navbar-brand .school-icon{
     height: 35px;
@@ -25,7 +39,9 @@ a:hover{
     color: #000;
     border-radius: 10px;
 }
-
+.centerNews #new1{
+    margin-top: 10px;
+}
 .centerNews .new p{
     word-break: break-all;
     word-wrap: break-word;

@@ -12,6 +12,11 @@ a:hover{
     font-size: 25px;
     font-family: serif;
 }
+.navbar-brand span{
+    height: 35px;
+    position: relative;
+    top: -5px;
+}
 .navbar-brand .school-icon{
     height: 35px;
     position: relative;
