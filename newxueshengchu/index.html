@@ -30,9 +30,12 @@
             );
             document.querySelector('head').appendChild(msViewportStyle)
         }
+        alert(screen.width);
         if(screen && screen.width>=768){
+            alert("小屏幕");
             document.write('<script src="js/indexPC.js" ><\/script>');
         }else{
+            alert("大屏幕");
             document.write('<script src="js/indexMobile.js" ><\/script>');
             document.write('<script src="js/bootstrap.min.js"><\/script>');
         }
