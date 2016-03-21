@@ -16,6 +16,7 @@
         @viewport           { width: device-width; }
     </style>
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/bothPcMo.css">
     <link rel="stylesheet" type="text/css" media="screen and (min-width:768px)" href="css/indexPC.css">
     <link rel="stylesheet" type="text/css" media="screen and (max-width:767px)" href="css/indexMobile.css">
 
@@ -51,12 +52,6 @@
             document.write('<script src="js/indexMobile.js" ><\/script>');
             document.write('<script src="js/bootstrap.min.js"><\/script>');
         }
-        /*if(screen && screen.width>=768){
-            document.write('<script src="js/indexPC.js" ><\/script>');
-        }else{
-            document.write('<script src="js/indexMobile.js" ><\/script>');
-            document.write('<script src="js/bootstrap.min.js"><\/script>');
-        }*/
     </script>
 </head>
 <body>
@@ -69,15 +64,23 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#"><span><image class="school-icon" src="images/school.png"/>郑大学生处</span></a>
+            <a class="navbar-brand" href="#">
+                <span>
+                    <img class="school-icon" src="images/school.png"/>
+                    <ul>
+                        <li class="top-school-name">郑州大学</li>
+                        <li class="top-depart">学生工作网</li>
+                    </ul>
+                </span>
+            </a>
         </div>
         <div class="collapse navbar-collapse mynavbar" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li><a href="#">部门简介</a></li>
-                <li><a href="#">管理规定</a></li>
-                <li><a href="#">表格下载</a></li>
-                <li><a href="#">服务指南</a></li>
-                <li><a href="#">理论学习</a></li>
+                <li><a href="#"><ul><li><img width="40px" src="images/nav1.png"/></li><li>部门简介</li></ul></a></li>
+                <li><a href="#"><ul><li><img width="40px" src="images/nav2.png"/></li><li>管理规定</li></ul></a></li>
+                <li><a href="#"><ul><li><img width="40px" src="images/nav3.png"/></li><li>表格下载</li></ul></a></li>
+                <li><a href="#"><ul><li><img width="40px" src="images/nav4.png"/></li><li>服务指南</li></ul></a></li>
+                <li><a href="#"><ul><li><img width="40px" src="images/nav5.png"/></li><li>理论学习</li></ul></a></li>
             </ul>
         </div>
     </div>
@@ -132,8 +135,21 @@
         </div>
     </div>
 </div>
-<div class="bottom">
-
+<div class="container-fluid bottom">
+    <div class="row">
+        <div class="bottomIcon">
+            <div class="bottomImg"><img width="200px" height="100px" src="images/blogroll1.png"/></div>
+        </div>
+        <div class="bottomIcon">
+            <div class="bottomImg"><img width="200px" height="100px" src="images/blogroll2.png"/></div>
+        </div>
+        <div class="bottomIcon">
+            <div class="bottomImg"><img width="200px" height="100px" src="images/blogroll3.png"/></div>
+        </div>
+        <div class="bottomIcon">
+            <div class="bottomImg"><img width="200px" height="100px" src="images/blogroll4.png"/></div>
+        </div>
+    </div>
 </div>
 </body>
 </html>
