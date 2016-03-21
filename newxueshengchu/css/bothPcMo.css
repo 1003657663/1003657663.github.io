@@ -1,3 +1,25 @@
+html,body{
+    height: 100%;
+}
+
 ul{
     list-style: none;
+}
+
+
+.school-icon{
+    float: left;
+}
+.navbar-brand{
+    width: 220px;
+}
+
+.navbar-brand span{
+    height: 35px;
+    position: relative;
+    top: -5px;
+}
+.navbar-brand .school-icon{
+    height: 50px;
+    position: relative;
 }

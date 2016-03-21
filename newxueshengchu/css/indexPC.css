@@ -1,6 +1,3 @@
-html,body{
-    height: 100%;
-}
 body{
     background-image: url("../images/bg.jpg");
     background-size: cover;
@@ -9,32 +6,13 @@ a:hover{
     text-decoration: none;
 }
 
-/*------------*/
 
-.school-icon{
-    float: left;
-}
-.navbar-brand{
-    width: 220px;
+.navbar,.navbar-default .navbar-collapse{
+    height: 70px !important;
 }
 .navbar-brand ul{
     padding-left: 60px;
 }
-.navbar-brand .top-school-name{
-    font-size: 20px;
-    font-family: '隶书';
-    padding-bottom: 5px;
-}
-.navbar-brand .top-depart{
-    font-size: 23px;
-    font-family: '楷体';
-}
-
-/*------------*/
-.navbar,.navbar-default .navbar-collapse{
-    height: 70px !important;
-}
-
 .mynavbar .nav li a{
     padding-top: 0;
 }
@@ -46,18 +24,23 @@ a:hover{
     text-align: center;
     padding-top: 3px;
 }
-
-.navbar-brand{
-
+.mynav{
+    background-color: rgba(200, 200, 200, 0.5);
+    border: 0;
 }
-.navbar-brand span{
-    height: 35px;
-    position: relative;
-    top: -5px;
+/*大屏幕和小屏幕显示效果不同*/
+.mynav .most-title-small{
+    visibility: hidden;
 }
-.navbar-brand .school-icon{
-    height: 50px;
-    position: relative;
+
+.navbar-brand .top-school-name{
+    font-size: 20px;
+    font-family: '隶书';
+    padding-bottom: 5px;
+}
+.navbar-brand .top-depart{
+    font-size: 23px;
+    font-family: '楷体';
 }
 
 /*顶部导航栏*/
@@ -75,14 +58,23 @@ a:hover{
 
 /*中间新闻部分*/
 .centerNews{
-    height: 227px;
+    display: table;
     width: 100%;
+    height: 50%;
+    min-height: 390px;
     color: #FFFFFF;
     position: fixed;
-    bottom: 150px;
+    bottom: 0;
     left: 0;
-}
 
+    background-color: rgba(180, 180, 180, 0.6);
+}
+.centerNews .newsMain{
+    width: 100%;
+    height: 230px;
+    display: table;
+    overflow: hidden;
+}
 .centerNews .new{
     height: 220px;
     padding-top: 5px;
@@ -95,9 +87,8 @@ a:hover{
     box-sizing: content-box;
 
     position: absolute;
-    top: 50%;
-    margin: -150px 0 0 -75px;
 
+    top: 20px;
     opacity: 0.9;
 }
 .centerNews .new p{
@@ -118,7 +109,7 @@ a:hover{
 .bottom{
     height: 100px;
     width: 100%;
-    position: fixed;
+    position: absolute;
     bottom: 20px;
     left: 0;
 }
@@ -133,5 +124,5 @@ a:hover{
 }
 .bottom .bottomImg img{
     border-radius: 18px;
-    border: 0px #FFFFFF solid;
+    border: 0;
 }

@@ -22,33 +22,38 @@
 
     <script src="js/jquery.min.js"></script>
     <script>
-        if (navigator.userAgent.match(/IEMobile\/10\.0/)) {
-            var msViewportStyle = document.createElement('style');
-            msViewportStyle.appendChild(
-                    document.createTextNode(
-                            '@-ms-viewport{width:auto!important}'
-                    )
-            );
-            document.querySelector('head').appendChild(msViewportStyle)
-        }
+        if(screen && screen.width>700) {
+            if (navigator.userAgent.match(/IEMobile\/10\.0/)) {
+                var msViewportStyle = document.createElement('style');
+                msViewportStyle.appendChild(
+                        document.createTextNode(
+                                '@-ms-viewport{width:auto!important}'
+                        )
+                );
+                document.querySelector('head').appendChild(msViewportStyle)
+            }
 
-        //平台、设备和操作系统
-        var system = {
-            win: false,
-            mac: false,
-            xll: false,
-            ipad:false
-        };
-        //检测平台
-        var p = navigator.platform;
-        system.win = p.indexOf("Win") == 0;
-        system.mac = p.indexOf("Mac") == 0;
-        system.x11 = (p == "X11") || (p.indexOf("Linux") == 0);
-        system.ipad = (navigator.userAgent.match(/iPad/i) != null)?true:false;
-        //跳转语句，如果是手机访问就自动跳转到wap.baidu.com页面
-        if (system.win || system.mac || system.xll||system.ipad) {
-            document.write('<script src="js/indexPC.js" ><\/script>');
-        } else {
+            //平台、设备和操作系统
+            var system = {
+                win: false,
+                mac: false,
+                xll: false,
+                ipad: false
+            };
+            //检测平台
+            var p = navigator.platform;
+            system.win = p.indexOf("Win") == 0;
+            system.mac = p.indexOf("Mac") == 0;
+            system.x11 = (p == "X11") || (p.indexOf("Linux") == 0);
+            system.ipad = (navigator.userAgent.match(/iPad/i) != null) ? true : false;
+            //跳转语句，如果是手机访问就自动跳转到wap.baidu.com页面
+            if (system.win || system.mac || system.xll || system.ipad) {
+                document.write('<script src="js/indexPC.js" ><\/script>');
+            } else {
+                document.write('<script src="js/indexMobile.js" ><\/script>');
+                document.write('<script src="js/bootstrap.min.js"><\/script>');
+            }
+        }else{
             document.write('<script src="js/indexMobile.js" ><\/script>');
             document.write('<script src="js/bootstrap.min.js"><\/script>');
         }
@@ -67,13 +72,14 @@
             <a class="navbar-brand" href="#">
                 <span>
                     <img class="school-icon" src="images/school.png"/>
-                    <ul>
+                    <ul class="most-title-big">
                         <li class="top-school-name">郑州大学</li>
                         <li class="top-depart">学生工作网</li>
                     </ul>
                 </span>
             </a>
         </div>
+
         <div class="collapse navbar-collapse mynavbar" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li><a href="#"><ul><li><img width="40px" src="images/nav1.png"/></li><li>部门简介</li></ul></a></li>
@@ -84,10 +90,13 @@
             </ul>
         </div>
     </div>
+    <ul class="most-title-small">
+        <li class="top-depart">学生工作网</li>
+    </ul>
 </nav>
 
 <div class="container-fluid centerNews">
-    <div class="row">
+    <div class="row newsMain">
         <div class="col-xs-12 panel panel-default new" id="new1">
             <a href="#"><p class="titleText">新闻NEW</p></a>
             <a href="#"><p>关于推荐2016年度“三区”人才支持计划科技人员专项计划选派人员的通知</p></a>
@@ -134,9 +143,7 @@
             <a href="#"><p>现代分析与计算中心仪器培训通知</p></a>
         </div>
     </div>
-</div>
-<div class="container-fluid bottom">
-    <div class="row">
+    <div class="row bottom">
         <div class="bottomIcon">
             <div class="bottomImg"><img width="200px" height="100px" src="images/blogroll1.png"/></div>
         </div>
@@ -151,5 +158,21 @@
         </div>
     </div>
 </div>
+<!--<div class="container-fluid bottom">
+    <div class="row">
+        <div class="bottomIcon">
+            <div class="bottomImg"><img width="200px" height="100px" src="images/blogroll1.png"/></div>
+        </div>
+        <div class="bottomIcon">
+            <div class="bottomImg"><img width="200px" height="100px" src="images/blogroll2.png"/></div>
+        </div>
+        <div class="bottomIcon">
+            <div class="bottomImg"><img width="200px" height="100px" src="images/blogroll3.png"/></div>
+        </div>
+        <div class="bottomIcon">
+            <div class="bottomImg"><img width="200px" height="100px" src="images/blogroll4.png"/></div>
+        </div>
+    </div>
+</div>-->
 </body>
 </html>
