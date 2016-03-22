@@ -27,6 +27,7 @@ a:hover{
 .mynav{
     background-color: rgba(200, 200, 200, 0.5);
     border: 0;
+    color: #000 !important;
 }
 /*大屏幕和小屏幕显示效果不同*/
 .mynav .most-title-small{

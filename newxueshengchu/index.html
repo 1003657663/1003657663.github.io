@@ -15,49 +15,12 @@
         @-o-viewport        { width: device-width; }
         @viewport           { width: device-width; }
     </style>
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="css/bothPcMo.css">
     <link rel="stylesheet" type="text/css" media="screen and (min-width:768px)" href="css/indexPC.css">
     <link rel="stylesheet" type="text/css" media="screen and (max-width:767px)" href="css/indexMobile.css">
 
     <script src="js/jquery.min.js"></script>
-    <script>
-        if(screen && screen.width>700) {
-            if (navigator.userAgent.match(/IEMobile\/10\.0/)) {
-                var msViewportStyle = document.createElement('style');
-                msViewportStyle.appendChild(
-                        document.createTextNode(
-                                '@-ms-viewport{width:auto!important}'
-                        )
-                );
-                document.querySelector('head').appendChild(msViewportStyle)
-            }
-
-            //平台、设备和操作系统
-            var system = {
-                win: false,
-                mac: false,
-                xll: false,
-                ipad: false
-            };
-            //检测平台
-            var p = navigator.platform;
-            system.win = p.indexOf("Win") == 0;
-            system.mac = p.indexOf("Mac") == 0;
-            system.x11 = (p == "X11") || (p.indexOf("Linux") == 0);
-            system.ipad = (navigator.userAgent.match(/iPad/i) != null) ? true : false;
-            //跳转语句，如果是手机访问就自动跳转到wap.baidu.com页面
-            if (system.win || system.mac || system.xll || system.ipad) {
-                document.write('<script src="js/indexPC.js" ><\/script>');
-            } else {
-                document.write('<script src="js/indexMobile.js" ><\/script>');
-                document.write('<script src="js/bootstrap.min.js"><\/script>');
-            }
-        }else{
-            document.write('<script src="js/indexMobile.js" ><\/script>');
-            document.write('<script src="js/bootstrap.min.js"><\/script>');
-        }
-    </script>
 </head>
 <body>
 <nav class="navbar navbar-default mynav">
@@ -175,4 +138,41 @@
     </div>
 </div>-->
 </body>
+<script>
+    if(screen && screen.width>700) {
+        if (navigator.userAgent.match(/IEMobile\/10\.0/)) {
+            var msViewportStyle = document.createElement('style');
+            msViewportStyle.appendChild(
+                    document.createTextNode(
+                            '@-ms-viewport{width:auto!important}'
+                    )
+            );
+            document.querySelector('head').appendChild(msViewportStyle)
+        }
+
+        //平台、设备和操作系统
+        var system = {
+            win: false,
+            mac: false,
+            xll: false,
+            ipad: false
+        };
+        //检测平台
+        var p = navigator.platform;
+        system.win = p.indexOf("Win") == 0;
+        system.mac = p.indexOf("Mac") == 0;
+        system.x11 = (p == "X11") || (p.indexOf("Linux") == 0);
+        system.ipad = (navigator.userAgent.match(/iPad/i) != null) ? true : false;
+        //跳转语句，如果是手机访问就自动跳转到wap.baidu.com页面
+        if (system.win || system.mac || system.xll || system.ipad) {
+            document.write('<script src="js/indexPC.js" ><\/script>');
+        } else {
+            document.write('<script src="js/indexMobile.js" ><\/script>');
+            document.write('<script src="js/bootstrap.min.js"><\/script>');
+        }
+    }else{
+        document.write('<script src="js/indexMobile.js" ><\/script>');
+        document.write('<script src="js/bootstrap.min.js"><\/script>');
+    }
+</script>
 </html>

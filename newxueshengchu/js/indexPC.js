@@ -24,43 +24,64 @@ $(document).ready(function () {
         var newsOnePer = 1/((news.length+1)*2-2);
         for(var i=1;i<=5;i++){
             if(i==1){
-                $("#new" + i).animate({left: newsOnePer * windowWidth}, 1000);
+                $("#new" + i).animate({left: newsOnePer * windowWidth}, 2000);
             }else if(i==5){
-                $("#new" + i).animate({left: (newsOnePer +(newsOnePer*(i-1)*2)) * windowWidth}, 1000);
-            }else {
-                $("#new" + i).animate({left: ((newsOnePer * (i-1)*2)+newsOnePer) * windowWidth}, 1000);
+                $("#new" + i).animate({left: (newsOnePer +(newsOnePer*(i-1)*2)) * windowWidth}, 2000);
+            }else if(i==3){
+                $("#new" + i).animate({left: ((newsOnePer * (i-1)*2)+newsOnePer) * windowWidth}, 2000 ,enterToBig);
+            } else{
+                $("#new" + i).animate({left: ((newsOnePer * (i-1)*2)+newsOnePer) * windowWidth}, 2000);
             }
         }
 
         newsWidth -=padWidthOneNew*2;
         var time = 300;
-        news.mouseenter(function () {
-            var bei = 2;
-            var willMarginLeft = (parseInt($(this).css("marginLeft")) + (newsWidth * bei - newsWidth) / 2 * -1) * -1;
-            var willLeftMoveWidth = (newsWidth * bei - newsWidth) / 2;
-            var offLeft = $(this)[0].offsetLeft;
-            var offRight = windowWidth - offLeft-newsWidth-padWidthOneNew*2;
+        var bei = 2;//放大倍数
+        function enterToBig(the){
+            for(var i=1;i<=5;i++) {
+                if($("#new" + i).width()>=newsWidth){
+                    leaveToSmall("#new"+i);
+                }
+            }
+            if($(this).width() == newsWidth) {
+                if ($(this).attr("class") && $(this).attr("class").indexOf("new") != -1) {
+                    the = this;
+                }
 
-            if (offLeft < willLeftMoveWidth) {
-                $(this).animate({
-                    width: newsWidth * bei,
-                    marginLeft: (parseInt($(this).css("marginLeft")) * -1 + offLeft - 10) * -1//-----像右移动offLeft-10个单位
-                }, time);
+                var willMarginLeft = (parseInt($(the).css("marginLeft")) + (newsWidth * bei - newsWidth) / 2 * -1) * -1;
+                var willLeftMoveWidth = (newsWidth * bei - newsWidth) / 2;
+                var offLeft = $(the)[0].offsetLeft;
+                var offRight = windowWidth - offLeft - newsWidth - padWidthOneNew * 2;
+
+                if (offLeft < willLeftMoveWidth) {
+                    $(the).animate({
+                        width: newsWidth * bei,
+                        marginLeft: (parseInt($(the).css("marginLeft")) * -1 + offLeft - 10) * -1//-----像右移动offLeft-10个单位
+                    }, time);
+                }
+                else if (windowWidth - offLeft - newsWidth - padWidthOneNew * 2 < willLeftMoveWidth) {
+                    $(the).animate({
+                        width: newsWidth * bei,
+                        marginLeft: (parseInt($(the).css("marginLeft")) * -1 + willLeftMoveWidth + willLeftMoveWidth - (offRight - 10)) * -1
+                    }, time);
+                } else {
+                    $(this).animate({
+                        width: newsWidth * bei,
+                        marginLeft: willMarginLeft * -1
+                    }, time);
+                }
             }
-            else if (windowWidth - offLeft - newsWidth-padWidthOneNew*2 < willLeftMoveWidth) {
-                $(this).animate({
-                    width: newsWidth * bei,
-                    marginLeft: (parseInt($(this).css("marginLeft")) * -1 +willLeftMoveWidth+willLeftMoveWidth-(offRight - 10)) * -1
-                }, time);
-            } else {
-                $(this).animate({
-                    width: newsWidth * bei,
-                    marginLeft: willMarginLeft*-1
-                }, time);
+        }
+        function leaveToSmall(the){
+            if($(this).attr("class") && $(this).attr("class").indexOf("new") != -1){
+                the = this;
             }
-        });
-        news.mouseleave(function () {
-            $(this).animate({width: newsWidth, marginLeft: marginLeft}, time);
-        });
+            //console.info("now width:"+$(shit.))
+            if($(the).width() > newsWidth) {
+                $(the).animate({width: newsWidth, marginLeft: marginLeft}, time);
+            }
+        }
+        news.mouseenter(enterToBig);
+        news.mouseleave(leaveToSmall);
     }
 });
