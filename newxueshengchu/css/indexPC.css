@@ -52,7 +52,20 @@ a:hover{
     background: #c1c1c1;
 }
 
-
+/*天气*/
+.weather{
+    position: fixed;
+    top: 100px;
+    right: 0;
+    width: 110px;
+    height: 50px;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+    overflow: hidden;
+}
+.weather iframe{
+    margin-left: -70px;
+}
 
 
 
@@ -86,12 +99,14 @@ a:hover{
     -webkit-box-sizing: content-box;
     -moz-box-sizing: content-box;
     box-sizing: content-box;
+    font-size: 12px;
 
     position: absolute;
 
     top: 20px;
     opacity: 0.9;
 }
+
 .centerNews .new p{
     word-break: break-all;
     word-wrap: break-word;
@@ -104,6 +119,7 @@ a:hover{
 .centerNews .new .titleText{
     text-align: center;
     border-bottom: 2px red solid;
+    font-size: 14px;
 }
 
 
@@ -113,6 +129,7 @@ a:hover{
     position: absolute;
     bottom: 20px;
     left: 0;
+    margin: 0;
 }
 .bottom .bottomIcon{
     width: 25%;
@@ -125,5 +142,6 @@ a:hover{
 }
 .bottom .bottomImg img{
     border-radius: 18px;
+    height: 80px;
     border: 0;
 }
