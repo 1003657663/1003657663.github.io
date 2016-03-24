@@ -8,7 +8,7 @@ $(document).ready(function () {
     window.onresize = function(){
         window.location.reload();
     };
-    
+
     setNewWidth();
     function setNewWidth() {
         //----参数部分
