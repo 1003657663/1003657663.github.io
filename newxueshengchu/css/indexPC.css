@@ -23,6 +23,7 @@ a:hover{
 .mynavbar .nav li ul li{
     text-align: center;
     padding-top: 3px;
+    color: #e1e1e1;
 }
 .mynav{
     background-color: transparent;/*rgba(200, 200, 200, 0.5);*/
@@ -48,8 +49,8 @@ a:hover{
 .mynavbar ul{
     float: right;
 }
-.mynavbar ul li:hover{
-    background: #c1c1c1;
+.mynavbar>.nav>li:hover{
+    background: rgba(204, 204, 204, 0.3);
 }
 
 /*天气*/
@@ -74,7 +75,7 @@ a:hover{
 .centerNews{
     display: table;
     width: 100%;
-    height: 50%;
+    height: 60%;
     min-height: 390px;
     color: #FFFFFF;
     position: fixed;
@@ -96,6 +97,7 @@ a:hover{
     text-align: center;
     background: #FFFFFF;
     /*color: #000;*/
+    border: 0;
     -webkit-box-sizing: content-box;
     -moz-box-sizing: content-box;
     box-sizing: content-box;
@@ -111,9 +113,25 @@ a:hover{
     opacity: 0.9;
 }
 
-.centerNews #new1 .titleText{
+/*.centerNews #new1 .titleText{
     color: #000;
     font-family: 'ITCAvantGardeW01-CnMd', Arial, 'Helvetica Neue', Helvetica, sans-serif;
+}*/
+
+.centerNews #new1{
+
+}
+.centerNews #new2{
+
+}
+.centerNews #new3{
+
+}
+.centerNews #new4{
+
+}
+.centerNews #new5{
+
 }
 
 .centerNews .new p{
@@ -123,7 +141,7 @@ a:hover{
     text-overflow: ellipsis;
     overflow: hidden;
     text-align: left;
-    color: #030303;
+    color: #303232;
 }
 .centerNews .new .titleText{
     text-align: center;

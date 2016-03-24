@@ -9,12 +9,20 @@ body{
 a:hover{
     text-decoration: none;
 }
+
+.mynavbar{
+    background: #FFFFFF;
+}
+.mynavbar ul li{
+    color: #000;
+}
 .mynav{
     position: fixed;
     width: 100%;
     top: 0;
     left: 0;
     z-index: 1000;
+    background: #FFFFFF;
     border-bottom: 1px #c1c1c1 solid;
 }
 /*大屏幕和小屏幕显示效果不同*/
@@ -54,6 +62,12 @@ a:hover{
     line-height: 40px;
     padding-right: 10px;
 }
+.weather{
+    visibility: hidden;
+    height: 0;
+    overflow: hidden;
+}
+
 .centerNews .new{
     padding-top: 5px;
     background: #FFFFFF;

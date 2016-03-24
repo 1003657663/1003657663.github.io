@@ -13,6 +13,7 @@ $(document).ready(function () {
     function setNewWidth() {
         //----参数部分
         var windowWidth = $(window).width();
+        windowWidth = parseInt(windowWidth);
         var news = $(".new");
         var padWidthOneNew = 10;
         var newsWidth = windowWidth/(news.length)*0.5;
@@ -47,7 +48,8 @@ $(document).ready(function () {
                     leaveToSmall("#new"+i);
                 }
             }
-            if($(this).width() == newsWidth) {
+            var oneWidth = $(this).width();
+            if(oneWidth <= newsWidth+1 && oneWidth >=newsWidth-1) {
                 if ($(this).attr("class") && $(this).attr("class").indexOf("new") != -1) {
                     the = this;
                 }
