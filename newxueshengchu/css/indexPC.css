@@ -95,18 +95,25 @@ a:hover{
     padding-top: 5px;
     text-align: center;
     background: #FFFFFF;
-    color: #000;
-    border-radius: 0;
+    /*color: #000;*/
     -webkit-box-sizing: content-box;
     -moz-box-sizing: content-box;
     box-sizing: content-box;
     font-size: 12px;
-
     position: absolute;
+    /*-webkit-box-shadow: 5px 5px 20px 1px #2f2f2f;
+    -moz-box-shadow: 5px 5px 20px 1px #2f2f2f;*/
+    box-shadow: 1px 1px 20px 1px #4f4f4f;
+    
     left:50%;
     margin-left: -100px;
     top: 20px;
     opacity: 0.9;
+}
+
+.centerNews #new1 .titleText{
+    color: #000;
+    font-family: 'ITCAvantGardeW01-CnMd', Arial, 'Helvetica Neue', Helvetica, sans-serif;
 }
 
 .centerNews .new p{
@@ -120,7 +127,7 @@ a:hover{
 }
 .centerNews .new .titleText{
     text-align: center;
-    border-bottom: 2px red solid;
+    border-bottom: 2px solid;
     font-size: 14px;
 }
 
