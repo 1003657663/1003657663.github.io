@@ -4,7 +4,11 @@
 
 $(document).ready(function () {
     //获取浏览器窗口宽度
-    window.onresize = setNewWidth;
+    var isFirst = 0;
+    window.onresize = function(){
+        window.location.reload();
+    };
+    
     setNewWidth();
     function setNewWidth() {
         //----参数部分
