@@ -47,7 +47,7 @@
             if(aqiData[i][1]<=60){
                 break;
             }
-            willAddHtml = willAddHtml+"<li>"+aqiData[i][0]+","+aqiData[i][1]+"</li>";
+            willAddHtml = willAddHtml+"<li>第"+(i+1)+"名:"+aqiData[i][0]+","+aqiData[i][1]+"</li>";
         }
         list.innerHTML = willAddHtml;
 
