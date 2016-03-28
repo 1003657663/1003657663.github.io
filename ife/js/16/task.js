@@ -22,9 +22,9 @@ function addAqiData() {
     }
 }
 function check(text1,text2){//使用正则表达式检验输入正确性
-    var re = /^[\u4e00-\u9fa5 \u0041-\u005a \u0061-\u007a]+$/;
+    var re = /^[\u4e00-\u9fa5\u0041-\u005a\u0061-\u007a]+$/;
     if(!re.test(text1)){
-        alert("城市名称需要时中文或者英文");
+        alert("城市名称需要是中文或者英文");
         return false;
     }
     re = /^[0-9]+$/;
