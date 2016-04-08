@@ -8,25 +8,44 @@
     <title>学生处</title>
     <style>
         /*处理window phone手机的网页显示问题*/
-        @-ms-viewport       { width: device-width; }
-        @-webkit-viewport   { width: device-width; }
-        @-moz-viewport      { width: device-width; }
-        @-ms-viewport       { width: device-width; }
-        @-o-viewport        { width: device-width; }
-        @viewport           { width: device-width; }
+        @-ms-viewport {
+            width: device-width;
+        }
+
+        @-webkit-viewport {
+            width: device-width;
+        }
+
+        @-moz-viewport {
+            width: device-width;
+        }
+
+        @-ms-viewport {
+            width: device-width;
+        }
+
+        @-o-viewport {
+            width: device-width;
+        }
+
+        @viewport {
+            width: device-width;
+        }
     </style>
     <link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="../css/bothPcMo.css">
-    <link rel="stylesheet" type="text/css" media="screen and (min-width:768px)" href="../css/indexStyle.css">
-    <link rel="stylesheet" type="text/css" media="screen and (max-width:767px)" href="../css/indexMobile.css">
+    <link rel="stylesheet" type="text/css" href="../css/both.css">
+    <link rel="stylesheet" type="text/css" media="screen and (min-width:768px)" href="../css/indexPC.css">
+    <link rel="stylesheet" type="text/css" media="screen and (max-width:767px)" href="../css/indexMo.css">
     <script type="text/javascript" src="../js/jquery-latest.min.js"></script>
     <script type="text/javascript" src="../js/jquery.SuperSlide.2.1.1.js"></script>
 </head>
 <body>
+<div style="height: 1px;"></div>
 <nav class="navbar navbar-default mynav">
     <div class="container-fluid">
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -45,11 +64,36 @@
 
         <div class="collapse navbar-collapse mynavbar" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li><a href="#"><ul><li><img width="40px" src="../images/nav1.png"/></li><li>部门简介</li></ul></a></li>
-                <li><a href="#"><ul><li><img width="40px" src="../images/nav2.png"/></li><li>管理规定</li></ul></a></li>
-                <li><a href="#"><ul><li><img width="40px" src="../images/nav3.png"/></li><li>表格下载</li></ul></a></li>
-                <li><a href="#"><ul><li><img width="40px" src="../images/nav4.png"/></li><li>服务指南</li></ul></a></li>
-                <li><a href="#"><ul><li><img width="40px" src="../images/nav5.png"/></li><li>理论学习</li></ul></a></li>
+                <li><a href="#">
+                    <ul>
+                        <li><img width="40px" src="../images/nav1.png"/></li>
+                        <li>部门简介</li>
+                    </ul>
+                </a></li>
+                <li><a href="#">
+                    <ul>
+                        <li><img width="40px" src="../images/nav2.png"/></li>
+                        <li>管理规定</li>
+                    </ul>
+                </a></li>
+                <li><a href="#">
+                    <ul>
+                        <li><img width="40px" src="../images/nav3.png"/></li>
+                        <li>表格下载</li>
+                    </ul>
+                </a></li>
+                <li><a href="#">
+                    <ul>
+                        <li><img width="40px" src="../images/nav4.png"/></li>
+                        <li>服务指南</li>
+                    </ul>
+                </a></li>
+                <li><a href="#">
+                    <ul>
+                        <li><img width="40px" src="../images/nav5.png"/></li>
+                        <li>理论学习</li>
+                    </ul>
+                </a></li>
             </ul>
         </div>
     </div>
@@ -58,117 +102,111 @@
     </ul>
 </nav>
 
-
-<!-- 内容信息 -->
-<div id="main">
-
-    <div id="notice">
-        <div id="list">
-            <ul>
-                <li id="navigatorLi1" onmouseover="changeLi(this)">
-                    <h2>新闻&nbsp;&nbsp;News</h2>
-                </li>
-                <li id="navigatorLi2" onmouseover="changeLi(this)">
-                    <h2>公告&nbsp;&nbsp;Notice</h2>
-                </li>
-            </ul>
-        </div>
-        <div id="navigatorskip">
-            <div id="navigatorLi1skip">
-                <ul class="ulleft">
-                    <li><a href="http://www.4399.com"> 河南省郑州市高新区郑州大学100号</a><span>2018-01-01</span></li>
-                    <li><a href="http://www.4399.com"> 河南省郑州市高新区郑州大学100号</a><span>2018-01-01</span></li>
-                    <li><a href="http://www.4399.com"> 河南省郑州市高新区郑州大学100号</a><span>2018-01-01</span></li>
-                    <li><a href="http://www.4399.com"> 河南省郑州市高新区郑州大学100号</a><span>2018-01-01</span></li>
-                    <li><a href="http://www.4399.com"> 河南省郑州市高新区郑州大学100号</a><span>2018-01-01</span></li>
-                    <li><a href="http://www.4399.com"> 河南省郑州市高新区郑州大学100号</a><span>2018-01-01</span></li>
-                </ul>
-                <p><a href="index.html" class="more">more&gt;&gt;</a></p>
-            </div>
-            <div id="navigatorLi2skip">
-                <ul class="ulleft">
-                    <li><a href="http://www.4399.com"> 河南省郑州市高新区郑州大学100号</a><span>2018-01-01</span></li>
-                    <li><a href="http://www.4399.com"> 河南省郑州市高新区郑州大学100号</a><span>2018-01-01</span></li>
-                    <li><a href="http://www.4399.com"> 河南省郑州市高新区郑州大学100号</a><span>2018-01-01</span></li>
-                    <li><a href="http://www.4399.com"> 河南省郑州市高新区郑州大学100号</a><span>2018-01-01</span></li>
-                    <li><a href="http://www.4399.com"> 河南省郑州市高新区郑州大学100号</a><span>2018-01-01</span></li>
-                    <li><a href="http://www.4399.com"> 河南省郑州市高新区郑州大学100号</a><span>2018-01-01</span></li>
-                </ul>
-                <p><a href="index.html" class="more">more&gt;&gt;</a></p>
-            </div>
-        </div>
-    </div>
-    <div id="image">
-        <div id="picture">
-            <ul>
-                <li id="infoLi1" onmouseover="varyLi(this)">
-                    <h2>国际交流</h2>
-                </li>
-                <li id="infoLi2" onmouseover="varyLi(this)">
-                    <h2>院系风采</h2>
-                </li>
-                <li id="infoLi3" onmouseover="varyLi(this)">
-                    <h2>领导讲话</h2>
-                </li>
-            </ul>
-        </div>
-        <div id="infoskip">
-            <div id="infoLi1skip">
-                <div class="bd1 bd">
-                    <ul>
-                        <li>
-                            <img src="../images/photo1.jpg"/>
-                            <p>刘炯天开学大会发表公告</p>
-                        </li>
-                        <li>
-                            <img src="../images/photo2.jpg"/>
-                            <p>刘炯天开学大会发表公告</p>
-                        </li>
-                        <li>
-                            <img src="../images/photo3.jpg"/>
-                            <p>刘炯天开学大会发表公告</p>
-                        </li>
-                    </ul>
+<div class="container-fluid back">
+    <div class="container give-in-pad">
+        <div class="row center-two">
+            <div class="col-xs-12 col-lg-5 left-div in-main-div">
+                <div class="left-top-nav">
+                    <div class="hd">
+                        <ul>
+                            <li class="col-lg-6 col-xs-6">新闻</li>
+                            <li class="col-lg-6 col-xs-6">通告</li>
+                        </ul>
+                    </div>
+                    <div class="bd">
+                        <ul>
+                            <li>对方角度来看时间</li>
+                            <li>对方角度来看时间</li>
+                            <li>对方角度来看时间</li>
+                            <li>对方角度来看时间</li>
+                        </ul>
+                        <ul>
+                            <li>wode角度来看时间</li>
+                            <li>wode对方角度来看时间</li>
+                            <li>对方wode角度来看时间</li>
+                            <li>对方角度wode来看时间</li>
+                        </ul>
+                    </div>
                 </div>
-                <a class="prev" href="javascript:void(0)"></a>
-                <a class="next" href="javascript:void(0)"></a>
+                <script type="text/javascript">
+                    jQuery(".left-top-nav").slide({delayTime: 0});
+                </script>
             </div>
-            <div id="infoLi2skip">
-                <div class="bd bd2">
-                    <ul>
-                        <li><img src="../images/photo1.jpg"/><p>刘炯天开学大会发表公告</p></li>
-                        <li><img src="../images/photo2.jpg"/><p>刘炯天开学大会发表公告</p></li>
-                        <li><img src="../images/photo3.jpg"/><p>刘炯天开学大会发表公告</p></li>
-                    </ul>
+            <div class="col-xs-12 col-lg-4 right-div in-main-div">
+                <div class="right-top-nav">
+                    <div class="hd">
+                        <ul>
+                            <li class="col-lg-4 col-xs-4 nav-three">新闻</li>
+                            <li class="col-lg-4 col-xs-4 nav-fore">通告</li>
+                            <li class="col-lg-4 col-xs-4 nav-five">通告</li>
+                        </ul>
+                    </div>
+                    <div class="slide">
+                        <div class="bd">
+                            <ul class="bdul1">
+                                <li>
+                                    <img src="../images/photo1.jpg"/>
+                                    <div class="right-tit">
+                                        <p>小朝那个螺丝钉解放酸辣粉</p>
+                                        <p>小朝那个螺丝钉解放酸辣粉</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <img src="../images/photo2.jpg"/>
+                                    <div class="right-tit">
+                                        <p>小朝那个螺丝钉解放酸辣粉</p>
+                                        <p>小朝那个螺丝钉解放酸辣粉</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <img src="../images/rice.jpg"/>
+                                    <div class="right-tit">
+                                        <p>小朝那个螺丝钉解放酸辣粉</p>
+                                        <p>小朝那个螺丝钉解放酸辣粉</p>
+                                    </div>
+                                </li>
+                            </ul>
+                            <ul class="bdul2">
+                                <li><img src="../images/photo1.jpg"/></li>
+                                <li><img src="../images/photo2.jpg"/></li>
+                                <li><img src="../images/rice.jpg"/></li>
+                            </ul>
+                            <ul class="bdul3">
+                                <li><img src="../images/photo1.jpg"/></li>
+                                <li><img src="../images/photo2.jpg"/></li>
+                                <li><img src="../images/rice.jpg"/></li>
+                            </ul>
+                        </div>
+                        <a class="prev" href="javascript:void(0)"></a>
+                        <a class="next" href="javascript:void(0)"></a>
+                    </div>
                 </div>
-                <a class="prev" href="javascript:void(0)"></a>
-                <a class="next" href="javascript:void(0)"></a>
-            </div>
-            <div id="infoLi3skip">
-                <div class="bd bd3">
-                    <ul>
-                        <li><img src="../images/photo1.jpg"/><p>刘炯天开学大会发表公告</p></li>
-                        <li><img src="../images/photo2.jpg"/><p>刘炯天开学大会发表公告</p></li>
-                        <li><img src="../images/photo3.jpg"/><p>刘炯天开学大会发表公告</p></li>
-                    </ul>
-                </div>
-                <a class="prev" href="javascript:void(0)"></a>
-                <a class="next" href="javascript:void(0)"></a>
+                <script type="text/javascript">
+                    jQuery(".slide").slide({mainCell: ".bd .bdul1", autoPlay: true, delayTime: 1000});
+                    jQuery(".slide").slide({mainCell: ".bd .bdul2", autoPlay: true, delayTime: 1000});
+                    jQuery(".slide").slide({mainCell: ".bd .bdul3", autoPlay: true, delayTime: 1000});
+                    jQuery(".right-top-nav").slide({delayTime: 0});
+                </script>
             </div>
         </div>
-    </div>
-    <script type="text/javascript">
-        jQuery("#infoskip").slide({mainCell: ".bd1 ul", autoPlay: true, delayTime: 1000});
-        jQuery("#infoskip").slide({mainCell: ".bd2 ul", autoPlay: true, delayTime: 1000});
-        jQuery("#infoskip").slide({mainCell: ".bd3 ul", autoPlay: true, delayTime: 1000});
-    </script>
-    <div class="bottom">
-        <ul>
-            <li id="blogroll1"><a href="#" target="_blank"><img src="../images/blogroll4.png"/> </a></li>
-            <li id="blogroll2"><a href="#" target="_blank"><img src="../images/blogroll2.png"/> </a></li>
-            <li id="blogroll3"><a href="#" target="_blank"><img src="../images/blogroll1.png"/> </a></li>
-            <li id="blogroll4"><a href="#" target="_blank"><img src="../images/blogroll3.png"/> </a></li>
-        </ul>
+        <div class="row bottom-div">
+            <div class="col-lg-3 col-xs-6 bottom-img-div">
+                <img src="../images/blogroll4.png"/>
+            </div>
+            <div class="col-lg-3 col-xs-6 bottom-img-div">
+                <img src="../images/blogroll2.png"/>
+            </div>
+            <div class="col-lg-3 col-xs-6 bottom-img-div">
+                <img src="../images/blogroll1.png"/>
+            </div>
+            <div class="col-lg-3 col-xs-6 bottom-img-div">
+                <img src="../images/blogroll3.png"/>
+            </div>
+        </div>
+        <div class="copy-right">
+            <hr/>
+            <p>郑州大学学生处©2016-2020</p>
+        </div>
     </div>
 </div>
 <div class="weather">
@@ -176,9 +214,10 @@
             src="http://i.tianqi.com/index.php?c=code&id=12&bgc=%2300B0F0&bdc=%23&icon=1&py=zhengzhou&num=1">
     </iframe>
 </div>
+
 </body>
 <script>
-    if(screen && screen.width>700) {
+    if (screen && screen.width > 700) {
         if (navigator.userAgent.match(/IEMobile\/10\.0/)) {
             var msViewportStyle = document.createElement('style');
             msViewportStyle.appendChild(
@@ -204,16 +243,17 @@
         system.ipad = (navigator.userAgent.match(/iPad/i) != null) ? true : false;
         //跳转语句，如果是手机访问就自动跳转到wap.baidu.com页面
         if (system.win || system.mac || system.xll || system.ipad) {
-            //document.write('<script src="js/indexPC.js" ><\/script>');
+            //电脑
+            document.write('<script src="../js/indexJs.js" ><\/script>');
         } else {
+            //手机
             //document.write('<script src="js/indexMobile.js" ><\/script>');
             document.write('<script src="../js/bootstrap.min.js"><\/script>');
         }
-    }else{
-        alert("手机");
+    } else {
+        //手机
         //document.write('<script src="js/indexMobile.js" ><\/script>');
         document.write('<script src="../js/bootstrap.min.js"><\/script>');
     }
 </script>
-<script src="../js/indexJs.js"></script>
 </html>
