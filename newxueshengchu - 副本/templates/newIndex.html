@@ -1,0 +1,166 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="renderer" content="webkit">
+    <title>学生处</title>
+    <style>
+        /*处理window phone手机的网页显示问题*/
+        @-ms-viewport {
+            width: device-width;
+        }
+
+        @-webkit-viewport {
+            width: device-width;
+        }
+
+        @-moz-viewport {
+            width: device-width;
+        }
+
+        @-ms-viewport {
+            width: device-width;
+        }
+
+        @-o-viewport {
+            width: device-width;
+        }
+
+        @viewport {
+            width: device-width;
+        }
+    </style>
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="../css/bothPcMo.css">
+    <link rel="stylesheet" type="text/css" media="screen and (min-width:768px)" href="../css/indexPC.css">
+    <link rel="stylesheet" type="text/css" media="screen and (max-width:767px)" href="../css/indexMobil.css">
+    <script type="text/javascript" src="../js/jquery-latest.min.js"></script>
+    <script type="text/javascript" src="../js/jquery.SuperSlide.2.1.1.js"></script>
+</head>
+<body>
+<nav class="navbar navbar-default mynav">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">
+                <span>
+                    <img class="school-icon" src="../images/school.png"/>
+                    <ul class="most-title-big">
+                        <li class="top-school-name">郑州大学</li>
+                        <li class="top-depart">学生工作网</li>
+                    </ul>
+                </span>
+            </a>
+        </div>
+
+        <div class="collapse navbar-collapse mynavbar" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li><a href="#">
+                    <ul>
+                        <li><img width="40px" src="../images/nav1.png"/></li>
+                        <li>部门简介</li>
+                    </ul>
+                </a></li>
+                <li><a href="#">
+                    <ul>
+                        <li><img width="40px" src="../images/nav2.png"/></li>
+                        <li>管理规定</li>
+                    </ul>
+                </a></li>
+                <li><a href="#">
+                    <ul>
+                        <li><img width="40px" src="../images/nav3.png"/></li>
+                        <li>表格下载</li>
+                    </ul>
+                </a></li>
+                <li><a href="#">
+                    <ul>
+                        <li><img width="40px" src="../images/nav4.png"/></li>
+                        <li>服务指南</li>
+                    </ul>
+                </a></li>
+                <li><a href="#">
+                    <ul>
+                        <li><img width="40px" src="../images/nav5.png"/></li>
+                        <li>理论学习</li>
+                    </ul>
+                </a></li>
+            </ul>
+        </div>
+    </div>
+    <ul class="most-title-small">
+        <li class="top-depart">学生工作网</li>
+    </ul>
+</nav>
+
+<div class="container-fluid back">
+    <div class="container">
+        <div class="row center-two">
+            <div class="col-xs-12 col-lg-5 left-div">
+                <nav class="left-top-nav">
+                    <div></div>
+                    <div></div>
+                </nav>
+            </div>
+            <div class=" col-lg-4 right-div">
+
+            </div>
+        </div>
+        <div class="row bottom-div">
+
+        </div>
+        <div class="copy-right">
+            <hr/>
+            <p>郑州大学学生处©2016-2020</p>
+        </div>
+    </div>
+</div>
+</body>
+<script>
+    if (screen && screen.width > 700) {
+        if (navigator.userAgent.match(/IEMobile\/10\.0/)) {
+            var msViewportStyle = document.createElement('style');
+            msViewportStyle.appendChild(
+                    document.createTextNode(
+                            '@-ms-viewport{width:auto!important}'
+                    )
+            );
+            document.querySelector('head').appendChild(msViewportStyle)
+        }
+
+        //平台、设备和操作系统
+        var system = {
+            win: false,
+            mac: false,
+            xll: false,
+            ipad: false
+        };
+        //检测平台
+        var p = navigator.platform;
+        system.win = p.indexOf("Win") == 0;
+        system.mac = p.indexOf("Mac") == 0;
+        system.x11 = (p == "X11") || (p.indexOf("Linux") == 0);
+        system.ipad = (navigator.userAgent.match(/iPad/i) != null) ? true : false;
+        //跳转语句，如果是手机访问就自动跳转到wap.baidu.com页面
+        if (system.win || system.mac || system.xll || system.ipad) {
+            //document.write('<script src="js/indexPC.js" ><\/script>');
+        } else {
+            //document.write('<script src="js/indexMobile.js" ><\/script>');
+            document.write('<script src="../js/bootstrap.min.js"><\/script>');
+        }
+    } else {
+        alert("手机");
+        //document.write('<script src="js/indexMobile.js" ><\/script>');
+        document.write('<script src="../js/bootstrap.min.js"><\/script>');
+    }
+</script>
+<script src="../js/indexJs.js"></script>
+</html>

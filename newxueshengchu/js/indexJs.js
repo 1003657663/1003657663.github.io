@@ -5,25 +5,29 @@ var infoLi;
 
 (function(){
     var top;
-    var topHeight;
     var photo;
     var photoHeight;
 	var list;
 	var picture;
 
+    setBackMargin();
+    window.onresize = setBackMargin;
     setNavigator();
     main = document.getElementById("navigatorskip");
     allskip = main.getElementsByTagName("div");
     window.onresize = setNavigator;
     function setNavigator(){
-        top = document.getElementById("top");
         list = document.getElementById("list");
 		picture = document.getElementById("picture");
         navigatorLi = list.getElementsByTagName("li");
 		infoLi = picture.getElementsByTagName("li");
-        topHeight = top.offsetHeight;
     }
 })();
+
+function setBackMargin(){
+    document.getElementsByClassName("back").item(0).style.marginTop = document.body.offsetHeight * 0.4 + "px";
+}
+
 function changeLi(e){
     for(i=0;i<navigatorLi.length;i++)
     {

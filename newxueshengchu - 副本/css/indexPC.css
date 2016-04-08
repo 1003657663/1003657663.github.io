@@ -1,0 +1,111 @@
+@charset "utf-8";
+/* CSS Document */
+
+*{
+    list-style:none;
+    margin: 0;
+    padding: 0;
+    font-family: '宋体','Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+body,html{
+    width:100%;
+    height:100%;
+}
+body{
+    background-image: url(../images/photo.jpg);
+    background-size: cover;
+    background-attachment: fixed;
+}
+a{
+    text-decoration:none;
+}
+img{
+    border:0;
+}
+ul{
+    margin:0;
+}
+
+/*------------------------------------------导航css------------------------------------------*/
+.navbar,.navbar-default .navbar-collapse{
+    height: 70px !important;
+}
+.navbar-brand ul{
+    padding-left: 60px;
+}
+.mynavbar .nav li a{
+    padding-top: 0;
+}
+.mynavbar .nav li ul{
+    padding: 0;
+    height: 70px;
+}
+.mynavbar .nav li ul li{
+    text-align: center;
+    padding-top: 3px;
+    color: #e1e1e1;
+}
+.mynav{
+    background-color: rgba(255, 255, 255, 0.9);
+    border: 0;
+}
+.mynav li{
+    color: #333333 !important;
+}
+/*大屏幕和小屏幕显示效果不同*/
+.mynav .most-title-small{
+    visibility: hidden;
+}
+
+.navbar-brand .top-school-name{
+    font-size: 20px;
+    font-family: '隶书';
+    padding-bottom: 5px;
+}
+.navbar-brand .top-depart{
+    font-size: 23px;
+    font-family: '楷体';
+}
+
+/*顶部导航栏*/
+.mynavbar ul{
+    float: right;
+}
+.mynavbar>.nav>li:hover{
+    background: rgba(204, 204, 204, 0.3);
+}
+
+/*------------------------------------------------------------------------------------*/
+.back{
+    background: rgba(255,255,255,0.5);
+    min-height: 500px;
+    padding-top: 30px;
+}
+/*----------------------------------------center-two-----------------*/
+.center-two{
+    background: red;
+}
+/*----------------------------------------left-div-----------------*/
+.left-div{
+    width: 40%;
+    height: 250px;
+    background: blue;
+}
+/*----------------------------------------right-div-----------------*/
+.right-div{
+    width: 30%;
+    height: 250px;
+    background: yellow;
+    float:right;
+}
+/*----------------------------------------bottom-div-----------------*/
+
+/*----------------------------------------copy-right-----------------*/
+.copy-right{
+    text-align: center;
+    font-size:19px;
+}
+.copy-right hr{
+    border-top-width: 2px;
+    border-top-color: #4e4f52;
+}
