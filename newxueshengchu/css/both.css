@@ -4,6 +4,10 @@ html,body{
 
 a{
     text-decoration:none;
+    color: #0e0e0e;
+}
+a:hover{
+    text-decoration: none;
 }
 img{
     border:0;
@@ -69,7 +73,20 @@ ul{
 .left-div .left-top-nav .hd ul li{
     font-size: 22px;
 }
+.left-div .bd li p{
+    -ms-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    word-break: break-all;
+    white-space: nowrap;
+}
+.left-div .bd li time{
+    float: right;
+}
 /*----------------------------------------right-div-----------------*/
+.right-div a{
+    color: #f7f7f7;
+}
 .right-div{
     height: 250px;
     background: #ffffff;

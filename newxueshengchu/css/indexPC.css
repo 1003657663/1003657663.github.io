@@ -79,7 +79,7 @@ body{
 }
 /*----------------------------------------left-div-----------------*/
 .left-div{
-    width: 40%;
+    width: 50%;
 }
 /*----------------------------------------right-div-----------------*/
 .right-div{
@@ -89,10 +89,16 @@ body{
 /*----------------------------------------bottom-div-----------------*/
 .bottom-div{
     margin-top: 100px;
+    height: 100px;
+    overflow: hidden;
 }
 .bottom-div,.bottom-img-div{
     height: 100px;
     text-align: center;
+    padding: 0;
+}
+.bottom-img-div{
+    width: 163px;
 }
 .bottom-img-div img{
     height: 100%;

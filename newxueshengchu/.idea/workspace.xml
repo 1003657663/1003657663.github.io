@@ -22,22 +22,22 @@
     <favorites_list name="newxueshengchu" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="264">
-              <caret line="177" column="6" selection-start-line="173" selection-start-column="0" selection-end-line="177" selection-end-column="6" />
+            <state relative-caret-position="45">
+              <caret line="268" column="34" selection-start-line="268" selection-start-column="24" selection-end-line="268" selection-end-column="34" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="newIndex.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/newIndex.html">
+      <file leaf-file-name="indexJs.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/js/indexJs.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="129">
-              <caret line="42" column="23" selection-start-line="42" selection-start-column="23" selection-end-line="42" selection-end-column="23" />
+            <state relative-caret-position="268">
+              <caret line="14" column="28" selection-start-line="14" selection-start-column="28" selection-end-line="14" selection-end-column="28" />
               <folding />
             </state>
           </provider>
@@ -46,8 +46,8 @@
       <file leaf-file-name="both.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/css/both.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="27">
-              <caret line="1" column="17" selection-start-line="1" selection-start-column="17" selection-end-line="1" selection-end-column="17" />
+            <state relative-caret-position="754">
+              <caret line="129" column="19" selection-start-line="129" selection-start-column="19" selection-end-line="129" selection-end-column="19" />
               <folding />
             </state>
           </provider>
@@ -56,8 +56,18 @@
       <file leaf-file-name="indexPC.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/css/indexPC.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-216">
-              <caret line="4" column="20" selection-start-line="4" selection-start-column="20" selection-end-line="4" selection-end-column="20" />
+            <state relative-caret-position="48">
+              <caret line="90" column="22" selection-start-line="90" selection-start-column="22" selection-end-line="90" selection-end-column="22" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="indexBoth.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/indexBoth.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="54">
+              <caret line="2" column="9" selection-start-line="2" selection-start-column="9" selection-end-line="2" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -66,8 +76,8 @@
       <file leaf-file-name="indexMo.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/css/indexMo.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="-1842">
+              <caret line="1" column="24" selection-start-line="1" selection-start-column="24" selection-end-line="1" selection-end-column="24" />
               <folding />
             </state>
           </provider>
@@ -76,7 +86,7 @@
       <file leaf-file-name="indexMobile.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/css/indexMobile.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="21">
+            <state relative-caret-position="27">
               <caret line="53" column="1" selection-start-line="53" selection-start-column="1" selection-end-line="53" selection-end-column="1" />
               <folding />
             </state>
@@ -86,28 +96,8 @@
       <file leaf-file-name="bothPcMo.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/css/bothPcMo.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="21">
+            <state relative-caret-position="27">
               <caret line="6" column="1" selection-start-line="6" selection-start-column="1" selection-end-line="6" selection-end-column="1" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="indexJs.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/js/indexJs.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="243">
-              <caret line="27" column="102" selection-start-line="27" selection-start-column="102" selection-end-line="27" selection-end-column="102" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="indexStyle.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/css/indexStyle.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="18">
-              <caret line="533" column="6" selection-start-line="533" selection-start-column="6" selection-end-line="533" selection-end-column="6" />
               <folding />
             </state>
           </provider>
@@ -154,13 +144,16 @@
         <option value="$PROJECT_DIR$/mine/index.html" />
         <option value="$PROJECT_DIR$/templates/detail.html" />
         <option value="$PROJECT_DIR$/css/indexStyle.css" />
-        <option value="$PROJECT_DIR$/templates/index.html" />
         <option value="$PROJECT_DIR$/css/indexMobile.css" />
         <option value="$PROJECT_DIR$/css/index.css" />
-        <option value="$PROJECT_DIR$/css/both.css" />
         <option value="$PROJECT_DIR$/css/indexMo.css" />
-        <option value="$PROJECT_DIR$/css/indexPC.css" />
         <option value="$PROJECT_DIR$/templates/newIndex.html" />
+        <option value="$PROJECT_DIR$/js/jquery.SuperSlide.2.1.1.js" />
+        <option value="$PROJECT_DIR$/js/jquery.SuperSlide.2.1.1 - 副本.js" />
+        <option value="$PROJECT_DIR$/js/indexBoth.js" />
+        <option value="$PROJECT_DIR$/templates/index.html" />
+        <option value="$PROJECT_DIR$/css/both.css" />
+        <option value="$PROJECT_DIR$/css/indexPC.css" />
         <option value="$PROJECT_DIR$/js/indexJs.js" />
       </list>
     </option>
@@ -187,7 +180,7 @@
     <ConfirmationsSetting value="0" id="Remove" />
   </component>
   <component name="ProjectView">
-    <navigator currentView="ProjectPane" proportions="" version="1">
+    <navigator proportions="" version="1">
       <flattenPackages />
       <showMembers />
       <showModules />
@@ -200,14 +193,7 @@
       <manualOrder />
       <foldersAlwaysOnTop value="true" />
     </navigator>
-    <panes>
-      <pane id="ProjectPane">
-        <subPane />
-      </pane>
-      <pane id="Scope" />
-      <pane id="Scratches" />
-      <pane id="PackagesPane" />
-    </panes>
+    <panes />
   </component>
   <component name="PropertiesComponent">
     <property name="aspect.path.notification.shown" value="true" />
@@ -678,11 +664,12 @@
       <workItem from="1459942629344" duration="12325000" />
       <workItem from="1460025441690" duration="5364000" />
       <workItem from="1460119997138" duration="17807000" />
+      <workItem from="1460175109357" duration="12015000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="175460000" />
+    <option name="totallyTimeSpent" value="187475000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
@@ -760,9 +747,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/css/indexPC.css" />
-    <entry file="file://$PROJECT_DIR$/css/indexMobile.css" />
-    <entry file="file://$PROJECT_DIR$/js/indexPC.js" />
     <entry file="file://$PROJECT_DIR$/index.html" />
     <entry file="file://$PROJECT_DIR$/css/bothPcMo.css" />
     <entry file="file://$PROJECT_DIR$/css/indexPC.css" />
@@ -944,67 +928,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/css/index.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="237">
-          <caret line="93" column="21" selection-start-line="93" selection-start-column="21" selection-end-line="93" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/css/index.css" />
     <entry file="file://F:/办公文件夹/网络文化工作室地图数据/轮播插件/SuperSlide2.1-demo/demo/1.0-switchTab.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="243">
           <caret line="30" column="45" selection-start-line="30" selection-start-column="45" selection-end-line="30" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="177" column="6" selection-start-line="173" selection-start-column="0" selection-end-line="177" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/css/indexMobile.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="21">
-          <caret line="53" column="1" selection-start-line="53" selection-start-column="1" selection-end-line="53" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/css/indexStyle.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18">
-          <caret line="533" column="6" selection-start-line="533" selection-start-column="6" selection-end-line="533" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/css/indexMo.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/css/both.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="27">
-          <caret line="1" column="17" selection-start-line="1" selection-start-column="17" selection-end-line="1" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/css/indexPC.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-216">
-          <caret line="4" column="20" selection-start-line="4" selection-start-column="20" selection-end-line="4" selection-end-column="20" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1016,18 +944,100 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/css/indexStyle.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="48">
+          <caret line="533" column="6" selection-start-line="533" selection-start-column="6" selection-end-line="533" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/jquery.SuperSlide.2.1.1.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="12" column="3" selection-start-line="12" selection-start-column="3" selection-end-line="12" selection-end-column="3" />
+          <folding>
+            <marker date="1460177564654" expanded="true" signature="3285:3337" placeholder="..." />
+            <marker date="1460177564654" expanded="true" signature="3492:3543" placeholder="..." />
+            <marker date="1460177564654" expanded="true" signature="3767:3818" placeholder="..." />
+            <marker date="1460177564654" expanded="true" signature="4048:4100" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/jquery.SuperSlide.2.1.1 - 副本.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-7698">
+          <caret line="80" column="53" selection-start-line="80" selection-start-column="53" selection-end-line="80" selection-end-column="53" />
+          <folding>
+            <marker date="1460177661530" expanded="true" signature="5479:5537" placeholder="..." />
+            <marker date="1460177661530" expanded="true" signature="5913:5970" placeholder="..." />
+            <marker date="1460177661530" expanded="true" signature="6501:6558" placeholder="..." />
+            <marker date="1460177661530" expanded="true" signature="7101:7159" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/css/bothPcMo.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="21">
+        <state relative-caret-position="27">
           <caret line="6" column="1" selection-start-line="6" selection-start-column="1" selection-end-line="6" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/indexMobile.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="27">
+          <caret line="53" column="1" selection-start-line="53" selection-start-column="1" selection-end-line="53" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/indexBoth.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="2" column="9" selection-start-line="2" selection-start-column="9" selection-end-line="2" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/indexPC.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="48">
+          <caret line="90" column="22" selection-start-line="90" selection-start-column="22" selection-end-line="90" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/indexMo.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1842">
+          <caret line="1" column="24" selection-start-line="1" selection-start-column="24" selection-end-line="1" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/both.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="754">
+          <caret line="129" column="19" selection-start-line="129" selection-start-column="19" selection-end-line="129" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="268" column="34" selection-start-line="268" selection-start-column="24" selection-end-line="268" selection-end-column="34" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/indexJs.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="243">
-          <caret line="27" column="102" selection-start-line="27" selection-start-column="102" selection-end-line="27" selection-end-column="102" />
+        <state relative-caret-position="268">
+          <caret line="14" column="28" selection-start-line="14" selection-start-column="28" selection-end-line="14" selection-end-column="28" />
           <folding />
         </state>
       </provider>
