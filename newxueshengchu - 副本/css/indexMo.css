@@ -1,16 +1,3 @@
-html,body{
-    height: 100%;
-}
-body{
-    background-size: cover;
-    padding-top: 50px;
-    background: none;
-}
-
-a:hover{
-    text-decoration: none;
-}
-
 .mynavbar{
     background: #FFFFFF;
 }
@@ -62,7 +49,37 @@ a:hover{
     height: 0;
     overflow: hidden;
 }
+.give-in-pad{
+    padding-left:0;
+    padding-right:0;
+}
+.back{
+    padding-top: 72px;
+}
 
-#image{
-    display: none;
+/*设置第一个切换*/
+
+.center-two .bd ul{
+    padding:0;
+}
+
+.left-div{
+    margin-bottom: 20px;
+}
+/*----------------------------------------bottom-div-----------------*/
+.bottom-div{
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+.bottom-img-div{
+    height: 70px;
+    padding: 5px;
+    text-align: center;
+}
+.bottom-img-div img{
+    height: 100%;
+}
+/*----------------center-nav*/
+.in-main-div .hd ul li.on{
+    background: #dcdcdc;
 }

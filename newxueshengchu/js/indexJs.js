@@ -12,8 +12,6 @@ function setBackMargin(){
     var imgWidth = $(".bottom-img-div img").eq(0).width();
     var toMargin = (width-imgWidth*4)/3;
     $(".bottom-div .bottom-img-div").each(function (index,element) {
-        console.info(index);
-        console.info(element);
         if(index!=0){
             element.style.marginLeft = toMargin + 'px';
         }

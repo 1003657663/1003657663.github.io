@@ -5,7 +5,7 @@
     text-align: center;
 }
 .article .list-group-item{
-    background: rgba(255,255,255,0.9);
+    background: #f6f6f6;
 }
 .article .paging{
     /*分页按钮居中*/
@@ -19,16 +19,25 @@
     float: left;
 }
 .article .time{
-    width: 80px;
+    padding-left: 15px;
+    padding-right: 15px;
 }
 .article .tit{
-    width: 950px;
+    padding-left: 10px;
     overflow: hidden;
+    line-height: 30px;
 
     /*文字超长显示省略号*/
     -ms-text-overflow: ellipsis;
     text-overflow: ellipsis;
     word-break: break-all;
     white-space: nowrap;
-    padding:0 30px 0 15px;
+}
+.article .readtime{
+    padding-left:15px;
+    padding-right: 15px;
+}
+
+.button-primary{
+    background: #898989;
 }

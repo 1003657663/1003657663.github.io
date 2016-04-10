@@ -7,23 +7,11 @@
     padding: 0;
     font-family: '宋体','Helvetica Neue', Helvetica, Arial, sans-serif;
 }
-body,html{
-    width:100%;
-    height:100%;
-}
 body{
     background-image: url(../images/photo.jpg);
     background-size: cover;
     background-attachment: fixed;
-}
-a{
-    text-decoration:none;
-}
-img{
-    border:0;
-}
-ul{
-    margin:0;
+    height: 100%;
 }
 
 /*------------------------------------------导航css------------------------------------------*/
@@ -46,8 +34,13 @@ ul{
     color: #e1e1e1;
 }
 .mynav{
-    background-color: rgba(255, 255, 255, 0.9);
-    border: 0;
+    background-color: #f8f8f8;
+    position: fixed;
+    left:0;
+    top:0;
+    width:100%;
+    z-index: 1000;
+    border-radius: 0;
 }
 .mynav li{
     color: #333333 !important;
@@ -78,34 +71,50 @@ ul{
 /*------------------------------------------------------------------------------------*/
 .back{
     background: rgba(255,255,255,0.5);
-    min-height: 500px;
     padding-top: 30px;
 }
-/*----------------------------------------center-two-----------------*/
-.center-two{
-    background: red;
+.left-div,.right-div{
+    height: 250px;
+    padding:0;
 }
 /*----------------------------------------left-div-----------------*/
 .left-div{
-    width: 40%;
-    height: 250px;
-    background: blue;
+    width: 50%;
 }
 /*----------------------------------------right-div-----------------*/
 .right-div{
     width: 30%;
-    height: 250px;
-    background: yellow;
     float:right;
 }
 /*----------------------------------------bottom-div-----------------*/
-
-/*----------------------------------------copy-right-----------------*/
-.copy-right{
-    text-align: center;
-    font-size:19px;
+.bottom-div{
+    margin-top: 100px;
+    height: 100px;
+    overflow: hidden;
 }
-.copy-right hr{
-    border-top-width: 2px;
-    border-top-color: #4e4f52;
+.bottom-div,.bottom-img-div{
+    height: 100px;
+    text-align: center;
+    padding: 0;
+}
+.bottom-img-div{
+    width: 163px;
+}
+.bottom-img-div img{
+    height: 100%;
+}
+
+/*天气*/
+.weather{
+    position: fixed;
+    top: 120px;
+    right: 0;
+    width: 110px;
+    height: 50px;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+    overflow: hidden;
+}
+.weather iframe{
+    margin-left: -70px;
 }
