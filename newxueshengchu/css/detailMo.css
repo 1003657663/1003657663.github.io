@@ -1,0 +1,15 @@
+.left-group{
+    width: 100%;
+}
+.left-col{
+    padding-left: 0;
+    padding-right: 0;
+    margin-bottom: 30px;
+}
+.pager{
+    width: 100%;
+}
+.pager li{
+    float: left;
+    margin-bottom: 10px;
+}

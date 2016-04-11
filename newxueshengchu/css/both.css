@@ -123,7 +123,9 @@ ul{
     margin-bottom: 5px;
 }
 
-
+.bottom-img-div{
+    padding:0;
+}
 /*----------------------------------------copy-right-----------------*/
 .copy-right{
     text-align: center;

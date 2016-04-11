@@ -1,5 +1,5 @@
 .article{
-    padding-top: 100px;
+    padding: 100px 0 0 0;
 }
 .article .head-title{
     text-align: center;
@@ -19,8 +19,11 @@
     float: left;
 }
 .article .time{
-    padding-left: 15px;
-    padding-right: 15px;
+    padding: 5px 10px 5px 10px;
+    border-radius: 15px;
+    background: #a3a3a3;
+    color: #e5e5e5;
+    font-weight: 500;
 }
 .article .tit{
     padding-left: 10px;

@@ -13,3 +13,17 @@
 .article .main-body{
     line-height: 35px;
 }
+
+.list-group{
+    padding-right: 0;
+}
+.pager li a{
+    display: block;
+    color: #00a9ff;
+    max-width: 300px;
+    overflow: hidden;
+    -ms-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    word-break: break-all;
+    white-space: nowrap;
+}

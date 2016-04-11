@@ -295,7 +295,7 @@
 </body>
 <script type="text/javascript" src="../js/indexBoth.js"></script>
 <script>
-    if (screen && screen.width > 700) {
+    if (screen && screen.width > 750) {
         if (navigator.userAgent.match(/IEMobile\/10\.0/)) {
             var msViewportStyle = document.createElement('style');
             msViewportStyle.appendChild(
@@ -319,9 +319,10 @@
         system.mac = p.indexOf("Mac") == 0;
         system.x11 = (p == "X11") || (p.indexOf("Linux") == 0);
         system.ipad = (navigator.userAgent.match(/iPad/i) != null) ? true : false;
-        //跳转语句，如果是手机访问就自动跳转到wap.baidu.com页面
+        //跳转语句
         if (system.win || system.mac || system.xll || system.ipad) {
             //电脑
+            console.info("电脑");
             document.write('<script src="../js/indexJs.js" ><\/script>');
             window.onresize = function(){
                 setBackMargin();
@@ -329,11 +330,13 @@
             }
         } else {
             //手机
+            console.info("手机");
             document.write('<script src="../js/indexMo.js" ><\/script>');
             document.write('<script src="../js/bootstrap.min.js"><\/script>');
         }
     } else {
         //手机
+        console.info("手机");
         document.write('<script src="../js/indexMo.js" ><\/script>');
         document.write('<script src="../js/bootstrap.min.js"><\/script>');
     }

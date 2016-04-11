@@ -34,10 +34,13 @@
     </style>
     <link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="../css/both.css">
-    <link rel="stylesheet" type="text/css" href="../css/indexPC.css"/>
+    <link rel="stylesheet" type="text/css" media="screen and (min-width:768px)" href="../css/indexPC.css">
+    <link rel="stylesheet" type="text/css" media="screen and (max-width:767px)" href="../css/indexMo.css">
     <link rel="stylesheet" type="text/css" href="../css/detail.css"/>
-    <link rel="stylesheet" type="text/css" href="../css/calendar.css"/>
     <link rel="stylesheet" type="text/css" href="../css/listAnddetail.css"/>
+    <link rel="stylesheet" type="text/css" media="screen and (max-width:767px)" href="../css/detailMo.css">
+    <link rel="stylesheet" type="text/css" href="../css/calendar.css"/>
+
 
     <script type="text/javascript" src="../js/jquery-latest.min.js"></script>
     <script type="text/javascript" src="../js/calendar.js"></script>
@@ -150,8 +153,16 @@
             “新传青年说”是由学院团委、学生会精心打造的一档大学生语言竞技类比赛，参赛选手为我校全日制本科生和研究生，其目的是让青年人分享自己的青春梦想和主张，传递青春正能量。赛程分为月赛和总决赛，月赛将举办八期，每个月的最后一周的周四晚上比赛，由十五名选手围绕一个主题进行角逐。获得月赛一等奖的选手晋级年度总决赛。第二季总决赛将于2016年12月份举办。
             <br/>（供稿：学生会新闻中心 阚晓倩 贠佳楠 王珺）
         </li>
+        <li class="col-xs-12 list-group-item">
+            <nav>
+                <ul class="pager">
+                    <li class="previous"><a href="#"> 上一篇 &nbsp; 我远领导啥啥啥我远领导啥啥啥我远领导啥啥啥 </a></li>
+                    <li class="next"><a href="#"> 下一篇 &nbsp; 楼上的房间楼上的上的房间楼上的上的房间楼上的上的房间楼上的房间 </a></li>
+                </ul>
+            </nav>
+        </li>
     </ul>
-    <div class="col-lg-4 left-col">
+    <div class="col-lg-4 col-xs-12 left-col">
         <div id="CalendarMain">
             <div id="title"><a class="selectBtn month" href="javascript:" onclick="CalendarHandler.CalculateLastMonthDays();">&lt;</a>
                 <a class="selectBtn selectYear" href="javascript:" onClick="CalendarHandler.CreateSelectYear(CalendarHandler.showYearStart);">2014年</a>
@@ -181,20 +192,56 @@
                 <div id="foots"><a id="footNow">19:14:34</a></div>
             </div>
         </div>
-        <!--<div class="input-group left-search">
-            <input type="text" class="form-control" placeholder="Search...">
-            <span class="input-group-btn" onclick="alert('此功能暂未开通');">
-                <button class="btn btn-default" type="button">
-                    <span class="glyphicon glyphicon glyphicon-search" aria-hidden="true"></span>
-                </button>
-            </span>
-        </div>-->
         <ul class="list-group left-group">
             <li class="list-group-item">《炎症性脏器损伤的免疫调节机制》学术报告</li>
             <li class="list-group-item">《炎症性脏器损伤的免疫调节机制》学术报告</li>
             <li class="list-group-item">《炎症性脏器损伤的免疫调节机制》学术报告</li>
         </ul>
     </div>
+    <div class="clearfix"></div>
+    <div class="copy-right">
+        <hr/>
+        <p>郑州大学学生处©2016-2020</p>
+    </div>
 </div>
 </body>
+<script>
+    if (screen && screen.width > 750) {
+        if (navigator.userAgent.match(/IEMobile\/10\.0/)) {
+            var msViewportStyle = document.createElement('style');
+            msViewportStyle.appendChild(
+                    document.createTextNode(
+                            '@-ms-viewport{width:auto!important}'
+                    )
+            );
+            document.querySelector('head').appendChild(msViewportStyle)
+        }
+
+        //平台、设备和操作系统
+        var system = {
+            win: false,
+            mac: false,
+            xll: false,
+            ipad: false
+        };
+        //检测平台
+        var p = navigator.platform;
+        system.win = p.indexOf("Win") == 0;
+        system.mac = p.indexOf("Mac") == 0;
+        system.x11 = (p == "X11") || (p.indexOf("Linux") == 0);
+        system.ipad = (navigator.userAgent.match(/iPad/i) != null) ? true : false;
+        //跳转语句
+        if (system.win || system.mac || system.xll || system.ipad) {
+            //电脑
+        } else {
+            //手机
+            document.write('<script src="../js/bootstrap.min.js"><\/script>');
+            document.write('<script src="../js/detailMo.js"><\/script>');
+        }
+    } else {
+        //手机
+        document.write('<script src="../js/bootstrap.min.js"><\/script>');
+        document.write('<script src="../js/detailMo.js"><\/script>');
+    }
+</script>
 </html>
