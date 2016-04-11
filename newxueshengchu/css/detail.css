@@ -2,7 +2,7 @@
     padding-top: 100px;
 }
 .article .list-group-item{
-    background: rgba(255,255,255,0.9);
+    background: #f6f6f6;
 }
 .article .head-title{
     text-align: center;
@@ -11,5 +11,5 @@
     background: transparent;
 }
 .article .main-body{
-    line-height: 25px;
+    line-height: 35px;
 }

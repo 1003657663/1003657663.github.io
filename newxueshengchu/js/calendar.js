@@ -12,6 +12,7 @@ var CalendarHandler = {
         $calendarItem = this.CreateCalendar(0, 0, 0);
         $("#Container").append($calendarItem);
 
+
         $("#context").css("height", $("#CalendarMain").height() - 65 + "px");
         $("#center").css("height", $("#context").height() - 30 + "px");
         $("#selectYearDiv").css("height", $("#context").height() - 30 + "px").css("width", $("#context").width() + "px");
