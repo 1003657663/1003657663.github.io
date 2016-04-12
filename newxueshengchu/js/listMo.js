@@ -10,6 +10,6 @@ $(document).ready(function(){
 
 function setWidth() {
     $(".list-group-item").each(function (index) {
-        $(this).find(".tit").width($(".head-title").width() - $(this).find(".time").width() - $(this).find(".readtime").width()-15);
+        $(this).find(".tit").width($(".head-title").width() - $(this).find(".time").width() - $(this).find(".readtime").width()-25);
     });
 }
