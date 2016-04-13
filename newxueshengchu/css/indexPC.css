@@ -6,11 +6,13 @@
     margin: 0;
     padding: 0;
 }
+html,body{
+    height: 100%;
+}
 body{
-    background-image: url(../images/back.jpg);
+    background-image: url(../images/lowback.jpg);
     background-size: cover;
     background-attachment: fixed;
-    height: 100%;
 }
 
 .back{
