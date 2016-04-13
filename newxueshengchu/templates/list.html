@@ -35,14 +35,12 @@
     <link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
 
     <link rel="stylesheet" type="text/css" href="../css/both.css">
-    <link rel="stylesheet" type="text/css" media="screen and (min-width:768px)" href="../css/indexPC.css">
-    <link rel="stylesheet" type="text/css" media="screen and (max-width:767px)" href="../css/indexMo.css">
+    <link rel="stylesheet" type="text/css" media="screen and (min-width:768px)" href="../css/topnavPC.css">
+    <link rel="stylesheet" type="text/css" media="screen and (max-width:767px)" href="../css/topnvaMo.css">
     <link rel="stylesheet" type="text/css" media="screen and (max-width:767px)" href="../css/listMo.css">
-    <link rel="stylesheet" type="text/css" href="../css/calendar.css"/>
     <link rel="stylesheet" type="text/css" href="../css/list.css"/>
     <link rel="stylesheet" type="text/css" href="../css/listAnddetail.css"/>
     <script type="text/javascript" src="../js/jquery-latest.min.js"></script>
-    <script type="text/javascript" src="../js/calendar.js"></script>
 </head>
 <body>
 <div style="height: 1px;"></div>
@@ -58,11 +56,7 @@
             </button>
             <a class="navbar-brand" href="/">
                 <span>
-                    <img class="school-icon" src="../images/school.png"/>
-                    <ul class="most-title-big">
-                        <li class="top-school-name">郑州大学</li>
-                        <li class="top-depart">学生工作网</li>
-                    </ul>
+                    <img class="school-icon" src="../images/logo.png"/>
                 </span>
             </a>
         </div>
@@ -73,7 +67,7 @@
                     <a href="#">
                         <ul>
                             <li><img width="40px" src="../images/nav1.png"/></li>
-                            <li>部门简介</li>
+                            <li>部门介绍</li>
                         </ul>
                     </a>
                 </li>
@@ -112,15 +106,23 @@
             </ul>
         </div>
     </div>
-    <a href="/">
-        <ul class="most-title-small">
-            <li class="top-depart">学生工作网</li>
-        </ul>
-    </a>
 </nav>
+<div class="top-photo">
+    <img class="img-responsive" src="../images/banner.jpg">
+</div>
 <div class="container article">
-    <div class="col-lg-9 col-xs-12">
-        <ul class="list-group">
+    <div class="row">
+        <nav class="col-lg-3 hidden-xs left-list">
+            <ul>
+                <li>新闻</li>
+                <li>公告</li>
+                <li>国际交流</li>
+                <li>院系风采</li>
+                <li>领导讲话</li>
+            </ul>
+        </nav>
+        <div class="col-lg-9 col-xs-12">
+            <ul class="list-group">
             <li class="list-group-item head-title"><h2>新闻</h2></li>
             <li class="list-group-item content">
                 <p class="time">2015.12.25</p>
@@ -189,47 +191,8 @@
                 </ul>
             </li>
         </ul>
-    </div>
-    <div class="col-lg-3">
-        <div id="CalendarMain">
-            <div id="title">
-                <a class="selectBtn month" href="javascript:" onclick="CalendarHandler.CalculateLastMonthDays();">&lt;</a>
-                <a class="selectBtn selectYear" href="javascript:" onClick="CalendarHandler.CreateSelectYear(CalendarHandler.showYearStart);">2014年</a><a class="selectBtn selectMonth" onClick="CalendarHandler.CreateSelectMonth()">6月</a>
-                <a class="selectBtn nextMonth" href="javascript:" onClick="CalendarHandler.CalculateNextMonthDays();">&gt;</a>
-                <a class="selectBtn currentDay" href="javascript:" onClick="CalendarHandler.CreateCurrentCalendar(0,0,0);">今天</a>
-            </div>
-            <div id="context">
-                <div class="week">
-                    <h3> 一 </h3>
-                    <h3> 二 </h3>
-                    <h3> 三 </h3>
-                    <h3> 四 </h3>
-                    <h3> 五 </h3>
-                    <h3> 六 </h3>
-                    <h3> 日 </h3>
-                </div>
-                <div id="center">
-                    <div id="centerMain">
-                        <div id="selectYearDiv"></div>
-                        <div id="centerCalendarMain">
-                            <div id="Container"></div>
-                        </div>
-                        <div id="selectMonthDiv"></div>
-                    </div>
-                </div>
-                <div id="foots"><a id="footNow">19:14:34</a></div>
-            </div>
-        </div>
-        <div class="input-group left-search">
-            <input type="text" class="form-control" placeholder="Search...">
-            <span class="input-group-btn" onclick="alert('此功能暂未开通');">
-                <button class="btn btn-default" type="button">
-                    <span class="glyphicon glyphicon glyphicon-search" aria-hidden="true"></span>
-                </button>
-            </span>
         </div>
     </div>
-    <div class="clearfix"></div>
     <div class="copy-right">
         <hr/>
         <p>郑州大学学生处©2016-2020</p>

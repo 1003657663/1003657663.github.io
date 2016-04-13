@@ -2,8 +2,12 @@
 setBackMargin();
 
 function setBackMargin() {
-    $(".bottom-div").css("margin","100px 0 0 0");
-    document.getElementsByClassName("back").item(0).style.marginTop = document.body.offsetHeight * 0.4 + "px";
+    if(document.body.offsetWidth < 750){
+        document.getElementsByClassName("back").item(0).style.marginTop = 0 + "px";
+    }else {
+        document.getElementsByClassName("back").item(0).style.marginTop = document.body.offsetHeight * 0.4 + "px";
+    }
+    $(".bottom-div").css("margin", "100px 0 0 0");
     if (document.body.offsetWidth > 750) {
         $(".bottom-div .bottom-img-div").each(function(index,element){
             element.style.width = '163px';

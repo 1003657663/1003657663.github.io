@@ -1,36 +1,3 @@
-.mynavbar{
-    background: #FFFFFF;
-}
-.mynavbar ul li{
-    color: #000;
-}
-.mynav{
-    position: fixed;
-    width: 100%;
-    top: 0;
-    left: 0;
-    z-index: 1000;
-    background: #FFFFFF;
-    border-bottom: 1px #c1c1c1 solid;
-}
-.navbar-brand .school-icon{
-    height: 30px;
-    position: relative;
-}
-.mynavbar .nav li ul{
-    display: table;
-    padding-left: 0;
-}
-.mynavbar .nav li ul li{
-    float: left;
-    line-height: 40px;
-    padding-right: 10px;
-}
-.weather{
-    visibility: hidden;
-    height: 0;
-    overflow: hidden;
-}
 .give-in-pad{
     padding-left:0;
     padding-right:0;

@@ -42,7 +42,7 @@ ul{
 .in-main-div .hd ul li{
     height: 35px;
     line-height:35px;
-    background: #1866fe;
+    background: #e98046;
     text-align: center;
     color: #fefefe;
     float: left;
@@ -95,7 +95,7 @@ ul{
     padding:0;
 }
 .right-div .right-top-nav .hd ul li{
-    font-size: 20px;
+    font-size: 18px;
 }
 
 .right-div .bd ul li{

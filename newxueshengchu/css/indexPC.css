@@ -5,7 +5,6 @@
     list-style:none;
     margin: 0;
     padding: 0;
-    font-family: '宋体','Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 body{
     background-image: url(../images/back.jpg);
@@ -14,47 +13,6 @@ body{
     height: 100%;
 }
 
-/*------------------------------------------导航css------------------------------------------*/
-.navbar,.navbar-default .navbar-collapse{
-    height: 70px !important;
-}
-.navbar-brand ul{
-    padding-left: 60px;
-}
-.mynavbar .nav li a{
-    padding-top: 0;
-}
-.mynavbar .nav li ul{
-    padding: 0;
-    height: 70px;
-}
-.mynavbar .nav li ul li{
-    text-align: center;
-    padding-top: 3px;
-    color: #e1e1e1;
-}
-.mynav{
-    background-color: #f8f8f8;
-    position: fixed;
-    left:0;
-    top:0;
-    width:100%;
-    z-index: 1000;
-    border-radius: 0;
-}
-.mynav li{
-    color: #333333 !important;
-}
-
-/*顶部导航栏*/
-.mynavbar ul{
-    float: right;
-}
-.mynavbar>.nav>li:hover{
-    background: rgba(204, 204, 204, 0.3);
-}
-
-/*------------------------------------------------------------------------------------*/
 .back{
     background: rgba(255,255,255,0.5);
     padding-top: 30px;
