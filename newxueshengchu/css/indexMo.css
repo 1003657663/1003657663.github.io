@@ -13,24 +13,6 @@
     background: #FFFFFF;
     border-bottom: 1px #c1c1c1 solid;
 }
-/*大屏幕和小屏幕显示效果不同*/
-.mynav .top-depart{
-    line-height: 50px;
-    font-size: 16px;
-    font-family: '楷体';
-}
-.mynav .most-title-big{
-    visibility: hidden;
-}
-.mynav .most-title-small{
-    position: absolute;
-    top: 0;
-    width: 100%;
-    text-align: center;
-    z-index: 0;
-    padding-left: 0;
-    pointer-events: none;
-}
 .navbar-brand .school-icon{
     height: 30px;
     position: relative;

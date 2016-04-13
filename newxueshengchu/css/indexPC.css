@@ -8,7 +8,7 @@
     font-family: '宋体','Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 body{
-    background-image: url(../images/photo.jpg);
+    background-image: url(../images/back.jpg);
     background-size: cover;
     background-attachment: fixed;
     height: 100%;
@@ -44,20 +44,6 @@ body{
 }
 .mynav li{
     color: #333333 !important;
-}
-/*大屏幕和小屏幕显示效果不同*/
-.mynav .most-title-small{
-    visibility: hidden;
-}
-
-.navbar-brand .top-school-name{
-    font-size: 20px;
-    font-family: '隶书';
-    padding-bottom: 5px;
-}
-.navbar-brand .top-depart{
-    font-size: 23px;
-    font-family: '楷体';
 }
 
 /*顶部导航栏*/
