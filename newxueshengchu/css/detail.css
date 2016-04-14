@@ -30,3 +30,36 @@
     word-break: break-all;
     white-space: nowrap;
 }
+
+/*分享按钮*/
+.share-main{
+    position: relative;
+}
+.share-main:hover #share-to{
+    display: block;
+}
+.share-button {
+    float: right;
+    cursor: pointer;
+    padding-top: 12px;
+}
+#share-to {
+    width: 180px;
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+    background: #cdcdcd;
+    position: absolute;
+    top: -50px;
+    right: -74px;
+    display: none;
+}
+#share-to img{
+    margin-right: 10px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+/*-----*/

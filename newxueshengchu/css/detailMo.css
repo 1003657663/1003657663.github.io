@@ -17,3 +17,8 @@
 .pager li a{
     max-width: 100%;
 }
+/*分享*/
+#share-to{
+    right: 0;
+}
+/**/

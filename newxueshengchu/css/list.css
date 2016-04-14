@@ -41,3 +41,22 @@
 .button-primary{
     background: #898989;
 }
+.center-list{
+    position: relative;
+}
+/*搜索框样式*/
+.input-lg{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 200px;
+    border-radius: 15px;
+}
+.input-lg .form-control{
+    border-bottom-left-radius: 15px;
+    border-top-left-radius: 15px;
+}
+.input-lg .input-group-addon{
+    border-bottom-right-radius: 15px;
+    border-top-right-radius: 15px;
+}
