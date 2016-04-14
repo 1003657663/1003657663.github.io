@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="renderer" content="webkit">
+    <base target="_blank">
     <title>学生处</title>
     <style>
         /*处理window phone手机的网页显示问题*/
@@ -43,69 +44,7 @@
 </head>
 <body>
 <div style="height: 1px;"></div>
-<nav class="navbar navbar-default mynav">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="/">
-                <span>
-                    <img class="school-icon" src="../images/logo.png"/>
-                </span>
-            </a>
-        </div>
-
-        <div class="collapse navbar-collapse mynavbar" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-                <li>
-                    <a href="#">
-                        <ul>
-                            <li><img width="40px" src="../images/nav1.png"/></li>
-                            <li>部门介绍</li>
-                        </ul>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <ul>
-                            <li><img width="40px" src="../images/nav2.png"/></li>
-                            <li>管理规定</li>
-                        </ul>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <ul>
-                            <li><img width="40px" src="../images/nav3.png"/></li>
-                            <li>表格下载</li>
-                        </ul>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <ul>
-                            <li><img width="40px" src="../images/nav4.png"/></li>
-                            <li>服务指南</li>
-                        </ul>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <ul>
-                            <li><img width="40px" src="../images/nav5.png"/></li>
-                            <li>理论学习</li>
-                        </ul>
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
+<cms:include page="top.html"/>
 
 <div class="container-fluid back">
     <div class="container give-in-pad">
@@ -114,50 +53,36 @@
                 <div class="left-top-nav">
                     <div class="hd">
                         <ul>
-                            <li class="col-lg-6 col-xs-6">新闻</li>
-                            <li class="col-lg-6 col-xs-6">公告</li>
+                            <cms:var type="catalog" alias="xinwendongtai" var="temp_var">
+                                <li class="col-lg-6 col-xs-6" onclick="window.open('${temp_var.url}','_blank')">新闻</li>
+                            </cms:var>
+                            <cms:var type="catalog" alias="tongzhigonggao" var="temp_var">
+                                <li class="col-lg-6 col-xs-6" onclick="window.open('${temp_var.url}','_blank')">公告</li>
+                            </cms:var>
                         </ul>
                     </div>
                     <div class="bd">
                         <ul>
-                            <li>
-                                <time>2015-06-09</time>
-                                <p><a href="#">对方角度来看时间对方角度来看时间对方角度来看时间对方角度来看时间对方角度来看时间</a></p></li>
-                            <li>
-                                <time>2015-06-09</time>
-                                <p><a href="#">对方角度来看时间</a></p></li>
-                            <li>
-                                <time>2015-06-09</time>
-                                <p><a href="#">对方角度来看时间</a></p></li>
-                            <li>
-                                <time>2015-06-09</time>
-                                <p><a href="#">对方角度来看时间</a></p></li>
-                            <li>
-                                <time>2015-06-09</time>
-                                <p><a href="#">对方角度来看时间</a></p></li>
-                            <li>
-                                <time>2015-06-09</time>
-                                <p><a href="#">对方角度来看时间</a></p></li>
+                            <!--这里循环生成6条信息-->
+                            <cms:list data="article" count="6" begin="0" level="current" order="recent" alias="xinwendongtai">
+                                <li>
+                                    <time>${article.publishDate}</time>
+                                    <p>
+                                        <a href="${article.url}" target="_blank">${article.title}</a>
+                                    </p>
+                                </li>
+                            </cms:list>
                         </ul>
                         <ul>
-                            <li>
-                                <time>2015-06-09</time>
-                                <p>wode角度来看时间</p></li>
-                            <li>
-                                <time>2015-06-09</time>
-                                <p>wode角度来看时间</p></li>
-                            <li>
-                                <time>2015-06-09</time>
-                                <p>wode角度来看时间</p></li>
-                            <li>
-                                <time>2015-06-09</time>
-                                <p>wode角度来看时间</p></li>
-                            <li>
-                                <time>2015-06-09</time>
-                                <p>wode角度来看时间</p></li>
-                            <li>
-                                <time>2015-06-09</time>
-                                <p>wode角度来看时间</p></li>
+                            <!--这里循环生成6条信息-->
+                            <cms:list data="article" count="6" begin="0" level="current" order="recent" alias="tongzhigonggao">
+                                <li>
+                                    <time>${article.publishDate}</time>
+                                    <p>
+                                        <a href="${article.url}" target="_blank">${article.title}</a>
+                                    </p>
+                                </li>
+                            </cms:list>
                         </ul>
                     </div>
                 </div>
@@ -169,9 +94,15 @@
                 <div class="right-top-nav">
                     <div class="hd">
                         <ul>
-                            <li class="col-lg-4 col-xs-4 nav-three">国际交流</li>
-                            <li class="col-lg-4 col-xs-4 nav-fore">院系风采</li>
-                            <li class="col-lg-4 col-xs-4 nav-five">领导讲话</li>
+                            <cms:var type="catalog" alias="guojijiaoliu" var="temp_var">
+                                <li class="col-lg-4 col-xs-4 nav-three" onclick="window.open('${temp_var.url}','_blank')">国际交流</li>
+                            </cms:var>
+                            <cms:var type="catalog" alias="yuanxifengcai" var="temp_var">
+                                <li class="col-lg-4 col-xs-4 nav-fore" onclick="window.open('${temp_var.url}','_blank')">院系风采</li>
+                            </cms:var>
+                            <cms:var type="catalog" alias="lingdaojianghua" var="temp_var">
+                                <li class="col-lg-4 col-xs-4 nav-five" onclick="window.open('${temp_var.url}','_blank')">领导讲话</li>
+                            </cms:var>
                         </ul>
                     </div>
                     <div class="slide">
@@ -180,22 +111,25 @@
                                 <li>
                                     <img src="../images/photo1.jpg"/>
                                     <div class="right-tit">
-                                        <p><a href="#">小朝那个螺丝钉解放酸辣粉</a></p>
-                                        <p><a href="#">小朝那个螺丝钉解放酸辣粉小朝那个螺丝钉解放酸辣粉小朝那个螺丝钉解放酸辣粉</a></p>
+                                        <cms:list data="article" count="2" begin="0" level="current" order="recent" alias="guojijiaoliu">
+                                            <p><a href="${article.url}">${article.title}</a></p>
+                                        </cms:list>
                                     </div>
                                 </li>
                                 <li>
                                     <img src="../images/photo2.jpg"/>
                                     <div class="right-tit">
-                                        <p><a href="#">小朝那个螺丝钉解放酸辣粉粉v</a></p>
-                                        <p><a href="#">小朝那个螺丝钉解放酸辣粉小朝那个螺丝钉解放酸辣粉小朝那个螺丝钉解放酸辣粉</a></p>
+                                        <cms:list data="article" count="2" begin="2" level="current" order="recent" alias="guojijiaoliu">
+                                            <p><a href="${article.url}">${article.title}</a></p>
+                                        </cms:list>
                                     </div>
                                 </li>
                                 <li>
                                     <img src="../images/rice.jpg"/>
                                     <div class="right-tit">
-                                        <p><a href="#">小朝那个螺丝钉解放酸辣粉小丝钉解放酸辣粉</a></p>
-                                        <p><a href="#">小朝那个螺丝钉解放酸辣粉小朝那个螺丝钉解放酸辣粉小朝那个螺丝钉解放酸辣粉</a></p>
+                                        <cms:list data="article" count="2" begin="4" level="current" order="recent" alias="guojijiaoliu">
+                                            <p><a href="${article.url}">${article.title}</a></p>
+                                        </cms:list>
                                     </div>
                                 </li>
                             </ul>
@@ -203,22 +137,25 @@
                                 <li>
                                     <img src="../images/photo1.jpg"/>
                                     <div class="right-tit">
-                                        <p><a href="#">小朝那个螺丝钉解放酸辣粉小朝那个螺丝钉解放酸辣粉小朝那个螺丝钉解放酸辣粉</a></p>
-                                        <p><a href="#">小朝那个螺丝钉解放酸辣粉小朝那个螺丝钉解放酸辣粉小朝那个螺丝钉解放酸辣粉</a></p>
+                                        <cms:list data="article" count="2" begin="0" level="current" order="recent" alias="yuanxifengcai">
+                                            <p><a href="${article.url}">${article.title}</a></p>
+                                        </cms:list>
                                     </div>
                                 </li>
                                 <li>
                                     <img src="../images/photo2.jpg"/>
                                     <div class="right-tit">
-                                        <p><a href="#">小朝那个螺丝钉解放酸辣粉小朝那个螺丝钉解放酸辣粉小朝那个螺丝钉解放酸辣粉</a></p>
-                                        <p><a href="#">小朝那个螺丝钉解放酸辣粉小朝那个螺丝钉解放酸辣粉小朝那个螺丝钉解放酸辣粉</a></p>
+                                        <cms:list data="article" count="2" begin="2" level="current" order="recent" alias="yuanxifengcai">
+                                            <p><a href="${article.url}">${article.title}</a></p>
+                                        </cms:list>
                                     </div>
                                 </li>
                                 <li>
                                     <img src="../images/rice.jpg"/>
                                     <div class="right-tit">
-                                        <p><a href="#">小朝那个螺丝钉解放酸辣粉小朝那个螺丝钉解放酸辣粉小朝那个螺丝钉解放酸辣粉</a></p>
-                                        <p><a href="#">小朝那个螺丝钉解放酸辣粉小朝那个螺丝钉解放酸辣粉小朝那个螺丝钉解放酸辣粉</a></p>
+                                        <cms:list data="article" count="2" begin="4" level="current" order="recent" alias="yuanxifengcai">
+                                            <p><a href="${article.url}">${article.title}</a></p>
+                                        </cms:list>
                                     </div>
                                 </li>
                             </ul>
@@ -226,22 +163,25 @@
                                 <li>
                                     <img src="../images/photo1.jpg"/>
                                     <div class="right-tit">
-                                        <p><a href="#">小朝那个螺丝钉解放酸辣粉小朝那个螺丝钉解放酸辣粉小朝那个螺丝钉解放酸辣粉</a></p>
-                                        <p><a href="#">小朝那个螺丝钉解放酸辣粉小朝那个螺丝钉解放酸辣粉小朝那个螺丝钉解放酸辣粉</a></p>
+                                        <cms:list data="article" count="2" begin="0" level="current" order="recent" alias="lingdaojianghua">
+                                            <p><a href="${article.url}">${article.title}</a></p>
+                                        </cms:list>
                                     </div>
                                 </li>
                                 <li>
                                     <img src="../images/photo2.jpg"/>
                                     <div class="right-tit">
-                                        <p><a href="#">小朝那个螺丝钉解放酸辣粉小朝那个螺丝钉解放酸辣粉小朝那个螺丝钉解放酸辣粉</a></p>
-                                        <p><a href="#">小朝那个螺丝钉解放酸辣粉小朝那个螺丝钉解放酸辣粉小朝那个螺丝钉解放酸辣粉</a></p>
+                                        <cms:list data="article" count="2" begin="2" level="current" order="recent" alias="lingdaojianghua">
+                                            <p><a href="${article.url}">${article.title}</a></p>
+                                        </cms:list>
                                     </div>
                                 </li>
                                 <li>
                                     <img src="../images/rice.jpg"/>
                                     <div class="right-tit">
-                                        <p><a href="#">小朝那个螺丝钉解放酸辣粉小朝那个螺丝钉解放酸辣粉小朝那个螺丝钉解放酸辣粉</a></p>
-                                        <p><a href="#">小朝那个螺丝钉解放酸辣粉小朝那个螺丝钉解放酸辣粉小朝那个螺丝钉解放酸辣粉</a></p>
+                                        <cms:list data="article" count="2" begin="4" level="current" order="recent" alias="lingdaojianghua">
+                                            <p><a href="${article.url}">${article.title}</a></p>
+                                        </cms:list>
                                     </div>
                                 </li>
                             </ul>
@@ -261,16 +201,32 @@
         </div>
         <div class="row bottom-div">
             <div class="col-xs-6 bottom-img-div">
-                <img src="../images/辅导员基地.png"/>
+                <cms:var type="friendlink" name="辅导员基地" var="temp_var">
+                    <a href="${temp_var.linkUrl}">
+                        <img src="../images/fudaoyuanjidi.png"/>
+                    </a>
+                </cms:var>
             </div>
             <div class="col-xs-6 bottom-img-div">
-                <img src="../images/心理健康中心.png"/>
+                <cms:var type="friendlink" name="心理健康中心" var="temp_var">
+                    <a href="${temp_var.linkUrl}">
+                        <img src="../images/xinlijiankangzhongxin.png"/>
+                    </a>
+                </cms:var>
             </div>
             <div class="col-xs-6 bottom-img-div">
-                <img src="../images/女性维权.png"/>
+                <cms:var type="friendlink" name="女性维权中心" var="temp_var">
+                    <a href="${temp_var.linkUrl}">
+                        <img src="../images/nvxingweiquan.png"/>
+                    </a>
+                </cms:var>
             </div>
             <div class="col-xs-6 bottom-img-div">
-                <img src="../images/学工新媒体.png"/>
+                <cms:var type="friendlink" name="学工新媒体" var="temp_var">
+                    <a href="${temp_var.linkUrl}">
+                        <img src="../images/xuegongxinmeiti.png"/>
+                    </a>
+                </cms:var>
             </div>
         </div>
         <div class="copy-right">

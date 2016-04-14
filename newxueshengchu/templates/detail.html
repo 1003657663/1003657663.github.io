@@ -46,83 +46,14 @@
 </head>
 <body>
 <div style="height: 1px;"></div>
-<nav class="navbar navbar-default mynav">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="/">
-                <span>
-                    <img class="school-icon" src="../images/logo.png"/>
-                </span>
-            </a>
-        </div>
+<cms:include page="top.html"/>
 
-        <div class="collapse navbar-collapse mynavbar" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-                <li>
-                    <a href="#">
-                        <ul>
-                            <li><img width="40px" src="../images/nav1.png"/></li>
-                            <li>部门介绍</li>
-                        </ul>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <ul>
-                            <li><img width="40px" src="../images/nav2.png"/></li>
-                            <li>管理规定</li>
-                        </ul>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <ul>
-                            <li><img width="40px" src="../images/nav3.png"/></li>
-                            <li>表格下载</li>
-                        </ul>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <ul>
-                            <li><img width="40px" src="../images/nav4.png"/></li>
-                            <li>服务指南</li>
-                        </ul>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <ul>
-                            <li><img width="40px" src="../images/nav5.png"/></li>
-                            <li>理论学习</li>
-                        </ul>
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
 <div class="top-photo hidden-xs">
     <img src="../images/bannerWidthSpace.png">
 </div>
 <div class="container article">
     <div class="row">
-        <nav class="col-lg-2 hidden-xs left-list">
-            <ul>
-                <li>新闻</li>
-                <li>公告</li>
-                <li>国际交流</li>
-                <li>院系风采</li>
-                <li>领导讲话</li>
-            </ul>
-        </nav>
+        <cms:include page="leftNav.html"/>
         <div class="col-lg-10 col-xs-12">
             <ul class="list-group">
                 <li class="list-group-item">
@@ -131,33 +62,25 @@
                         <li class="active"><a href="#">新闻</a></li>
                     </ol>
                 </li>
-                <li class="list-group-item head-title"><h3>材料科学与工程学院启动“手抄党章100天”活动</h3></li>
+                <li class="list-group-item head-title">
+                    <h3>${templateData.article.title}</h3>
+                </li>
                 <li class="list-group-item head-title">
                     <span>
-                        发布人 <span class="badge">于苏静</span>
+                        发布人 <span class="badge">${templateData.article.author}</span>
                     </span>
                     <span>
-                        信息来源 <span class="badge">材料科学与工程学院</span>
+                        信息来源 <span class="badge">${templateData.article.department}</span>
                     </span>
                     <span>
-                        发布时间 <span class="badge">2016-03-29</span>
+                        发布时间 <span class="badge">${templateData.article.publishDate}</span>
                     </span>
                     <span>
                         已阅 <span class="badge">148</span>
                     </span>
                 </li>
                 <li class="list-group-item main-body">
-                    &nbsp;&nbsp;在新闻与传播学院党委的安排部署下，经过学院团委、学生会的精心筹备，4月31日晚7点，第二届“新传青年说”首场比赛在郑州大学电视演播厅举行。此次比赛以“舆论的力量”为主题，选手围绕习近平总书记对新闻舆论工作者提出的“48字方针”展开演讲。学院常务副院长张举玺，党委副书记孙保营，团委书记杜建锋，广告系郑达威，广电系王振宇等五位老师担任比赛的评委，由2014级杨钰莹同学担任主持人。
-                    1号选手杨帆同学以前段时间媒体热炒的郑州大学“门禁”事件为切入点，引出了“澄清谬误是新闻学子的担当，新传学子要敢于发声”的见解。在讲到建设者和破坏者时，他说，破坏者不应为破坏而破坏，而是要提出建设性意见，这样就能成为建设者。2号选手周亚东以历史和世界的角度阐述了舆论的主导权问题，他认为，从苏联解体可以看出：要始终坚持对主流价值观的引导。4号选手李唯一从一则简短的公益广告
-                    “你以公益成风，我以行动化人”为题，用感性的语言阐述了公益广告对自身和社会的影响。7号选手郭帅慷慨陈词，用社会上的热点事件——抵制日货、被人肉搜索后的女生自尽等论证了“现代社会真正需要的是为舆论正言的人”的观点。10号选手郑杨则用幽默风趣的语言讲述了新闻舆论的“反转”事件，他认为，此类反转事件最终会导致媒体的公信力下降。15号选手付婷在演讲时说，媒体人应当拒绝“自娱自乐”，深入分析“委屈郑先生”委屈的原因。她认为，一方面是媒体人的不负责任造成的，而另一方面是校方沟通不善造成的，只有媒体平台做好郑州大学和游人沟通的桥梁，才能做到“人面”和“桃花”相映红。
-                    比赛现场的拉票和抽奖环节也十分精彩。选手吴佩俊清唱豫剧版“Super
-                    Star”，郑杨带来了一场山东快板，而杨雨思则留了一丝悬念，如果能进年赛再为大家揭晓。在抽奖环节，共有四位幸运观众获得了小米手环的奖品。
-                    比赛结束，学院常务副院长张举玺教授为比赛做点评，他送给在场的同学三句话：第一，我们都是新传人，我们都要运用舆论，新闻与传播学院培养的是善于使用舆论力量的记者；第二，要学会引导舆论，南振中院长倡导要引导“民间舆论场”和“官方舆论场”相协调一致。两个舆论场一旦发生严重的对峙分裂，则国家不稳，国体不稳；三是要深入实际、深入群众引导舆论。他的点评赢得到了现场观众的热烈掌声。
-                    综合三十名大众评审团的意见和五位评委的打分，工作人员经过认真计算，最后确定了比赛名次。
-                    孙保营副书记为获奖者颁发证书和奖品。两位一等奖的获得者是王锦依和杨雨思，奖品是价值1000元的电子阅读器；三位获得二等奖是郑杨、周亚东和吴佩俊，奖品是价值500元的电子阅读器；五位获得三等奖是吴桐、李唯一、关春燕、郭帅、何秋瑶，奖品是价值300元的“55度”水杯。
-                    晚上十点，第二季“新传青年说”首场比赛在大家的掌声中圆满结束。
-                    “新传青年说”是由学院团委、学生会精心打造的一档大学生语言竞技类比赛，参赛选手为我校全日制本科生和研究生，其目的是让青年人分享自己的青春梦想和主张，传递青春正能量。赛程分为月赛和总决赛，月赛将举办八期，每个月的最后一周的周四晚上比赛，由十五名选手围绕一个主题进行角逐。获得月赛一等奖的选手晋级年度总决赛。第二季总决赛将于2016年12月份举办。
-                    <p>（供稿：学生会新闻中心 阚晓倩 贠佳楠 王珺）</p>
+                    ${templateData.article.content}
                     <div class="share-main">
                         <img class="share-button" src="../images/share.png">
                         <div id="share-to">
@@ -165,10 +88,10 @@
                                 <img src="../images/QQ.png">
                             </a>
                             <a class="weibo-share" target="_blank" href="">
-                                <img src="../images/微博.png">
+                                <img src="../images/weiboshare.png">
                             </a>
                             <a class="qcloud-share" href="" target="_blank">
-                                <img src="../images/空间.png">
+                                <img src="../images/qcloudshare.png">
                             </a>
                         </div>
                     </div>
@@ -177,8 +100,16 @@
                 <li class="col-xs-12 list-group-item">
                     <nav>
                         <ul class="pager">
-                            <li class="previous"><a href="#"> 上一篇 &nbsp; 我远领导啥啥啥我远领导啥啥啥我远领导啥啥啥 </a></li>
-                            <li class="next"><a href="#"> 下一篇 &nbsp; 楼上的房间楼上的上的房间楼上的上的房间楼上的上的房间楼上的房间 </a></li>
+                            <li class="previous">
+                                <!--!!!-->
+                                    <a href=""> 下一篇 &nbsp; </a>
+
+                            </li>
+                            <li class="next">
+
+                                    <a href=""> 下一篇 &nbsp; </a>
+
+                            </li>
                         </ul>
                     </nav>
                 </li>

@@ -5,9 +5,10 @@
 //-----创建分享内容
 
 (function () {
-    var titText = document.querySelector(".head-title h3").innerText;
+    var h3 = document.querySelector(".head-title h3");
+    var titText = h3.innerHTML;
+    var contentText = $(".main-body").text().slice(0,140-titText.length);
     var titTextEncode = encodeURI(titText);
-    var contentText = document.querySelector(".main-body").innerText.slice(0,140-titText.length);
     var contentTextEncode = encodeURI(contentText);
     var shareBody = titText+"\n"+contentText;
     var baseHref = encodeURI(window.location.href);
