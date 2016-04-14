@@ -84,9 +84,6 @@ ul{
     float: right;
 }
 /*----------------------------------------right-div-----------------*/
-.right-div a{
-    color: #f7f7f7;
-}
 .right-div{
     height: 250px;
     background: #ffffff;
@@ -121,6 +118,17 @@ ul{
 .right-div .right-tit p{
     margin-top: 5px;
     margin-bottom: 5px;
+    width: 100%;
+}
+.right-div .right-tit a{
+    color: #f7f7f7;
+    overflow: hidden;
+    width: 100%;
+    display: block;
+    -ms-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    word-break: break-all;
+    white-space: nowrap;
 }
 
 .bottom-img-div{
