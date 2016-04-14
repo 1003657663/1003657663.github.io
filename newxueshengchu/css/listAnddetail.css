@@ -20,3 +20,10 @@ body{
     color: #fff;
     cursor: pointer;
 }
+
+.top-photo{
+    width: 100%;
+}
+.top-photo img{
+    width: 100%;
+}

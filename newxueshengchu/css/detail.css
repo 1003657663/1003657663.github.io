@@ -1,6 +1,3 @@
-.article{
-    padding-top: 100px;
-}
 .article .list-group-item{
     background: #fafafa;
 }
@@ -17,10 +14,16 @@
 .list-group{
     padding-right: 0;
 }
+.pager{
+    width: 100%;
+}
+.pager li{
+    max-width: 50%;
+}
 .pager li a{
     display: block;
     color: #00a9ff;
-    max-width: 300px;
+    max-width: 50%;
     overflow: hidden;
     -ms-text-overflow: ellipsis;
     text-overflow: ellipsis;

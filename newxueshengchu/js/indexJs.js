@@ -2,13 +2,15 @@
 setBackMargin();
 
 function setBackMargin() {
+    //设置顶部margin
     if(document.body.offsetWidth < 750){
         document.getElementsByClassName("back").item(0).style.marginTop = 0 + "px";
     }else {
         document.getElementsByClassName("back").item(0).style.marginTop = document.body.offsetHeight * 0.4 + "px";
     }
+    //设置顶部margin
     $(".bottom-div").css("margin", "100px 0 0 0");
-    if (document.body.offsetWidth > 750) {
+    if (document.body.offsetWidth > 750) {//设置底部图片
         $(".bottom-div .bottom-img-div").each(function(index,element){
             element.style.width = '163px';
             element.style.height = '100px';
