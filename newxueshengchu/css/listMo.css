@@ -9,3 +9,6 @@
 .tit{
     padding-left: 5px;
 }
+.pagination>li>a,.pagination>li>span{
+	padding:6px 10px;
+}
