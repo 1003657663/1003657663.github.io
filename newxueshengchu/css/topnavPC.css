@@ -1,5 +1,5 @@
 body{
-    font-family: '微软雅黑 Light','微软雅黑','宋体','Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-family: '微软雅黑','宋体','Helvetica Neue', Helvetica, Arial, sans-serif;
     font-weight: 500;
 }
 /*------------------------------------------导航css------------------------------------------*/
@@ -40,6 +40,10 @@ body{
 }
 .mynavbar>.nav>li:hover{
     background: rgba(204, 204, 204, 0.3);
+}
+
+#top_bar_empty{
+    height:70px;
 }
 
 /*------------------------------------------------------------------------------------*/

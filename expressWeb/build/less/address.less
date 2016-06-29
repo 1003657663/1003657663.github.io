@@ -1,0 +1,59 @@
+@import "static";
+
+.address_head {
+    height: 30px;
+    background: @light-color;
+    position: relative;
+    .margin-top-bottom(0);
+    color: #FFFFFF;
+    line-height: 30px;
+    text-align: center;
+    .address_add_img {
+        height: 100%;
+        position: absolute;
+        top:0;
+        right:5px;
+        padding: 3px;
+    }
+    .address_add_img:hover{
+        cursor: pointer;
+    }
+}
+.address_user_name {
+    padding-right: 10px;
+}
+
+.address_default_sign {
+    background: #ff4b4b;
+    padding: 2px;
+    .border-radio(3px);
+    color: #FFFFFF;
+    margin-right: 5px;
+}
+
+.address_item, .history_item {
+    padding: 10px;
+    width: 100%;
+    display: table;
+    border-bottom: 2px @small_dark_border_color solid;
+    .address_info {
+        float: left;
+    }
+    .address_edit_button {
+        @height: 30px;
+        height: @height;
+        float: right;
+        img {
+            height: @height;
+        }
+    }
+}
+.address_item_on:hover{
+    background:#f1f1f1;
+    cursor: pointer;
+}
+
+.history_item:hover {
+    cursor: pointer;
+    background: @small_dark_background;
+}

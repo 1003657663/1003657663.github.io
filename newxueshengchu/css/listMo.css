@@ -12,3 +12,14 @@
 .pagination>li>a,.pagination>li>span{
 	padding:6px 8px;
 }
+
+.search-main{
+    position: static;
+    width: 100%;
+    text-align: center;
+}
+.search-main form{
+    width: 200px;
+    margin: auto;
+    display: block;
+}

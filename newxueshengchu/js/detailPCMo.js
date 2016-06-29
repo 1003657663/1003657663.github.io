@@ -5,6 +5,18 @@
 //-----创建分享内容
 
 (function () {
+
+    /*分享按钮点击消失和显示*/
+    $(".share-button").click(function () {
+        var shareTo = $("#share-to");
+        if(shareTo.css("display")=='none') {
+            $(shareTo).css("display", "block");
+        }else {
+            $(shareTo).css("display", "none");
+        }
+    });
+    /**/
+
     var h3 = document.querySelector(".head-title h3");
     var titText = h3.innerHTML;
     var contentText = $(".main-body").text().slice(0,140-titText.length);

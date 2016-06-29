@@ -1,0 +1,69 @@
+/*蓝色的比较亮的颜色*/
+/*整体主要部件的背景颜色*/
+/*阴影颜色*/
+/*背景渐变
+@start  渐变开始颜色
+@end  结束颜色
+*/
+.address_head {
+  height: 30px;
+  background: #5eb8d6;
+  position: relative;
+  margin-top: 0;
+  margin-bottom: 0;
+  color: #FFFFFF;
+  line-height: 30px;
+  text-align: center;
+}
+.address_head .address_add_img {
+  height: 100%;
+  position: absolute;
+  top: 0;
+  right: 5px;
+  padding: 3px;
+}
+.address_head .address_add_img:hover {
+  cursor: pointer;
+}
+.address_user_name {
+  padding-right: 10px;
+}
+.address_default_sign {
+  background: #ff4b4b;
+  padding: 2px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  border-radius: 3px;
+  color: #FFFFFF;
+  margin-right: 5px;
+}
+.address_item,
+.history_item {
+  padding: 10px;
+  width: 100%;
+  display: table;
+  border-bottom: 2px #d4d4d4 solid;
+}
+.address_item .address_info,
+.history_item .address_info {
+  float: left;
+}
+.address_item .address_edit_button,
+.history_item .address_edit_button {
+  height: 30px;
+  float: right;
+}
+.address_item .address_edit_button img,
+.history_item .address_edit_button img {
+  height: 30px;
+}
+.address_item_on:hover {
+  background: #f1f1f1;
+  cursor: pointer;
+}
+.history_item:hover {
+  cursor: pointer;
+  background: #efefef;
+}

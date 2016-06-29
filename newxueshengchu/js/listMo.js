@@ -1,8 +1,14 @@
 $(document).ready(function(){
-    $("#CalendarMain").remove();
     $(".time").each(function () {
-        var va = $(this).text().split('.');
-        $(this).text(va[1]+'.'+va[2]);
+        var d = $(this).text().split('-');
+        var date = new Date();
+
+        //更改时间如果是今天就写今天,如果没有gaicheng月日
+        if(parseInt(d[0]) == date.getUTCFullYear() && parseInt(d[1]) == date.getUTCMonth()+1 && parseInt(d[2]) == date.getUTCDate()){
+            $(this).html("&nbsp;今天&nbsp;");
+        }else {
+            $(this).text(d[1]+'.'+d[2]);
+        }
     });
 
     setWidth();

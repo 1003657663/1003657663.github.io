@@ -4,6 +4,9 @@
 .article .head-title{
     text-align: center;
 }
+.article .head-title>span{
+    margin-left: 20px;
+}
 .article .breadcrumb{
     background: transparent;
 }
@@ -56,6 +59,26 @@
     top: -50px;
     right: -74px;
     display: none;
+}
+#share-to .weixin-share{
+    position: absolute;
+    right: -5px;
+    padding: 0 20px 20px 20px;
+    top: -250px;
+    width: 200px;
+    height: 230px;
+    background: #fff;
+    border-radius: 10px;
+    border:1px #adadad solid;
+}
+#share-to .weixin-share p{
+    margin:0;
+    height: 30px;
+    line-height: 30px;
+}
+#share-to.weixin-share .weixin-erwei{
+    width: 160px;
+    height: 160px;
 }
 #share-to img{
     margin-right: 10px;

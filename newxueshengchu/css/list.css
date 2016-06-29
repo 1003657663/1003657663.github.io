@@ -45,10 +45,13 @@
     position: relative;
 }
 /*搜索框样式*/
-.input-lg{
+.search-main{
     position: absolute;
+    width: 200px;
     top: 20px;
     right: 20px;
+}
+.input-lg{
     width: 200px;
     border-radius: 15px;
 }
@@ -60,3 +63,23 @@
     border-bottom-right-radius: 15px;
     border-top-right-radius: 15px;
 }
+.search-button{
+    border:none;
+    background: transparent;
+}
+.search-button:focus{
+    outline: none;
+}
+/*分页*/
+.cal-page-num{
+    float: right;
+    padding: 5px 10px 5px 10px;
+    margin: 20px 0;
+    -webkit-border-radius:15px;
+    -moz-border-radius:15px;
+    border-radius: 15px;
+    border:1px #cfcfcf solid;
+    background: #FFFFFF;
+    color: #337AB7;
+}
+/**/
