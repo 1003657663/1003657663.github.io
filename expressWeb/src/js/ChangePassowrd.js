@@ -14,7 +14,7 @@ var ChangePassword = React.createClass({displayName: "ChangePassword",
     },
     handleSubmitClick: function () {
         if(this.state.oldPassword != User.password){
-            this.setState({errorMessage:"新密码错误,请重新输入"});
+            this.setState({errorMessage:"旧密码错误,请重新输入"});
             return;
         }
         //{"changepwd":"false"}
@@ -24,6 +24,8 @@ var ChangePassword = React.createClass({displayName: "ChangePassword",
             success: function(data) {
                 console.info(data);
                 if(data.changepwd == "true"){
+                    User.password = this.state.newPassword1;
+                    addCookie("password",this.state.newPassword1);
                     showDialog("dialog","恭喜","修改密码成功",true);
                 }else{
                     showDialog("dialog","警告","修改密码失败",true);

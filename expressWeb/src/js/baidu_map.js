@@ -1,16 +1,20 @@
 /**
  * Created by songchao on 16/6/22.
  */
-var map = new BMap.Map("baidu_map");
-var point = new BMap.Point(116.404, 39.915);  // 创建点坐标
-map.centerAndZoom(point, 15);
-map.enableScrollWheelZoom(true);
 var Map = {
     ak: "ynKpoQfTW9Zc93p4T4vWafHI6nFpIubO",
-    serviceID: "115498"
+    serviceID: "115498",
+
+    map:null,
 };
 
 function showBaiduMap(data) {
+    Map.map = new BMap.Map("baidu_map");
+
+    var point = new BMap.Point(116.404, 39.915);  // 创建点坐标
+    Map.map.centerAndZoom(point, 15);
+    Map.map.enableScrollWheelZoom(true);
+
     getPoints(data);
 }
 
@@ -45,8 +49,8 @@ function startShow(points) {
     var polyline = getPolyline(points);
     var centerPoint = points[Math.round(points.length / 2)];
     var point = new BMap.Point(centerPoint[0], centerPoint[1]);
-    map.centerAndZoom(point, 20);
-    map.addOverlay(polyline);
+    Map.map.centerAndZoom(point, 20);
+    Map.map.addOverlay(polyline);
 
     //-------------向百度地图中添加标记
     var startIcon = new BMap.Icon("../images/map/start.png", new BMap.Size(25, 25));
@@ -55,8 +59,8 @@ function startShow(points) {
     var endMarkPoint = new BMap.Point(points[points.length - 1][1], points[points.length - 1][0]);
     var startmarker = new BMap.Marker(startMarkPoint, {icon: startIcon});
     var endmarker = new BMap.Marker(endMarkPoint, {icon: endIcon});
-    map.addOverlay(startmarker);
-    map.addOverlay(endmarker);
+    Map.map.addOverlay(startmarker);
+    Map.map.addOverlay(endmarker);
 
     setTimeout(createCloseTo, 1000);
     $("#baidu_map").attr("class", "baidu_map baidu_map_on");

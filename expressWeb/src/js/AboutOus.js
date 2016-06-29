@@ -4,6 +4,7 @@
 
 var AboutOus = React.createClass({displayName: "AboutOus",
     onCloseClick: function () {
+        
         this.props.onCloseClick([true]);
     },
     render: function () {

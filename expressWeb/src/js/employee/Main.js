@@ -286,7 +286,11 @@ var Main = React.createClass({displayName: "Main",
         })
     },
     onCheckWorkload: function () {
-        showWorkload();
+        if(User.isLogin) {
+            showWorkload();
+        }else{
+            showDialog("dialog", "警告", "登录后才能查看工作量", true);
+        }
     },
     getInitialState: function () {
         User.Main = this;
