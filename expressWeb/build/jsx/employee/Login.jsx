@@ -188,9 +188,8 @@ var EmptyComponent = React.createClass({
 var Login = React.createClass({
     getInitialState: function () {
         var temp;
-        if (this.props.isLogin != undefined && this.props.isLogin == "true") {
-            temp = {isLogin: true}
-        } else {
+        temp = {isLogin:true};
+        if (this.props.isLogin == "false" || this.props.isLogin == false) {
             temp = {isLogin: false}
         }
         return Tools.extend(temp, {
