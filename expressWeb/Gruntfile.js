@@ -64,7 +64,7 @@ module.exports = function (grunt) {
                         mangle: false
                     },
                     files: {
-                        './src/minijs/lib.min.js': ['./build/jsConcat/lib.js']
+                        './src/minjs/lib.min.js': ['./build/jsConcat/lib.js']
                     }
                 },
                 concat_all: {
@@ -72,7 +72,7 @@ module.exports = function (grunt) {
                         mangle: false
                     },
                     files: {
-                        './src/minijs/all.min.js': ['./build/jsConcat/all.js']
+                        './src/minjs/all.min.js': ['./build/jsConcat/all.js']
                     }
                 },
                 concat_user: {
@@ -80,7 +80,7 @@ module.exports = function (grunt) {
                         mangle: false
                     },
                     files: {
-                        './src/minijs/user.min.js': ['./build/jsConcat/user.js']
+                        './src/minjs/user.min.js': ['./build/jsConcat/user.js']
                     }
                 },
                 concat_employee: {
@@ -88,7 +88,7 @@ module.exports = function (grunt) {
                         mangle: false
                     },
                     files: {
-                        './src/minijs/employee.min.js': ['./build/jsConcat/employee.js']
+                        './src/minjs/employee.min.js': ['./build/jsConcat/employee.js']
                     }
                 }
             },
