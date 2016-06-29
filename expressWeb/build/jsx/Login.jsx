@@ -150,7 +150,7 @@ var Login = React.createClass({
             this.handleError("电话号码长度错误");
             return;
         }
-        if(config.name == ""){
+        if(!this.state.isLogin && config.name == ""){
             this.handleError("必须输入名字");
             return;
         }
