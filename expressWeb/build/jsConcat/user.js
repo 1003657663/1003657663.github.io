@@ -18,12 +18,14 @@ var User = {
     Main:"",
 
     cookieLogin:function () {
-        this.isLogin = JSON.parse(getCookieValue("isLogin"));
-        this.name = getCookieValue("name");
-        this.telephone = getCookieValue("telephone");
-        this.password = getCookieValue("password");
-        this.token = getCookieValue("token");
-        this.id = getCookieValue("id");
+        if(getCookieValue("isLogin") == "true") {
+            this.isLogin = getCookieValue("isLogin") == "true" ? true : false;
+            this.name = getCookieValue("name");
+            this.telephone = getCookieValue("telephone");
+            this.password = getCookieValue("password");
+            this.token = getCookieValue("token");
+            this.id = getCookieValue("id");
+        }
     },
     login:function (name, telephone, password, token, id) {
         this.isLogin = true;

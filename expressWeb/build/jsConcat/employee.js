@@ -38,17 +38,19 @@ var User = {
     Package:null,
 
     cookieLogin:function () {
-        this.isLogin = getCookieValue("employee_isLogin") == "true"?true:false;
-        this.name = getCookieValue("employee_name");
-        
-        this.telephone = getCookieValue("employee_telephone");
-        this.password = getCookieValue("employee_password");
-        this.token = getCookieValue("employee_token");
-        this.id = getCookieValue("employee_id");
-        this.job = getCookieValue("employee_job");
-        this.jobText = getCookieValue("employee_jobText");
-        this.outletsId = getCookieValue("employee_outletsId");
-        this.status = getCookieValue("status");
+        if(getCookieValue("isLogin") == "true") {
+            this.isLogin = getCookieValue("employee_isLogin") == "true" ? true : false;
+            this.name = getCookieValue("employee_name");
+
+            this.telephone = getCookieValue("employee_telephone");
+            this.password = getCookieValue("employee_password");
+            this.token = getCookieValue("employee_token");
+            this.id = getCookieValue("employee_id");
+            this.job = getCookieValue("employee_job");
+            this.jobText = getCookieValue("employee_jobText");
+            this.outletsId = getCookieValue("employee_outletsId");
+            this.status = getCookieValue("status");
+        }
     },
     login:function (name, telephone, password, token,
                     id,job,jobText,outletsId,status) {
