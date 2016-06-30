@@ -67,6 +67,17 @@ var User = {
 
         this.NavBar.setState({isLogin:true});
         this.UserInfo.setState({name:name,telephone:telephone,isLogin:true});
+
+        addCookie("employee_token", token);
+        addCookie("employee_isLogin", "true");
+        addCookie("employee_name", name);
+        addCookie("employee_telephone", telephone);
+        addCookie("employee_password", password);
+        addCookie("employee_id", id);
+        addCookie("employee_text", jobText);
+        addCookie("employee_job", job);
+        addCookie("employee_outletsId", outletsId);
+        addCookie("employee_status", status);
     },
 
     logout:function () {
@@ -78,6 +89,19 @@ var User = {
         this.token = null;
         this.UserInfo.setState({isLogin: false});
         this.NavBar.setState({name:null,telephone:null,isLogin: false});
+
+        deleteCookie([
+            "employee_name",
+            "employee_token",
+            "employee_isLogin",
+            "employee_telephone",
+            "employee_password",
+            "employee_id",
+            "employee_text",
+            "employee_job",
+            "employee_outletsId",
+            "employee_status",
+        ]);
     }
 };
 

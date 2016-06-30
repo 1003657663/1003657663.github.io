@@ -135,7 +135,7 @@ var Login = React.createClass({
             temp = {isLogin: false}
         }
         return Tools.extend(temp, {
-            telephone: "15038290935", password: "123456", name: "",
+            telephone: "", password: "", name: "",
             errorMessage: ""
         });
     },
@@ -278,13 +278,6 @@ function startLogin(props, config, isLogin, onSuccess) {
         if (data.name == undefined) {
             name = config.name;
         }
-        addCookie("username", name);
-        addCookie("token", data.token);
-        addCookie("isLogin", "true");
-        addCookie("telephone", config.telephone);
-        addCookie("password",config.password);
-        addCookie("id", data.id);
-
         User.login(name, config.telephone, config.password, data.token, data.id);
 
     }

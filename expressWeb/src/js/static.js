@@ -36,6 +36,13 @@ var User = {
         this.id = id;
         this.NavBar.setState({isLogin:true});
         this.UserInfo.setState({name:name,telephone:telephone,isLogin:true});
+
+        addCookie("username", name);
+        addCookie("token", token);
+        addCookie("isLogin", "true");
+        addCookie("telephone", telephone);
+        addCookie("password",password);
+        addCookie("id", id);
     },
 
     logout:function () {
@@ -47,6 +54,10 @@ var User = {
         this.token = "";
         this.UserInfo.setState({isLogin: false});
         this.NavBar.setState({name:"",telephone:"",isLogin: false});
+
+        deleteCookie(["isLogin","name","telephone","id","password","token","UserInfo",
+            "NavBar"
+        ]);
     }
 };
 

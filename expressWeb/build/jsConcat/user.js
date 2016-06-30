@@ -36,6 +36,13 @@ var User = {
         this.id = id;
         this.NavBar.setState({isLogin:true});
         this.UserInfo.setState({name:name,telephone:telephone,isLogin:true});
+
+        addCookie("username", name);
+        addCookie("token", token);
+        addCookie("isLogin", "true");
+        addCookie("telephone", telephone);
+        addCookie("password",password);
+        addCookie("id", id);
     },
 
     logout:function () {
@@ -47,6 +54,10 @@ var User = {
         this.token = "";
         this.UserInfo.setState({isLogin: false});
         this.NavBar.setState({name:"",telephone:"",isLogin: false});
+
+        deleteCookie(["isLogin","name","telephone","id","password","token","UserInfo",
+            "NavBar"
+        ]);
     }
 };
 
@@ -269,7 +280,7 @@ var Login = React.createClass({displayName: "Login",
             temp = {isLogin: false}
         }
         return Tools.extend(temp, {
-            telephone: "15038290935", password: "123456", name: "",
+            telephone: "", password: "", name: "",
             errorMessage: ""
         });
     },
@@ -412,13 +423,6 @@ function startLogin(props, config, isLogin, onSuccess) {
         if (data.name == undefined) {
             name = config.name;
         }
-        addCookie("username", name);
-        addCookie("token", data.token);
-        addCookie("isLogin", "true");
-        addCookie("telephone", config.telephone);
-        addCookie("password",config.password);
-        addCookie("id", data.id);
-
         User.login(name, config.telephone, config.password, data.token, data.id);
 
     }
@@ -481,7 +485,7 @@ var SearchResult = React.createClass({displayName: "SearchResult",
  */
 var SearchInput = React.createClass({displayName: "SearchInput",
     getInitialState: function () {
-        return {value: "94694271472975"};
+        return {value: ""};
     },
     handleClick: function () {
         var id = this.state.value;

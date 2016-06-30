@@ -211,6 +211,10 @@ var Login = React.createClass({
             this.handleError("电话号码长度错误");
             return;
         }
+        if(config.password.length <6){
+            this.handleError("密码长度不对");
+            return;
+        }
         if (!this.state.isLogin && this.props.siteID == undefined) {
             this.handleError("请重新选择站点然后添加员工");
             return;
@@ -387,18 +391,6 @@ function startLogin(props, config, isLogin, onSuccess) {
         if (data.name == undefined) {
             name = config.name;
         }
-        addCookie("employee_username", name);
-        addCookie("employee_token", data.token);
-        addCookie("employee_isLogin", "true");
-        addCookie("employee_name", name);
-        addCookie("employee_telephone", config.telephone);
-        addCookie("employee_password", config.password);
-        addCookie("employee_id", data.id);
-        addCookie("employee_text", data.jobText);
-        addCookie("employee_job", data.job);
-        addCookie("employee_outletsId", data.outletsId);
-        addCookie("employee_status", data.status);
-
         User.login(
             name, config.telephone, config.password, data.token, data.id,
             data.job, data.jobText, data.outletsId, data.status

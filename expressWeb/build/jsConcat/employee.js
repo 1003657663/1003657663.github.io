@@ -67,6 +67,17 @@ var User = {
 
         this.NavBar.setState({isLogin:true});
         this.UserInfo.setState({name:name,telephone:telephone,isLogin:true});
+
+        addCookie("employee_token", token);
+        addCookie("employee_isLogin", "true");
+        addCookie("employee_name", name);
+        addCookie("employee_telephone", telephone);
+        addCookie("employee_password", password);
+        addCookie("employee_id", id);
+        addCookie("employee_text", jobText);
+        addCookie("employee_job", job);
+        addCookie("employee_outletsId", outletsId);
+        addCookie("employee_status", status);
     },
 
     logout:function () {
@@ -78,6 +89,19 @@ var User = {
         this.token = null;
         this.UserInfo.setState({isLogin: false});
         this.NavBar.setState({name:null,telephone:null,isLogin: false});
+
+        deleteCookie([
+            "employee_name",
+            "employee_token",
+            "employee_isLogin",
+            "employee_telephone",
+            "employee_password",
+            "employee_id",
+            "employee_text",
+            "employee_job",
+            "employee_outletsId",
+            "employee_status",
+        ]);
     }
 };
 
@@ -377,6 +401,10 @@ var Login = React.createClass({displayName: "Login",
             this.handleError("电话号码长度错误");
             return;
         }
+        if(config.password.length <6){
+            this.handleError("密码长度不对");
+            return;
+        }
         if (!this.state.isLogin && this.props.siteID == undefined) {
             this.handleError("请重新选择站点然后添加员工");
             return;
@@ -553,18 +581,6 @@ function startLogin(props, config, isLogin, onSuccess) {
         if (data.name == undefined) {
             name = config.name;
         }
-        addCookie("employee_username", name);
-        addCookie("employee_token", data.token);
-        addCookie("employee_isLogin", "true");
-        addCookie("employee_name", name);
-        addCookie("employee_telephone", config.telephone);
-        addCookie("employee_password", config.password);
-        addCookie("employee_id", data.id);
-        addCookie("employee_text", data.jobText);
-        addCookie("employee_job", data.job);
-        addCookie("employee_outletsId", data.outletsId);
-        addCookie("employee_status", data.status);
-
         User.login(
             name, config.telephone, config.password, data.token, data.id,
             data.job, data.jobText, data.outletsId, data.status
@@ -590,21 +606,6 @@ var SearchInput = React.createClass({displayName: "SearchInput",
         }
 
         User.Package.addExpress(id);
-        //----这里执行网络操作---ajax---检查快递是否在数据库中
-        /*Tools.myAjax({
-            type: "get",
-            url: "/Domain/checkExpressIfExisit/"+id,
-            success: function (data) {
-                if(data.state == "1") {
-
-                }else{
-                    showDialog("dialog","警告","这个快递号不是一个已经存在的快递,请检查是否正确",true);
-                }
-            },
-            error: function (data) {
-                showDialog("dialog","错误","检查快递存在性出错,请重试",true);
-            }
-        })*/
     },
     handleInputChange: function (event) {
         var inputValue = event.target.value;

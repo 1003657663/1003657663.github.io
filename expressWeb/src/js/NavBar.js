@@ -6,7 +6,7 @@
  */
 var SearchInput = React.createClass({displayName: "SearchInput",
     getInitialState: function () {
-        return {value: "94694271472975"};
+        return {value: ""};
     },
     handleClick: function () {
         var id = this.state.value;

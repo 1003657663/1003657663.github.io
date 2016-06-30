@@ -16,21 +16,6 @@ var SearchInput = React.createClass({displayName: "SearchInput",
         }
 
         User.Package.addExpress(id);
-        //----这里执行网络操作---ajax---检查快递是否在数据库中
-        /*Tools.myAjax({
-            type: "get",
-            url: "/Domain/checkExpressIfExisit/"+id,
-            success: function (data) {
-                if(data.state == "1") {
-
-                }else{
-                    showDialog("dialog","警告","这个快递号不是一个已经存在的快递,请检查是否正确",true);
-                }
-            },
-            error: function (data) {
-                showDialog("dialog","错误","检查快递存在性出错,请重试",true);
-            }
-        })*/
     },
     handleInputChange: function (event) {
         var inputValue = event.target.value;
