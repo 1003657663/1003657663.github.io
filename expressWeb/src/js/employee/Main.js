@@ -254,6 +254,10 @@ var Main = React.createClass({displayName: "Main",
             showDialog("dialog", "警告", "登录后才能打包", true);
             return;
         }
+        if(User.job = 4){
+            showDialog("dialog","警告","经理不可以打包",true);
+            return;
+        }
 
         this.setState({
             child: [
@@ -266,6 +270,9 @@ var Main = React.createClass({displayName: "Main",
         if (!User.isLogin) {
             showDialog("dialog", "警告", "登录后拆包", true);
             return;
+        }
+        if(User.job == 4){
+            showDialog("dialog","警告","经理不可以拆包",true);
         }
         this.setState({
             child: [

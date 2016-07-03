@@ -840,6 +840,11 @@ var Package = React.createClass({displayName: "Package",
     ,
     handleSubmit: function () {
         if (this.props.isPackageIn) {
+            if(User.job = 1){//快递员，就提示打包的包裹，就是收件的包裹id号。
+                showDialog("dialog","提示","您的收件包裹id是"+User.recvPackageId+"请记好",true);
+            }else if(User.job = 2){//分拣员
+                showDialog("dialog","提示","您的包裹id是"+User.sortPakcageID+"请记好",true);
+            }
             this.onCloseClick();
         } else {
             //拆包网络请求,要拆的包裹id参数
@@ -2272,6 +2277,10 @@ var Main = React.createClass({displayName: "Main",
             showDialog("dialog", "警告", "登录后才能打包", true);
             return;
         }
+        if(User.job = 4){
+            showDialog("dialog","警告","经理不可以打包",true);
+            return;
+        }
 
         this.setState({
             child: [
@@ -2284,6 +2293,9 @@ var Main = React.createClass({displayName: "Main",
         if (!User.isLogin) {
             showDialog("dialog", "警告", "登录后拆包", true);
             return;
+        }
+        if(User.job == 4){
+            showDialog("dialog","警告","经理不可以拆包",true);
         }
         this.setState({
             child: [
