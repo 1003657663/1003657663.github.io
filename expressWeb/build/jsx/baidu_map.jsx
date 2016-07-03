@@ -151,8 +151,8 @@ function getOneHistoryPoints(entity_name, success, error, employeeData) {
         data: {
             ak: Map.ak,
             service_id: Map.serviceID,
-            start_time: getUnixTime() - 36 * 3600,
-            end_time: getUnixTime() - 12 * 3600,
+            start_time: getUnixTime() - 24 * 3600,
+            end_time: getUnixTime(),
             entity_name: entity_name,
             is_processed: 1,
             page_size: 5000
