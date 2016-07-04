@@ -759,10 +759,10 @@ var Package = React.createClass({displayName: "Package",
                 showDialog("dialog", "警告", "快递员收件包裹id是空,请重试", true);
             }
         } else {
-            if (this.state.packageID == "") {
+            if (User.sortPakcageID == "") {
                 showDialog("dialog", "警告", "包裹id是空,请重新填写包裹id", true);
             } else {
-                addExpressToPackage(this, this.state.packageID, expressId);
+                addExpressToPackage(this, User.sortPakcageID, expressId);
             }
         }
     },
