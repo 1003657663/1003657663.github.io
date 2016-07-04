@@ -110,6 +110,7 @@ var Url = {
     //header:"http://10.101.242.35:8080"
     //header:"http://182.254.214.97:8080/ExTrace_Server"
     //header:"http://127.0.0.1:8080/ExTrace_Server"
+    
     header:"http://139.129.24.149/ExTrace_Server"
 };
 

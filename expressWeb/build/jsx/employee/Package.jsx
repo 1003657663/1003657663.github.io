@@ -239,7 +239,7 @@ function initPackage(isPackageIn) {
         }
     } else if (User.job == 2) {//---如果是分拣员,首先选择快递起点和终点站点id
         if (isPackageIn) {
-            placeChoiceSite();//--选择后创建包裹
+            placeChoiceSiteP();//--选择后创建包裹
         }
     }
 }
@@ -289,7 +289,7 @@ var SelectSiteDialog = React.createClass({
 /**
  * 弹出请选择站点的窗口
  */
-function placeChoiceSite() {
+function placeChoiceSiteP() {
     ///Misc/getAllBranch/{token}
     //返回：List<OutletsEntity>
     var sendSiteID = undefined;

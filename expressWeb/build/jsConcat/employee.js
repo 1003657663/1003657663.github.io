@@ -110,6 +110,7 @@ var Url = {
     //header:"http://10.101.242.35:8080"
     //header:"http://182.254.214.97:8080/ExTrace_Server"
     //header:"http://127.0.0.1:8080/ExTrace_Server"
+    
     header:"http://139.129.24.149/ExTrace_Server"
 };
 
@@ -968,7 +969,7 @@ function initPackage(isPackageIn) {
         }
     } else if (User.job == 2) {//---如果是分拣员,首先选择快递起点和终点站点id
         if (isPackageIn) {
-            placeChoiceSite();//--选择后创建包裹
+            placeChoiceSiteP();//--选择后创建包裹
         }
     }
 }
@@ -1018,7 +1019,7 @@ var SelectSiteDialog = React.createClass({displayName: "SelectSiteDialog",
 /**
  * 弹出请选择站点的窗口
  */
-function placeChoiceSite() {
+function placeChoiceSiteP() {
     ///Misc/getAllBranch/{token}
     //返回：List<OutletsEntity>
     var sendSiteID = undefined;
