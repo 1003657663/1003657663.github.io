@@ -30,11 +30,11 @@ var ChangePassword = React.createClass({
                 }else{
                     showDialog("dialog","警告","修改密码失败",true);
                 }
-            },
+            }.bind(this),
             error: function (data) {
                 console.info(data);
                 showDialog("dialog","错误","修改密码失败",true);
-            }
+            }.bind(this)
         });
     },
     handleBlur: function (e) {
