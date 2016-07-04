@@ -111,9 +111,9 @@ var Package = React.createClass({
     ,
     handleSubmit: function () {
         if (this.props.isPackageIn) {
-            if(User.job = 1){//快递员，就提示打包的包裹，就是收件的包裹id号。
+            if(User.job == 1){//快递员，就提示打包的包裹，就是收件的包裹id号。
                 showDialog("dialog","提示","您的收件包裹id是"+User.recvPackageId+"请记好",true);
-            }else if(User.job = 2){//分拣员
+            }else if(User.job == 2){//分拣员
                 showDialog("dialog","提示","您的包裹id是"+User.sortPakcageID+"请记好",true);
             }
             this.onCloseClick();
