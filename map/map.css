@@ -1,0 +1,197 @@
+body{
+	padding:0px;
+	margin:0px;
+	overflow:hidden;
+	font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+	font-size:12px;
+	background-image:url(bg.gif);
+}
+a{
+	text-decoration:none;
+	color:#303;
+}
+a:hover{
+	color:#30C;
+}
+#allmap{
+	width:100%;
+	overflow:hidden;
+}
+area{
+	cursor:pointer;
+}
+#maptab{
+	position:absolute;
+	z-index:10;
+	border-collapse:collapse;
+	border-spacing:0px;
+}
+th,td{
+	padding:0px;
+}
+#map{
+	position:absolute;
+	left:0px;
+	top:0px;
+	z-index:5;
+}
+#upimg{
+	position:absolute;
+	left:0px;
+	top:0px;
+	background:#F00;
+	opacity:0;
+	z-index:100;
+}
+#mapcontrol{
+	position:absolute;
+	right:10px;
+	top:55px;
+	width:44px;
+	height:42px;
+	z-index:12;
+	background-image:url(signimage/mapctrl.png);
+	background-position:0px 0px;
+}
+#poplayer{
+	position:absolute;
+	width:auto;
+	height:auto;
+	left:10px;
+	top:20px;
+	background:#FDFDCB;
+	border:#000 solid 1px;
+	padding:2px;
+	z-index:50;
+	display:none;
+}
+/*--------------------------------------------------弹窗的css*/
+#windows{
+	position:absolute;
+	width:350px;
+	height:auto;
+	display:none;
+	z-index:101;
+}
+.allother{
+	width:350px;
+	height:auto;
+}
+.pointphoto{
+	width:350px;
+	text-align:center;
+	position:relative;
+	top:-1px;
+}
+#place{
+	width:350px;
+	height:50px;
+	font-size:22px;
+	color:#0059B3;
+}
+#place #namespan{
+	float:left;
+	margin:15px;
+	font-size:22px;
+}
+.placephoto{
+	width:350px;
+	height:auto;
+	overflow:hidden;
+}
+.placephoto #placeimg{
+	padding-left:5px;
+}
+.placephoto>h4{
+	margin:5px;
+	padding:5px 0 0 10px;
+}
+.introduction{
+	width:350px;
+	height:auto;
+	font-size:12px;
+}
+.introduction span{
+	color:#737373;
+	padding:5px 0 0 10px;
+	line-height:20px;
+	display:block;
+}
+#introductiontext{
+	height:100px;
+	overflow:hidden;
+	text-overflow:ellipsis; 
+	-o-text-overflow:ellipsis;
+	white-space:pre-line; 
+}
+#signname{
+	position:fixed;
+	left:30px;
+	bottom:10px;
+	z-index:500;
+}
+#copyright{
+	position:fixed;
+	right:50px;
+	bottom:10px;
+	z-index:500;
+}
+
+/*--------------------------------------------------------辅助功能添加css*/
+#menu #search{
+	width:400px;
+}
+#search #searchInput{
+	height:33px;
+	width:400px;
+	font-size:20px;
+}
+/*#tool{
+	height:20px;
+	width:42px;
+}*/
+
+
+#searchInput{
+	width:400px;
+	height:30px;
+}
+.searchImage{
+	width:25px;
+	position:absolute;
+	left:368px;
+	top:5px;
+}
+
+.function{
+	position:fixed;
+	width:100%;
+	top:0px;
+	display:table;
+	z-index:200;
+}
+.function #search{
+	width:400px;
+	margin:auto;
+	display:table;
+	position:relative;
+}
+
+.function #gohome{
+	height:30px;
+	line-height:30px;
+	position:absolute;
+	top:0;
+	left:10px;
+	width:110px;
+	border-radius:5px;
+	background:#ED914E;
+	padding:5px;
+}
+.function #gohome:hover{
+	background:#C30;
+	cursor:pointer;
+}
+.function #gohome a{
+	color:#fff;
+}
