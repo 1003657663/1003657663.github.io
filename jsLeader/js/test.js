@@ -1,0 +1,1 @@
+Leader.setConfig({texts:["你好","hh","b","c","ksd","slls","oo"]}),Leader.show();
