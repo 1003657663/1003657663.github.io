@@ -1,6 +1,6 @@
 
 <!-- saved from url=(0044)https://atc1441.github.io/TelinkFlasher.html -->
-<html class="telFlasherClass translated-ltr"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<html class="telFlasherClass"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Telink Flasher</title>
 <script type="text/javascript" src="./Telink Flasher_files/core.js"></script><style type="text/css" abt="234"></style>
@@ -680,73 +680,74 @@ function do_login_generate() {
     mainCharSend("00000100", enc_19);
 }
 </script>
-<big><big><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">适用于Mi恒温器的</font></font></big></big><br><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
-Telink</font><big><big><font style="vertical-align: inherit;"> Flasher</font></big></big><font style="vertical-align: inherit;">版权所有：Aaron Christophel / Atc1441</font></font><a href="https://atcnetz.de/"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> https://ATCnetz.de</font></font></a><br>
-<a href="https://youtu.be/NXKzFG61lNs"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">视频手册</font></font></a> <font style="vertical-align: inherit;"><a href="https://github.com/atc1441/ATC_MiThermometer"><font style="vertical-align: inherit;">自定义固件</font></a><font style="vertical-align: inherit;">仓库  </font></font><a href="https://github.com/atc1441/ATC_MiThermometer"><font style="vertical-align: inherit;"></font></a><br><br>
-  <button type="button" onclick="connect();"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">连接</font></font></button>
-  <button type="button" onclick="reConnect();"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">重新连线</font></font></button><br>
-  <label for="hideUnknown"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">隐藏未知</font></font></label>
+<big><big>Telink Flasher for Mi Thermostat</big></big><br>
+Copyright: Aaron Christophel / Atc1441  <a href="https://atcnetz.de/">https://ATCnetz.de</a><br>
+<a href="https://youtu.be/NXKzFG61lNs">Video Manual</a> <a href="https://github.com/atc1441/ATC_MiThermometer">Custom firmware repo</a><br><br>
+  <button type="button" onclick="connect();">Connect</button>
+  <button type="button" onclick="reConnect();">Reconnect</button><br>
+  <label for="hideUnknown">Hide unknown</label>
   <input type="checkbox" id="hideUnknown"><br>
-  <label for="namePrefix"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">BLE设备名称前缀过滤器</font></font></label>
-  <input type="text" id="namePrefix" value="" placeholder="LYWSD03，ATC"><br>
-  <button type="button" onclick="sendRegister();"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">做激活</font></font></button>
-  <button type="button" onclick="startDFU();"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">开始闪烁</font></font></button>
-  <button type="button" onclick="clearLog();"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">清除日志</font></font></button><br><br><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
-请选择一个要刷新到Telink BLE设备的.bin文件。</font></font><br><br><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
-  选择固件：</font></font><input type="file" accept=".bin" id="file"><br>
- <div id="percent"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">状态：正在等待您连接设备</font></font></div><hr>
- <div id="tempHumiData"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Temp / Humi：正在等待数据，在具有自定义固件的设备上不会更改，仅在库存固件上会更改</font></font></div><hr>
-  <div id="MAC"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">可能需要＃enable-experimental-web-platform-features才能读取MAC</font></font></div><hr><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
-  设备已知ID：</font></font><br>
-  <input size="40" type="text" id="known_id" value=""><br><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
-  Mi令牌：</font></font><br>
-  <input size="40" type="text" id="mi_token" value=""><br><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
-  Mi绑定密钥：</font></font><br>
+  <label for="namePrefix">BLE device name prefix filter(s)</label>
+  <input type="text" id="namePrefix" value="" placeholder="LYWSD03,ATC"><br>
+  <button type="button" onclick="sendRegister();">Do Activation</button>
+  <button type="button" onclick="startDFU();">Start Flashing</button>
+  <button type="button" onclick="clearLog();">Clear Log</button><br><br>
+Please select a .bin file you want to flash to a Telink BLE device.<br><br>
+  Select Firmware: <input type="file" accept=".bin" id="file"><br>
+ <div id="percent">Status: waiting for you to connect a device</div><hr>
+ <div id="tempHumiData">Temp/Humi: waiting for data, this will not change on devices with custom firmware, only on stock firmware</div><hr>
+  <div id="MAC">#enable-experimental-web-platform-features may be needed to read MAC</div><hr>
+  Device known id:<br>
+  <input size="40" type="text" id="known_id" value=""><br>
+  Mi Token:<br>
+  <input size="40" type="text" id="mi_token" value=""><br>
+  Mi Bind Key:<br>
   <input size="40" type="text" id="mi_bind_key" value=""><br>
-  <br><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
-  在此处进行激活时，需要在Mi应用中再次激活该设备。
-  </font></font><hr><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
- 将设置发送到自定义固件：</font></font><br>
-  <input type="text" id="cmdTXT" value="">
-  <button type="button" onclick="sendCustomSetting(document.getElementById(&quot;cmdTXT&quot;).value,settingsCharacteristics);"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">发送</font></font></button>
-  <br><br><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
-  笑脸：
-  </font></font><button type="button" onclick="sendCustomSetting(&quot;A0&quot;);"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">离开</font></font></button>
-  <button type="button" onclick="sendCustomSetting(&quot;A1&quot;);"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">快乐的</font></font></button>
-  <button type="button" onclick="sendCustomSetting(&quot;A2&quot;);"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">伤心</font></font></button>
-  <button type="button" onclick="sendCustomSetting(&quot;AB&quot;);"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">闪烁</font></font></button>
-  <button type="button" onclick="sendCustomSetting(&quot;A3&quot;);"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">舒适度指示器</font></font></button>
-  <br><br><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
-  广告类型：
-  </font></font><button type="button" onclick="sendCustomSetting(&quot;AE&quot;);"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">风俗</font></font></button>
-  <button type="button" onclick="sendCustomSetting(&quot;AF&quot;);"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">我喜欢</font></font></button>
-  <br><br><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
-  传感器显示：
-  </font></font><button type="button" onclick="sendCustomSetting(&quot;CC&quot;);"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在°C</font></font></button>
-  <button type="button" onclick="sendCustomSetting(&quot;FF&quot;);"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在°F</font></font></button>
-  <br><br><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
-  在液晶显示屏上显示电池：
-  </font></font><button type="button" onclick="sendCustomSetting(&quot;B1&quot;);"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">已启用</font></font></button>
-  <button type="button" onclick="sendCustomSetting(&quot;B0&quot;);"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">残障人士</font></font></button>
-  <br><br><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
-  广告间隔：
-  </font></font><button type="button" onclick="sendCustomSetting(&quot;FE01&quot;);"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">10秒</font></font></button>
-  <button type="button" onclick="sendCustomSetting(&quot;FE06&quot;);"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">1分钟</font></font></button>
-  <button type="button" onclick="sendCustomSetting(&quot;FE1E&quot;);"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">5分钟</font></font></button>
-  <button type="button" onclick="sendCustomSetting(&quot;FE3C&quot;);"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">10分钟</font></font></button>
-  <br><br><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
-  传感器偏移量：
-  </font></font><button type="button" onclick="sendCustomSetting(&quot;FA00&quot;);"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">温度0°C偏移</font></font></button>
-  <button type="button" onclick="sendCustomSetting(&quot;FB00&quot;);"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Humi 0％偏移</font></font></button><br><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
-  要设置精确的偏移量，请使用文本输入字段，其中温度为FA + offset，湿度为FB + offset，将int8转换为十六进制。
-  </font></font><br><br><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
-  传感器即时广告：
-  </font></font><button type="button" onclick="sendCustomSetting(&quot;FC05&quot;);"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">温度0,5°C即时报警</font></font></button>
-  <button type="button" onclick="sendCustomSetting(&quot;FD05&quot;);"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Humi 5％即时警报</font></font></button><br><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
-  要设置其他值，请使用带有u + 8_t值的FC + temp警报或FD + humi警报的文本输入。</font><font style="vertical-align: inherit;">如果传感器数据变化很快，这可用于获取即时广告。</font><font style="vertical-align: inherit;">温度除以10
-  </font></font><br>
+  <br>
+  When doing an activation here the device is needed to be activated in the Mi app again when wanted to use there.
   <hr>
- <div id="log"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">日志：</font></font><br></div>
+ Send settings to custom firmware:<br>
+  <input type="text" id="cmdTXT" value="">
+  <button type="button" onclick="sendCustomSetting(document.getElementById(&quot;cmdTXT&quot;).value,settingsCharacteristics);">Send</button>
+  <br><br>
+  Smiley:
+  <button type="button" onclick="sendCustomSetting(&quot;A0&quot;);">Off</button>
+  <button type="button" onclick="sendCustomSetting(&quot;A1&quot;);">Happy</button>
+  <button type="button" onclick="sendCustomSetting(&quot;A2&quot;);">Sad</button>
+  <button type="button" onclick="sendCustomSetting(&quot;AB&quot;);">Blinking</button>
+  <button type="button" onclick="sendCustomSetting(&quot;A3&quot;);">Comfort Indicator</button>
+  <br><br>
+  Advertising Type:
+  <button type="button" onclick="sendCustomSetting(&quot;AE&quot;);">Custom</button>
+  <button type="button" onclick="sendCustomSetting(&quot;AF&quot;);">Mi Like</button>
+  <br><br>
+  Sensor display:
+  <button type="button" onclick="sendCustomSetting(&quot;CC&quot;);">In °C</button>
+  <button type="button" onclick="sendCustomSetting(&quot;FF&quot;);">In °F</button>
+  <br><br>
+  Show battery in LCD:
+  <button type="button" onclick="sendCustomSetting(&quot;B1&quot;);">Enabled</button>
+  <button type="button" onclick="sendCustomSetting(&quot;B0&quot;);">Disabled</button>
+  <br><br>
+  Advertising interval:
+  <button type="button" onclick="sendCustomSetting(&quot;FE01&quot;);">10 Seconds</button>
+  <button type="button" onclick="sendCustomSetting(&quot;FE06&quot;);">1 Minute</button>
+  <button type="button" onclick="sendCustomSetting(&quot;FE1E&quot;);">5 Minutes</button>
+  <button type="button" onclick="sendCustomSetting(&quot;FE3C&quot;);">10 Minutes</button>
+  <br><br>
+  Sensor offset:
+  <button type="button" onclick="sendCustomSetting(&quot;FA00&quot;);">Temp 0°C offset</button>
+  <button type="button" onclick="sendCustomSetting(&quot;FB00&quot;);">Humi 0% offset</button><br>
+  To set a precise offset use the text input field with FA+offset for Temp and FB+offset for Humiditiy convert an int8 to hex.
+  <br><br>
+  Sensor instant Advertising:
+  <button type="button" onclick="sendCustomSetting(&quot;FC05&quot;);">Temp 0,5°C instant alarm</button>
+  <button type="button" onclick="sendCustomSetting(&quot;FD05&quot;);">Humi 5% instant alarm</button><br>
+  To set other values use the text input with FC+temp alarm or FD+humi alarm with uint8_t values.
+  This can be used to get instant advertising if the sensor data changes to fast. Temp divided by 10
+  <br>
+  <hr>
+ <div id="log">Log:<br></div>
  <div id="result"></div>
 
 <div id="goog-gt-tt" class="skiptranslate" dir="ltr"><div style="padding: 8px;"><div><div class="logo"><img src="./Telink Flasher_files/translate_24dp.png" width="20" height="20" alt="Google 翻译"></div></div></div><div class="top" style="padding: 8px; float: left; width: 100%;"><h1 class="title gray">原文</h1></div><div class="middle" style="padding: 8px;"><div class="original-text"></div></div><div class="bottom" style="padding: 8px;"><div class="activity-links"><span class="activity-link">提供更好的翻译建议</span><span class="activity-link"></span></div><div class="started-activity-container"><hr style="color: #CCC; background-color: #CCC; height: 1px; border: none;"><div class="activity-root"></div></div></div><div class="status-message" style="display: none;"></div></div><div id="syno-nsc-ext-comp-1008" class=" x-tip-invalid" style="position: absolute; z-index: 11000; visibility: hidden; display: none;"><div class="x-tip-invalid-tl"><div class="x-tip-invalid-tr"><div class="x-tip-invalid-tc"><div class="x-tip-invalid-header x-unselectable" id="syno-nsc-ext-gen4"><span class="x-tip-invalid-header-text"></span></div></div></div></div><div class="x-tip-invalid-bwrap" id="syno-nsc-ext-gen5"><div class="x-tip-invalid-ml"><div class="x-tip-invalid-mr"><div class="x-tip-invalid-mc" id="syno-nsc-ext-gen8"><div class="x-tip-invalid-body" id="syno-nsc-ext-gen6" style="height: auto;"></div></div></div></div><div class="x-tip-invalid-bl x-panel-nofooter" id="syno-nsc-ext-gen7"><div class="x-tip-invalid-br"><div class="x-tip-invalid-bc"></div></div></div></div><div class="x-tip-anchor x-tip-anchor-top" id="syno-nsc-ext-gen9" style="z-index: 11001;"></div></div><div class="goog-te-spinner-pos"><div class="goog-te-spinner-animation"><svg xmlns="http://www.w3.org/2000/svg" class="goog-te-spinner" width="96px" height="96px" viewBox="0 0 66 66"><circle class="goog-te-spinner-path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle></svg></div></div></body><div style="all: initial;"><div id="__hcfy__" style="all: initial;"></div></div></html>
