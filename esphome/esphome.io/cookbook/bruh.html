@@ -1,0 +1,202 @@
+
+  <!DOCTYPE html>
+
+
+<html lang="en">
+  
+<!-- Mirrored from esphome.io/cookbook/bruh.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 16 May 2021 03:02:43 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+<meta name="description" content="Instructions for re-creating a BRUH multisensor using ESPHome.">
+<meta itemprop="name" content="BRUH Multisensor">
+<meta itemprop="description" content="Instructions for re-creating a BRUH multisensor using ESPHome.">
+<meta itemprop="image" content="../_images/bruh.png">
+<meta name="twitter:title" content="BRUH Multisensor">
+<meta name="twitter:image:src" content="../_images/bruh.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@OttoWinter_">
+<meta name="twitter:description" content="Instructions for re-creating a BRUH multisensor using ESPHome.">
+<meta property="og:title" content="BRUH Multisensor">
+<meta property="og:image" content="../_images/bruh.png">
+<meta property="og:type" content="website">
+<meta property="og:description" content="Instructions for re-creating a BRUH multisensor using ESPHome.">
+
+    <title>BRUH Multisensor &#8212; ESPHome</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <link rel="canonical" href="bruh.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Time &amp; Temperature on OLED Display" href="display_time_temp_oled.html" />
+    <link rel="prev" title="Brilliant / Mirabella Genio Smart Plugs" href="brilliant-mirabella-genio-smart-plugs.html" />
+  <link rel="stylesheet" href="../_static/customf001.css?hash=f908c2b5" type="text/css" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../_static/apple-touch-icon.png">
+  <link rel="shortcut icon" href="../_static/favicon.ico">
+  <link rel="icon" type="image/png" sizes="512x512" href="../_static/favicon-512x512.png">
+  <link rel="icon" type="image/png" sizes="256x256" href="../_static/favicon-256x256.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="../_static/favicon-192x192.png">
+  <link rel="icon" type="image/png" sizes="128x128" href="../_static/favicon-128x128.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../_static/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../_static/favicon-16x16.png">
+  <link rel="manifest" href="../_static/site.webmanifest">
+  <link rel="mask-icon" href="../_static/safari-pinned-tab.svg" color="#646464">
+  <meta name="apple-mobile-web-app-title" content="ESPHome">
+  <meta name="application-name" content="ESPHome">
+  <meta name="msapplication-TileColor" content="#dfdfdf">
+  <meta name="msapplication-config" content="/_static/browserconfig.xml">
+  <meta name="theme-color" content="#dfdfdf">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta property="og:site_name" content="ESPHome">
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head><body>
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index-2.html">
+              <img class="logo" src="../_static/logo-text.svg" alt="Logo"/>
+            </a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="https://esphome.io/search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+  <h3><a href="../index-2.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">BRUH Multisensor</a><ul>
+<li><a class="reference internal" href="#see-also">See Also</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="bruh-multisensor">
+<h1>BRUH Multisensor<a class="headerlink" href="#bruh-multisensor" title="Permalink to this headline">¶</a></h1>
+<p>The BRUH Multisensor is a great introductory project into Home Automation with an
+amazing setup tutorial. And fortunately ESPHome has complete support for all the
+stuff used by the Multisensor 🎉</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/jpjfVc-9IrQ" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe><p>Thank you very much to <a class="reference external" href="https://github.com/jackjohnsonuk">&#64;jackjohnsonuk</a> for providing this
+configuration file 😀</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">esphome</span><span class="p">:</span>
+  <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">&lt;NODE_NAME&gt;</span>
+  <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ESP8266</span>
+  <span class="nt">board</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">nodemcuv2</span>
+
+<span class="nt">wifi</span><span class="p">:</span>
+  <span class="nt">ssid</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">&lt;SSID&gt;</span>
+  <span class="nt">password</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">&lt;PASSWORD&gt;</span>
+
+<span class="nt">api</span><span class="p">:</span>
+
+<span class="c1"># Enable logging</span>
+<span class="nt">logger</span><span class="p">:</span>
+
+<span class="nt">ota</span><span class="p">:</span>
+
+<span class="nt">sensor</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">dht</span>
+    <span class="nt">pin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">D7</span>
+    <span class="nt">temperature</span><span class="p">:</span>
+      <span class="nt">name</span><span class="p">:</span> <span class="s">&quot;Multisensor</span><span class="nv"> </span><span class="s">Temperature&quot;</span>
+    <span class="nt">humidity</span><span class="p">:</span>
+      <span class="nt">name</span><span class="p">:</span> <span class="s">&quot;Multisensor</span><span class="nv"> </span><span class="s">Humidity&quot;</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">adc</span>
+    <span class="nt">pin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">A0</span>
+    <span class="nt">name</span><span class="p">:</span> <span class="s">&quot;Multisensor</span><span class="nv"> </span><span class="s">Brightness&quot;</span>
+    <span class="nt">unit_of_measurement</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">lux</span>
+    <span class="nt">filters</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="nt">lambda</span><span class="p">:</span> <span class="p p-Indicator">|-</span>
+          <span class="no">return (x / 10000.0) * 2000000.0;</span>
+
+<span class="nt">binary_sensor</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">gpio</span>
+    <span class="nt">pin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">D5</span>
+    <span class="nt">name</span><span class="p">:</span> <span class="s">&quot;Multisensor</span><span class="nv"> </span><span class="s">Motion&quot;</span>
+    <span class="nt">device_class</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">motion</span>
+
+<span class="nt">output</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">esp8266_pwm</span>
+    <span class="nt">pin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">D1</span>
+    <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">redgpio</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">esp8266_pwm</span>
+    <span class="nt">pin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">D2</span>
+    <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">greengpio</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">esp8266_pwm</span>
+    <span class="nt">pin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">D3</span>
+    <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">bluegpio</span>
+
+<span class="nt">light</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">rgb</span>
+    <span class="nt">name</span><span class="p">:</span> <span class="s">&quot;Multisensor</span><span class="nv"> </span><span class="s">Light&quot;</span>
+    <span class="nt">red</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">redgpio</span>
+    <span class="nt">green</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">greengpio</span>
+    <span class="nt">blue</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">bluegpio</span>
+</pre></div>
+</div>
+<section id="see-also">
+<h2>See Also<a class="headerlink" href="#see-also" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="../devices/nodemcu_esp8266.html"><span class="doc">NodeMCU ESP8266</span></a></p></li>
+<li><p><a class="reference internal" href="pir.html"><span class="doc">Passive Infrared Sensor</span></a></p></li>
+<li><p><a class="reference internal" href="temt6000.html"><span class="doc">TEMT6000</span></a></p></li>
+<li><p><a class="reference internal" href="../components/light/rgb.html"><span class="doc">RGB Light</span></a></p></li>
+<li><p><a class="reference internal" href="../components/output/esp8266_pwm.html"><span class="doc">ESP8266 Software PWM Output</span></a></p></li>
+<li><p><a class="reference internal" href="../components/sensor/dht.html"><span class="doc">DHT Temperature+Humidity Sensor</span></a></p></li>
+<li><p><a class="reference internal" href="../components/sensor/adc.html"><span class="doc">Analog To Digital Sensor</span></a></p></li>
+<li><p><a class="reference internal" href="../components/binary_sensor/gpio.html"><span class="doc">GPIO Binary Sensor</span></a></p></li>
+<li><p><a class="reference external" href="https://github.com/esphome/esphome-docs/blob/current/cookbook/bruh.rst">Edit this page on GitHub</a></p></li>
+</ul>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+  <div id="upgrade-footer">
+    A new version has been release since you last visited this page: 1.17.2 🎉
+    <div class="footer-button-container">
+      <div role="button" id="upgrade-footer-dismiss" class="footer-button">Dismiss</div>
+      <a id="upgrade-footer-changelog" class="footer-button" href="../changelog/v1.17.0.html">View Changelog</a>  
+    </div>
+  </div>
+  <script>
+    var old = window.localStorage.getItem("version");
+    if (old === null) { window.localStorage.setItem("version", "1.17");
+    } else if (old !== "1.17") {
+      const footerEl = document.getElementById("upgrade-footer");
+      footerEl.classList.add("not-hidden");
+      footerEl.addEventListener('click', function () {
+        window.localStorage.setItem("version", "1.17");
+        footerEl.classList.remove("not-hidden");
+      });
+    }
+  </script>
+
+  </body>
+
+<!-- Mirrored from esphome.io/cookbook/bruh.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 16 May 2021 03:02:43 GMT -->
+</html>

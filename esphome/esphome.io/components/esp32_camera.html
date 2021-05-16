@@ -1,0 +1,442 @@
+
+  <!DOCTYPE html>
+
+
+<html lang="en">
+  
+<!-- Mirrored from esphome.io/components/esp32_camera.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 16 May 2021 03:02:27 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+<meta name="description" content="Instructions for setting up the ESP32 Cameras in ESPHome">
+<meta itemprop="name" content="ESP32 Camera Component">
+<meta itemprop="description" content="Instructions for setting up the ESP32 Cameras in ESPHome">
+<meta itemprop="image" content="../_images/camera.png">
+<meta name="twitter:title" content="ESP32 Camera Component">
+<meta name="twitter:image:src" content="../_images/camera.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@OttoWinter_">
+<meta name="twitter:description" content="Instructions for setting up the ESP32 Cameras in ESPHome">
+<meta property="og:title" content="ESP32 Camera Component">
+<meta property="og:image" content="../_images/camera.png">
+<meta property="og:type" content="website">
+<meta property="og:description" content="Instructions for setting up the ESP32 Cameras in ESPHome">
+
+    <title>ESP32 Camera Component &#8212; ESPHome</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <link rel="canonical" href="esp32_camera.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="ESPHome Core Configuration" href="esphome.html" />
+    <link rel="prev" title="ESP32 Bluetooth Low Energy Tracker Hub" href="esp32_ble_tracker.html" />
+  <link rel="stylesheet" href="../_static/customf001.css?hash=f908c2b5" type="text/css" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../_static/apple-touch-icon.png">
+  <link rel="shortcut icon" href="../_static/favicon.ico">
+  <link rel="icon" type="image/png" sizes="512x512" href="../_static/favicon-512x512.png">
+  <link rel="icon" type="image/png" sizes="256x256" href="../_static/favicon-256x256.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="../_static/favicon-192x192.png">
+  <link rel="icon" type="image/png" sizes="128x128" href="../_static/favicon-128x128.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../_static/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../_static/favicon-16x16.png">
+  <link rel="manifest" href="../_static/site.webmanifest">
+  <link rel="mask-icon" href="../_static/safari-pinned-tab.svg" color="#646464">
+  <meta name="apple-mobile-web-app-title" content="ESPHome">
+  <meta name="application-name" content="ESPHome">
+  <meta name="msapplication-TileColor" content="#dfdfdf">
+  <meta name="msapplication-config" content="/_static/browserconfig.xml">
+  <meta name="theme-color" content="#dfdfdf">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta property="og:site_name" content="ESPHome">
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head><body>
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index-2.html">
+              <img class="logo" src="../_static/logo-text.svg" alt="Logo"/>
+            </a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="https://esphome.io/search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+  <h3><a href="../index-2.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">ESP32 Camera Component</a><ul>
+<li><a class="reference internal" href="#configuration-variables">Configuration variables:</a></li>
+<li><a class="reference internal" href="#configuration-for-ai-thinker-camera">Configuration for Ai-Thinker Camera</a></li>
+<li><a class="reference internal" href="#configuration-for-m5stack-camera">Configuration for M5Stack Camera</a></li>
+<li><a class="reference internal" href="#configuration-for-wrover-kit-boards">Configuration for Wrover Kit Boards</a></li>
+<li><a class="reference internal" href="#configuration-for-ttgo-t-camera-v05">Configuration for TTGO T-Camera V05</a></li>
+<li><a class="reference internal" href="#configuration-for-ttgo-t-camera-v162">Configuration for TTGO T-Camera V162</a></li>
+<li><a class="reference internal" href="#configuration-for-ttgo-t-camera-v17">Configuration for TTGO T-Camera V17</a></li>
+<li><a class="reference internal" href="#configuration-for-ttgo-t-journal">Configuration for TTGO T-Journal</a></li>
+<li><a class="reference internal" href="#configuration-for-ttgo-camera-plus">Configuration for TTGO-Camera Plus</a></li>
+<li><a class="reference internal" href="#configuration-for-ttgo-camera-mini">Configuration for TTGO-Camera Mini</a></li>
+<li><a class="reference internal" href="#see-also">See Also</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="esp32-camera-component">
+<h1>ESP32 Camera Component<a class="headerlink" href="#esp32-camera-component" title="Permalink to this headline">¶</a></h1>
+<p>The <code class="docutils literal notranslate"><span class="pre">esp32_camera</span></code> component allows you to use ESP32-based camera boards in ESPHome that
+directly integrate into Home Assistant through the native API.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example configuration entry</span>
+<span class="nt">esp32_camera</span><span class="p">:</span>
+  <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">My Camera</span>
+  <span class="nt">external_clock</span><span class="p">:</span>
+    <span class="nt">pin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO27</span>
+    <span class="nt">frequency</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">20MHz</span>
+  <span class="nt">i2c_pins</span><span class="p">:</span>
+    <span class="nt">sda</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO25</span>
+    <span class="nt">scl</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO23</span>
+  <span class="nt">data_pins</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="nv">GPIO17</span><span class="p p-Indicator">,</span> <span class="nv">GPIO35</span><span class="p p-Indicator">,</span> <span class="nv">GPIO34</span><span class="p p-Indicator">,</span> <span class="nv">GPIO5</span><span class="p p-Indicator">,</span> <span class="nv">GPIO39</span><span class="p p-Indicator">,</span> <span class="nv">GPIO18</span><span class="p p-Indicator">,</span> <span class="nv">GPIO36</span><span class="p p-Indicator">,</span> <span class="nv">GPIO19</span><span class="p p-Indicator">]</span>
+  <span class="nt">vsync_pin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO22</span>
+  <span class="nt">href_pin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO26</span>
+  <span class="nt">pixel_clock_pin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO21</span>
+  <span class="nt">reset_pin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO15</span>
+  <span class="nt">resolution</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">640x480</span>
+  <span class="nt">jpeg_quality</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">10</span>
+</pre></div>
+</div>
+<section id="configuration-variables">
+<h2>Configuration variables:<a class="headerlink" href="#configuration-variables" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><strong>name</strong> (<strong>Required</strong>, string): The name of the camera.</p></li>
+</ul>
+<p>Connection Options:</p>
+<ul class="simple">
+<li><p><strong>data_pins</strong> (<strong>Required</strong>, list of pins): The data lanes of the camera, this must be a list
+of 8 GPIO pins.</p></li>
+<li><p><strong>vsync_pin</strong> (<strong>Required</strong>, pin): The pin the VSYNC line of the camera is connected to.</p></li>
+<li><p><strong>href_pin</strong> (<strong>Required</strong>, pin): The pin the HREF line of the camera is connected to.</p></li>
+<li><p><strong>pixel_clock_pin</strong> (<strong>Required</strong>, pin): The pin the pixel clock line of the camera is connected to.</p></li>
+<li><p><strong>external_clock</strong> (<strong>Required</strong>): The configuration of the external clock to drive the camera.</p>
+<ul>
+<li><p><strong>pin</strong> (<strong>Required</strong>, pin): The pin the external clock line is connected to.</p></li>
+<li><p><strong>frequency</strong> (<em>Optional</em>, float): The frequency of the external clock, must be either 20MHz
+or 10MHz. Defaults to <code class="docutils literal notranslate"><span class="pre">20MHz</span></code>.</p></li>
+</ul>
+</li>
+<li><p><strong>i2c_pins</strong> (<strong>Required</strong>): The I²C control pins of the camera.</p>
+<ul>
+<li><p><strong>sda</strong> (<strong>Required</strong>, pin): The SDA pin of the I²C interface. Also called <code class="docutils literal notranslate"><span class="pre">SIOD</span></code>.</p></li>
+<li><p><strong>scl</strong> (<strong>Required</strong>, pin): The SCL pin of the I²C interface. Also called <code class="docutils literal notranslate"><span class="pre">SIOC</span></code>.</p></li>
+</ul>
+</li>
+<li><p><strong>reset_pin</strong> (<em>Optional</em>, pin): The ESP pin the reset pin of the camera is connected to.
+If set, this will reset the camera before the ESP boots.</p></li>
+<li><p><strong>power_down_pin</strong> (<em>Optional</em>, pin): The ESP pin to power down the camera.
+If set, this will power down the camera while it is inactive.</p></li>
+<li><p><strong>test_pattern</strong> (<em>Optional</em>, boolean): When enabled, the camera will show a test pattern
+that can be used to debug connection issues.</p></li>
+</ul>
+<p>Frame Settings:</p>
+<ul>
+<li><p><strong>max_framerate</strong> (<em>Optional</em>, float): The maximum framerate the camera will generate images at.
+Up to 60Hz is possible (with reduced frame sizes), but beware of overheating. Defaults to <code class="docutils literal notranslate"><span class="pre">10</span> <span class="pre">fps</span></code>.</p></li>
+<li><p><strong>idle_framerate</strong> (<em>Optional</em>, float): The framerate to capture images at when no client
+is requesting a full stream. Defaults to <code class="docutils literal notranslate"><span class="pre">0.1</span> <span class="pre">fps</span></code>.</p></li>
+<li><p><strong>resolution</strong> (<em>Optional</em>, enum): The resolution the camera will capture images at. Higher
+resolutions require more memory, if there’s not enough memory you will see an error during startup.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">160x120</span></code> (QQVGA)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">128x160</span></code> (QQVGA2)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">176x144</span></code> (QCIF)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">240x176</span></code> (HQVGA)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">320x240</span></code> (QVGA)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">400x296</span></code> (CIF)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">640x480</span></code> (VGA, default)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">800x600</span></code> (SVGA)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">1024x768</span></code> (XGA)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">1280x1024</span></code> (SXGA)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">1600x1200</span></code> (UXGA)</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p><strong>jpeg_quality</strong> (<em>Optional</em>, int): The JPEG quality that the camera should encode images with.
+From 10 (best) to 63 (worst). Defaults to <code class="docutils literal notranslate"><span class="pre">10</span></code>.</p></li>
+<li><p><strong>contrast</strong> (<em>Optional</em>, int): The contrast to apply to the picture, from -2 to 2. Defaults to <code class="docutils literal notranslate"><span class="pre">0</span></code>.</p></li>
+<li><p><strong>brightness</strong> (<em>Optional</em>, int): The brightness to apply to the picture, from -2 to 2. Defaults to <code class="docutils literal notranslate"><span class="pre">0</span></code>.</p></li>
+<li><p><strong>saturation</strong> (<em>Optional</em>, int): The saturation to apply to the picture, from -2 to 2. Defaults to <code class="docutils literal notranslate"><span class="pre">0</span></code>.</p></li>
+<li><p><strong>vertical_flip</strong> (<em>Optional</em>, bool): Whether to flip the image vertically. Defaults to <code class="docutils literal notranslate"><span class="pre">true</span></code>.</p></li>
+<li><p><strong>horizontal_mirror</strong> (<em>Optional</em>, bool): Whether to mirror the image horizontally. Defaults to <code class="docutils literal notranslate"><span class="pre">true</span></code>.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Camera uses PWM timer #1. If you need PWM (via the <code class="docutils literal notranslate"><span class="pre">ledc</span></code> platform) you need to manually specify
+a channel there (with the <code class="docutils literal notranslate"><span class="pre">channel:</span> <span class="pre">2</span></code>  parameter)</p>
+</div>
+</section>
+<section id="configuration-for-ai-thinker-camera">
+<h2>Configuration for Ai-Thinker Camera<a class="headerlink" href="#configuration-for-ai-thinker-camera" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example configuration entry</span>
+<span class="nt">esp32_camera</span><span class="p">:</span>
+  <span class="nt">external_clock</span><span class="p">:</span>
+    <span class="nt">pin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO0</span>
+    <span class="nt">frequency</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">20MHz</span>
+  <span class="nt">i2c_pins</span><span class="p">:</span>
+    <span class="nt">sda</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO26</span>
+    <span class="nt">scl</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO27</span>
+  <span class="nt">data_pins</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="nv">GPIO5</span><span class="p p-Indicator">,</span> <span class="nv">GPIO18</span><span class="p p-Indicator">,</span> <span class="nv">GPIO19</span><span class="p p-Indicator">,</span> <span class="nv">GPIO21</span><span class="p p-Indicator">,</span> <span class="nv">GPIO36</span><span class="p p-Indicator">,</span> <span class="nv">GPIO39</span><span class="p p-Indicator">,</span> <span class="nv">GPIO34</span><span class="p p-Indicator">,</span> <span class="nv">GPIO35</span><span class="p p-Indicator">]</span>
+  <span class="nt">vsync_pin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO25</span>
+  <span class="nt">href_pin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO23</span>
+  <span class="nt">pixel_clock_pin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO22</span>
+  <span class="nt">power_down_pin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO32</span>
+
+  <span class="c1"># Image settings</span>
+  <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">My Camera</span>
+  <span class="c1"># ...</span>
+</pre></div>
+</div>
+</section>
+<section id="configuration-for-m5stack-camera">
+<h2>Configuration for M5Stack Camera<a class="headerlink" href="#configuration-for-m5stack-camera" title="Permalink to this headline">¶</a></h2>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This camera board has insufficient cooling and will overheat over time,
+ESPHome does only activate the camera when Home Assistant requests an image, but
+the camera unit can still heat up considerably for some boards.</p>
+<p>If the camera is not recognized after a reboot and the unit feels warm, try waiting for
+it to cool down and check again - if that still doesn’t work try enabling the test pattern.</p>
+</div>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example configuration entry</span>
+<span class="nt">esp32_camera</span><span class="p">:</span>
+  <span class="nt">external_clock</span><span class="p">:</span>
+    <span class="nt">pin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO27</span>
+    <span class="nt">frequency</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">20MHz</span>
+  <span class="nt">i2c_pins</span><span class="p">:</span>
+    <span class="nt">sda</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO25</span>
+    <span class="nt">scl</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO23</span>
+  <span class="nt">data_pins</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="nv">GPIO17</span><span class="p p-Indicator">,</span> <span class="nv">GPIO35</span><span class="p p-Indicator">,</span> <span class="nv">GPIO34</span><span class="p p-Indicator">,</span> <span class="nv">GPIO5</span><span class="p p-Indicator">,</span> <span class="nv">GPIO39</span><span class="p p-Indicator">,</span> <span class="nv">GPIO18</span><span class="p p-Indicator">,</span> <span class="nv">GPIO36</span><span class="p p-Indicator">,</span> <span class="nv">GPIO19</span><span class="p p-Indicator">]</span>
+  <span class="nt">vsync_pin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO22</span>
+  <span class="nt">href_pin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO26</span>
+  <span class="nt">pixel_clock_pin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO21</span>
+  <span class="nt">reset_pin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO15</span>
+
+  <span class="c1"># Image settings</span>
+  <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">My Camera</span>
+  <span class="c1"># ...</span>
+</pre></div>
+</div>
+</section>
+<section id="configuration-for-wrover-kit-boards">
+<h2>Configuration for Wrover Kit Boards<a class="headerlink" href="#configuration-for-wrover-kit-boards" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example configuration entry</span>
+<span class="nt">esp32_camera</span><span class="p">:</span>
+  <span class="nt">external_clock</span><span class="p">:</span>
+    <span class="nt">pin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO21</span>
+    <span class="nt">frequency</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">20MHz</span>
+  <span class="nt">i2c_pins</span><span class="p">:</span>
+    <span class="nt">sda</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO26</span>
+    <span class="nt">scl</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO27</span>
+  <span class="nt">data_pins</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="nv">GPIO4</span><span class="p p-Indicator">,</span> <span class="nv">GPIO5</span><span class="p p-Indicator">,</span> <span class="nv">GPIO18</span><span class="p p-Indicator">,</span> <span class="nv">GPIO19</span><span class="p p-Indicator">,</span> <span class="nv">GPIO36</span><span class="p p-Indicator">,</span> <span class="nv">GPIO39</span><span class="p p-Indicator">,</span> <span class="nv">GPIO34</span><span class="p p-Indicator">,</span> <span class="nv">GPIO35</span><span class="p p-Indicator">]</span>
+  <span class="nt">vsync_pin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO25</span>
+  <span class="nt">href_pin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO23</span>
+  <span class="nt">pixel_clock_pin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO22</span>
+
+  <span class="c1"># Image settings</span>
+  <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">My Camera</span>
+  <span class="c1"># ...</span>
+</pre></div>
+</div>
+</section>
+<section id="configuration-for-ttgo-t-camera-v05">
+<h2>Configuration for TTGO T-Camera V05<a class="headerlink" href="#configuration-for-ttgo-t-camera-v05" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example configuration entry</span>
+<span class="nt">esp32_camera</span><span class="p">:</span>
+  <span class="nt">external_clock</span><span class="p">:</span>
+    <span class="nt">pin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO32</span>
+    <span class="nt">frequency</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">20MHz</span>
+  <span class="nt">i2c_pins</span><span class="p">:</span>
+    <span class="nt">sda</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO13</span>
+    <span class="nt">scl</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO12</span>
+  <span class="nt">data_pins</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="nv">GPIO5</span><span class="p p-Indicator">,</span> <span class="nv">GPIO14</span><span class="p p-Indicator">,</span> <span class="nv">GPIO4</span><span class="p p-Indicator">,</span> <span class="nv">GPIO15</span><span class="p p-Indicator">,</span> <span class="nv">GPIO18</span><span class="p p-Indicator">,</span> <span class="nv">GPIO23</span><span class="p p-Indicator">,</span> <span class="nv">GPIO36</span><span class="p p-Indicator">,</span> <span class="nv">GPIO39</span><span class="p p-Indicator">]</span>
+  <span class="nt">vsync_pin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO27</span>
+  <span class="nt">href_pin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO25</span>
+  <span class="nt">pixel_clock_pin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO19</span>
+  <span class="nt">power_down_pin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO26</span>
+
+  <span class="c1"># Image settings</span>
+  <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">My Camera</span>
+  <span class="c1"># ...</span>
+</pre></div>
+</div>
+</section>
+<section id="configuration-for-ttgo-t-camera-v162">
+<h2>Configuration for TTGO T-Camera V162<a class="headerlink" href="#configuration-for-ttgo-t-camera-v162" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">esp32_camera</span><span class="p">:</span>
+  <span class="nt">external_clock</span><span class="p">:</span>
+    <span class="nt">pin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO4</span>
+    <span class="nt">frequency</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">20MHz</span>
+  <span class="nt">i2c_pins</span><span class="p">:</span>
+    <span class="nt">sda</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO18</span>
+    <span class="nt">scl</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO23</span>
+  <span class="nt">data_pins</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="nv">GPIO34</span><span class="p p-Indicator">,</span> <span class="nv">GPIO13</span><span class="p p-Indicator">,</span> <span class="nv">GPIO14</span><span class="p p-Indicator">,</span> <span class="nv">GPIO35</span><span class="p p-Indicator">,</span> <span class="nv">GPIO39</span><span class="p p-Indicator">,</span> <span class="nv">GPIO38</span><span class="p p-Indicator">,</span> <span class="nv">GPIO37</span><span class="p p-Indicator">,</span> <span class="nv">GPIO36</span><span class="p p-Indicator">]</span>
+  <span class="nt">vsync_pin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO5</span>
+  <span class="nt">href_pin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO27</span>
+  <span class="nt">pixel_clock_pin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO25</span>
+  <span class="nt">jpeg_quality</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">10</span>
+  <span class="nt">vertical_flip</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+  <span class="nt">horizontal_mirror</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
+  <span class="c1"># ...</span>
+</pre></div>
+</div>
+</section>
+<section id="configuration-for-ttgo-t-camera-v17">
+<h2>Configuration for TTGO T-Camera V17<a class="headerlink" href="#configuration-for-ttgo-t-camera-v17" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example configuration entry</span>
+<span class="nt">esp32_camera</span><span class="p">:</span>
+  <span class="nt">external_clock</span><span class="p">:</span>
+    <span class="nt">pin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO32</span>
+    <span class="nt">frequency</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">20MHz</span>
+  <span class="nt">i2c_pins</span><span class="p">:</span>
+    <span class="nt">sda</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO13</span>
+    <span class="nt">scl</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO12</span>
+  <span class="nt">data_pins</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="nv">GPIO5</span><span class="p p-Indicator">,</span> <span class="nv">GPIO14</span><span class="p p-Indicator">,</span> <span class="nv">GPIO4</span><span class="p p-Indicator">,</span> <span class="nv">GPIO15</span><span class="p p-Indicator">,</span> <span class="nv">GPIO18</span><span class="p p-Indicator">,</span> <span class="nv">GPIO23</span><span class="p p-Indicator">,</span> <span class="nv">GPIO36</span><span class="p p-Indicator">,</span> <span class="nv">GPIO39</span><span class="p p-Indicator">]</span>
+  <span class="nt">vsync_pin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO27</span>
+  <span class="nt">href_pin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO25</span>
+  <span class="nt">pixel_clock_pin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO19</span>
+  <span class="c1"># power_down_pin: GPIO26</span>
+  <span class="nt">vertical_flip</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+  <span class="nt">horizontal_mirror</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+
+  <span class="c1"># Image settings</span>
+  <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">My Camera</span>
+  <span class="c1"># ...</span>
+</pre></div>
+</div>
+</section>
+<section id="configuration-for-ttgo-t-journal">
+<h2>Configuration for TTGO T-Journal<a class="headerlink" href="#configuration-for-ttgo-t-journal" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example configuration entry</span>
+<span class="nt">esp32_camera</span><span class="p">:</span>
+  <span class="nt">external_clock</span><span class="p">:</span>
+    <span class="nt">pin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO27</span>
+    <span class="nt">frequency</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">20MHz</span>
+  <span class="nt">i2c_pins</span><span class="p">:</span>
+    <span class="nt">sda</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO25</span>
+    <span class="nt">scl</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO23</span>
+  <span class="nt">data_pins</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="nv">GPIO17</span><span class="p p-Indicator">,</span> <span class="nv">GPIO35</span><span class="p p-Indicator">,</span> <span class="nv">GPIO34</span><span class="p p-Indicator">,</span> <span class="nv">GPIO5</span><span class="p p-Indicator">,</span> <span class="nv">GPIO39</span><span class="p p-Indicator">,</span> <span class="nv">GPIO18</span><span class="p p-Indicator">,</span> <span class="nv">GPIO36</span><span class="p p-Indicator">,</span> <span class="nv">GPIO19</span><span class="p p-Indicator">]</span>
+  <span class="nt">vsync_pin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO22</span>
+  <span class="nt">href_pin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO26</span>
+  <span class="nt">pixel_clock_pin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO21</span>
+
+
+  <span class="c1"># Image settings</span>
+  <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">My Camera</span>
+  <span class="c1"># ...</span>
+</pre></div>
+</div>
+</section>
+<section id="configuration-for-ttgo-camera-plus">
+<h2>Configuration for TTGO-Camera Plus<a class="headerlink" href="#configuration-for-ttgo-camera-plus" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example configuration entry</span>
+<span class="nt">esp32_camera</span><span class="p">:</span>
+  <span class="nt">external_clock</span><span class="p">:</span>
+    <span class="nt">pin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO4</span>
+    <span class="nt">frequency</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">20MHz</span>
+  <span class="nt">i2c_pins</span><span class="p">:</span>
+    <span class="nt">sda</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO18</span>
+    <span class="nt">scl</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO23</span>
+  <span class="nt">data_pins</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="nv">GPIO34</span><span class="p p-Indicator">,</span> <span class="nv">GPIO13</span><span class="p p-Indicator">,</span> <span class="nv">GPIO26</span><span class="p p-Indicator">,</span> <span class="nv">GPIO35</span><span class="p p-Indicator">,</span> <span class="nv">GPIO39</span><span class="p p-Indicator">,</span> <span class="nv">GPIO38</span><span class="p p-Indicator">,</span> <span class="nv">GPIO37</span><span class="p p-Indicator">,</span> <span class="nv">GPIO36</span><span class="p p-Indicator">]</span>
+  <span class="nt">vsync_pin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO5</span>
+  <span class="nt">href_pin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO27</span>
+  <span class="nt">pixel_clock_pin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO25</span>
+  <span class="nt">vertical_flip</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
+  <span class="nt">horizontal_mirror</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
+
+
+  <span class="c1"># Image settings</span>
+  <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">My Camera</span>
+  <span class="c1"># ...</span>
+</pre></div>
+</div>
+</section>
+<section id="configuration-for-ttgo-camera-mini">
+<h2>Configuration for TTGO-Camera Mini<a class="headerlink" href="#configuration-for-ttgo-camera-mini" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example configuration entry</span>
+<span class="nt">esp32_camera</span><span class="p">:</span>
+  <span class="nt">external_clock</span><span class="p">:</span>
+    <span class="nt">pin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO32</span>
+    <span class="nt">frequency</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">20MHz</span>
+  <span class="nt">i2c_pins</span><span class="p">:</span>
+    <span class="nt">sda</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO13</span>
+    <span class="nt">scl</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO12</span>
+  <span class="nt">data_pins</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="nv">GPIO5</span><span class="p p-Indicator">,</span> <span class="nv">GPIO14</span><span class="p p-Indicator">,</span> <span class="nv">GPIO4</span><span class="p p-Indicator">,</span> <span class="nv">GPIO15</span><span class="p p-Indicator">,</span> <span class="nv">GPIO37</span><span class="p p-Indicator">,</span> <span class="nv">GPIO38</span><span class="p p-Indicator">,</span> <span class="nv">GPIO36</span><span class="p p-Indicator">,</span> <span class="nv">GPIO39</span><span class="p p-Indicator">]</span>
+  <span class="nt">vsync_pin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO27</span>
+  <span class="nt">href_pin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO25</span>
+  <span class="nt">pixel_clock_pin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO19</span>
+
+
+
+  <span class="c1"># Image settings</span>
+  <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">My Camera</span>
+  <span class="c1"># ...</span>
+</pre></div>
+</div>
+</section>
+<section id="see-also">
+<h2>See Also<a class="headerlink" href="#see-also" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="../api/esp32__camera_8h.html">API Reference</a></p></li>
+<li><p><a class="reference external" href="https://github.com/esphome/esphome-docs/blob/current/components/esp32_camera.rst">Edit this page on GitHub</a></p></li>
+</ul>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+  <div id="upgrade-footer">
+    A new version has been release since you last visited this page: 1.17.2 🎉
+    <div class="footer-button-container">
+      <div role="button" id="upgrade-footer-dismiss" class="footer-button">Dismiss</div>
+      <a id="upgrade-footer-changelog" class="footer-button" href="../changelog/v1.17.0.html">View Changelog</a>  
+    </div>
+  </div>
+  <script>
+    var old = window.localStorage.getItem("version");
+    if (old === null) { window.localStorage.setItem("version", "1.17");
+    } else if (old !== "1.17") {
+      const footerEl = document.getElementById("upgrade-footer");
+      footerEl.classList.add("not-hidden");
+      footerEl.addEventListener('click', function () {
+        window.localStorage.setItem("version", "1.17");
+        footerEl.classList.remove("not-hidden");
+      });
+    }
+  </script>
+
+  </body>
+
+<!-- Mirrored from esphome.io/components/esp32_camera.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 16 May 2021 03:02:28 GMT -->
+</html>

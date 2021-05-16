@@ -1,0 +1,1124 @@
+
+  <!DOCTYPE html>
+
+
+<html lang="en">
+  
+<!-- Mirrored from esphome.io/ by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 16 May 2021 02:55:51 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+<meta content="Q5q5TFbCofxA8-cSa1Frv5Hj4RopF5zwEZf_zaNHqf4" name="google-site-verification" />
+<meta name="description" content="ESPHome Homepage - Reimagining DIY Home Automation. ESPHome is a framework that tries to provide the best possible use experience for using ESP8266 and ESP32 microcontrollers for Home Automation. Just write a simple YAML configuration file and get your own customized firmware.">
+<meta itemprop="name" content="ESPHome">
+<meta itemprop="description" content="ESPHome Homepage - Reimagining DIY Home Automation. ESPHome is a framework that tries to provide the best possible use experience for using ESP8266 and ESP32 microcontrollers for Home Automation. Just write a simple YAML configuration file and get your own customized firmware.">
+<meta itemprop="image" content="_images/logo.png">
+<meta name="twitter:title" content="ESPHome">
+<meta name="twitter:image:src" content="_images/logo.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@OttoWinter_">
+<meta name="twitter:description" content="ESPHome Homepage - Reimagining DIY Home Automation. ESPHome is a framework that tries to provide the best possible use experience for using ESP8266 and ESP32 microcontrollers for Home Automation. Just write a simple YAML configuration file and get your own customized firmware.">
+<meta property="og:title" content="ESPHome">
+<meta property="og:image" content="_images/logo.png">
+<meta property="og:type" content="website">
+<meta property="og:description" content="ESPHome Homepage - Reimagining DIY Home Automation. ESPHome is a framework that tries to provide the best possible use experience for using ESP8266 and ESP32 microcontrollers for Home Automation. Just write a simple YAML configuration file and get your own customized firmware.">
+
+    <title>ESPHome &#8212; ESPHome</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="canonical" href="index-2.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Web Server API" href="web-api/index.html" />
+  <link rel="stylesheet" href="_static/customf001.css?hash=f908c2b5" type="text/css" />
+  <link rel="apple-touch-icon" sizes="180x180" href="_static/apple-touch-icon.png">
+  <link rel="shortcut icon" href="_static/favicon.ico">
+  <link rel="icon" type="image/png" sizes="512x512" href="_static/favicon-512x512.png">
+  <link rel="icon" type="image/png" sizes="256x256" href="_static/favicon-256x256.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="_static/favicon-192x192.png">
+  <link rel="icon" type="image/png" sizes="128x128" href="_static/favicon-128x128.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="_static/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="_static/favicon-16x16.png">
+  <link rel="manifest" href="_static/site.webmanifest">
+  <link rel="mask-icon" href="_static/safari-pinned-tab.svg" color="#646464">
+  <meta name="apple-mobile-web-app-title" content="ESPHome">
+  <meta name="application-name" content="ESPHome">
+  <meta name="msapplication-TileColor" content="#dfdfdf">
+  <meta name="msapplication-config" content="/_static/browserconfig.xml">
+  <meta name="theme-color" content="#dfdfdf">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta property="og:site_name" content="ESPHome">
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head><body>
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="#">
+              <img class="logo" src="_static/logo-text.svg" alt="Logo"/>
+            </a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="https://esphome.io/search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+  <h3><a href="#">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">ESPHome</a><ul>
+<li><a class="reference internal" href="#guides">Guides</a></li>
+<li><a class="reference internal" href="#devices">Devices</a></li>
+<li><a class="reference internal" href="#core-components">Core Components</a></li>
+<li><a class="reference internal" href="#sensor-components">Sensor Components</a></li>
+<li><a class="reference internal" href="#binary-sensor-components">Binary Sensor Components</a></li>
+<li><a class="reference internal" href="#output-components">Output Components</a></li>
+<li><a class="reference internal" href="#light-components">Light Components</a></li>
+<li><a class="reference internal" href="#switch-components">Switch Components</a></li>
+<li><a class="reference internal" href="#fan-components">Fan Components</a></li>
+<li><a class="reference internal" href="#display-components">Display Components</a></li>
+<li><a class="reference internal" href="#cover-components">Cover Components</a></li>
+<li><a class="reference internal" href="#text-sensor-components">Text Sensor Components</a></li>
+<li><a class="reference internal" href="#climate-components">Climate Components</a></li>
+<li><a class="reference internal" href="#misc-components">Misc Components</a></li>
+<li><a class="reference internal" href="#additional-custom-components">Additional Custom Components</a></li>
+<li><a class="reference internal" href="#cookbook">Cookbook</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="esphome">
+<h1>ESPHome<a class="headerlink" href="#esphome" title="Permalink to this headline">¶</a></h1>
+<img alt="_images/logo-text.svg" src="_images/logo-text.svg" /><p>ESPHome is a system to control your ESP8266/ESP32 by simple yet powerful configuration files and control them remotely through Home Automation systems.</p>
+<a href="https://github.com/esphome/esphome"><img src="_images/shield-github.svg" alt="GitHub" class="index-shield"></a>
+<a href="https://discord.gg/KhAMKrd"><img src="_images/shield-discord.svg" alt="Discord" class="index-shield"></a>
+<a href="https://twitter.com/esphome_"><img src="_images/shield-twitter.svg" alt="Twitter" class="index-shield"></a><section id="guides">
+<span id="id1"></span><h2>Guides<a class="headerlink" href="#guides" title="Permalink to this headline">¶</a></h2>
+<table class="table-center docutils align-default">
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference external" href="guides/getting_started_command_line.html"><img alt="Getting Started through Command Line" class="component-image" src="_images/console.svg" /></a></p></td>
+<td><p><a class="reference external" href="guides/getting_started_hassio.html"><img alt="Getting Started with Home Assistant Add-on" class="component-image" src="_images/home-assistant.svg" /></a></p></td>
+<td><p><a class="reference external" href="guides/faq.html"><img alt="FAQ and Tips" class="component-image" src="_images/question_answer.svg" /></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="guides/getting_started_command_line.html">Getting Started through Command Line</a></p></td>
+<td><p><a class="reference external" href="guides/getting_started_hassio.html">Getting Started with Home Assistant Add-on</a></p></td>
+<td><p><a class="reference external" href="guides/faq.html">FAQ and Tips</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="guides/migrate_sonoff_tasmota.html"><img alt="Migrating from Tasmota" class="component-image" src="_images/tasmota.svg" /></a></p></td>
+<td><p><a class="reference external" href="guides/automations.html"><img alt="Automations" class="component-image" src="_images/auto-fix.svg" /></a></p></td>
+<td><p><a class="reference external" href="guides/contributing.html"><img alt="Contributing" class="component-image" src="_images/github-circle.svg" /></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="guides/migrate_sonoff_tasmota.html">Migrating from Tasmota</a></p></td>
+<td><p><a class="reference external" href="guides/automations.html">Automations</a></p></td>
+<td><p><a class="reference external" href="guides/contributing.html">Contributing</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="changelog/index.html"><img alt="Changelog" class="component-image" src="_images/new-box.svg" /></a></p></td>
+<td><p><a class="reference external" href="guides/supporters.html"><img alt="Supporters" class="component-image" src="_images/heart.svg" /></a></p></td>
+<td><p><a class="reference external" href="guides/diy.html"><img alt="DIY Examples" class="component-image" src="_images/earth.svg" /></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="changelog/index.html">Changelog</a></p></td>
+<td><p><a class="reference external" href="guides/supporters.html">Supporters</a></p></td>
+<td><p><a class="reference external" href="guides/diy.html">DIY Examples</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="guides/configuration-types.html"><img alt="Configuration types" class="component-image" src="_images/puzzle.svg" /></a></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="guides/configuration-types.html">Configuration types</a></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="devices">
+<span id="id2"></span><h2>Devices<a class="headerlink" href="#devices" title="Permalink to this headline">¶</a></h2>
+<p>This list contains a bunch of getting started and more advanced guides for using ESPHome.
+Technically, all ESP8266/ESP32 devices are supported by ESPHome.</p>
+<table class="table-center docutils align-default">
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference external" href="devices/esp8266.html"><img alt="Generic ESP8266" class="component-image" src="_images/esp8266.svg" /></a></p></td>
+<td><p><a class="reference external" href="devices/esp32.html"><img alt="Generic ESP32" class="component-image" src="_images/esp32.svg" /></a></p></td>
+<td><p><a class="reference external" href="devices/nodemcu_esp8266.html"><img alt="NodeMCU ESP8266" class="component-image" src="_images/nodemcu_esp8266.jpg" /></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="devices/esp8266.html">Generic ESP8266</a></p></td>
+<td><p><a class="reference external" href="devices/esp32.html">Generic ESP32</a></p></td>
+<td><p><a class="reference external" href="devices/nodemcu_esp8266.html">NodeMCU ESP8266</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="devices/nodemcu_esp32.html"><img alt="NodeMCU ESP32" class="component-image" src="_images/nodemcu_esp32.jpg" /></a></p></td>
+<td><p><a class="reference external" href="devices/sonoff_s20.html"><img alt="Sonoff S20" class="component-image" src="_images/sonoff_s20.jpg" /></a></p></td>
+<td><p><a class="reference external" href="devices/sonoff_4ch.html"><img alt="Sonoff 4CH" class="component-image" src="_images/sonoff_4ch.jpg" /></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="devices/nodemcu_esp32.html">NodeMCU ESP32</a></p></td>
+<td><p><a class="reference external" href="devices/sonoff_s20.html">Sonoff S20</a></p></td>
+<td><p><a class="reference external" href="devices/sonoff_4ch.html">Sonoff 4CH</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="devices/sonoff.html"><img alt="Generic Sonoff" class="component-image" src="_images/sonoff.svg" /></a></p></td>
+<td><p><a class="reference external" href="devices/sonoff_basic.html"><img alt="Sonoff Basic" class="component-image" src="_images/sonoff_basic.jpg" /></a></p></td>
+<td><p><a class="reference external" href="devices/sonoff_t1_uk_3gang_v1.1.html"><img alt="Sonoff T1 UK 3 Gang V1.1" class="component-image" src="_images/sonoff_t1_uk_3g_v1.11.jpg" /></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="devices/sonoff.html">Generic Sonoff</a></p></td>
+<td><p><a class="reference external" href="devices/sonoff_basic.html">Sonoff Basic</a></p></td>
+<td><p><a class="reference external" href="devices/sonoff_t1_uk_3gang_v1.1.html">Sonoff T1 UK 3 Gang V1.1</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="devices/sonoff_t3_eu_3gang_v1.0.html"><img alt="Sonoff T3 EU 3 Gang V1.0" class="component-image" src="_images/sonoff_t3_eu_3g_v1.01.jpg" /></a></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="devices/sonoff_t3_eu_3gang_v1.0.html">Sonoff T3 EU 3 Gang V1.0</a></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="core-components">
+<h2>Core Components<a class="headerlink" href="#core-components" title="Permalink to this headline">¶</a></h2>
+<table class="table-center docutils align-default">
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference external" href="components/esphome.html"><img alt="Core" class="component-image" src="_images/cloud-circle.svg" /></a></p></td>
+<td><p><a class="reference external" href="components/wifi.html"><img alt="WiFi" class="component-image" src="_images/network-wifi.svg" /></a></p></td>
+<td><p><a class="reference external" href="components/mqtt.html"><img alt="MQTT" class="component-image" src="_images/mqtt.png" /></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="components/esphome.html">Core</a></p></td>
+<td><p><a class="reference external" href="components/wifi.html">WiFi</a></p></td>
+<td><p><a class="reference external" href="components/mqtt.html">MQTT</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="components/i2c.html"><img alt="I²C Bus" class="component-image" src="_images/i2c.svg" /></a></p></td>
+<td><p><a class="reference external" href="components/spi.html"><img alt="SPI Bus" class="component-image" src="_images/spi.svg" /></a></p></td>
+<td><p><a class="reference external" href="components/uart.html"><img alt="UART Bus" class="component-image" src="_images/uart.svg" /></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="components/i2c.html">I²C Bus</a></p></td>
+<td><p><a class="reference external" href="components/spi.html">SPI Bus</a></p></td>
+<td><p><a class="reference external" href="components/uart.html">UART Bus</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="components/canbus.html"><img alt="CAN Bus" class="component-image" src="_images/canbus.svg" /></a></p></td>
+<td><p><a class="reference external" href="components/ota.html"><img alt="OTA Updates" class="component-image" src="_images/system-update.svg" /></a></p></td>
+<td><p><a class="reference external" href="components/logger.html"><img alt="Logger" class="component-image" src="_images/file-document-box.svg" /></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="components/canbus.html">CAN Bus</a></p></td>
+<td><p><a class="reference external" href="components/ota.html">OTA Updates</a></p></td>
+<td><p><a class="reference external" href="components/logger.html">Logger</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="components/web_server.html"><img alt="Web Server" class="component-image" src="_images/http.svg" /></a></p></td>
+<td><p><a class="reference external" href="components/api.html"><img alt="Native API" class="component-image" src="_images/server-network.svg" /></a></p></td>
+<td><p><a class="reference external" href="components/power_supply.html"><img alt="Power Supply" class="component-image" src="_images/power.svg" /></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="components/web_server.html">Web Server</a></p></td>
+<td><p><a class="reference external" href="components/api.html">Native API</a></p></td>
+<td><p><a class="reference external" href="components/power_supply.html">Power Supply</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="components/deep_sleep.html"><img alt="Deep Sleep" class="component-image" src="_images/hotel.svg" /></a></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="components/deep_sleep.html">Deep Sleep</a></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sensor-components">
+<h2>Sensor Components<a class="headerlink" href="#sensor-components" title="Permalink to this headline">¶</a></h2>
+<table class="table-center docutils align-default">
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference external" href="components/sensor/index.html"><img alt="Sensor Core" class="component-image" src="_images/folder-open.svg" /></a></p></td>
+<td><p><a class="reference external" href="components/sensor/adc.html"><img alt="ADC" class="component-image" src="_images/flash.svg" /></a></p></td>
+<td><p><a class="reference external" href="components/sensor/ade7953.html"><img alt="ADE7953" class="component-image" src="_images/ade7953.svg" /></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="components/sensor/index.html">Sensor Core</a></p></td>
+<td><p><a class="reference external" href="components/sensor/adc.html">ADC</a></p></td>
+<td><p><a class="reference external" href="components/sensor/ade7953.html">ADE7953</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="components/sensor/ads1115.html"><img alt="ADS1115" class="component-image" src="_images/ads1115.jpg" /></a></p></td>
+<td><p><a class="reference external" href="components/sensor/aht10.html"><img alt="AHT10" class="component-image" src="_images/aht10.jpg" /></a></p></td>
+<td><p><a class="reference external" href="components/sensor/am2320.html"><img alt="AM2320" class="component-image" src="_images/am2320.jpg" /></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="components/sensor/ads1115.html">ADS1115</a></p></td>
+<td><p><a class="reference external" href="components/sensor/aht10.html">AHT10</a></p></td>
+<td><p><a class="reference external" href="components/sensor/am2320.html">AM2320</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="components/sensor/apds9960.html"><img alt="APDS9960" class="component-image" src="_images/apds9960.jpg" /></a></p></td>
+<td><p><a class="reference external" href="components/sensor/atm90e32.html"><img alt="ATM90E32" class="component-image" src="_images/atm90e32.jpg" /></a></p></td>
+<td><p><a class="reference external" href="components/sensor/as3935.html"><img alt="AS3935" class="component-image" src="_images/as39351.jpg" /></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="components/sensor/apds9960.html">APDS9960</a></p></td>
+<td><p><a class="reference external" href="components/sensor/atm90e32.html">ATM90E32</a></p></td>
+<td><p><a class="reference external" href="components/sensor/as3935.html">AS3935</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="components/sensor/bh1750.html"><img alt="BH1750" class="component-image" src="_images/bh1750.jpg" /></a></p></td>
+<td><p><a class="reference external" href="components/sensor/binary_sensor_map.html"><img alt="Binary Sensor Map" class="component-image" src="_images/binary_sensor_map.jpg" /></a></p></td>
+<td><p><a class="reference external" href="components/sensor/ble_rssi.html"><img alt="BLE RSSI" class="component-image" src="_images/bluetooth.svg" /></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="components/sensor/bh1750.html">BH1750</a></p></td>
+<td><p><a class="reference external" href="components/sensor/binary_sensor_map.html">Binary Sensor Map</a></p></td>
+<td><p><a class="reference external" href="components/sensor/ble_rssi.html">BLE RSSI</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="components/sensor/bme280.html"><img alt="BME280" class="component-image" src="_images/bme280.jpg" /></a></p></td>
+<td><p><a class="reference external" href="components/sensor/bme680.html"><img alt="BME680" class="component-image" src="_images/bme680.jpg" /></a></p></td>
+<td><p><a class="reference external" href="components/sensor/bmp085.html"><img alt="BMP085" class="component-image" src="_images/bmp180.jpg" /></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="components/sensor/bme280.html">BME280</a></p></td>
+<td><p><a class="reference external" href="components/sensor/bme680.html">BME680</a></p></td>
+<td><p><a class="reference external" href="components/sensor/bmp085.html">BMP085</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="components/sensor/bmp280.html"><img alt="BMP280" class="component-image" src="_images/bmp280.jpg" /></a></p></td>
+<td><p><a class="reference external" href="components/sensor/ccs811.html"><img alt="CCS811" class="component-image" src="_images/ccs811.jpg" /></a></p></td>
+<td><p><a class="reference external" href="components/sensor/cse7766.html"><img alt="CSE7766" class="component-image" src="_images/cse7766.svg" /></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="components/sensor/bmp280.html">BMP280</a></p></td>
+<td><p><a class="reference external" href="components/sensor/ccs811.html">CCS811</a></p></td>
+<td><p><a class="reference external" href="components/sensor/cse7766.html">CSE7766</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="components/sensor/ct_clamp.html"><img alt="CT Clamp" class="component-image" src="_images/ct_clamp.jpg" /></a></p></td>
+<td><p><a class="reference external" href="components/sensor/dallas.html"><img alt="Dallas" class="component-image" src="_images/dallas.jpg" /></a></p></td>
+<td><p><a class="reference external" href="components/sensor/dht.html"><img alt="DHT" class="component-image" src="_images/dht.jpg" /></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="components/sensor/ct_clamp.html">CT Clamp</a></p></td>
+<td><p><a class="reference external" href="components/sensor/dallas.html">Dallas</a></p></td>
+<td><p><a class="reference external" href="components/sensor/dht.html">DHT</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="components/sensor/dht12.html"><img alt="DHT12" class="component-image" src="_images/dht12.jpg" /></a></p></td>
+<td><p><a class="reference external" href="components/sensor/duty_cycle.html"><img alt="Duty Cycle" class="component-image" src="_images/percent.svg" /></a></p></td>
+<td><p><a class="reference external" href="components/sensor/esp32_hall.html"><img alt="ESP32 Hall Sensor" class="component-image" src="_images/magnet.svg" /></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="components/sensor/dht12.html">DHT12</a></p></td>
+<td><p><a class="reference external" href="components/sensor/duty_cycle.html">Duty Cycle</a></p></td>
+<td><p><a class="reference external" href="components/sensor/esp32_hall.html">ESP32 Hall Sensor</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="components/sensor/ezo.html"><img alt="EZO sensor circuits" class="component-image" src="_images/ezo-ph-circuit1.png" /></a></p></td>
+<td><p><a class="reference external" href="components/sensor/hdc1080.html"><img alt="HDC1080" class="component-image" src="_images/hdc1080.jpg" /></a></p></td>
+<td><p><a class="reference external" href="components/sensor/hlw8012.html"><img alt="HLW8012" class="component-image" src="_images/hlw8012.svg" /></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="components/sensor/ezo.html">EZO sensor circuits</a></p></td>
+<td><p><a class="reference external" href="components/sensor/hdc1080.html">HDC1080</a></p></td>
+<td><p><a class="reference external" href="components/sensor/hlw8012.html">HLW8012</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="components/sensor/hmc5883l.html"><img alt="HMC5883L" class="component-image" src="_images/hmc5883l.jpg" /></a></p></td>
+<td><p><a class="reference external" href="components/sensor/qmc5883l.html"><img alt="QMC5883L" class="component-image" src="_images/qmc5883l.jpg" /></a></p></td>
+<td><p><a class="reference external" href="components/sensor/homeassistant.html"><img alt="Home Assistant" class="component-image" src="_images/home-assistant.svg" /></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="components/sensor/hmc5883l.html">HMC5883L</a></p></td>
+<td><p><a class="reference external" href="components/sensor/qmc5883l.html">QMC5883L</a></p></td>
+<td><p><a class="reference external" href="components/sensor/homeassistant.html">Home Assistant</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="components/sensor/hx711.html"><img alt="HX711" class="component-image" src="_images/hx711.jpg" /></a></p></td>
+<td><p><a class="reference external" href="components/sensor/ina219.html"><img alt="INA219" class="component-image" src="_images/ina219.jpg" /></a></p></td>
+<td><p><a class="reference external" href="components/sensor/ina226.html"><img alt="INA226" class="component-image" src="_images/ina226.jpg" /></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="components/sensor/hx711.html">HX711</a></p></td>
+<td><p><a class="reference external" href="components/sensor/ina219.html">INA219</a></p></td>
+<td><p><a class="reference external" href="components/sensor/ina226.html">INA226</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="components/sensor/ina3221.html"><img alt="INA3221" class="component-image" src="_images/ina3221.jpg" /></a></p></td>
+<td><p><a class="reference external" href="components/sensor/inkbird_ibsth1_mini.html"><img alt="Inkbird IBS-TH1 Mini" class="component-image" src="_images/inkbird_isbth1_mini.jpg" /></a></p></td>
+<td><p><a class="reference external" href="components/sensor/integration.html"><img alt="Integration" class="component-image" src="_images/sigma.svg" /></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="components/sensor/ina3221.html">INA3221</a></p></td>
+<td><p><a class="reference external" href="components/sensor/inkbird_ibsth1_mini.html">Inkbird IBS-TH1 Mini</a></p></td>
+<td><p><a class="reference external" href="components/sensor/integration.html">Integration</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="components/sensor/htu21d.html"><img alt="HTU21D" class="component-image" src="_images/htu21d.jpg" /></a></p></td>
+<td><p><a class="reference external" href="components/sensor/hm3301.html"><img alt="HM3301" class="component-image" src="_images/hm3301.jpg" /></a></p></td>
+<td><p><a class="reference external" href="components/sensor/max31855.html"><img alt="MAX31855" class="component-image" src="_images/max31855.jpg" /></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="components/sensor/htu21d.html">HTU21D</a></p></td>
+<td><p><a class="reference external" href="components/sensor/hm3301.html">HM3301</a></p></td>
+<td><p><a class="reference external" href="components/sensor/max31855.html">MAX31855</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="components/sensor/max31856.html"><img alt="MAX31856" class="component-image" src="_images/max31856.jpg" /></a></p></td>
+<td><p><a class="reference external" href="components/sensor/max31865.html"><img alt="MAX31865" class="component-image" src="_images/max31865.jpg" /></a></p></td>
+<td><p><a class="reference external" href="components/sensor/max6675.html"><img alt="MAX6675" class="component-image" src="_images/max6675.jpg" /></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="components/sensor/max31856.html">MAX31856</a></p></td>
+<td><p><a class="reference external" href="components/sensor/max31865.html">MAX31865</a></p></td>
+<td><p><a class="reference external" href="components/sensor/max6675.html">MAX6675</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="components/sensor/mcp3008.html"><img alt="MCP3008" class="component-image" src="_images/mcp3008.jpg" /></a></p></td>
+<td><p><a class="reference external" href="components/sensor/mcp9808.html"><img alt="MCP9808" class="component-image" src="_images/mcp9808.jpg" /></a></p></td>
+<td><p><a class="reference external" href="components/sensor/mhz19.html"><img alt="MH-Z19" class="component-image" src="_images/mhz19.jpg" /></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="components/sensor/mcp3008.html">MCP3008</a></p></td>
+<td><p><a class="reference external" href="components/sensor/mcp9808.html">MCP9808</a></p></td>
+<td><p><a class="reference external" href="components/sensor/mhz19.html">MH-Z19</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="components/sensor/mpu6050.html"><img alt="MPU6050" class="component-image" src="_images/mpu6050.jpg" /></a></p></td>
+<td><p><a class="reference external" href="components/sensor/mqtt_subscribe.html"><img alt="MQTT Subscribe" class="component-image" src="_images/mqtt.png" /></a></p></td>
+<td><p><a class="reference external" href="components/sensor/ms5611.html"><img alt="MS5611" class="component-image" src="_images/ms5611.jpg" /></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="components/sensor/mpu6050.html">MPU6050</a></p></td>
+<td><p><a class="reference external" href="components/sensor/mqtt_subscribe.html">MQTT Subscribe</a></p></td>
+<td><p><a class="reference external" href="components/sensor/ms5611.html">MS5611</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="components/sensor/ntc.html"><img alt="NTC Thermistor" class="component-image" src="_images/ntc.jpg" /></a></p></td>
+<td><p><a class="reference external" href="components/sensor/pmsx003.html"><img alt="PMSX003" class="component-image" src="_images/pmsx003.svg" /></a></p></td>
+<td><p><a class="reference external" href="components/sensor/pulse_counter.html"><img alt="Pulse Counter" class="component-image" src="_images/pulse.svg" /></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="components/sensor/ntc.html">NTC Thermistor</a></p></td>
+<td><p><a class="reference external" href="components/sensor/pmsx003.html">PMSX003</a></p></td>
+<td><p><a class="reference external" href="components/sensor/pulse_counter.html">Pulse Counter</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="components/sensor/pulse_meter.html"><img alt="Pulse Meter" class="component-image" src="_images/pulse.svg" /></a></p></td>
+<td><p><a class="reference external" href="components/sensor/pulse_width.html"><img alt="Pulse Width" class="component-image" src="_images/pulse.svg" /></a></p></td>
+<td><p><a class="reference external" href="components/sensor/pzem004t.html"><img alt="PZEM004T" class="component-image" src="_images/pzem004t.svg" /></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="components/sensor/pulse_meter.html">Pulse Meter</a></p></td>
+<td><p><a class="reference external" href="components/sensor/pulse_width.html">Pulse Width</a></p></td>
+<td><p><a class="reference external" href="components/sensor/pzem004t.html">PZEM004T</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="components/sensor/pzemac.html"><img alt="PZEM AC" class="component-image" src="_images/pzemac.svg" /></a></p></td>
+<td><p><a class="reference external" href="components/sensor/pzemdc.html"><img alt="PZEM DC" class="component-image" src="_images/pzemdc.svg" /></a></p></td>
+<td><p><a class="reference external" href="components/sensor/resistance.html"><img alt="Resistance" class="component-image" src="_images/omega.svg" /></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="components/sensor/pzemac.html">PZEM AC</a></p></td>
+<td><p><a class="reference external" href="components/sensor/pzemdc.html">PZEM DC</a></p></td>
+<td><p><a class="reference external" href="components/sensor/resistance.html">Resistance</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="components/sensor/rotary_encoder.html"><img alt="Rotary Encoder" class="component-image" src="_images/rotary_encoder1.jpg" /></a></p></td>
+<td><p><a class="reference external" href="components/sensor/ruuvitag.html"><img alt="RuuviTag" class="component-image" src="_images/ruuvitag.jpg" /></a></p></td>
+<td><p><a class="reference external" href="components/sensor/senseair.html"><img alt="SenseAir" class="component-image" src="_images/senseair_s8.jpg" /></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="components/sensor/rotary_encoder.html">Rotary Encoder</a></p></td>
+<td><p><a class="reference external" href="components/sensor/ruuvitag.html">RuuviTag</a></p></td>
+<td><p><a class="reference external" href="components/sensor/senseair.html">SenseAir</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="components/sensor/sds011.html"><img alt="SDS011 Sensor" class="component-image" src="_images/sds011.jpg" /></a></p></td>
+<td><p><a class="reference external" href="components/sensor/scd30.html"><img alt="SCD30" class="component-image" src="_images/scd301.jpg" /></a></p></td>
+<td><p><a class="reference external" href="components/sensor/shtcx.html"><img alt="SHTCx" class="component-image" src="_images/shtc3.jpg" /></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="components/sensor/sds011.html">SDS011 Sensor</a></p></td>
+<td><p><a class="reference external" href="components/sensor/scd30.html">SCD30</a></p></td>
+<td><p><a class="reference external" href="components/sensor/shtcx.html">SHTCx</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="components/sensor/sht3xd.html"><img alt="SHT3X-D" class="component-image" src="_images/sht3xd.jpg" /></a></p></td>
+<td><p><a class="reference external" href="components/sensor/sm300d2.html"><img alt="SM300D2" class="component-image" src="_images/sm300d2.jpg" /></a></p></td>
+<td><p><a class="reference external" href="components/sensor/sps30.html"><img alt="SPS30" class="component-image" src="_images/sps30.jpg" /></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="components/sensor/sht3xd.html">SHT3X-D</a></p></td>
+<td><p><a class="reference external" href="components/sensor/sm300d2.html">SM300D2</a></p></td>
+<td><p><a class="reference external" href="components/sensor/sps30.html">SPS30</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="components/sensor/sts3x.html"><img alt="STS3X" class="component-image" src="_images/sts3x.jpg" /></a></p></td>
+<td><p><a class="reference external" href="components/sensor/sgp30.html"><img alt="SGP30" class="component-image" src="_images/sgp30.jpg" /></a></p></td>
+<td><p><a class="reference external" href="components/sensor/tcs34725.html"><img alt="TCS34725" class="component-image" src="_images/tcs34725.jpg" /></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="components/sensor/sts3x.html">STS3X</a></p></td>
+<td><p><a class="reference external" href="components/sensor/sgp30.html">SGP30</a></p></td>
+<td><p><a class="reference external" href="components/sensor/tcs34725.html">TCS34725</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="components/sensor/teleinfo.html"><img alt="Teleinfo" class="component-image" src="_images/teleinfo.jpg" /></a></p></td>
+<td><p><a class="reference external" href="components/sensor/template.html"><img alt="Template Sensor" class="component-image" src="_images/description.svg" /></a></p></td>
+<td><p><a class="reference external" href="components/sensor/tmp102.html"><img alt="TMP102" class="component-image" src="_images/tmp102.jpg" /></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="components/sensor/teleinfo.html">Teleinfo</a></p></td>
+<td><p><a class="reference external" href="components/sensor/template.html">Template Sensor</a></p></td>
+<td><p><a class="reference external" href="components/sensor/tmp102.html">TMP102</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="components/sensor/tmp117.html"><img alt="TMP117" class="component-image" src="_images/tmp1171.jpg" /></a></p></td>
+<td><p><a class="reference external" href="components/sensor/total_daily_energy.html"><img alt="Total Daily Energy" class="component-image" src="_images/sigma.svg" /></a></p></td>
+<td><p><a class="reference external" href="components/sensor/tsl2561.html"><img alt="TSL2561" class="component-image" src="_images/tsl2561.jpg" /></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="components/sensor/tmp117.html">TMP117</a></p></td>
+<td><p><a class="reference external" href="components/sensor/total_daily_energy.html">Total Daily Energy</a></p></td>
+<td><p><a class="reference external" href="components/sensor/tsl2561.html">TSL2561</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="components/sensor/tuya.html"><img alt="Tuya Sensor" class="component-image" src="_images/tuya.png" /></a></p></td>
+<td><p><a class="reference external" href="components/sensor/tx20.html"><img alt="TX20" class="component-image" src="_images/tx201.jpg" /></a></p></td>
+<td><p><a class="reference external" href="components/sensor/ultrasonic.html"><img alt="Ultrasonic Sensor" class="component-image" src="_images/ultrasonic.jpg" /></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="components/sensor/tuya.html">Tuya Sensor</a></p></td>
+<td><p><a class="reference external" href="components/sensor/tx20.html">TX20</a></p></td>
+<td><p><a class="reference external" href="components/sensor/ultrasonic.html">Ultrasonic Sensor</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="components/sensor/uptime.html"><img alt="Uptime Sensor" class="component-image" src="_images/timer.svg" /></a></p></td>
+<td><p><a class="reference external" href="components/sensor/vl53l0x.html"><img alt="VL53L0x" class="component-image" src="_images/vl53l0x1.png" /></a></p></td>
+<td><p><a class="reference external" href="components/sensor/wifi_signal.html"><img alt="WiFi Signal Strength" class="component-image" src="_images/network-wifi.svg" /></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="components/sensor/uptime.html">Uptime Sensor</a></p></td>
+<td><p><a class="reference external" href="components/sensor/vl53l0x.html">VL53L0x</a></p></td>
+<td><p><a class="reference external" href="components/sensor/wifi_signal.html">WiFi Signal Strength</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="components/sensor/xiaomi_ble.html"><img alt="Xiaomi BLE" class="component-image" src="_images/xiaomi_mijia_logo.jpg" /></a></p></td>
+<td><p><a class="reference external" href="components/sensor/xiaomi_miscale.html"><img alt="Xiaomi Miscale" class="component-image" src="_images/xiaomi_miscale1.jpg" /></a></p></td>
+<td><p><a class="reference external" href="components/sensor/xiaomi_miscale2.html"><img alt="Xiaomi Miscale2" class="component-image" src="_images/xiaomi_miscale21.jpg" /></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="components/sensor/xiaomi_ble.html">Xiaomi BLE</a></p></td>
+<td><p><a class="reference external" href="components/sensor/xiaomi_miscale.html">Xiaomi Miscale</a></p></td>
+<td><p><a class="reference external" href="components/sensor/xiaomi_miscale2.html">Xiaomi Miscale2</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="components/sensor/zyaura.html"><img alt="ZyAura" class="component-image" src="_images/zgm053.jpg" /></a></p></td>
+<td><p><a class="reference external" href="components/sensor/custom.html"><img alt="Custom Sensor" class="component-image" src="_images/language-cpp.svg" /></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="components/sensor/zyaura.html">ZyAura</a></p></td>
+<td><p><a class="reference external" href="components/sensor/custom.html">Custom Sensor</a></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<p>Looking for a sensor that outputs its values as an analog voltage? Have a look at the
+<a class="reference internal" href="components/sensor/adc.html"><span class="doc">ADC Sensor</span></a> together with a formula like in the <a class="reference internal" href="cookbook/temt6000.html"><span class="doc">TEMT6000
+example</span></a>.</p>
+</section>
+<section id="binary-sensor-components">
+<h2>Binary Sensor Components<a class="headerlink" href="#binary-sensor-components" title="Permalink to this headline">¶</a></h2>
+<table class="table-center docutils align-default">
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference external" href="components/binary_sensor/index.html"><img alt="Binary Sensor Core" class="component-image" src="_images/folder-open.svg" /></a></p></td>
+<td><p><a class="reference external" href="components/binary_sensor/gpio.html"><img alt="GPIO" class="component-image" src="_images/pin.svg" /></a></p></td>
+<td><p><a class="reference external" href="components/binary_sensor/homeassistant.html"><img alt="Home Assistant" class="component-image" src="_images/home-assistant.svg" /></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="components/binary_sensor/index.html">Binary Sensor Core</a></p></td>
+<td><p><a class="reference external" href="components/binary_sensor/gpio.html">GPIO</a></p></td>
+<td><p><a class="reference external" href="components/binary_sensor/homeassistant.html">Home Assistant</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="components/binary_sensor/status.html"><img alt="Status" class="component-image" src="_images/server-network.svg" /></a></p></td>
+<td><p><a class="reference external" href="components/binary_sensor/ble_presence.html"><img alt="ESP32 BLE Presence" class="component-image" src="_images/bluetooth.svg" /></a></p></td>
+<td><p><a class="reference external" href="components/binary_sensor/esp32_touch.html"><img alt="ESP32 Touch Pad" class="component-image" src="_images/touch.svg" /></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="components/binary_sensor/status.html">Status</a></p></td>
+<td><p><a class="reference external" href="components/binary_sensor/ble_presence.html">ESP32 BLE Presence</a></p></td>
+<td><p><a class="reference external" href="components/binary_sensor/esp32_touch.html">ESP32 Touch Pad</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="components/binary_sensor/mpr121.html"><img alt="MPR121  Capacitive Touch Sensor" class="component-image" src="_images/mpr121.jpg" /></a></p></td>
+<td><p><a class="reference external" href="components/binary_sensor/nextion.html"><img alt="Nextion Touch" class="component-image" src="_images/nextion.jpg" /></a></p></td>
+<td><p><a class="reference external" href="components/binary_sensor/template.html"><img alt="Template Binary Sensor" class="component-image" src="_images/description.svg" /></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="components/binary_sensor/mpr121.html">MPR121  Capacitive Touch Sensor</a></p></td>
+<td><p><a class="reference external" href="components/binary_sensor/nextion.html">Nextion Touch</a></p></td>
+<td><p><a class="reference external" href="components/binary_sensor/template.html">Template Binary Sensor</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="components/binary_sensor/pn532.html"><img alt="PN532" class="component-image" src="_images/pn532.jpg" /></a></p></td>
+<td><p><a class="reference external" href="components/binary_sensor/rc522.html"><img alt="RC522" class="component-image" src="_images/rc522.jpg" /></a></p></td>
+<td><p><a class="reference external" href="components/binary_sensor/rdm6300.html"><img alt="RDM6300" class="component-image" src="_images/rdm6300.jpg" /></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="components/binary_sensor/pn532.html">PN532</a></p></td>
+<td><p><a class="reference external" href="components/binary_sensor/rc522.html">RC522</a></p></td>
+<td><p><a class="reference external" href="components/binary_sensor/rdm6300.html">RDM6300</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="components/binary_sensor/ttp229.html"><img alt="TTP229" class="component-image" src="_images/ttp229.jpg" /></a></p></td>
+<td><p><a class="reference external" href="components/binary_sensor/tuya.html"><img alt="Tuya Binary Sensor" class="component-image" src="_images/tuya.png" /></a></p></td>
+<td><p><a class="reference external" href="components/binary_sensor/custom.html"><img alt="Custom Binary Sensor" class="component-image" src="_images/language-cpp.svg" /></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="components/binary_sensor/ttp229.html">TTP229</a></p></td>
+<td><p><a class="reference external" href="components/binary_sensor/tuya.html">Tuya Binary Sensor</a></p></td>
+<td><p><a class="reference external" href="components/binary_sensor/custom.html">Custom Binary Sensor</a></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="output-components">
+<h2>Output Components<a class="headerlink" href="#output-components" title="Permalink to this headline">¶</a></h2>
+<table class="table-center docutils align-default">
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference external" href="components/output/index.html"><img alt="Output Core" class="component-image" src="_images/folder-open.svg" /></a></p></td>
+<td><p><a class="reference external" href="components/output/esp8266_pwm.html"><img alt="ESP8266 Software PWM" class="component-image" src="_images/pwm.png" /></a></p></td>
+<td><p><a class="reference external" href="components/output/slow_pwm.html"><img alt="Slow PWM" class="component-image" src="_images/pwm.png" /></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="components/output/index.html">Output Core</a></p></td>
+<td><p><a class="reference external" href="components/output/esp8266_pwm.html">ESP8266 Software PWM</a></p></td>
+<td><p><a class="reference external" href="components/output/slow_pwm.html">Slow PWM</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="components/output/gpio.html"><img alt="GPIO Output" class="component-image" src="_images/pin.svg" /></a></p></td>
+<td><p><a class="reference external" href="components/output/esp32_dac.html"><img alt="ESP32 DAC" class="component-image" src="_images/dac.svg" /></a></p></td>
+<td><p><a class="reference external" href="components/output/ledc.html"><img alt="ESP32 LEDC" class="component-image" src="_images/pwm.png" /></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="components/output/gpio.html">GPIO Output</a></p></td>
+<td><p><a class="reference external" href="components/output/esp32_dac.html">ESP32 DAC</a></p></td>
+<td><p><a class="reference external" href="components/output/ledc.html">ESP32 LEDC</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="components/output/ac_dimmer.html"><img alt="AC Dimmer" class="component-image" src="_images/ac_dimmer.svg" /></a></p></td>
+<td><p><a class="reference external" href="components/output/pca9685.html"><img alt="PCA9685" class="component-image" src="_images/pca9685.jpg" /></a></p></td>
+<td><p><a class="reference external" href="components/output/tlc59208f.html"><img alt="TLC59208F" class="component-image" src="_images/tlc59208f.jpg" /></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="components/output/ac_dimmer.html">AC Dimmer</a></p></td>
+<td><p><a class="reference external" href="components/output/pca9685.html">PCA9685</a></p></td>
+<td><p><a class="reference external" href="components/output/tlc59208f.html">TLC59208F</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="components/output/my9231.html"><img alt="MY9231/MY9291" class="component-image" src="_images/my9231.svg" /></a></p></td>
+<td><p><a class="reference external" href="components/output/sm16716.html"><img alt="SM16716" class="component-image" src="_images/sm16716.svg" /></a></p></td>
+<td><p><a class="reference external" href="components/output/mcp4725.html"><img alt="MCP4725" class="component-image" src="_images/mcp4725.jpg" /></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="components/output/my9231.html">MY9231/MY9291</a></p></td>
+<td><p><a class="reference external" href="components/output/sm16716.html">SM16716</a></p></td>
+<td><p><a class="reference external" href="components/output/mcp4725.html">MCP4725</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="components/output/custom.html"><img alt="Custom Output" class="component-image" src="_images/language-cpp.svg" /></a></p></td>
+<td><p><a class="reference external" href="components/output/template.html"><img alt="Template Output" class="component-image" src="_images/description.svg" /></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="components/output/custom.html">Custom Output</a></p></td>
+<td><p><a class="reference external" href="components/output/template.html">Template Output</a></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="light-components">
+<h2>Light Components<a class="headerlink" href="#light-components" title="Permalink to this headline">¶</a></h2>
+<table class="table-center docutils align-default">
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference external" href="components/light/index.html"><img alt="Light Core" class="component-image" src="_images/folder-open.svg" /></a></p></td>
+<td><p><a class="reference external" href="components/light/binary.html"><img alt="Binary Light" class="component-image" src="_images/lightbulb.svg" /></a></p></td>
+<td><p><a class="reference external" href="components/light/monochromatic.html"><img alt="Monochromatic Light" class="component-image" src="_images/brightness-medium.svg" /></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="components/light/index.html">Light Core</a></p></td>
+<td><p><a class="reference external" href="components/light/binary.html">Binary Light</a></p></td>
+<td><p><a class="reference external" href="components/light/monochromatic.html">Monochromatic Light</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="components/light/cwww.html"><img alt="Cold+Warm White Light" class="component-image" src="_images/brightness-medium.svg" /></a></p></td>
+<td><p><a class="reference external" href="components/light/rgb.html"><img alt="RGB Light" class="component-image" src="_images/rgb.png" /></a></p></td>
+<td><p><a class="reference external" href="components/light/rgbw.html"><img alt="RGBW Light" class="component-image" src="_images/rgbw.png" /></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="components/light/cwww.html">Cold+Warm White Light</a></p></td>
+<td><p><a class="reference external" href="components/light/rgb.html">RGB Light</a></p></td>
+<td><p><a class="reference external" href="components/light/rgbw.html">RGBW Light</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="components/light/rgbww.html"><img alt="RGBWW Light" class="component-image" src="_images/rgbw.png" /></a></p></td>
+<td><p><a class="reference external" href="components/light/fastled.html"><img alt="FastLED Light" class="component-image" src="_images/color_lens.svg" /></a></p></td>
+<td><p><a class="reference external" href="components/light/neopixelbus.html"><img alt="NeoPixelBus Light" class="component-image" src="_images/color_lens.svg" /></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="components/light/rgbww.html">RGBWW Light</a></p></td>
+<td><p><a class="reference external" href="components/light/fastled.html">FastLED Light</a></p></td>
+<td><p><a class="reference external" href="components/light/neopixelbus.html">NeoPixelBus Light</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="components/light/partition.html"><img alt="Light Partition" class="component-image" src="_images/color_lens.svg" /></a></p></td>
+<td><p><a class="reference external" href="components/light/tuya.html"><img alt="Tuya Dimmer" class="component-image" src="_images/tuya.png" /></a></p></td>
+<td><p><a class="reference external" href="components/light/custom.html"><img alt="Custom Light" class="component-image" src="_images/language-cpp.svg" /></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="components/light/partition.html">Light Partition</a></p></td>
+<td><p><a class="reference external" href="components/light/tuya.html">Tuya Dimmer</a></p></td>
+<td><p><a class="reference external" href="components/light/custom.html">Custom Light</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="components/light/hbridge.html"><img alt="H-bridge Light" class="component-image" src="_images/brightness-medium.svg" /></a></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="components/light/hbridge.html">H-bridge Light</a></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<p>Looking for WS2811 and similar individually addressable lights? Have a look at the
+<a class="reference internal" href="components/light/fastled.html"><span class="doc">FastLED Light</span></a>.</p>
+</section>
+<section id="switch-components">
+<h2>Switch Components<a class="headerlink" href="#switch-components" title="Permalink to this headline">¶</a></h2>
+<table class="table-center docutils align-default">
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference external" href="components/switch/index.html"><img alt="Switch Core" class="component-image" src="_images/folder-open.svg" /></a></p></td>
+<td><p><a class="reference external" href="components/switch/gpio.html"><img alt="GPIO Switch" class="component-image" src="_images/pin.svg" /></a></p></td>
+<td><p><a class="reference external" href="components/switch/restart.html"><img alt="Restart Switch" class="component-image" src="_images/restart.svg" /></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="components/switch/index.html">Switch Core</a></p></td>
+<td><p><a class="reference external" href="components/switch/gpio.html">GPIO Switch</a></p></td>
+<td><p><a class="reference external" href="components/switch/restart.html">Restart Switch</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="components/switch/shutdown.html"><img alt="Shutdown Switch" class="component-image" src="_images/power_settings.svg" /></a></p></td>
+<td><p><a class="reference external" href="components/switch/output.html"><img alt="Generic Output Switch" class="component-image" src="_images/upload.svg" /></a></p></td>
+<td><p><a class="reference external" href="components/switch/template.html"><img alt="Template Switch" class="component-image" src="_images/description.svg" /></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="components/switch/shutdown.html">Shutdown Switch</a></p></td>
+<td><p><a class="reference external" href="components/switch/output.html">Generic Output Switch</a></p></td>
+<td><p><a class="reference external" href="components/switch/template.html">Template Switch</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="components/switch/uart.html"><img alt="UART Switch" class="component-image" src="_images/uart.svg" /></a></p></td>
+<td><p><a class="reference external" href="components/switch/custom.html"><img alt="Custom Switch" class="component-image" src="_images/language-cpp.svg" /></a></p></td>
+<td><p><a class="reference external" href="components/switch/tuya.html"><img alt="Tuya Switch" class="component-image" src="_images/tuya.png" /></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="components/switch/uart.html">UART Switch</a></p></td>
+<td><p><a class="reference external" href="components/switch/custom.html">Custom Switch</a></p></td>
+<td><p><a class="reference external" href="components/switch/tuya.html">Tuya Switch</a></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="fan-components">
+<h2>Fan Components<a class="headerlink" href="#fan-components" title="Permalink to this headline">¶</a></h2>
+<table class="table-center docutils align-default">
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference external" href="components/fan/index.html"><img alt="Fan Core" class="component-image" src="_images/folder-open.svg" /></a></p></td>
+<td><p><a class="reference external" href="components/fan/binary.html"><img alt="Binary Fan" class="component-image" src="_images/fan.svg" /></a></p></td>
+<td><p><a class="reference external" href="components/fan/speed.html"><img alt="Speed Fan" class="component-image" src="_images/fan.svg" /></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="components/fan/index.html">Fan Core</a></p></td>
+<td><p><a class="reference external" href="components/fan/binary.html">Binary Fan</a></p></td>
+<td><p><a class="reference external" href="components/fan/speed.html">Speed Fan</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="components/fan/tuya.html"><img alt="Tuya Fan" class="component-image" src="_images/tuya.png" /></a></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="components/fan/tuya.html">Tuya Fan</a></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="display-components">
+<h2>Display Components<a class="headerlink" href="#display-components" title="Permalink to this headline">¶</a></h2>
+<table class="table-center docutils align-default">
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference external" href="components/display/index.html"><img alt="Display Core" class="component-image" src="_images/folder-open.svg" /></a></p></td>
+<td><p><a class="reference external" href="components/display/addressable_light.html"><img alt="Addressable Light" class="component-image" src="_images/addressable_light1.jpg" /></a></p></td>
+<td><p><a class="reference external" href="components/display/lcd_display.html"><img alt="LCD Display" class="component-image" src="_images/lcd.jpg" /></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="components/display/index.html">Display Core</a></p></td>
+<td><p><a class="reference external" href="components/display/addressable_light.html">Addressable Light</a></p></td>
+<td><p><a class="reference external" href="components/display/lcd_display.html">LCD Display</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="components/display/max7219.html"><img alt="MAX7219" class="component-image" src="_images/max7219.jpg" /></a></p></td>
+<td><p><a class="reference external" href="components/display/max7219digit.html"><img alt="MAX7219 Dot Matrix" class="component-image" src="_images/max7219digit1.png" /></a></p></td>
+<td><p><a class="reference external" href="components/display/tm1637.html"><img alt="TM1637" class="component-image" src="_images/tm1637.jpg" /></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="components/display/max7219.html">MAX7219</a></p></td>
+<td><p><a class="reference external" href="components/display/max7219digit.html">MAX7219 Dot Matrix</a></p></td>
+<td><p><a class="reference external" href="components/display/tm1637.html">TM1637</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="components/display/nextion.html"><img alt="Nextion" class="component-image" src="_images/nextion.jpg" /></a></p></td>
+<td><p><a class="reference external" href="components/display/ssd1306.html"><img alt="SSD1306" class="component-image" src="_images/ssd1306.jpg" /></a></p></td>
+<td><p><a class="reference external" href="components/display/ssd1322.html"><img alt="SSD1322" class="component-image" src="_images/ssd1322.jpg" /></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="components/display/nextion.html">Nextion</a></p></td>
+<td><p><a class="reference external" href="components/display/ssd1306.html">SSD1306</a></p></td>
+<td><p><a class="reference external" href="components/display/ssd1322.html">SSD1322</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="components/display/ssd1325.html"><img alt="SSD1325" class="component-image" src="_images/ssd1325.jpg" /></a></p></td>
+<td><p><a class="reference external" href="components/display/ssd1327.html"><img alt="SSD1327" class="component-image" src="_images/ssd1327.jpg" /></a></p></td>
+<td><p><a class="reference external" href="components/display/ssd1331.html"><img alt="SSD1331" class="component-image" src="_images/ssd1331.jpg" /></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="components/display/ssd1325.html">SSD1325</a></p></td>
+<td><p><a class="reference external" href="components/display/ssd1327.html">SSD1327</a></p></td>
+<td><p><a class="reference external" href="components/display/ssd1331.html">SSD1331</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="components/display/ssd1351.html"><img alt="SSD1351" class="component-image" src="_images/ssd1351.jpg" /></a></p></td>
+<td><p><a class="reference external" href="components/display/st7735.html"><img alt="ST7735" class="component-image" src="_images/st77351.jpg" /></a></p></td>
+<td><p><a class="reference external" href="components/display/st7789v.html"><img alt="ST7789V" class="component-image" src="_images/st7789v.jpg" /></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="components/display/ssd1351.html">SSD1351</a></p></td>
+<td><p><a class="reference external" href="components/display/st7735.html">ST7735</a></p></td>
+<td><p><a class="reference external" href="components/display/st7789v.html">ST7789V</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="components/display/ili9341.html"><img alt="ILI9341" class="component-image" src="_images/ili9341.jpg" /></a></p></td>
+<td><p><a class="reference external" href="components/display/waveshare_epaper.html"><img alt="Waveshare E-Paper" class="component-image" src="_images/waveshare_epaper.jpg" /></a></p></td>
+<td><p><a class="reference external" href="components/display/inkplate6.html"><img alt="Inkplate 6" class="component-image" src="_images/inkplate61.jpg" /></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="components/display/ili9341.html">ILI9341</a></p></td>
+<td><p><a class="reference external" href="components/display/waveshare_epaper.html">Waveshare E-Paper</a></p></td>
+<td><p><a class="reference external" href="components/display/inkplate6.html">Inkplate 6</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="components/display/pcd8544.html"><img alt="PCD8544 (Nokia 5110/ 3310)" class="component-image" src="_images/pcd8544.jpg" /></a></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="components/display/pcd8544.html">PCD8544 (Nokia 5110/ 3310)</a></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="cover-components">
+<h2>Cover Components<a class="headerlink" href="#cover-components" title="Permalink to this headline">¶</a></h2>
+<table class="table-center docutils align-default">
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference external" href="components/cover/index.html"><img alt="Cover Core" class="component-image" src="_images/folder-open.svg" /></a></p></td>
+<td><p><a class="reference external" href="components/cover/template.html"><img alt="Template Cover" class="component-image" src="_images/description.svg" /></a></p></td>
+<td><p><a class="reference external" href="components/cover/endstop.html"><img alt="Endstop Cover" class="component-image" src="_images/electric-switch.svg" /></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="components/cover/index.html">Cover Core</a></p></td>
+<td><p><a class="reference external" href="components/cover/template.html">Template Cover</a></p></td>
+<td><p><a class="reference external" href="components/cover/endstop.html">Endstop Cover</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="components/cover/time_based.html"><img alt="Time-Based Cover" class="component-image" src="_images/timer.svg" /></a></p></td>
+<td><p><a class="reference external" href="components/cover/custom.html"><img alt="Custom Cover" class="component-image" src="_images/language-cpp.svg" /></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="components/cover/time_based.html">Time-Based Cover</a></p></td>
+<td><p><a class="reference external" href="components/cover/custom.html">Custom Cover</a></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="text-sensor-components">
+<h2>Text Sensor Components<a class="headerlink" href="#text-sensor-components" title="Permalink to this headline">¶</a></h2>
+<table class="table-center docutils align-default">
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference external" href="components/text_sensor/index.html"><img alt="Text Sensor Core" class="component-image" src="_images/folder-open.svg" /></a></p></td>
+<td><p><a class="reference external" href="components/text_sensor/homeassistant.html"><img alt="Home Assistant" class="component-image" src="_images/home-assistant.svg" /></a></p></td>
+<td><p><a class="reference external" href="components/text_sensor/mqtt_subscribe.html"><img alt="MQTT Subscribe Text" class="component-image" src="_images/mqtt.png" /></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="components/text_sensor/index.html">Text Sensor Core</a></p></td>
+<td><p><a class="reference external" href="components/text_sensor/homeassistant.html">Home Assistant</a></p></td>
+<td><p><a class="reference external" href="components/text_sensor/mqtt_subscribe.html">MQTT Subscribe Text</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="components/text_sensor/version.html"><img alt="Version" class="component-image" src="_images/new-box.svg" /></a></p></td>
+<td><p><a class="reference external" href="components/text_sensor/wifi_info.html"><img alt="WiFi Info" class="component-image" src="_images/network-wifi.svg" /></a></p></td>
+<td><p><a class="reference external" href="components/text_sensor/ble_scanner.html"><img alt="BLE Scanner" class="component-image" src="_images/bluetooth.svg" /></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="components/text_sensor/version.html">Version</a></p></td>
+<td><p><a class="reference external" href="components/text_sensor/wifi_info.html">WiFi Info</a></p></td>
+<td><p><a class="reference external" href="components/text_sensor/ble_scanner.html">BLE Scanner</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="components/text_sensor/template.html"><img alt="Template Text Sensor" class="component-image" src="_images/description.svg" /></a></p></td>
+<td><p><a class="reference external" href="components/text_sensor/custom.html"><img alt="Custom Text Sensor" class="component-image" src="_images/language-cpp.svg" /></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="components/text_sensor/template.html">Template Text Sensor</a></p></td>
+<td><p><a class="reference external" href="components/text_sensor/custom.html">Custom Text Sensor</a></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="climate-components">
+<h2>Climate Components<a class="headerlink" href="#climate-components" title="Permalink to this headline">¶</a></h2>
+<table class="table-center docutils align-default">
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference external" href="components/climate/index.html"><img alt="Climate Core" class="component-image" src="_images/folder-open.svg" /></a></p></td>
+<td><p><a class="reference external" href="components/climate/bang_bang.html"><img alt="Bang Bang Controller" class="component-image" src="_images/air-conditioner.svg" /></a></p></td>
+<td><p><a class="reference external" href="components/climate/thermostat.html"><img alt="Thermostat Controller" class="component-image" src="_images/air-conditioner.svg" /></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="components/climate/index.html">Climate Core</a></p></td>
+<td><p><a class="reference external" href="components/climate/bang_bang.html">Bang Bang Controller</a></p></td>
+<td><p><a class="reference external" href="components/climate/thermostat.html">Thermostat Controller</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="components/climate/custom.html"><img alt="Custom Climate" class="component-image" src="_images/language-cpp.svg" /></a></p></td>
+<td><p><a class="reference external" href="components/climate/pid.html"><img alt="PID Controller" class="component-image" src="_images/function.svg" /></a></p></td>
+<td><p><a class="reference external" href="components/climate/ir_climate.html"><img alt="IR Remote Climate" class="component-image" src="_images/air-conditioner-ir.svg" /></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="components/climate/custom.html">Custom Climate</a></p></td>
+<td><p><a class="reference external" href="components/climate/pid.html">PID Controller</a></p></td>
+<td><p><a class="reference external" href="components/climate/ir_climate.html">IR Remote Climate</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="components/climate/tuya.html"><img alt="Tuya Climate" class="component-image" src="_images/tuya.png" /></a></p></td>
+<td><p><a class="reference external" href="components/climate/midea_ac.html"><img alt="Midea Air Conditioner" class="component-image" src="_images/midea.svg" /></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="components/climate/tuya.html">Tuya Climate</a></p></td>
+<td><p><a class="reference external" href="components/climate/midea_ac.html">Midea Air Conditioner</a></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="misc-components">
+<h2>Misc Components<a class="headerlink" href="#misc-components" title="Permalink to this headline">¶</a></h2>
+<table class="table-center docutils align-default">
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference external" href="components/remote_receiver.html"><img alt="Remote Receiver" class="component-image" src="_images/remote.svg" /></a></p></td>
+<td><p><a class="reference external" href="components/remote_transmitter.html"><img alt="Remote Transmitter" class="component-image" src="_images/remote.svg" /></a></p></td>
+<td><p><a class="reference external" href="components/status_led.html"><img alt="Status LED" class="component-image" src="_images/led-on.svg" /></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="components/remote_receiver.html">Remote Receiver</a></p></td>
+<td><p><a class="reference external" href="components/remote_transmitter.html">Remote Transmitter</a></p></td>
+<td><p><a class="reference external" href="components/status_led.html">Status LED</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="components/http_request.html"><img alt="HTTP Request" class="component-image" src="_images/connection.svg" /></a></p></td>
+<td><p><a class="reference external" href="components/time.html"><img alt="Time" class="component-image" src="_images/clock-outline.svg" /></a></p></td>
+<td><p><a class="reference external" href="components/sun.html"><img alt="Sun" class="component-image" src="_images/weather-sunny.svg" /></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="components/http_request.html">HTTP Request</a></p></td>
+<td><p><a class="reference external" href="components/time.html">Time</a></p></td>
+<td><p><a class="reference external" href="components/sun.html">Sun</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="components/gps.html"><img alt="GPS" class="component-image" src="_images/crosshairs-gps.svg" /></a></p></td>
+<td><p><a class="reference external" href="components/esp32_ble_tracker.html"><img alt="ESP32 BLE Tracker" class="component-image" src="_images/bluetooth.svg" /></a></p></td>
+<td><p><a class="reference external" href="components/esp32_ble_beacon.html"><img alt="ESP32 BLE Beacon" class="component-image" src="_images/bluetooth.svg" /></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="components/gps.html">GPS</a></p></td>
+<td><p><a class="reference external" href="components/esp32_ble_tracker.html">ESP32 BLE Tracker</a></p></td>
+<td><p><a class="reference external" href="components/esp32_ble_beacon.html">ESP32 BLE Beacon</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="components/ethernet.html"><img alt="ESP32 Ethernet" class="component-image" src="_images/ethernet.svg" /></a></p></td>
+<td><p><a class="reference external" href="components/esp32_camera.html"><img alt="ESP32 Camera" class="component-image" src="_images/camera.svg" /></a></p></td>
+<td><p><a class="reference external" href="components/stepper/index.html"><img alt="Stepper" class="component-image" src="_images/stepper.svg" /></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="components/ethernet.html">ESP32 Ethernet</a></p></td>
+<td><p><a class="reference external" href="components/esp32_camera.html">ESP32 Camera</a></p></td>
+<td><p><a class="reference external" href="components/stepper/index.html">Stepper</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="components/servo.html"><img alt="Servo" class="component-image" src="_images/servo.svg" /></a></p></td>
+<td><p><a class="reference external" href="components/pcf8574.html"><img alt="PCF8574 I/O Expander" class="component-image" src="_images/pcf8574.jpg" /></a></p></td>
+<td><p><a class="reference external" href="components/mcp230xx.html"><img alt="MCP230XX I/O Expander - I²C Bus" class="component-image" src="_images/mcp230xx.svg" /></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="components/servo.html">Servo</a></p></td>
+<td><p><a class="reference external" href="components/pcf8574.html">PCF8574 I/O Expander</a></p></td>
+<td><p><a class="reference external" href="components/mcp230xx.html">MCP230XX I/O Expander - I²C Bus</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="components/mcp23sxx.html"><img alt="MCP23SXX I/O Expander - SPI Bus" class="component-image" src="_images/mcp230xx.svg" /></a></p></td>
+<td><p><a class="reference external" href="components/sx1509.html"><img alt="SX1509 I/O Expander" class="component-image" src="_images/sx1509.jpg" /></a></p></td>
+<td><p><a class="reference external" href="components/sn74hc595.html"><img alt="SN74HC595 I/O Expander" class="component-image" src="_images/sn74hc595.jpg" /></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="components/mcp23sxx.html">MCP23SXX I/O Expander - SPI Bus</a></p></td>
+<td><p><a class="reference external" href="components/sx1509.html">SX1509 I/O Expander</a></p></td>
+<td><p><a class="reference external" href="components/sn74hc595.html">SN74HC595 I/O Expander</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="components/sim800l.html"><img alt="SIM800L" class="component-image" src="_images/sim800l.jpg" /></a></p></td>
+<td><p><a class="reference external" href="components/dfplayer.html"><img alt="DFPlayer" class="component-image" src="_images/dfplayer.svg" /></a></p></td>
+<td><p><a class="reference external" href="components/captive_portal.html"><img alt="Captive Portal" class="component-image" src="_images/wifi-strength-alert-outline.svg" /></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="components/sim800l.html">SIM800L</a></p></td>
+<td><p><a class="reference external" href="components/dfplayer.html">DFPlayer</a></p></td>
+<td><p><a class="reference external" href="components/captive_portal.html">Captive Portal</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="components/debug.html"><img alt="Debug Component" class="component-image" src="_images/bug-report.svg" /></a></p></td>
+<td><p><a class="reference external" href="components/tm1651.html"><img alt="TM1651 Battery Display" class="component-image" src="_images/tm1651_battery_display.jpg" /></a></p></td>
+<td><p><a class="reference external" href="components/rf_bridge.html"><img alt="RF Bridge" class="component-image" src="_images/rf_bridge.jpg" /></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="components/debug.html">Debug Component</a></p></td>
+<td><p><a class="reference external" href="components/tm1651.html">TM1651 Battery Display</a></p></td>
+<td><p><a class="reference external" href="components/rf_bridge.html">RF Bridge</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="components/tuya.html"><img alt="Tuya MCU" class="component-image" src="_images/tuya.png" /></a></p></td>
+<td><p><a class="reference external" href="components/exposure_notifications.html"><img alt="Exposure Notifications" class="component-image" src="_images/exposure_notifications.png" /></a></p></td>
+<td><p><a class="reference external" href="components/rtttl.html"><img alt="RTTTL Buzzer" class="component-image" src="_images/buzzer1.jpg" /></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="components/tuya.html">Tuya MCU</a></p></td>
+<td><p><a class="reference external" href="components/exposure_notifications.html">Exposure Notifications</a></p></td>
+<td><p><a class="reference external" href="components/rtttl.html">RTTTL Buzzer</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="components/prometheus.html"><img alt="Prometheus" class="component-image" src="_images/prometheus.svg" /></a></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="components/prometheus.html">Prometheus</a></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="additional-custom-components">
+<h2>Additional Custom Components<a class="headerlink" href="#additional-custom-components" title="Permalink to this headline">¶</a></h2>
+<table class="table-center docutils align-default">
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference external" href="custom/custom_component.html"><img alt="Generic Custom Component" class="component-image" src="_images/language-cpp.svg" /></a></p></td>
+<td><p><a class="reference external" href="custom/i2c.html"><img alt="Custom I²C Component" class="component-image" src="_images/language-cpp.svg" /></a></p></td>
+<td><p><a class="reference external" href="custom/spi.html"><img alt="Custom SPI Component" class="component-image" src="_images/language-cpp.svg" /></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="custom/custom_component.html">Generic Custom Component</a></p></td>
+<td><p><a class="reference external" href="custom/i2c.html">Custom I²C Component</a></p></td>
+<td><p><a class="reference external" href="custom/spi.html">Custom SPI Component</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="custom/uart.html"><img alt="Custom UART Component" class="component-image" src="_images/language-cpp.svg" /></a></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="custom/uart.html">Custom UART Component</a></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="cookbook">
+<span id="id3"></span><h2>Cookbook<a class="headerlink" href="#cookbook" title="Permalink to this headline">¶</a></h2>
+<table class="table-center docutils align-default">
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference external" href="cookbook/arduino_port_extender.html"><img alt="Arduino Port Extender" class="component-image" src="_images/arduino_logo.svg" /></a></p></td>
+<td><p><a class="reference external" href="cookbook/endstop-cover.html"><img alt="Endstop Cover" class="component-image" src="_images/window-open.svg" /></a></p></td>
+<td><p><a class="reference external" href="cookbook/pir.html"><img alt="PIR Sensor" class="component-image" src="_images/pir.jpg" /></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="cookbook/arduino_port_extender.html">Arduino Port Extender</a></p></td>
+<td><p><a class="reference external" href="cookbook/endstop-cover.html">Endstop Cover</a></p></td>
+<td><p><a class="reference external" href="cookbook/pir.html">PIR Sensor</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="cookbook/relay.html"><img alt="Relay" class="component-image" src="_images/relay.jpg" /></a></p></td>
+<td><p><a class="reference external" href="cookbook/bruh.html"><img alt="BRUH Multisensor" class="component-image" src="_images/bruh.png" /></a></p></td>
+<td><p><a class="reference external" href="cookbook/temt6000.html"><img alt="TEMT6000" class="component-image" src="_images/temt6000.jpg" /></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="cookbook/relay.html">Relay</a></p></td>
+<td><p><a class="reference external" href="cookbook/bruh.html">BRUH Multisensor</a></p></td>
+<td><p><a class="reference external" href="cookbook/temt6000.html">TEMT6000</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="cookbook/power_meter.html"><img alt="Non-Invasive Power Meter" class="component-image" src="_images/power_meter.jpg" /></a></p></td>
+<td><p><a class="reference external" href="cookbook/dual-r2-cover.html"><img alt="Dual Relay Motor Cover" class="component-image" src="_images/sonoff_dual_r2.jpg" /></a></p></td>
+<td><p><a class="reference external" href="cookbook/bme280_environment.html"><img alt="BME280 Environment" class="component-image" src="_images/bme280.jpg" /></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="cookbook/power_meter.html">Non-Invasive Power Meter</a></p></td>
+<td><p><a class="reference external" href="cookbook/dual-r2-cover.html">Dual Relay Motor Cover</a></p></td>
+<td><p><a class="reference external" href="cookbook/bme280_environment.html">BME280 Environment</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="cookbook/sonoff-fishpond-pump.html"><img alt="Sonoff Fishpond Pump" class="component-image" src="_images/cookbook-sonoff-fishpond-pump.jpg" /></a></p></td>
+<td><p><a class="reference external" href="cookbook/h801.html"><img alt="H801 LED Controller" class="component-image" src="_images/h8011.jpg" /></a></p></td>
+<td><p><a class="reference external" href="cookbook/display_time_temp_oled.html"><img alt="Time &amp; Temperature on OLED Display" class="component-image" src="_images/display_time_temp_oled_2.jpg" /></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="cookbook/sonoff-fishpond-pump.html">Sonoff Fishpond Pump</a></p></td>
+<td><p><a class="reference external" href="cookbook/h801.html">H801 LED Controller</a></p></td>
+<td><p><a class="reference external" href="cookbook/display_time_temp_oled.html">Time &amp; Temperature on OLED Display</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="cookbook/mirabella-genio-bulb.html"><img alt="Mirabella Genio Bulb" class="component-image" src="_images/cookbook-mirabella-genio-b22-rgbw.jpg" /></a></p></td>
+<td><p><a class="reference external" href="cookbook/garage-door.html"><img alt="Garage Door" class="component-image" src="_images/window-open.svg" /></a></p></td>
+<td><p><a class="reference external" href="cookbook/brilliant-mirabella-genio-smart-plugs.html"><img alt="Brilliant / Mirabella Genio Smart Plugs" class="component-image" src="_images/cookbook-brilliant-mirabella-genio-smart-plugs.jpg" /></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="cookbook/mirabella-genio-bulb.html">Mirabella Genio Bulb</a></p></td>
+<td><p><a class="reference external" href="cookbook/garage-door.html">Garage Door</a></p></td>
+<td><p><a class="reference external" href="cookbook/brilliant-mirabella-genio-smart-plugs.html">Brilliant / Mirabella Genio Smart Plugs</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="cookbook/esw01-eu.html"><img alt="Etekcity Voltson (ESW01-EU)" class="component-image" src="_images/esw01-eu.jpg" /></a></p></td>
+<td><p><a class="reference external" href="cookbook/ifan02.html"><img alt="Sonoff iFan02" class="component-image" src="_images/fan.svg" /></a></p></td>
+<td><p><a class="reference external" href="cookbook/zemismart-rgbw-downlights.html"><img alt="Zemismart RGBW Downlights" class="component-image" src="_images/cookbook-zemismart-rgbw-downlight.jpg" /></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="cookbook/esw01-eu.html">Etekcity Voltson (ESW01-EU)</a></p></td>
+<td><p><a class="reference external" href="cookbook/ifan02.html">Sonoff iFan02</a></p></td>
+<td><p><a class="reference external" href="cookbook/zemismart-rgbw-downlights.html">Zemismart RGBW Downlights</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="cookbook/teckin_sb50.html"><img alt="Teckin SB50" class="component-image" src="_images/teckin_sb501.jpg" /></a></p></td>
+<td><p><a class="reference external" href="cookbook/sonoff-light-switch.html"><img alt="Sonoff light switch options" class="component-image" src="_images/light_switch.png" /></a></p></td>
+<td><p><a class="reference external" href="cookbook/leak-detector-m5stickc.html"><img alt="ESP32 Water Leak Detector" class="component-image" src="_images/leak-detector-m5stickC_main_index.jpg" /></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="cookbook/teckin_sb50.html">Teckin SB50</a></p></td>
+<td><p><a class="reference external" href="cookbook/sonoff-light-switch.html">Sonoff light switch options</a></p></td>
+<td><p><a class="reference external" href="cookbook/leak-detector-m5stickc.html">ESP32 Water Leak Detector</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="cookbook/iaq_board.html"><img alt="IAQ (Indoor Air Quality) Board" class="component-image" src="_images/iaq_board21.jpg" /></a></p></td>
+<td><p><a class="reference external" href="cookbook/uart_text_sensor.html"><img alt="Custom UART Text Sensor" class="component-image" src="_images/language-cpp.svg" /></a></p></td>
+<td><p><a class="reference external" href="cookbook/iwoole_rgbw_table_lamp.html"><img alt="IWOOLE Table Lamp" class="component-image" src="_images/iwoole_rgbw_table_lamp1.png" /></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="cookbook/iaq_board.html">IAQ (Indoor Air Quality) Board</a></p></td>
+<td><p><a class="reference external" href="cookbook/uart_text_sensor.html">Custom UART Text Sensor</a></p></td>
+<td><p><a class="reference external" href="cookbook/iwoole_rgbw_table_lamp.html">IWOOLE Table Lamp</a></p></td>
+</tr>
+</tbody>
+</table>
+<p>Do you have other awesome automations or cool setups? Please feel free to add them to the
+documentation for others to copy. See <a class="reference internal" href="guides/contributing.html"><span class="doc">Contributing</span></a>.</p>
+<div class="toctree-wrapper compound">
+</div>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+  <div id="upgrade-footer">
+    A new version has been release since you last visited this page: 1.17.2 🎉
+    <div class="footer-button-container">
+      <div role="button" id="upgrade-footer-dismiss" class="footer-button">Dismiss</div>
+      <a id="upgrade-footer-changelog" class="footer-button" href="changelog/v1.17.0.html">View Changelog</a>  
+    </div>
+  </div>
+  <script>
+    var old = window.localStorage.getItem("version");
+    if (old === null) { window.localStorage.setItem("version", "1.17");
+    } else if (old !== "1.17") {
+      const footerEl = document.getElementById("upgrade-footer");
+      footerEl.classList.add("not-hidden");
+      footerEl.addEventListener('click', function () {
+        window.localStorage.setItem("version", "1.17");
+        footerEl.classList.remove("not-hidden");
+      });
+    }
+  </script>
+
+  </body>
+
+<!-- Mirrored from esphome.io/ by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 16 May 2021 02:58:16 GMT -->
+</html>

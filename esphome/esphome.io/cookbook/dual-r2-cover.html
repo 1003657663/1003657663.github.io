@@ -1,0 +1,218 @@
+
+  <!DOCTYPE html>
+
+
+<html lang="en">
+  
+<!-- Mirrored from esphome.io/cookbook/dual-r2-cover.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 16 May 2021 03:02:43 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+<meta name="description" content="An example of how to integrate covers that are controlled by two relays into ESPHome.">
+<meta name="keywords" content="Relay, Sonoff Dual R2, Cover">
+<meta itemprop="name" content="Dual relay cover motor control">
+<meta itemprop="description" content="An example of how to integrate covers that are controlled by two relays into ESPHome.">
+<meta itemprop="image" content="../_images/sonoff_dual_r2.jpg">
+<meta name="twitter:title" content="Dual relay cover motor control">
+<meta name="twitter:image:src" content="../_images/sonoff_dual_r2.jpg">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@OttoWinter_">
+<meta name="twitter:description" content="An example of how to integrate covers that are controlled by two relays into ESPHome.">
+<meta property="og:title" content="Dual relay cover motor control">
+<meta property="og:image" content="../_images/sonoff_dual_r2.jpg">
+<meta property="og:type" content="website">
+<meta property="og:description" content="An example of how to integrate covers that are controlled by two relays into ESPHome.">
+
+    <title>Dual relay cover motor control &#8212; ESPHome</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <link rel="canonical" href="dual-r2-cover.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Template Cover with Endstops" href="endstop-cover.html" />
+    <link rel="prev" title="Time &amp; Temperature on OLED Display" href="display_time_temp_oled.html" />
+  <link rel="stylesheet" href="../_static/customf001.css?hash=f908c2b5" type="text/css" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../_static/apple-touch-icon.png">
+  <link rel="shortcut icon" href="../_static/favicon.ico">
+  <link rel="icon" type="image/png" sizes="512x512" href="../_static/favicon-512x512.png">
+  <link rel="icon" type="image/png" sizes="256x256" href="../_static/favicon-256x256.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="../_static/favicon-192x192.png">
+  <link rel="icon" type="image/png" sizes="128x128" href="../_static/favicon-128x128.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../_static/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../_static/favicon-16x16.png">
+  <link rel="manifest" href="../_static/site.webmanifest">
+  <link rel="mask-icon" href="../_static/safari-pinned-tab.svg" color="#646464">
+  <meta name="apple-mobile-web-app-title" content="ESPHome">
+  <meta name="application-name" content="ESPHome">
+  <meta name="msapplication-TileColor" content="#dfdfdf">
+  <meta name="msapplication-config" content="/_static/browserconfig.xml">
+  <meta name="theme-color" content="#dfdfdf">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta property="og:site_name" content="ESPHome">
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head><body>
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index-2.html">
+              <img class="logo" src="../_static/logo-text.svg" alt="Logo"/>
+            </a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="https://esphome.io/search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+  <h3><a href="../index-2.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Dual relay cover motor control</a><ul>
+<li><a class="reference internal" href="#see-also">See Also</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="dual-relay-cover-motor-control">
+<h1>Dual relay cover motor control<a class="headerlink" href="#dual-relay-cover-motor-control" title="Permalink to this headline">¶</a></h1>
+<p>The following is a possible configuration file for common covers that use a motor with 2 inputs.
+Only one should be powered at a time (interlocking) to either move the cover up or down. For this
+the <a class="reference external" href="https://www.itead.cc/sonoff-dual.html">Sonoff Dual R2</a> can be used which has two independent
+relays. Additionally this configuration allows the single button on the Sonoff to control the motion
+by cycling between: open-&gt;stop-&gt;close-&gt;stop-&gt;…</p>
+<p>These kind of motors automatically stop when the end of the cover movement is reached. However,
+to be safe, this automation stops powering the motor after 1 minute of movement. In the rare case
+of the end-stop switch in the motor failing this will reduce the risk for damage or fire.</p>
+<p>Of the four main components (button sensor, 2 relays switches and the cover), only the cover will be
+visible to the end-user. The other three are hidden by means of not including a <code class="docutils literal notranslate"><span class="pre">name</span></code>. This is to
+prevent accidentally switching on both relays simultaneously from Home Assistant as that might be harmful
+for some motors.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Controlling the cover to quickly (sending new open/close commands within a minute of previous commands)
+might cause unexpected behaviour (eg: cover stopping halfway). This is because the delayed relay off
+feature is implemented using asynchronous automations. So every time an open/close command is sent a
+delayed relay off command is added and old ones are not removed.</p>
+</div>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">esphome</span><span class="p">:</span>
+  <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">cover</span>
+  <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ESP8266</span>
+  <span class="nt">board</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">esp01_1m</span>
+
+<span class="nt">wifi</span><span class="p">:</span>
+  <span class="nt">ssid</span><span class="p">:</span> <span class="s">&#39;***&#39;</span>
+  <span class="nt">password</span><span class="p">:</span> <span class="s">&#39;***&#39;</span>
+
+<span class="nt">api</span><span class="p">:</span>
+
+<span class="nt">logger</span><span class="p">:</span>
+
+<span class="nt">ota</span><span class="p">:</span>
+
+<span class="nt">binary_sensor</span><span class="p">:</span>
+<span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">gpio</span>
+  <span class="nt">pin</span><span class="p">:</span>
+    <span class="nt">number</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO10</span>
+    <span class="nt">inverted</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+  <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">button</span>
+  <span class="nt">on_press</span><span class="p">:</span>
+    <span class="nt">then</span><span class="p">:</span>
+      <span class="c1"># logic for cycling through movements: open-&gt;stop-&gt;close-&gt;stop-&gt;...</span>
+      <span class="p p-Indicator">-</span> <span class="nt">lambda</span><span class="p">:</span> <span class="p p-Indicator">|</span>
+          <span class="no">if (id(my_cover).current_operation == COVER_OPERATION_IDLE) {</span>
+            <span class="no">// Cover is idle, check current state and either open or close cover.</span>
+            <span class="no">if (id(my_cover).is_fully_closed()) {</span>
+              <span class="no">id(my_cover).open();</span>
+            <span class="no">} else {</span>
+              <span class="no">id(my_cover).close();</span>
+            <span class="no">}</span>
+          <span class="no">} else {</span>
+            <span class="no">// Cover is opening/closing. Stop it.</span>
+            <span class="no">id(my_cover).stop();</span>
+          <span class="no">}</span>
+
+<span class="nt">switch</span><span class="p">:</span>
+<span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">gpio</span>
+  <span class="nt">pin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO12</span>
+  <span class="nt">interlock</span><span class="p">:</span> <span class="nl">&amp;interlock</span> <span class="p p-Indicator">[</span><span class="nv">open_cover</span><span class="p p-Indicator">,</span> <span class="nv">close_cover</span><span class="p p-Indicator">]</span>
+  <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">open_cover</span>
+<span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">gpio</span>
+  <span class="nt">pin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO5</span>
+  <span class="nt">interlock</span><span class="p">:</span> <span class="nv">*interlock</span>
+  <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">close_cover</span>
+
+<span class="nt">cover</span><span class="p">:</span>
+<span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">time_based</span>
+  <span class="nt">name</span><span class="p">:</span> <span class="s">&quot;Cover&quot;</span>
+  <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">my_cover</span>
+  <span class="nt">open_action</span><span class="p">:</span>
+    <span class="p p-Indicator">-</span> <span class="nt">switch.turn_on</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">open_cover</span>
+  <span class="nt">open_duration</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">60s</span>
+  <span class="nt">close_action</span><span class="p">:</span>
+    <span class="p p-Indicator">-</span> <span class="nt">switch.turn_on</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">close_cover</span>
+  <span class="nt">close_duration</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">60s</span>
+  <span class="nt">stop_action</span><span class="p">:</span>
+    <span class="p p-Indicator">-</span> <span class="nt">switch.turn_off</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">open_cover</span>
+    <span class="p p-Indicator">-</span> <span class="nt">switch.turn_off</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">close_cover</span>
+</pre></div>
+</div>
+<section id="see-also">
+<h2>See Also<a class="headerlink" href="#see-also" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="../guides/automations.html"><span class="doc">Automations and Templates</span></a></p></li>
+<li><p><a class="reference internal" href="../components/cover/time_based.html"><span class="doc">Time-Based Cover</span></a></p></li>
+<li><p><a class="reference internal" href="../devices/sonoff.html"><span class="doc">Generic Sonoff</span></a></p></li>
+<li><p><a class="reference external" href="https://github.com/esphome/esphome-docs/blob/current/cookbook/dual-r2-cover.rst">Edit this page on GitHub</a></p></li>
+</ul>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+  <div id="upgrade-footer">
+    A new version has been release since you last visited this page: 1.17.2 🎉
+    <div class="footer-button-container">
+      <div role="button" id="upgrade-footer-dismiss" class="footer-button">Dismiss</div>
+      <a id="upgrade-footer-changelog" class="footer-button" href="../changelog/v1.17.0.html">View Changelog</a>  
+    </div>
+  </div>
+  <script>
+    var old = window.localStorage.getItem("version");
+    if (old === null) { window.localStorage.setItem("version", "1.17");
+    } else if (old !== "1.17") {
+      const footerEl = document.getElementById("upgrade-footer");
+      footerEl.classList.add("not-hidden");
+      footerEl.addEventListener('click', function () {
+        window.localStorage.setItem("version", "1.17");
+        footerEl.classList.remove("not-hidden");
+      });
+    }
+  </script>
+
+  </body>
+
+<!-- Mirrored from esphome.io/cookbook/dual-r2-cover.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 16 May 2021 03:02:43 GMT -->
+</html>

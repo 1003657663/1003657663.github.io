@@ -1,0 +1,192 @@
+
+  <!DOCTYPE html>
+
+
+<html lang="en">
+  
+<!-- Mirrored from esphome.io/components/esp32_ble_beacon.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 16 May 2021 03:02:26 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+<meta name="description" content="Instructions for setting up Bluetooth Low Energy iBeacons using the BLE feature on ESP32s.">
+<meta itemprop="name" content="ESP32 Bluetooth Low Energy Beacon">
+<meta itemprop="description" content="Instructions for setting up Bluetooth Low Energy iBeacons using the BLE feature on ESP32s.">
+<meta itemprop="image" content="../_images/bluetooth.png">
+<meta name="twitter:title" content="ESP32 Bluetooth Low Energy Beacon">
+<meta name="twitter:image:src" content="../_images/bluetooth.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@OttoWinter_">
+<meta name="twitter:description" content="Instructions for setting up Bluetooth Low Energy iBeacons using the BLE feature on ESP32s.">
+<meta property="og:title" content="ESP32 Bluetooth Low Energy Beacon">
+<meta property="og:image" content="../_images/bluetooth.png">
+<meta property="og:type" content="website">
+<meta property="og:description" content="Instructions for setting up Bluetooth Low Energy iBeacons using the BLE feature on ESP32s.">
+
+    <title>ESP32 Bluetooth Low Energy Beacon &#8212; ESPHome</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <link rel="canonical" href="esp32_ble_beacon.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="ESP32 Bluetooth Low Energy Tracker Hub" href="esp32_ble_tracker.html" />
+    <link rel="prev" title="DF-Player mini" href="dfplayer.html" />
+  <link rel="stylesheet" href="../_static/customf001.css?hash=f908c2b5" type="text/css" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../_static/apple-touch-icon.png">
+  <link rel="shortcut icon" href="../_static/favicon.ico">
+  <link rel="icon" type="image/png" sizes="512x512" href="../_static/favicon-512x512.png">
+  <link rel="icon" type="image/png" sizes="256x256" href="../_static/favicon-256x256.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="../_static/favicon-192x192.png">
+  <link rel="icon" type="image/png" sizes="128x128" href="../_static/favicon-128x128.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../_static/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../_static/favicon-16x16.png">
+  <link rel="manifest" href="../_static/site.webmanifest">
+  <link rel="mask-icon" href="../_static/safari-pinned-tab.svg" color="#646464">
+  <meta name="apple-mobile-web-app-title" content="ESPHome">
+  <meta name="application-name" content="ESPHome">
+  <meta name="msapplication-TileColor" content="#dfdfdf">
+  <meta name="msapplication-config" content="/_static/browserconfig.xml">
+  <meta name="theme-color" content="#dfdfdf">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta property="og:site_name" content="ESPHome">
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head><body>
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index-2.html">
+              <img class="logo" src="../_static/logo-text.svg" alt="Logo"/>
+            </a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="https://esphome.io/search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+  <h3><a href="../index-2.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">ESP32 Bluetooth Low Energy Beacon</a><ul>
+<li><a class="reference internal" href="#configuration-variables">Configuration variables:</a></li>
+<li><a class="reference internal" href="#setting-up">Setting Up</a></li>
+<li><a class="reference internal" href="#see-also">See Also</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="esp32-bluetooth-low-energy-beacon">
+<h1>ESP32 Bluetooth Low Energy Beacon<a class="headerlink" href="#esp32-bluetooth-low-energy-beacon" title="Permalink to this headline">¶</a></h1>
+<p>The <code class="docutils literal notranslate"><span class="pre">esp32_ble_beacon</span></code> component creates a Bluetooth Low Energy Beacon with your ESP32 device.
+Beacons are BLE devices that repeatedly just send out a pre-defined packet of data. This packet
+can then be received by devices like smartphones and can then be used to track a phone’s location.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example configuration entry</span>
+<span class="nt">esp32_ble_beacon</span><span class="p">:</span>
+  <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">iBeacon</span>
+  <span class="nt">uuid</span><span class="p">:</span> <span class="s">&#39;c29ce823-e67a-4e71-bff2-abaa32e77a98&#39;</span>
+</pre></div>
+</div>
+<section id="configuration-variables">
+<h2>Configuration variables:<a class="headerlink" href="#configuration-variables" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><strong>type</strong> (<strong>Required</strong>): The type of beacon to create, currently only supports <code class="docutils literal notranslate"><span class="pre">iBeacon</span></code>.</p></li>
+<li><p><strong>uuid</strong> (<strong>Required</strong>): The <a class="reference external" href="https://en.wikipedia.org/wiki/Universally_unique_identifier">universally unique identifier</a>
+to identify the beacon.</p></li>
+<li><p><strong>id</strong> (<em>Optional</em>, <a class="reference internal" href="../guides/configuration-types.html#config-id"><span class="std std-ref">ID</span></a>): Manually specify the ID for code generation.</p></li>
+</ul>
+<p>Advanced options:</p>
+<ul class="simple">
+<li><p><strong>major</strong> (<em>Optional</em>, integer): The iBeacon major identifier of this beacon. Usually used to
+group beacons, for example for grouping all beacons in the same building, but has no effect if
+the BLE receiver doesn’t use it. Defaults to <code class="docutils literal notranslate"><span class="pre">10167</span></code>.</p></li>
+<li><p><strong>minor</strong> (<em>Optional</em>, integer): The iBeacon minor identifier of this beacon. Usually used to
+identify beacons within an iBeacon group. Defaults to <code class="docutils literal notranslate"><span class="pre">61958</span></code>.</p></li>
+</ul>
+</section>
+<section id="setting-up">
+<h2>Setting Up<a class="headerlink" href="#setting-up" title="Permalink to this headline">¶</a></h2>
+<p>First, you’ll need to set up the configuration for ESPHome. Just copy the configuration above and
+change the UUID to something unique. For example, you can copy this randomly generated UUID:</p>
+<input type="text" id="ble-uuid" onclick="this.focus();this.select()" style="width: 240px;" readonly="readonly">
+<script>
+  // https://stackoverflow.com/a/105074/8924614
+  function guid() {
+    function s4() {
+      return Math.floor((1 + Math.random()) * 0x10000)
+        .toString(16)
+        .substring(1);
+    }
+    return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
+  }
+  document.getElementById("ble-uuid").value = guid();
+</script><p>Then, just compile and flash the ESP32.</p>
+<p>When everything is set up correctly, you should see a show up using your iBeacon scanner of choice. On iPhones,
+this should already work from the Bluetooth screen (not tested), on Android, you will need to use an app like
+<a class="reference external" href="https://play.google.com/store/apps/details?id=com.bridou_n.beaconscanner">“Beacon Scanner”</a> by Nicolas Bridoux.</p>
+<p>For using these beacons to track the location of your phone, you will need to use another app. For example, I used
+<a class="reference external" href="https://owntracks.org/booklet/features/beacons/">this guide by the owntracks</a> app to let my Home Automation system
+know when I’m home or away. Another nice Android app is <a class="reference external" href="https://turbo-lab.github.io/android-beacon-mqtt/">Beacon MQTT</a>.
+It can work with multiple beacons simultaneously.</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/esp32_ble_beacon-ibeacon.png"><img alt="../_images/esp32_ble_beacon-ibeacon.png" src="../_images/esp32_ble_beacon-ibeacon.png" style="width: 75.0%;" /></a>
+</figure>
+</section>
+<section id="see-also">
+<h2>See Also<a class="headerlink" href="#see-also" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="esp32_ble_tracker.html"><span class="doc">ESP32 Bluetooth Low Energy Tracker Hub</span></a></p></li>
+<li><p><a class="reference external" href="../api/esp32__ble__beacon_8h.html">API Reference</a></p></li>
+<li><p><a class="reference external" href="https://github.com/nkolban/ESP32_BLE_Arduino">ESP32 BLE for Arduino</a> by <a class="reference external" href="https://github.com/nkolban">Neil Kolban</a>.</p></li>
+<li><p><a class="reference external" href="https://github.com/esphome/esphome-docs/blob/current/components/esp32_ble_beacon.rst">Edit this page on GitHub</a></p></li>
+</ul>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+  <div id="upgrade-footer">
+    A new version has been release since you last visited this page: 1.17.2 🎉
+    <div class="footer-button-container">
+      <div role="button" id="upgrade-footer-dismiss" class="footer-button">Dismiss</div>
+      <a id="upgrade-footer-changelog" class="footer-button" href="../changelog/v1.17.0.html">View Changelog</a>  
+    </div>
+  </div>
+  <script>
+    var old = window.localStorage.getItem("version");
+    if (old === null) { window.localStorage.setItem("version", "1.17");
+    } else if (old !== "1.17") {
+      const footerEl = document.getElementById("upgrade-footer");
+      footerEl.classList.add("not-hidden");
+      footerEl.addEventListener('click', function () {
+        window.localStorage.setItem("version", "1.17");
+        footerEl.classList.remove("not-hidden");
+      });
+    }
+  </script>
+
+  </body>
+
+<!-- Mirrored from esphome.io/components/esp32_ble_beacon.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 16 May 2021 03:02:27 GMT -->
+</html>

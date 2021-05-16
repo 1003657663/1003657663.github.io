@@ -1,0 +1,670 @@
+
+  <!DOCTYPE html>
+
+
+<html lang="en">
+  
+<!-- Mirrored from esphome.io/cookbook/brilliant-mirabella-genio-smart-plugs.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 16 May 2021 03:02:48 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Brilliant / Mirabella Genio Smart Plugs &#8212; ESPHome</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <link rel="canonical" href="brilliant-mirabella-genio-smart-plugs.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="BRUH Multisensor" href="bruh.html" />
+    <link rel="prev" title="BME280 Environment" href="bme280_environment.html" />
+  <link rel="stylesheet" href="../_static/customf001.css?hash=f908c2b5" type="text/css" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../_static/apple-touch-icon.png">
+  <link rel="shortcut icon" href="../_static/favicon.ico">
+  <link rel="icon" type="image/png" sizes="512x512" href="../_static/favicon-512x512.png">
+  <link rel="icon" type="image/png" sizes="256x256" href="../_static/favicon-256x256.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="../_static/favicon-192x192.png">
+  <link rel="icon" type="image/png" sizes="128x128" href="../_static/favicon-128x128.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../_static/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../_static/favicon-16x16.png">
+  <link rel="manifest" href="../_static/site.webmanifest">
+  <link rel="mask-icon" href="../_static/safari-pinned-tab.svg" color="#646464">
+  <meta name="apple-mobile-web-app-title" content="ESPHome">
+  <meta name="application-name" content="ESPHome">
+  <meta name="msapplication-TileColor" content="#dfdfdf">
+  <meta name="msapplication-config" content="/_static/browserconfig.xml">
+  <meta name="theme-color" content="#dfdfdf">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta property="og:site_name" content="ESPHome">
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head><body>
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index-2.html">
+              <img class="logo" src="../_static/logo-text.svg" alt="Logo"/>
+            </a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="https://esphome.io/search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+  <h3><a href="../index-2.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Brilliant / Mirabella Genio Smart Plugs</a><ul>
+<li><a class="reference internal" href="#create-the-esphome-firmware">1. Create the ESPHome Firmware</a></li>
+<li><a class="reference internal" href="#flashing">2. Flashing</a><ul>
+<li><a class="reference internal" href="#prerequisites">2.1 Prerequisites</a></li>
+<li><a class="reference internal" href="#installing-the-os">2.2 Installing the OS</a></li>
+<li><a class="reference internal" href="#connecting-to-the-pi-via-ssh">2.3 Connecting to the Pi via SSH</a></li>
+<li><a class="reference internal" href="#configuring-the-pi">2.4 Configuring the Pi</a></li>
+<li><a class="reference internal" href="#setup-and-install-tuya-convert">2.5 Setup and Install tuya-convert</a></li>
+<li><a class="reference internal" href="#upload-esphome-firmware-using-sftp">2.6 Upload ESPHome Firmware using SFTP</a></li>
+<li><a class="reference internal" href="#use-tuya-convert-to-install-esphome-firmware">2.7 Use tuya-convert to install ESPHome Firmware</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#smart-plug-configurations">3. Smart Plug Configurations</a><ul>
+<li><a class="reference internal" href="#brilliant-smart-plug">3.1 Brilliant Smart Plug</a></li>
+<li><a class="reference internal" href="#mirabella-genio-wi-fi-1-usb-adaptor">3.2 Mirabella Genio Wi-Fi 1 USB Adaptor</a></li>
+<li><a class="reference internal" href="#gosund-sp1">3.3 Gosund SP1</a></li>
+<li><a class="reference internal" href="#topersun-wl-sc01-smart-plug">3.4 Topersun WL-SC01 Smart Plug</a></li>
+<li><a class="reference internal" href="#neo-coolcam-wifi-smart-plug">3.5 NEO Coolcam wifi smart plug</a></li>
+<li><a class="reference internal" href="#arlec-grid-connect-smart-plug-in-socket-with-2-1a-usb-charger">3.6 Arlec Grid Connect Smart Plug In Socket With 2.1A USB Charger</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#adding-to-home-assistant">4. Adding to Home Assistant</a></li>
+<li><a class="reference internal" href="#see-also">See Also</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="brilliant-mirabella-genio-smart-plugs">
+<h1>Brilliant / Mirabella Genio Smart Plugs<a class="headerlink" href="#brilliant-mirabella-genio-smart-plugs" title="Permalink to this headline">¶</a></h1>
+<p>Brilliant / Mirabella Genio Smart Plugs are a Tuya-based smart plugs sold by Bunnings and Kmart respectively in Australia.</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/brilliant-mirabella-genio-smart-plugs.jpg"><img alt="../_images/brilliant-mirabella-genio-smart-plugs.jpg" src="../_images/brilliant-mirabella-genio-smart-plugs.jpg" style="width: 50.0%;" /></a>
+</figure>
+<p>Originally intended to be used with their companion apps once flashed using <a class="reference external" href="https://github.com/ct-Open-Source/tuya-convert">tuya-convert</a> ESPHome generated
+firmware can be uploaded allowing you to control the smart plugs via Home Assistant.</p>
+<section id="create-the-esphome-firmware">
+<h2>1. Create the ESPHome Firmware<a class="headerlink" href="#create-the-esphome-firmware" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li><p>Refer to either <a class="reference internal" href="../guides/getting_started_command_line.html"><span class="doc">Getting Started with ESPHome</span></a> or <a class="reference internal" href="../guides/getting_started_hassio.html"><span class="doc">Getting Started with ESPHome and Home Assistant</span></a> before moving onto the next step.</p></li>
+<li><p>Select a plug configuration below based on the plug/s you have and copy all of the text in the code block and paste into your
+<code class="docutils literal notranslate"><span class="pre">name_of_esphome_configuration.yaml</span></code> file.</p></li>
+<li><p>Compile the firmware, again depending on your chosen setup refer to the guides in the first point.</p></li>
+</ol>
+</section>
+<section id="flashing">
+<h2>2. Flashing<a class="headerlink" href="#flashing" title="Permalink to this headline">¶</a></h2>
+<section id="prerequisites">
+<h3>2.1 Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li><p>Before you begin you’ll need one of the following Linux machines running the latest copy of <a class="reference external" href="https://www.raspberrypi.org/downloads/raspbian/">Raspbian Stretch Lite</a></p></li>
+</ol>
+<blockquote>
+<div><ol class="loweralpha simple">
+<li><p>Raspberry Pi 2B/B+ with <a class="reference external" href="https://www.raspberrypi.org/products/raspberry-pi-usb-wifi-dongle/">USB WiFi Dongle</a>.</p></li>
+<li><p>Raspberry Pi 3B/B+.</p></li>
+</ol>
+</div></blockquote>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>As per the <a class="reference external" href="https://github.com/ct-Open-Source/tuya-convert/blob/master/README.md#requirements">tuya-convert documentation</a>:</p>
+<p>Any Linux with a Wifi adapter which can act as an Access Point should also work. Please note that we have tested the Raspberry Pi with clean installations
+only. If you use your Raspberry Pi for anything else, we recommend using another SD card with a clean installation.</p>
+</div>
+<ol class="arabic simple">
+<li><p>A microSD card (minimum 2GB, 8GB+ recommended).</p></li>
+<li><p>Any WiFi device which can connect to the SSID generated by the Raspberry Pi and eventually the flashed Tuya device. <strong>This cannot be an iOS / Apple device.
+Android devices will work.</strong></p></li>
+</ol>
+</section>
+<section id="installing-the-os">
+<h3>2.2 Installing the OS<a class="headerlink" href="#installing-the-os" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li><p>It’s recommended to read the documentation provided by the Raspberry Pi Foundation on the best way to flash the OS to the microSD card depending on your
+platform - <a class="reference external" href="https://www.raspberrypi.org/documentation/installation/installing-images/">Installing operating system images</a>.</p></li>
+<li><p>After you’ve flashed the microSD card browse to the “boot” partition and add a blank file called “ssh” <strong>(without any extension)</strong> which will enable the
+SSH server upon first boot, extended information on this step can be found <a class="reference external" href="https://www.raspberrypi.org/documentation/remote-access/ssh/README.md#3-enable-ssh-on-a-headless-raspberry-pi-add-file-to-sd-card-on-another-machine">here</a>.</p></li>
+<li><p>Plug the microSD card into the Raspberry Pi, connect network cable and power, the Raspberry Pi will start to boot.</p></li>
+</ol>
+</section>
+<section id="connecting-to-the-pi-via-ssh">
+<h3>2.3 Connecting to the Pi via SSH<a class="headerlink" href="#connecting-to-the-pi-via-ssh" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li><p>Download and install <a class="reference external" href="https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html">Putty</a>.</p></li>
+<li><p>Open Putty.</p></li>
+<li><p>Enter the IP of Raspberry Pi in the box that says “Host Name”, leaving the port set to 22 (default for SSH). A list of recommended ways can be found <a class="reference external" href="https://www.raspberrypi.org/documentation/remote-access/ip-address.md">here</a>, but the easiest is to download and use <a class="reference external" href="https://www.fing.com/">Fing</a>
+(<a class="reference external" href="https://play.google.com/store/apps/details?id=com.overlook.android.fing&amp;hl=en_GB">Android</a> / <a class="reference external" href="https://itunes.apple.com/us/app/fing-network-scanner/id430921107?mt=8">iOS</a>).</p></li>
+<li><p>In the “Saved Sessions” input box, name the Raspberry Pi connection and then press “Save”.</p></li>
+<li><p>Select your new saved session from the list.</p></li>
+<li><p>Press “Open”.</p></li>
+</ol>
+</section>
+<section id="configuring-the-pi">
+<h3>2.4 Configuring the Pi<a class="headerlink" href="#configuring-the-pi" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li><p>In the putty window login with the <strong>pi</strong> as the user and <strong>raspberry</strong> for the password.</p></li>
+<li><p>Type <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt-get</span> <span class="pre">update</span> <span class="pre">&amp;&amp;</span> <span class="pre">sudo</span> <span class="pre">apt-get</span> <span class="pre">dist-upgrade</span> <span class="pre">-y</span></code> and wait for the upgrades to install.</p></li>
+<li><p>Type <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt-get</span> <span class="pre">install</span> <span class="pre">git</span></code> and wait for it to install.</p></li>
+</ol>
+</section>
+<section id="setup-and-install-tuya-convert">
+<h3>2.5 Setup and Install tuya-convert<a class="headerlink" href="#setup-and-install-tuya-convert" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li><p>In the putty window type <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span> <span class="pre">https://github.com/ct-Open-Source/tuya-convert</span></code> press enter and wait while the repository is cloned.</p></li>
+<li><p>Type <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">tuya-convert</span></code> and press enter.</p></li>
+<li><p>Type <code class="docutils literal notranslate"><span class="pre">./install_prereq.sh</span></code> press enter and wait as the script gathers all the required components needed to function.</p></li>
+</ol>
+</section>
+<section id="upload-esphome-firmware-using-sftp">
+<h3>2.6 Upload ESPHome Firmware using SFTP<a class="headerlink" href="#upload-esphome-firmware-using-sftp" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li><p>Download <a class="reference external" href="https://filezilla-project.org/download.php?type=client">FileZilla</a> or <a class="reference external" href="https://winscp.net/eng/index.php">WinSCP</a> or use your preferred FTP
+client.</p></li>
+<li><p>Depending on the program you need to connect to the Pi using the IP address as the hostname and the username and password the same as you used to connect
+via SSH and ensure your connection type is set to <strong>SFTP</strong></p></li>
+<li><p>Browse to <code class="docutils literal notranslate"><span class="pre">/root/tuya-convert/files</span></code>.</p></li>
+<li><p>Upload your compiled <code class="docutils literal notranslate"><span class="pre">firmware.bin</span></code> file to this directory. For command line based installs you can access the file under
+<code class="docutils literal notranslate"><span class="pre">&lt;CONFIG_DIR&gt;/&lt;NODE_NAME&gt;/.pioenvs/&lt;NODE_NAME&gt;/firmware.bin</span></code> alternatively Hass.io users can download the file directly from the web ui.</p></li>
+</ol>
+</section>
+<section id="use-tuya-convert-to-install-esphome-firmware">
+<h3>2.7 Use tuya-convert to install ESPHome Firmware<a class="headerlink" href="#use-tuya-convert-to-install-esphome-firmware" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic">
+<li><p>Type <code class="docutils literal notranslate"><span class="pre">./start_flash.sh</span></code></p></li>
+<li><p>Type <code class="docutils literal notranslate"><span class="pre">yes</span></code> to accept the warning.</p></li>
+<li><p>Connect your alternative WiFi device (non iOS / Apple based) to the <code class="docutils literal notranslate"><span class="pre">vtrust-flash</span></code> SSID using <code class="docutils literal notranslate"><span class="pre">flashmeifyoucan</span></code> as the password. This is the network
+being broadcast by the Pi from the tuya flash script.</p></li>
+<li><p>If you haven’t already connect your smart plug and turn it on. It should automatically enter pairing mode, if it doesn’t follow the instructions below:</p>
+<ul class="simple">
+<li><p>Brilliant <a class="reference external" href="https://www.brilliantsmart.com.au/wp-content/uploads/2019/02/03.-How-to-setup-the-Smart-plug.pdf">(PDF Manual)</a></p></li>
+</ul>
+<blockquote>
+<div><ul class="simple">
+<li><p>To connect the Smart WiFi Plug to your WiFi press and hold the manual control button for about 5 seconds until you hear a click. Let go of the button
+as soon as you hear the <strong>click</strong>. Then press button once again to activate blinking. <strong>The red indicator light should now blink rapidly (2 times per
+second)</strong>.</p></li>
+</ul>
+</div></blockquote>
+<ul class="simple">
+<li><p>Mirabella <a class="reference external" href="https://img1.wsimg.com/blobby/go/67cdd3b9-3600-4104-b097-603c05201237/downloads/1cq5h6nt7_336441.pdf">(PDF Manual)</a></p></li>
+</ul>
+<blockquote>
+<div><ul class="simple">
+<li><p>To do this, ensure your plug is on (the indicator light should be blue), hold the power button down for 5 seconds until you hear a click, let go of the
+power button and then press the button once to activate.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Press enter on your putty window to start the flash process and wait. If the connection is successful you should see a large amount of scrolling text, this
+is the script backing up the factory shipped firmware.</p></li>
+<li><p>Once the process is complete you can type <code class="docutils literal notranslate"><span class="pre">curl</span> <span class="pre">http://10.42.42.42/flashURL?url=http://10.42.42.1/files/firmware.bin</span></code></p></li>
+<li><p>The plug will restart and if everything is working correctly after a few seconds you should be able to press the button triggering the relay and turning the
+blue led on.</p></li>
+</ol>
+</section>
+</section>
+<section id="smart-plug-configurations">
+<h2>3. Smart Plug Configurations<a class="headerlink" href="#smart-plug-configurations" title="Permalink to this headline">¶</a></h2>
+<p>Thanks to the existing work by <a class="reference external" href="https://github.com/ct-Open-Source/tuya-convert/issues/66">&#64;ideasman69</a> and
+<a class="reference external" href="https://github.com/arendst/Sonoff-Tasmota/wiki/Mirabella-Genio-Smart-Plug">afalzon</a>
+which these adaptions created by <a class="reference external" href="https://community.home-assistant.io/u/cryptelli">&#64;cryptelli</a> are based on.</p>
+<section id="brilliant-smart-plug">
+<h3>3.1 Brilliant Smart Plug<a class="headerlink" href="#brilliant-smart-plug" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">esphome</span><span class="p">:</span>
+  <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">brilliant_smart_plug</span>
+  <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ESP8266</span>
+  <span class="nt">board</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">esp01_1m</span>
+
+<span class="nt">wifi</span><span class="p">:</span>
+  <span class="nt">ssid</span><span class="p">:</span> <span class="s">&#39;WIFI&#39;</span>
+  <span class="nt">password</span><span class="p">:</span> <span class="s">&#39;WIFIPASS&#39;</span>
+
+<span class="nt">logger</span><span class="p">:</span>
+
+<span class="nt">api</span><span class="p">:</span>
+
+<span class="nt">ota</span><span class="p">:</span>
+
+<span class="nt">binary_sensor</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">gpio</span>
+    <span class="nt">pin</span><span class="p">:</span>
+      <span class="nt">number</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">14</span>
+      <span class="nt">mode</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">INPUT_PULLUP</span>
+      <span class="nt">inverted</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+    <span class="nt">name</span><span class="p">:</span> <span class="s">&quot;Power</span><span class="nv"> </span><span class="s">Button&quot;</span>
+    <span class="nt">on_press</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="nt">switch.toggle</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">relay</span>
+
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">status</span>
+    <span class="nt">name</span><span class="p">:</span> <span class="s">&quot;Status&quot;</span>
+
+<span class="nt">switch</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">gpio</span>
+    <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">red_led</span>
+    <span class="nt">pin</span><span class="p">:</span>
+      <span class="nt">number</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO12</span>
+      <span class="nt">inverted</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">gpio</span>
+    <span class="nt">name</span><span class="p">:</span> <span class="s">&quot;Brilliant</span><span class="nv"> </span><span class="s">Smart</span><span class="nv"> </span><span class="s">Plug&quot;</span>
+    <span class="nt">pin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO5</span>
+    <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">relay</span>
+
+    <span class="c1"># Turn off red LED to show blue when turned on</span>
+    <span class="nt">on_turn_on</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="nt">switch.turn_off</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">red_led</span>
+
+    <span class="c1"># Turns on the red LED once the plug is turned off. Stock plug doesn&#39;t do this, to restore normal behavior remove the on_turn_on and on_turn_off</span>
+    <span class="c1"># blocks.</span>
+    <span class="nt">on_turn_off</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="nt">switch.turn_on</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">red_led</span>
+</pre></div>
+</div>
+</section>
+<section id="mirabella-genio-wi-fi-1-usb-adaptor">
+<h3>3.2 Mirabella Genio Wi-Fi 1 USB Adaptor<a class="headerlink" href="#mirabella-genio-wi-fi-1-usb-adaptor" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">esphome</span><span class="p">:</span>
+  <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">mirabella_genio_smart_plug</span>
+  <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ESP8266</span>
+  <span class="nt">board</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">esp01_1m</span>
+
+<span class="nt">wifi</span><span class="p">:</span>
+  <span class="nt">ssid</span><span class="p">:</span> <span class="s">&#39;WIFI&#39;</span>
+  <span class="nt">password</span><span class="p">:</span> <span class="s">&#39;WIFIPASS&#39;</span>
+
+<span class="nt">logger</span><span class="p">:</span>
+
+<span class="nt">api</span><span class="p">:</span>
+
+<span class="nt">ota</span><span class="p">:</span>
+
+<span class="nt">binary_sensor</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">gpio</span>
+    <span class="nt">pin</span><span class="p">:</span>
+      <span class="nt">number</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO13</span>
+      <span class="nt">mode</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">INPUT_PULLUP</span>
+      <span class="nt">inverted</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+    <span class="nt">name</span><span class="p">:</span> <span class="s">&quot;Power</span><span class="nv"> </span><span class="s">Button&quot;</span>
+    <span class="nt">on_press</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="nt">switch.toggle</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">relay</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">status</span>
+    <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Status</span>
+
+<span class="nt">switch</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">gpio</span>
+    <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">red_led</span>
+    <span class="nt">pin</span><span class="p">:</span>
+      <span class="nt">number</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO4</span>
+      <span class="nt">inverted</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">gpio</span>
+    <span class="nt">name</span><span class="p">:</span> <span class="s">&quot;Mirabella</span><span class="nv"> </span><span class="s">Genio</span><span class="nv"> </span><span class="s">Smart</span><span class="nv"> </span><span class="s">Plug&quot;</span>
+    <span class="nt">pin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO12</span>
+    <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">relay</span>
+
+    <span class="c1"># Turn on red LED</span>
+    <span class="nt">on_turn_on</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="nt">switch.turn_on</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">red_led</span>
+
+    <span class="c1"># Turns off red LED</span>
+    <span class="nt">on_turn_off</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="nt">switch.turn_off</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">red_led</span>
+</pre></div>
+</div>
+</section>
+<section id="gosund-sp1">
+<h3>3.3 Gosund SP1<a class="headerlink" href="#gosund-sp1" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">esphome</span><span class="p">:</span>
+  <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">gosund_sp1_smart_plug</span>
+  <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ESP8266</span>
+  <span class="nt">board</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">esp8285</span>
+
+<span class="nt">wifi</span><span class="p">:</span>
+  <span class="nt">ssid</span><span class="p">:</span> <span class="s">&#39;WIFI&#39;</span>
+  <span class="nt">password</span><span class="p">:</span> <span class="s">&#39;WIFIPASS&#39;</span>
+
+<span class="nt">logger</span><span class="p">:</span>
+
+<span class="nt">api</span><span class="p">:</span>
+
+<span class="nt">ota</span><span class="p">:</span>
+
+<span class="nt">binary_sensor</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">gpio</span>
+    <span class="nt">pin</span><span class="p">:</span>
+      <span class="nt">number</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO3</span>
+      <span class="nt">inverted</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">True</span>
+    <span class="nt">name</span><span class="p">:</span> <span class="s">&quot;Power</span><span class="nv"> </span><span class="s">Button&quot;</span>
+    <span class="nt">on_press</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="nt">switch.toggle</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">relay</span>
+
+<span class="nt">switch</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">gpio</span>
+    <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">led</span>
+    <span class="nt">pin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO1</span>
+
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">gpio</span>
+    <span class="nt">name</span><span class="p">:</span> <span class="s">&quot;Gosund</span><span class="nv"> </span><span class="s">SP1</span><span class="nv"> </span><span class="s">Smart</span><span class="nv"> </span><span class="s">Plug&quot;</span>
+    <span class="nt">pin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO14</span>
+    <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">relay</span>
+    <span class="nt">on_turn_on</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="nt">switch.turn_on</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">led</span>
+    <span class="nt">on_turn_off</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="nt">switch.turn_off</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">led</span>
+
+<span class="nt">sensor</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">hlw8012</span>
+    <span class="nt">sel_pin</span><span class="p">:</span>
+      <span class="nt">number</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO12</span>
+      <span class="nt">inverted</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">True</span>
+    <span class="nt">cf_pin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO04</span>
+    <span class="nt">cf1_pin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO05</span>
+    <span class="nt">current_resistor</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">0.00221</span>
+    <span class="nt">voltage_divider</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">871</span>
+    <span class="nt">current</span><span class="p">:</span>
+      <span class="nt">name</span><span class="p">:</span> <span class="s">&quot;Gosund</span><span class="nv"> </span><span class="s">SP1</span><span class="nv"> </span><span class="s">Smart</span><span class="nv"> </span><span class="s">Plug</span><span class="nv"> </span><span class="s">current&quot;</span>
+      <span class="nt">unit_of_measurement</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">A</span>
+    <span class="nt">voltage</span><span class="p">:</span>
+      <span class="nt">name</span><span class="p">:</span> <span class="s">&quot;Gosund</span><span class="nv"> </span><span class="s">SP1</span><span class="nv"> </span><span class="s">Smart</span><span class="nv"> </span><span class="s">Plug</span><span class="nv"> </span><span class="s">Voltage&quot;</span>
+      <span class="nt">unit_of_measurement</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">V</span>
+    <span class="nt">power</span><span class="p">:</span>
+      <span class="nt">name</span><span class="p">:</span> <span class="s">&quot;Gosund</span><span class="nv"> </span><span class="s">SP1</span><span class="nv"> </span><span class="s">Smart</span><span class="nv"> </span><span class="s">Plug</span><span class="nv"> </span><span class="s">Wattage&quot;</span>
+      <span class="nt">unit_of_measurement</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">W</span>
+      <span class="nt">id</span><span class="p">:</span> <span class="s">&quot;energy_temp_Wattage&quot;</span>
+    <span class="nt">change_mode_every</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">8</span>
+    <span class="nt">update_interval</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">10s</span>
+</pre></div>
+</div>
+<p>Check the following page for calibrating the measurements: <a class="reference internal" href="../components/sensor/index.html#sensor-filter-calibrate-linear"><span class="std std-ref">calibrate_linear</span></a>.</p>
+</section>
+<section id="topersun-wl-sc01-smart-plug">
+<h3>3.4 Topersun WL-SC01 Smart Plug<a class="headerlink" href="#topersun-wl-sc01-smart-plug" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">esphome</span><span class="p">:</span>
+  <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">topersun_smart_plug</span>
+  <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ESP8266</span>
+  <span class="nt">board</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">esp01_1m</span>
+
+<span class="nt">wifi</span><span class="p">:</span>
+  <span class="nt">ssid</span><span class="p">:</span> <span class="s">&#39;WIFI&#39;</span>
+  <span class="nt">password</span><span class="p">:</span> <span class="s">&#39;WIFIPASS&#39;</span>
+
+<span class="nt">logger</span><span class="p">:</span>
+
+<span class="nt">api</span><span class="p">:</span>
+
+<span class="nt">ota</span><span class="p">:</span>
+
+<span class="nt">binary_sensor</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">gpio</span>
+    <span class="nt">pin</span><span class="p">:</span>
+      <span class="nt">number</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">14</span>
+      <span class="nt">mode</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">INPUT_PULLUP</span>
+      <span class="nt">inverted</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+    <span class="nt">name</span><span class="p">:</span> <span class="s">&quot;Power</span><span class="nv"> </span><span class="s">Button&quot;</span>
+    <span class="nt">on_press</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="nt">switch.toggle</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">relay</span>
+
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">status</span>
+    <span class="nt">name</span><span class="p">:</span> <span class="s">&quot;Status&quot;</span>
+
+<span class="nt">switch</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">gpio</span>
+    <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">green_led</span>
+    <span class="nt">pin</span><span class="p">:</span>
+      <span class="nt">number</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO4</span>
+      <span class="nt">inverted</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">gpio</span>
+    <span class="nt">name</span><span class="p">:</span> <span class="s">&quot;Brilliant</span><span class="nv"> </span><span class="s">Smart</span><span class="nv"> </span><span class="s">Plug&quot;</span>
+    <span class="nt">pin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO12</span>
+    <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">relay</span>
+
+    <span class="c1"># Turn off green LED to show red when turned on.</span>
+    <span class="nt">on_turn_on</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="nt">switch.turn_off</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">green_led</span>
+
+    <span class="c1"># Turns on the green LED once the plug is turned off.</span>
+    <span class="nt">on_turn_off</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="nt">switch.turn_on</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">green_led</span>
+</pre></div>
+</div>
+</section>
+<section id="neo-coolcam-wifi-smart-plug">
+<h3>3.5 NEO Coolcam wifi smart plug<a class="headerlink" href="#neo-coolcam-wifi-smart-plug" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">substitutions</span><span class="p">:</span>
+  <span class="nt">plug_name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">coolcam_plug1</span>
+  <span class="c1"># Higher value gives lower watt readout</span>
+  <span class="nt">current_res</span><span class="p">:</span> <span class="s">&quot;0.00221&quot;</span>
+  <span class="c1"># Lower value gives lower voltage readout</span>
+  <span class="nt">voltage_div</span><span class="p">:</span> <span class="s">&quot;800&quot;</span>
+
+<span class="nt">esphome</span><span class="p">:</span>
+  <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">${plug_name}</span>
+  <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ESP8266</span>
+  <span class="nt">board</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">esp8285</span>
+
+<span class="nt">wifi</span><span class="p">:</span>
+  <span class="nt">ssid</span><span class="p">:</span> <span class="s">&#39;WIFI&#39;</span>
+  <span class="nt">password</span><span class="p">:</span> <span class="s">&#39;WIFIPASS&#39;</span>
+
+<span class="nt">logger</span><span class="p">:</span>
+
+<span class="nt">api</span><span class="p">:</span>
+
+<span class="nt">ota</span><span class="p">:</span>
+
+<span class="nt">binary_sensor</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">gpio</span>
+    <span class="nt">pin</span><span class="p">:</span>
+      <span class="nt">number</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO0</span>
+      <span class="nt">inverted</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">True</span>
+    <span class="nt">name</span><span class="p">:</span> <span class="s">&quot;${plug_name}_button&quot;</span>
+    <span class="nt">on_press</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="nt">switch.toggle</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">relay</span>
+
+<span class="nt">switch</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">gpio</span>
+    <span class="nt">name</span><span class="p">:</span> <span class="s">&quot;${plug_name}_LED_Red&quot;</span>
+    <span class="nt">pin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO13</span>
+    <span class="nt">inverted</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">True</span>
+    <span class="nt">restore_mode</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ALWAYS_OFF</span>
+    <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">red_led</span>
+
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">gpio</span>
+    <span class="nt">name</span><span class="p">:</span> <span class="s">&quot;${plug_name}_Relay&quot;</span>
+    <span class="nt">pin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO14</span>
+    <span class="nt">restore_mode</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ALWAYS_ON</span>
+    <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">relay</span>
+
+    <span class="nt">on_turn_on</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="nt">switch.turn_on</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">red_led</span>
+
+    <span class="nt">on_turn_off</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="nt">switch.turn_off</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">red_led</span>
+
+<span class="nt">sensor</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">hlw8012</span>
+    <span class="nt">sel_pin</span><span class="p">:</span>
+      <span class="nt">number</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO12</span>
+      <span class="nt">inverted</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">True</span>
+    <span class="nt">cf_pin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO04</span>
+    <span class="nt">cf1_pin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO05</span>
+    <span class="nt">current_resistor</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">${current_res}</span>
+    <span class="nt">voltage_divider</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">${voltage_div}</span>
+    <span class="nt">current</span><span class="p">:</span>
+      <span class="nt">name</span><span class="p">:</span> <span class="s">&quot;${plug_name}_Amperage&quot;</span>
+      <span class="nt">unit_of_measurement</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">A</span>
+    <span class="nt">voltage</span><span class="p">:</span>
+      <span class="nt">name</span><span class="p">:</span> <span class="s">&quot;${plug_name}_Voltage&quot;</span>
+      <span class="nt">unit_of_measurement</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">V</span>
+    <span class="nt">power</span><span class="p">:</span>
+      <span class="nt">name</span><span class="p">:</span> <span class="s">&quot;${plug_name}_Wattage&quot;</span>
+      <span class="nt">unit_of_measurement</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">W</span>
+      <span class="nt">id</span><span class="p">:</span> <span class="s">&quot;${plug_name}_Wattage&quot;</span>
+    <span class="nt">change_mode_every</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">8</span>
+    <span class="nt">update_interval</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">10s</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">total_daily_energy</span>
+    <span class="nt">name</span><span class="p">:</span> <span class="s">&quot;${plug_name}_Total</span><span class="nv"> </span><span class="s">Daily</span><span class="nv"> </span><span class="s">Energy&quot;</span>
+    <span class="nt">power_id</span><span class="p">:</span> <span class="s">&quot;${plug_name}_Wattage&quot;</span>
+    <span class="nt">filters</span><span class="p">:</span>
+        <span class="c1"># Multiplication factor from W to kW is 0.001</span>
+        <span class="p p-Indicator">-</span> <span class="nt">multiply</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">0.001</span>
+    <span class="nt">unit_of_measurement</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">kWh</span>
+
+<span class="c1"># Extra sensor to keep track of plug uptime</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">uptime</span>
+    <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">${plug_name}_Uptime SensorPreformatted text</span>
+</pre></div>
+</div>
+</section>
+<section id="arlec-grid-connect-smart-plug-in-socket-with-2-1a-usb-charger">
+<h3>3.6 Arlec Grid Connect Smart Plug In Socket With 2.1A USB Charger<a class="headerlink" href="#arlec-grid-connect-smart-plug-in-socket-with-2-1a-usb-charger" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">substitutions</span><span class="p">:</span>
+  <span class="nt">item_name</span><span class="p">:</span> <span class="s">&quot;arlec_pc389ha_001&quot;</span>
+
+<span class="nt">esphome</span><span class="p">:</span>
+  <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">${item_name}</span>
+  <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ESP8266</span>
+  <span class="nt">board</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">esp01_1m</span>
+
+<span class="nt">wifi</span><span class="p">:</span>
+  <span class="nt">ssid</span><span class="p">:</span> <span class="s">&#39;WIFI&#39;</span>
+  <span class="nt">password</span><span class="p">:</span> <span class="s">&#39;WIFIPASS&#39;</span>
+
+  <span class="c1"># Enable fallback hotspot (captive portal) in case wifi connection fails</span>
+  <span class="nt">ap</span><span class="p">:</span>
+    <span class="nt">ssid</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">${item_name}</span>
+
+<span class="nt">captive_portal</span><span class="p">:</span>
+
+<span class="c1"># Enable logging</span>
+<span class="nt">logger</span><span class="p">:</span>
+
+<span class="c1"># Enable Home Assistant API</span>
+<span class="nt">api</span><span class="p">:</span>
+
+<span class="nt">ota</span><span class="p">:</span>
+
+<span class="nt">binary_sensor</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">gpio</span>
+    <span class="nt">pin</span><span class="p">:</span>
+      <span class="nt">number</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">14</span>
+      <span class="nt">mode</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">INPUT_PULLUP</span>
+      <span class="nt">inverted</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+    <span class="nt">name</span><span class="p">:</span> <span class="s">&quot;${item_name}_button&quot;</span>
+    <span class="nt">on_press</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="nt">switch.toggle</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">relay</span>
+
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">status</span>
+    <span class="nt">name</span><span class="p">:</span> <span class="s">&quot;${item_name}_status&quot;</span>
+
+<span class="nt">switch</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">gpio</span>
+    <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">blue_led</span>
+    <span class="nt">pin</span><span class="p">:</span>
+      <span class="nt">number</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO4</span>
+      <span class="nt">inverted</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">gpio</span>
+    <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">red_led</span>
+    <span class="nt">pin</span><span class="p">:</span>
+      <span class="nt">number</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO13</span>
+      <span class="nt">inverted</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">gpio</span>
+    <span class="nt">name</span><span class="p">:</span> <span class="s">&quot;${item_name}_power&quot;</span>
+    <span class="nt">pin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO12</span>
+    <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">relay</span>
+    <span class="nt">on_turn_on</span><span class="p">:</span>
+      <span class="c1"># Turn off blue LED to show blue when turned on</span>
+      <span class="p p-Indicator">-</span> <span class="nt">switch.turn_off</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">red_led</span>
+      <span class="p p-Indicator">-</span> <span class="nt">switch.turn_on</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">blue_led</span>
+    <span class="nt">on_turn_off</span><span class="p">:</span>
+      <span class="c1"># Turns on the blue LED once the plug is turned off</span>
+      <span class="p p-Indicator">-</span> <span class="nt">switch.turn_off</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">blue_led</span>
+      <span class="p p-Indicator">-</span> <span class="nt">switch.turn_on</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">red_led</span>
+
+<span class="nt">sensor</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">wifi_signal</span>
+    <span class="nt">name</span><span class="p">:</span> <span class="s">&quot;${item_name}_wifi_signal&quot;</span>
+    <span class="nt">update_interval</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">60s</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="adding-to-home-assistant">
+<h2>4. Adding to Home Assistant<a class="headerlink" href="#adding-to-home-assistant" title="Permalink to this headline">¶</a></h2>
+<p>You can now add your smart plug to home assistant via the configurations page, look for ‘ESPHome’ under the Integrations option and click ‘Configure’.</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/brilliant-mirabella-genio-smart-plugs-homeassistant.jpg"><img alt="../_images/brilliant-mirabella-genio-smart-plugs-homeassistant.jpg" src="../_images/brilliant-mirabella-genio-smart-plugs-homeassistant.jpg" style="width: 50.0%;" /></a>
+</figure>
+</section>
+<section id="see-also">
+<h2>See Also<a class="headerlink" href="#see-also" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="../components/switch/index.html"><span class="doc">Switch Component</span></a></p></li>
+<li><p><a class="reference internal" href="../components/binary_sensor/index.html"><span class="doc">Binary Sensor Component</span></a></p></li>
+<li><p><a class="reference internal" href="../components/light/index.html"><span class="doc">Light Component</span></a></p></li>
+<li><p><a class="reference internal" href="../components/light/monochromatic.html"><span class="doc">Monochromatic Light</span></a></p></li>
+<li><p><a class="reference internal" href="../components/output/index.html"><span class="doc">Output Component</span></a></p></li>
+<li><p><a class="reference internal" href="../components/output/esp8266_pwm.html"><span class="doc">ESP8266 Software PWM Output</span></a></p></li>
+<li><p><a class="reference internal" href="../guides/automations.html"><span class="doc">Automations and Templates</span></a></p></li>
+<li><p><a class="reference external" href="https://github.com/esphome/esphome-docs/blob/current/cookbook/brilliant-mirabella-genio-smart-plugs.rst">Edit this page on GitHub</a></p></li>
+</ul>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+  <div id="upgrade-footer">
+    A new version has been release since you last visited this page: 1.17.2 🎉
+    <div class="footer-button-container">
+      <div role="button" id="upgrade-footer-dismiss" class="footer-button">Dismiss</div>
+      <a id="upgrade-footer-changelog" class="footer-button" href="../changelog/v1.17.0.html">View Changelog</a>  
+    </div>
+  </div>
+  <script>
+    var old = window.localStorage.getItem("version");
+    if (old === null) { window.localStorage.setItem("version", "1.17");
+    } else if (old !== "1.17") {
+      const footerEl = document.getElementById("upgrade-footer");
+      footerEl.classList.add("not-hidden");
+      footerEl.addEventListener('click', function () {
+        window.localStorage.setItem("version", "1.17");
+        footerEl.classList.remove("not-hidden");
+      });
+    }
+  </script>
+
+  </body>
+
+<!-- Mirrored from esphome.io/cookbook/brilliant-mirabella-genio-smart-plugs.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 16 May 2021 03:02:49 GMT -->
+</html>

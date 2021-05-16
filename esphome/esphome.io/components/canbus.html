@@ -1,0 +1,492 @@
+
+  <!DOCTYPE html>
+
+
+<html lang="en">
+  
+<!-- Mirrored from esphome.io/components/canbus.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 16 May 2021 02:58:49 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+<meta name="description" content="Instructions for setting up an CAN bus in ESPHome">
+<meta name="keywords" content="CAN">
+<meta itemprop="name" content="CAN bus">
+<meta itemprop="description" content="Instructions for setting up an CAN bus in ESPHome">
+<meta itemprop="image" content="../_images/canbus.html">
+<meta name="twitter:title" content="CAN bus">
+<meta name="twitter:image:src" content="../_images/canbus.html">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@OttoWinter_">
+<meta name="twitter:description" content="Instructions for setting up an CAN bus in ESPHome">
+<meta property="og:title" content="CAN bus">
+<meta property="og:image" content="../_images/canbus.html">
+<meta property="og:type" content="website">
+<meta property="og:description" content="Instructions for setting up an CAN bus in ESPHome">
+
+    <title>CAN bus &#8212; ESPHome</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <link rel="canonical" href="canbus.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Captive Portal" href="captive_portal.html" />
+    <link rel="prev" title="Native API Component" href="api.html" />
+  <link rel="stylesheet" href="../_static/customf001.css?hash=f908c2b5" type="text/css" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../_static/apple-touch-icon.png">
+  <link rel="shortcut icon" href="../_static/favicon.ico">
+  <link rel="icon" type="image/png" sizes="512x512" href="../_static/favicon-512x512.png">
+  <link rel="icon" type="image/png" sizes="256x256" href="../_static/favicon-256x256.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="../_static/favicon-192x192.png">
+  <link rel="icon" type="image/png" sizes="128x128" href="../_static/favicon-128x128.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../_static/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../_static/favicon-16x16.png">
+  <link rel="manifest" href="../_static/site.webmanifest">
+  <link rel="mask-icon" href="../_static/safari-pinned-tab.svg" color="#646464">
+  <meta name="apple-mobile-web-app-title" content="ESPHome">
+  <meta name="application-name" content="ESPHome">
+  <meta name="msapplication-TileColor" content="#dfdfdf">
+  <meta name="msapplication-config" content="/_static/browserconfig.xml">
+  <meta name="theme-color" content="#dfdfdf">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta property="og:site_name" content="ESPHome">
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head><body>
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index-2.html">
+              <img class="logo" src="../_static/logo-text.svg" alt="Logo"/>
+            </a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="https://esphome.io/search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+  <h3><a href="../index-2.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">CAN bus</a><ul>
+<li><a class="reference internal" href="#base-can-bus-configuration">Base CAN Bus Configuration</a><ul>
+<li><a class="reference internal" href="#on-frame"><code class="docutils literal notranslate"><span class="pre">on_frame</span></code></a></li>
+<li><a class="reference internal" href="#canbus-send-action"><code class="docutils literal notranslate"><span class="pre">canbus.send</span></code> Action</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#mcp2515-component">MCP2515 Component</a><ul>
+<li><a class="reference internal" href="#configuration-variables">Configuration variables:</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#wiring-options">Wiring options</a></li>
+<li><a class="reference internal" href="#extended-id">Extended ID</a></li>
+<li><a class="reference internal" href="#binary-sensor-example">Binary Sensor Example</a></li>
+<li><a class="reference internal" href="#cover-example">Cover Example</a></li>
+<li><a class="reference internal" href="#see-also">See Also</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="can-bus">
+<span id="canbus"></span><h1>CAN bus<a class="headerlink" href="#can-bus" title="Permalink to this headline">¶</a></h1>
+<p>Controller Area Network (CAN bus) is a serial bus protocol to connect individual systems and sensors
+as an alternative to conventional multi-wire looms.
+It allows automotive components to communicate on a single or dual-wire networked data bus up to 1Mbps.
+CAN is an International Standardization Organization (ISO) defined serial communications bus originally
+developed for the automotive industry to replace the complex wiring harness with a two-wire bus. The
+specification calls for high immunity to electrical interference and the ability to self-diagnose and repair
+data errors. These features have led to CAN’s popularity in a variety of industries including building
+automation, medical, and manufacturing.</p>
+<p>The current ESPHome implementation supports single frame data transfer. In this way you may send and
+receive data frames up to 8 bytes.
+With this you can transmit the press of a button or the feedback from a sensor on the bus.
+All other devices on the bus will be able to get this data to switch on/off a light or display the
+transmitted data.</p>
+<p>The CAN bus itself has only two wires named Can High and Can Low or CanH and CanL. For the ESPHome
+CAN bus to work you need to select the device that has the physical CAN bus implemented.
+At this moment only the MCP2515 driver is supported. You can configure multiple busses.</p>
+<p>Any can bus node can transmit data at any time, and any node can send any <code class="docutils literal notranslate"><span class="pre">can_id</span></code> value and any
+node can receive any can_id too. Is up to you how to organize the can_id values. You can setup a can
+bus network where each node has a can id which will use to broadcast data about itself, if a node
+should, e.g. turn on a light, it can listen for can messages with the can id assigned to it.
+So you can have several nodes being able to control a light in e.g. node 20.</p>
+<section id="base-can-bus-configuration">
+<h2>Base CAN Bus Configuration<a class="headerlink" href="#base-can-bus-configuration" title="Permalink to this headline">¶</a></h2>
+<p>Each canbus platform extends this configuration schema.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example configuration entry</span>
+<span class="nt">canbus</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">...</span>
+    <span class="nt">can_id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">4</span>
+    <span class="nt">on_frame</span><span class="p">:</span>
+    <span class="p p-Indicator">-</span> <span class="nt">can_id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">500</span>
+      <span class="nt">use_extended_id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">False</span>
+      <span class="nt">then</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="nt">lambda</span><span class="p">:</span> <span class="p p-Indicator">|-</span>
+          <span class="no">std::string b(x.begin(), x.end());</span>
+          <span class="no">ESP_LOGD(&quot;can id 500&quot;, &quot;%s&quot;, &amp;b[0] );</span>
+</pre></div>
+</div>
+<p>Configuration variables:</p>
+<ul>
+<li><p><strong>id</strong> (<em>Optional</em>, <a class="reference internal" href="../guides/configuration-types.html#config-id"><span class="std std-ref">ID</span></a>): Manually specify the ID used for code generation.</p></li>
+<li><p><strong>can_id</strong> (<strong>Required</strong>, integer): default <em>can id</em> used for transmitting frames.</p></li>
+<li><p><strong>use_extended_id</strong> (<em>Optional</em>, boolean): default <em>False</em> identifies the type of <em>can_id</em>:
+<em>False</em>: Standard 11 bits IDs, <em>True</em>: Extended 29 bits ID</p></li>
+<li><p><strong>bit_rate</strong> (<em>Optional</em>, enum): One of the supported bitrates. Defaults to <code class="docutils literal notranslate"><span class="pre">125KBPS</span></code>.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>5KBPS</p></li>
+<li><p>10KBPS</p></li>
+<li><p>20KBPS</p></li>
+<li><p>31K25BPS</p></li>
+<li><p>33KBPS</p></li>
+<li><p>40KBPS</p></li>
+<li><p>50KBPS</p></li>
+<li><p>80KBPS</p></li>
+<li><p>83K3BPS</p></li>
+<li><p>95KBPS</p></li>
+<li><p>100KBPS</p></li>
+<li><p>125KBPS</p></li>
+<li><p>200KBPS</p></li>
+<li><p>250KBPS</p></li>
+<li><p>500KBPS</p></li>
+<li><p>1000KBPS</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+<p>Automations:</p>
+<ul class="simple">
+<li><p><strong>on_frame</strong> (<em>Optional</em>, <a class="reference internal" href="../guides/automations.html#automation"><span class="std std-ref">Automation</span></a>): An automation to perform when ability
+CAN Frame is received. See <a class="reference internal" href="#canbus-on-frame"><span class="std std-ref">on_frame</span></a>.</p></li>
+</ul>
+<section id="on-frame">
+<span id="canbus-on-frame"></span><h3><code class="docutils literal notranslate"><span class="pre">on_frame</span></code><a class="headerlink" href="#on-frame" title="Permalink to this headline">¶</a></h3>
+<p>This automation will be triggered when a can frame is  received. A variable <code class="docutils literal notranslate"><span class="pre">x</span></code> of type
+<code class="docutils literal notranslate"><span class="pre">std::vector&lt;uint8_t&gt;</span></code> is passed to the automation for use in lambdas.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Messages this node sends to the same ID will not show up as received messages.</p>
+</div>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">canbus</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">...</span>
+    <span class="nt">on_frame</span><span class="p">:</span>
+    <span class="p p-Indicator">-</span> <span class="nt">can_id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">43</span> <span class="c1"># the received can_id</span>
+      <span class="nt">then</span><span class="p">:</span>
+        <span class="p p-Indicator">-</span> <span class="nt">if</span><span class="p">:</span>
+            <span class="nt">condition</span><span class="p">:</span>
+              <span class="nt">lambda</span><span class="p">:</span> <span class="s">&#39;return</span><span class="nv"> </span><span class="s">(x.size()</span><span class="nv"> </span><span class="s">&gt;</span><span class="nv"> </span><span class="s">0)</span><span class="nv"> </span><span class="s">?</span><span class="nv"> </span><span class="s">x[0]</span><span class="nv"> </span><span class="s">==</span><span class="nv"> </span><span class="s">0x11</span><span class="nv"> </span><span class="s">:</span><span class="nv"> </span><span class="s">false;&#39;</span>
+            <span class="nt">then</span><span class="p">:</span>
+              <span class="nt">light.toggle</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">light1</span>
+</pre></div>
+</div>
+</section>
+<section id="canbus-send-action">
+<h3><code class="docutils literal notranslate"><span class="pre">canbus.send</span></code> Action<a class="headerlink" href="#canbus-send-action" title="Permalink to this headline">¶</a></h3>
+<p>The can bus can transmit frames by means of the <code class="docutils literal notranslate"><span class="pre">canbus.send</span></code> action.
+There are several forms to use it:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">on_...</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">canbus.send</span><span class="p">:</span>
+      <span class="nt">data</span><span class="p">:</span> <span class="p p-Indicator">[</span> <span class="nv">0x10</span><span class="p p-Indicator">,</span> <span class="nv">0x20</span><span class="p p-Indicator">,</span> <span class="nv">0x30</span> <span class="p p-Indicator">]</span>
+      <span class="nt">canbus_id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">my_mcp2515</span> <span class="c1"># optional if you only have 1 canbus device</span>
+      <span class="nt">can_id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">23</span> <span class="c1"># override the can_id configured in the can bus</span>
+
+<span class="nt">on_...</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">canbus.send</span><span class="p">:</span> <span class="p p-Indicator">[</span> <span class="nv">0x11</span><span class="p p-Indicator">,</span> <span class="nv">0x22</span><span class="p p-Indicator">,</span> <span class="nv">0x33</span> <span class="p p-Indicator">]</span>
+
+  <span class="p p-Indicator">-</span> <span class="nt">canbus.send</span><span class="p">:</span> <span class="s">&#39;hello&#39;</span>
+
+  <span class="c1"># Templated, return type is std::vector&lt;uint8_t&gt;</span>
+  <span class="p p-Indicator">-</span> <span class="nt">canbus.send</span><span class="p">:</span> <span class="kt">!lambda</span>
+      <span class="l l-Scalar l-Scalar-Plain">return {0x00, 0x20, 0x42};</span>
+</pre></div>
+</div>
+<p>Configuration variables:</p>
+<ul class="simple">
+<li><p><strong>data</strong> (<strong>Required</strong>, binary data): Data to transmit, up to 8 bytes or
+characters are supported by can bus per frame.</p></li>
+<li><p><strong>canbus_id</strong> (<em>Optional</em>): Optionally set the can bus id to use for transmitting
+the frame. Not needed if you are using only 1 can bus.</p></li>
+<li><p><strong>can_id</strong> (<em>Optional</em>, int): Allows to override the can id configured in
+the can bus device.</p></li>
+<li><p><strong>use_extended_id</strong> (<em>Optional</em>, boolean): default <em>False</em> identifies the type of <em>can_id</em>:
+<em>False</em>: Standard 11 Bit IDs, <em>True</em>: Extended 29Bit ID</p></li>
+</ul>
+</section>
+</section>
+<section id="mcp2515-component">
+<h2>MCP2515 Component<a class="headerlink" href="#mcp2515-component" title="Permalink to this headline">¶</a></h2>
+<p>The MCP2515 is a spi device and therefore you must first add the configuration for the spi bus to your file.
+You need to have an <a class="reference internal" href="spi.html#spi"><span class="std std-ref">SPI bus</span></a> in your configuration with both the <strong>mosi_pin</strong> and <strong>miso_pin</strong> set.</p>
+<p>For wiring up the MSP2515 please refer to the section below.</p>
+<section id="configuration-variables">
+<h3>Configuration variables:<a class="headerlink" href="#configuration-variables" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><strong>cs_pin</strong> (<strong>Required</strong>, <a class="reference internal" href="../guides/configuration-types.html#config-pin-schema"><span class="std std-ref">Pin Schema</span></a>): Is used to tell the receiving SPI device
+when it should listen for data on the SPI bus. Each device has an individual <code class="docutils literal notranslate"><span class="pre">CS</span></code> line.
+Sometimes also called <code class="docutils literal notranslate"><span class="pre">SS</span></code>.</p></li>
+<li><p><strong>clock</strong> (<em>Optional</em>): One of <code class="docutils literal notranslate"><span class="pre">8MHZ</span></code>, <code class="docutils literal notranslate"><span class="pre">16MHZ</span></code> or <code class="docutils literal notranslate"><span class="pre">20MHZ</span></code>. Clock crystal used on the MCP2515 device.
+Defaults to <code class="docutils literal notranslate"><span class="pre">8MHZ</span></code>.</p></li>
+<li><p><strong>mode</strong> (<em>Optional</em>): Operation mode. Default to <code class="docutils literal notranslate"><span class="pre">NORMAL</span></code></p>
+<ul>
+<li><p>NORMAL: Normal operation</p></li>
+<li><p>LOOPBACK: Loopback mode can be used to just test you spi connections to the device</p></li>
+<li><p>LISTENONLY: only receive data</p></li>
+</ul>
+</li>
+</ul>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example configuration entry</span>
+<span class="nt">canbus</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">mcp2515</span>
+    <span class="nt">cs_pin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">D5</span>
+    <span class="nt">can_id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">4</span>
+    <span class="nt">bit_rate</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">50kbps</span>
+    <span class="nt">on_frame</span><span class="p">:</span>
+    <span class="p p-Indicator">-</span> <span class="nt">can_id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">500</span>
+        <span class="l l-Scalar l-Scalar-Plain">then</span><span class="p p-Indicator">:</span>
+        <span class="p p-Indicator">-</span> <span class="nt">lambda</span><span class="p">:</span> <span class="p p-Indicator">|-</span>
+            <span class="no">std::string b(x.begin(), x.end());</span>
+            <span class="no">ESP_LOGD(&quot;canid 500&quot;, &quot;%s&quot;, &amp;b[0] );</span>
+        <span class="p p-Indicator">-</span> <span class="nt">light.turn_off</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">light_1</span>
+    <span class="p p-Indicator">-</span> <span class="nt">can_id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">501</span>
+        <span class="l l-Scalar l-Scalar-Plain">then</span><span class="p p-Indicator">:</span>
+        <span class="p p-Indicator">-</span> <span class="nt">light.turn_on</span><span class="p">:</span>
+            <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">light_1</span>
+            <span class="nt">brightness</span><span class="p">:</span> <span class="kt">!lambda</span> <span class="s">&quot;return</span><span class="nv"> </span><span class="s">(x.size()</span><span class="nv"> </span><span class="s">&gt;</span><span class="nv"> </span><span class="s">0)</span><span class="nv"> </span><span class="s">?</span><span class="nv"> </span><span class="s">(float)</span><span class="nv"> </span><span class="s">x[0]/255</span><span class="nv"> </span><span class="s">:</span><span class="nv"> </span><span class="s">0;&quot;</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="wiring-options">
+<h2>Wiring options<a class="headerlink" href="#wiring-options" title="Permalink to this headline">¶</a></h2>
+<p>Easiest approach is to just use fully assembled boards and just add one resistor in the MISO line.
+This runs MOSI, SCK and CS out of specification which is nearly never a problem.</p>
+<figure class="align-center">
+<a class="reference external image-reference" href="../_images/canbus_mcp2515_resistor.png"><img alt="../_images/canbus_mcp2515_resistor.png" src="../_images/canbus_mcp2515_resistor.png" /></a>
+</figure>
+<p>A more advanced option is to fully convert the 5V and 3.3V logic levels with a level shifter.</p>
+<figure class="align-center">
+<a class="reference external image-reference" href="../_images/canbus_mcp2515_txs0108e.png"><img alt="../_images/canbus_mcp2515_txs0108e.png" src="../_images/canbus_mcp2515_txs0108e.png" /></a>
+</figure>
+</section>
+<section id="extended-id">
+<h2>Extended ID<a class="headerlink" href="#extended-id" title="Permalink to this headline">¶</a></h2>
+<p>Standard IDs and Extended IDs can coexist on the same segment.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>It is important to know that for example Standard 0x123 and Extended 0x123 are different addresses.
+This example shows how the different ID types are used in the configuration for transmission and receiving.
+For the IDs decimal or hexadecimal notation is possible:
+0x000 - 0x7ff / 0-2047 for Standard IDs only.
+0x00000000 - 0x1fffffff / 0-536870911 for Extended IDs.</p>
+</div>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Transmission of extended and standard ID 0x100 every second</span>
+<span class="nt">time</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">sntp</span>
+    <span class="nt">on_time</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="nt">seconds</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/1</span>
+        <span class="nt">then</span><span class="p">:</span>
+          <span class="p p-Indicator">-</span> <span class="nt">canbus.send</span><span class="p">:</span>
+              <span class="c1"># Extended ID explicit</span>
+              <span class="nt">use_extended_id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">True</span>
+              <span class="nt">can_id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">0x100</span>
+              <span class="nt">data</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="nv">0x01</span><span class="p p-Indicator">,</span> <span class="nv">0x02</span><span class="p p-Indicator">,</span> <span class="nv">0x03</span><span class="p p-Indicator">,</span> <span class="nv">0x04</span><span class="p p-Indicator">,</span> <span class="nv">0x05</span><span class="p p-Indicator">,</span> <span class="nv">0x06</span><span class="p p-Indicator">,</span> <span class="nv">0x07</span><span class="p p-Indicator">,</span> <span class="nv">0x08</span><span class="p p-Indicator">]</span>
+          <span class="p p-Indicator">-</span> <span class="nt">canbus.send</span><span class="p">:</span>
+              <span class="c1"># Standard ID by default</span>
+              <span class="nt">can_id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">0y100</span>
+              <span class="nt">data</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="nv">0x01</span><span class="p p-Indicator">,</span> <span class="nv">0x02</span><span class="p p-Indicator">,</span> <span class="nv">0x03</span><span class="p p-Indicator">,</span> <span class="nv">0x04</span><span class="p p-Indicator">,</span> <span class="nv">0x05</span><span class="p p-Indicator">,</span> <span class="nv">0x06</span><span class="p p-Indicator">,</span> <span class="nv">0x07</span><span class="p p-Indicator">,</span> <span class="nv">0x08</span><span class="p p-Indicator">]</span>
+
+<span class="nt">canbus</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">mcp2515</span>
+    <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">my_mcp2515</span>
+    <span class="nt">spi_id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">McpSpi</span>
+    <span class="nt">cs_pin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO14</span>
+    <span class="nt">can_id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">0x1fff</span>
+    <span class="nt">use_extended_id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">True</span>
+    <span class="nt">bit_rate</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">125kbps</span>
+    <span class="nt">on_frame</span><span class="p">:</span>
+    <span class="p p-Indicator">-</span> <span class="nt">can_id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">0x123</span>
+      <span class="nt">use_extended_id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">True</span>
+      <span class="nt">then</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="nt">lambda</span><span class="p">:</span> <span class="p p-Indicator">|-</span>
+          <span class="no">std::string b(x.begin(), x.end());</span>
+          <span class="no">ESP_LOGD(&quot;can extended id 0x123&quot;, &quot;%s&quot;, &amp;b[0] );</span>
+    <span class="p p-Indicator">-</span> <span class="nt">can_id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">0x123</span>
+      <span class="nt">then</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="nt">lambda</span><span class="p">:</span> <span class="p p-Indicator">|-</span>
+          <span class="no">std::string b(x.begin(), x.end());</span>
+          <span class="no">ESP_LOGD(&quot;can standard id 0x123&quot;, &quot;%s&quot;, &amp;b[0] );</span>
+</pre></div>
+</div>
+</section>
+<section id="binary-sensor-example">
+<h2>Binary Sensor Example<a class="headerlink" href="#binary-sensor-example" title="Permalink to this headline">¶</a></h2>
+<p>Example for the following application:
+Button is connected on a can node which sends an A message on ID 0x100 with payload 0x01 for contact closed and 0x00 for contact open.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">spi</span><span class="p">:</span>
+  <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">McpSpi</span>
+  <span class="nt">clk_pin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO16</span>
+  <span class="nt">mosi_pin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO5</span>
+  <span class="nt">miso_pin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO4</span>
+
+<span class="nt">binary_sensor</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">template</span>
+    <span class="nt">name</span><span class="p">:</span> <span class="s">&quot;CAN</span><span class="nv"> </span><span class="s">Bus</span><span class="nv"> </span><span class="s">Button&quot;</span>
+    <span class="nt">id</span><span class="p">:</span> <span class="s">&quot;can_bus_button&quot;</span>
+
+<span class="nt">canbus</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">mcp2515</span>
+    <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">my_mcp2515</span>
+    <span class="nt">spi_id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">McpSpi</span>
+    <span class="nt">cs_pin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO14</span>
+    <span class="nt">can_id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">4</span>
+    <span class="nt">bit_rate</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">125kbps</span>
+    <span class="nt">on_frame</span><span class="p">:</span>
+    <span class="p p-Indicator">-</span> <span class="nt">can_id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">${0x100}</span>
+      <span class="nt">then</span><span class="p">:</span>
+        <span class="p p-Indicator">-</span> <span class="nt">lambda</span><span class="p">:</span> <span class="p p-Indicator">|-</span>
+            <span class="no">if(x.size() &gt; 0) {</span>
+              <span class="no">switch(x[0]) {</span>
+                <span class="no">case 0x0: id(can_bus_button).publish_state(false); break; // button release</span>
+                <span class="no">case 0x1: id(can_bus_button).publish_state(true); break;  // button down</span>
+              <span class="no">}</span>
+            <span class="no">}</span>
+</pre></div>
+</div>
+</section>
+<section id="cover-example">
+<h2>Cover Example<a class="headerlink" href="#cover-example" title="Permalink to this headline">¶</a></h2>
+<p>Example for following application:
+Buttons are connected on the CAN-Node and also the motor is connected via CAN.</p>
+<blockquote class="epigraph">
+<div><div class="line-block">
+<div class="line"><strong>Button 1:</strong> ID 0x50B - 1 byte payload</div>
+<div class="line">(0: Button release, 1: Button down, 2: long down, 3: long release, 4 double click)</div>
+<div class="line"><strong>Button 2:</strong> ID 0x50C - 1 byte payload</div>
+<div class="line">(0: Button release, 1: Button down, 2: long down, 3: long release, 4 double click)</div>
+<div class="line"><strong>Motor:</strong> ID 0x51A - 1 byte payload</div>
+<div class="line">(0: off, 1: open, 2: close)</div>
+</div>
+</div></blockquote>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">spi</span><span class="p">:</span>
+  <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">McpSpi</span>
+  <span class="nt">clk_pin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO16</span>
+  <span class="nt">mosi_pin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO5</span>
+  <span class="nt">miso_pin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO4</span>
+
+<span class="nt">canbus</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">mcp2515</span>
+    <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">my_mcp2515</span>
+    <span class="nt">spi_id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">McpSpi</span>
+    <span class="nt">cs_pin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO14</span>
+    <span class="nt">can_id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">4</span>
+    <span class="nt">bit_rate</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">125kbps</span>
+    <span class="nt">on_frame</span><span class="p">:</span>
+    <span class="p p-Indicator">-</span> <span class="nt">can_id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">0x50c</span>
+      <span class="nt">then</span><span class="p">:</span>
+        <span class="p p-Indicator">-</span> <span class="nt">lambda</span><span class="p">:</span> <span class="p p-Indicator">|-</span>
+            <span class="no">if(x.size() &gt; 0) {</span>
+              <span class="no">auto call = id(TestCover).make_call();</span>
+              <span class="no">switch(x[0]) {</span>
+                <span class="no">case 0x2: call.set_command_open(); call.perform(); break; // long pressed</span>
+                <span class="no">case 0x1:                                                 // button down</span>
+                <span class="no">case 0x3: call.set_command_stop(); call.perform(); break; // long released</span>
+                <span class="no">case 0x4: call.set_position(1.0); call.perform(); break;  // double click</span>
+              <span class="no">}</span>
+            <span class="no">}</span>
+    <span class="p p-Indicator">-</span> <span class="nt">can_id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">0x50b</span>
+      <span class="nt">then</span><span class="p">:</span>
+        <span class="p p-Indicator">-</span> <span class="nt">lambda</span><span class="p">:</span> <span class="p p-Indicator">|-</span>
+            <span class="no">if(x.size() &gt; 0) {</span>
+              <span class="no">auto call = id(TestCover).make_call();</span>
+              <span class="no">switch(x[0]) {</span>
+                <span class="no">case 0x2: call.set_command_close(); call.perform(); break; // long pressed</span>
+                <span class="no">case 0x1:                                                  // button down</span>
+                <span class="no">case 0x3: call.set_command_stop(); call.perform(); break;  // long released</span>
+                <span class="no">case 0x4: call.set_position(0.0); call.perform(); break;   // double click</span>
+              <span class="no">}</span>
+            <span class="no">}</span>
+
+<span class="nt">cover</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">time_based</span>
+    <span class="nt">name</span><span class="p">:</span> <span class="s">&quot;MyCanbusTestCover&quot;</span>
+    <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">TestCover</span>
+    <span class="nt">device_class</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">shutter</span>
+    <span class="nt">has_built_in_endstop</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+    <span class="nt">open_action</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="nt">canbus.send</span><span class="p">:</span>
+          <span class="nt">data</span><span class="p">:</span> <span class="p p-Indicator">[</span> <span class="nv">0x01</span> <span class="p p-Indicator">]</span>
+          <span class="nt">canbus_id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">my_mcp2515</span>
+          <span class="nt">can_id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">0x51A</span>
+    <span class="nt">open_duration</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">2min</span>
+    <span class="nt">close_action</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="nt">canbus.send</span><span class="p">:</span>
+          <span class="nt">data</span><span class="p">:</span> <span class="p p-Indicator">[</span> <span class="nv">0x02</span> <span class="p p-Indicator">]</span>
+          <span class="nt">canbus_id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">my_mcp2515</span>
+          <span class="nt">can_id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">0x51A</span>
+    <span class="nt">close_duration</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">2min</span>
+    <span class="nt">stop_action</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="nt">canbus.send</span><span class="p">:</span>
+          <span class="nt">data</span><span class="p">:</span> <span class="p p-Indicator">[</span> <span class="nv">0x00</span> <span class="p p-Indicator">]</span>
+          <span class="nt">canbus_id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">my_mcp2515</span>
+          <span class="nt">can_id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">0x51A</span>
+</pre></div>
+</div>
+</section>
+<section id="see-also">
+<h2>See Also<a class="headerlink" href="#see-also" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="../api/spi_8h.html">API Reference</a></p></li>
+<li><p><a class="reference external" href="https://github.com/esphome/esphome-docs/blob/current/components/canbus.rst">Edit this page on GitHub</a></p></li>
+</ul>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+  <div id="upgrade-footer">
+    A new version has been release since you last visited this page: 1.17.2 🎉
+    <div class="footer-button-container">
+      <div role="button" id="upgrade-footer-dismiss" class="footer-button">Dismiss</div>
+      <a id="upgrade-footer-changelog" class="footer-button" href="../changelog/v1.17.0.html">View Changelog</a>  
+    </div>
+  </div>
+  <script>
+    var old = window.localStorage.getItem("version");
+    if (old === null) { window.localStorage.setItem("version", "1.17");
+    } else if (old !== "1.17") {
+      const footerEl = document.getElementById("upgrade-footer");
+      footerEl.classList.add("not-hidden");
+      footerEl.addEventListener('click', function () {
+        window.localStorage.setItem("version", "1.17");
+        footerEl.classList.remove("not-hidden");
+      });
+    }
+  </script>
+
+  </body>
+
+<!-- Mirrored from esphome.io/components/canbus.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 16 May 2021 02:58:50 GMT -->
+</html>

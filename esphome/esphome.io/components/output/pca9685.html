@@ -1,0 +1,218 @@
+
+  <!DOCTYPE html>
+
+
+<html lang="en">
+  
+<!-- Mirrored from esphome.io/components/output/pca9685.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 16 May 2021 03:01:01 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+<meta name="description" content="Instructions for setting up PCA9685 LED PWM drivers.">
+<meta name="keywords" content="PCA9685">
+<meta itemprop="name" content="PCA9685">
+<meta itemprop="description" content="Instructions for setting up PCA9685 LED PWM drivers.">
+<meta itemprop="image" content="../../_images/pca9685.jpg">
+<meta name="twitter:title" content="PCA9685">
+<meta name="twitter:image:src" content="../../_images/pca9685.jpg">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@OttoWinter_">
+<meta name="twitter:description" content="Instructions for setting up PCA9685 LED PWM drivers.">
+<meta property="og:title" content="PCA9685">
+<meta property="og:image" content="../../_images/pca9685.jpg">
+<meta property="og:type" content="website">
+<meta property="og:description" content="Instructions for setting up PCA9685 LED PWM drivers.">
+
+    <title>PCA9685 &#8212; ESPHome</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/alabaster.css" />
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <link rel="canonical" href="pca9685.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Slow PWM Output" href="slow_pwm.html" />
+    <link rel="prev" title="MY9231/MY9291 LED driver" href="my9231.html" />
+  <link rel="stylesheet" href="../../_static/customf001.css?hash=f908c2b5" type="text/css" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../../_static/apple-touch-icon.png">
+  <link rel="shortcut icon" href="../../_static/favicon.ico">
+  <link rel="icon" type="image/png" sizes="512x512" href="../../_static/favicon-512x512.png">
+  <link rel="icon" type="image/png" sizes="256x256" href="../../_static/favicon-256x256.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="../../_static/favicon-192x192.png">
+  <link rel="icon" type="image/png" sizes="128x128" href="../../_static/favicon-128x128.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../_static/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../../_static/favicon-16x16.png">
+  <link rel="manifest" href="../../_static/site.webmanifest">
+  <link rel="mask-icon" href="../../_static/safari-pinned-tab.svg" color="#646464">
+  <meta name="apple-mobile-web-app-title" content="ESPHome">
+  <meta name="application-name" content="ESPHome">
+  <meta name="msapplication-TileColor" content="#dfdfdf">
+  <meta name="msapplication-config" content="/_static/browserconfig.xml">
+  <meta name="theme-color" content="#dfdfdf">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta property="og:site_name" content="ESPHome">
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head><body>
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../index-2.html">
+              <img class="logo" src="../../_static/logo-text.svg" alt="Logo"/>
+            </a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="https://esphome.io/search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+  <h3><a href="../../index-2.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">PCA9685</a><ul>
+<li><a class="reference internal" href="#component-hub">Component/Hub</a><ul>
+<li><a class="reference internal" href="#configuration-variables">Configuration variables:</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#pwm-output">PWM Output</a><ul>
+<li><a class="reference internal" href="#id1">Configuration variables:</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#see-also">See Also</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="pca9685">
+<h1>PCA9685<a class="headerlink" href="#pca9685" title="Permalink to this headline">¶</a></h1>
+<section id="component-hub">
+<span id="pca9685-component"></span><h2>Component/Hub<a class="headerlink" href="#component-hub" title="Permalink to this headline">¶</a></h2>
+<p>The PCA9685 component represents a PCA9685 12-bit PWM driver
+(<a class="reference external" href="https://docs.espressif.com/projects/esp-idf/en/latest/api-reference/peripherals/ledc.html#configure-channel">datasheet</a>,
+<a class="reference external" href="https://www.adafruit.com/product/815">adafruit</a>) in ESPHome. It
+uses <a class="reference internal" href="../i2c.html#i2c"><span class="std std-ref">I²C Bus</span></a> for communication.</p>
+<p>To use the channels of this components, you first need to setup the
+global <code class="docutils literal notranslate"><span class="pre">pca9685</span></code> hub and give it an id, and then define the
+<a class="reference internal" href="#pca9685-output"><span class="std std-ref">individual output channels</span></a>.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example configuration entry</span>
+<span class="nt">pca9685</span><span class="p">:</span>
+  <span class="nt">frequency</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">500</span>
+
+<span class="c1"># Individual outputs</span>
+<span class="nt">output</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">pca9685</span>
+    <span class="nt">pca9685_id</span><span class="p">:</span> <span class="s">&#39;pca9685_hub1&#39;</span>
+    <span class="nt">channel</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">0</span>
+</pre></div>
+</div>
+<section id="configuration-variables">
+<h3>Configuration variables:<a class="headerlink" href="#configuration-variables" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><strong>frequency</strong> (<strong>Required</strong>, float): The frequency to let the
+component drive all PWM outputs at. Must be in range from 24Hz to
+1526Hz.</p></li>
+<li><p><strong>address</strong> (<em>Optional</em>, int): The I²C address of the driver.
+Defaults to <code class="docutils literal notranslate"><span class="pre">0x00</span></code>.</p></li>
+<li><p><strong>id</strong> (<em>Optional</em>, <a class="reference internal" href="../../guides/configuration-types.html#config-id"><span class="std std-ref">ID</span></a>): The id to use for
+this pca9685 component. Use this if you have multiple PCA9685s connected at the same time</p></li>
+</ul>
+</section>
+</section>
+<section id="pwm-output">
+<span id="pca9685-output"></span><h2>PWM Output<a class="headerlink" href="#pwm-output" title="Permalink to this headline">¶</a></h2>
+<p>The PCA9685 output component exposes a PCA9685 PWM channel of a global
+<a class="reference internal" href="#pca9685-component"><span class="std std-ref">PCA9685 hub</span></a> as a float
+output.</p>
+<figure class="align-center" id="id2">
+<a class="reference internal image-reference" href="../../_images/pca9685-full.jpg"><img alt="../../_images/pca9685-full.jpg" src="../../_images/pca9685-full.jpg" style="width: 75.0%;" /></a>
+<figcaption>
+<p><span class="caption-text">PCA9685 16-Channel PWM Driver.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example configuration entry</span>
+<span class="nt">pca9685</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">frequency</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">500</span>
+
+<span class="c1"># Individual outputs</span>
+<span class="nt">output</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">pca9685</span>
+    <span class="nt">id</span><span class="p">:</span> <span class="s">&#39;pca9685_output1&#39;</span>
+    <span class="nt">channel</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">0</span>
+</pre></div>
+</div>
+<section id="id1">
+<h3>Configuration variables:<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><strong>id</strong> (<strong>Required</strong>, <a class="reference internal" href="../../guides/configuration-types.html#config-id"><span class="std std-ref">ID</span></a>): The id to use for this output component.</p></li>
+<li><p><strong>channel</strong> (<strong>Required</strong>, int): Chose the channel of the PCA9685 of
+this output component. Must be in range from 0 to 15.</p></li>
+<li><p><strong>pca9685_id</strong> (<em>Optional</em>, <a class="reference internal" href="../../guides/configuration-types.html#config-id"><span class="std std-ref">ID</span></a>): Manually specify the ID of the
+<a class="reference internal" href="#pca9685-component"><span class="std std-ref">PCA9685 hub</span></a>.
+Use this if you have multiple PCA9685s you want to use at the same time.</p></li>
+<li><p>All other options from <a class="reference internal" href="index.html#config-output"><span class="std std-ref">Output</span></a>.</p></li>
+</ul>
+</section>
+</section>
+<section id="see-also">
+<h2>See Also<a class="headerlink" href="#see-also" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="index.html"><span class="doc">Output Component</span></a></p></li>
+<li><p><a class="reference internal" href="esp8266_pwm.html"><span class="doc">ESP8266 Software PWM Output</span></a></p></li>
+<li><p><a class="reference internal" href="ledc.html"><span class="doc">ESP32 LEDC Output</span></a></p></li>
+<li><p><a class="reference internal" href="../light/monochromatic.html"><span class="doc">Monochromatic Light</span></a></p></li>
+<li><p><a class="reference internal" href="../fan/speed.html"><span class="doc">Speed Fan</span></a></p></li>
+<li><p><a class="reference internal" href="../power_supply.html"><span class="doc">Power Supply Component</span></a></p></li>
+<li><p><a class="reference external" href="../../api/pca9685__output_8h.html">API Reference</a></p></li>
+<li><p><a class="reference external" href="https://github.com/NachtRaveVL/PCA9685-Arduino">PCA9685 Arduino Library</a> by <a class="reference external" href="https://github.com/NachtRaveVL">&#64;NachtRaveVL</a></p></li>
+<li><p><a class="reference external" href="https://github.com/esphome/esphome-docs/blob/current/components/output/pca9685.rst">Edit this page on GitHub</a></p></li>
+</ul>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+  <div id="upgrade-footer">
+    A new version has been release since you last visited this page: 1.17.2 🎉
+    <div class="footer-button-container">
+      <div role="button" id="upgrade-footer-dismiss" class="footer-button">Dismiss</div>
+      <a id="upgrade-footer-changelog" class="footer-button" href="../../changelog/v1.17.0.html">View Changelog</a>  
+    </div>
+  </div>
+  <script>
+    var old = window.localStorage.getItem("version");
+    if (old === null) { window.localStorage.setItem("version", "1.17");
+    } else if (old !== "1.17") {
+      const footerEl = document.getElementById("upgrade-footer");
+      footerEl.classList.add("not-hidden");
+      footerEl.addEventListener('click', function () {
+        window.localStorage.setItem("version", "1.17");
+        footerEl.classList.remove("not-hidden");
+      });
+    }
+  </script>
+
+  </body>
+
+<!-- Mirrored from esphome.io/components/output/pca9685.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 16 May 2021 03:01:01 GMT -->
+</html>

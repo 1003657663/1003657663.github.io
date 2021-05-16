@@ -1,0 +1,266 @@
+
+  <!DOCTYPE html>
+
+
+<html lang="en">
+  
+<!-- Mirrored from esphome.io/guides/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 16 May 2021 03:03:13 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Guides &#8212; ESPHome</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <link rel="canonical" href="index.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Automations and Templates" href="automations.html" />
+    <link rel="prev" title="Using With Sonoff T3 EU 3 Gang" href="../devices/sonoff_t3_eu_3gang_v1.0.html" />
+  <link rel="stylesheet" href="../_static/customf001.css?hash=f908c2b5" type="text/css" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../_static/apple-touch-icon.png">
+  <link rel="shortcut icon" href="../_static/favicon.ico">
+  <link rel="icon" type="image/png" sizes="512x512" href="../_static/favicon-512x512.png">
+  <link rel="icon" type="image/png" sizes="256x256" href="../_static/favicon-256x256.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="../_static/favicon-192x192.png">
+  <link rel="icon" type="image/png" sizes="128x128" href="../_static/favicon-128x128.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../_static/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../_static/favicon-16x16.png">
+  <link rel="manifest" href="../_static/site.webmanifest">
+  <link rel="mask-icon" href="../_static/safari-pinned-tab.svg" color="#646464">
+  <meta name="apple-mobile-web-app-title" content="ESPHome">
+  <meta name="application-name" content="ESPHome">
+  <meta name="msapplication-TileColor" content="#dfdfdf">
+  <meta name="msapplication-config" content="/_static/browserconfig.xml">
+  <meta name="theme-color" content="#dfdfdf">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta property="og:site_name" content="ESPHome">
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head><body>
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index-2.html">
+              <img class="logo" src="../_static/logo-text.svg" alt="Logo"/>
+            </a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="https://esphome.io/search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="guides">
+<h1>Guides<a class="headerlink" href="#guides" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="automations.html">Automations and Templates</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="automations.html#actions">Actions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="automations.html#templates-lambdas">Templates (Lambdas)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="automations.html#bonus-templating-actions">Bonus: Templating Actions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="automations.html#global-variables">Global Variables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="automations.html#do-automations-work-without-a-network-connection">Do Automations Work Without a Network Connection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="automations.html#all-triggers">All Triggers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="automations.html#all-actions">All Actions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="automations.html#all-conditions">All Conditions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="automations.html#all-lambda-calls">All Lambda Calls</a></li>
+<li class="toctree-l2"><a class="reference internal" href="automations.html#delay-action"><code class="docutils literal notranslate"><span class="pre">delay</span></code> Action</a></li>
+<li class="toctree-l2"><a class="reference internal" href="automations.html#lambda-action"><code class="docutils literal notranslate"><span class="pre">lambda</span></code> Action</a></li>
+<li class="toctree-l2"><a class="reference internal" href="automations.html#lambda-condition"><code class="docutils literal notranslate"><span class="pre">lambda</span></code> Condition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="automations.html#and-or-not-condition"><code class="docutils literal notranslate"><span class="pre">and</span></code> / <code class="docutils literal notranslate"><span class="pre">or</span></code> / <code class="docutils literal notranslate"><span class="pre">not</span></code> Condition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="automations.html#if-action"><code class="docutils literal notranslate"><span class="pre">if</span></code> Action</a></li>
+<li class="toctree-l2"><a class="reference internal" href="automations.html#while-action"><code class="docutils literal notranslate"><span class="pre">while</span></code> Action</a></li>
+<li class="toctree-l2"><a class="reference internal" href="automations.html#wait-until-action"><code class="docutils literal notranslate"><span class="pre">wait_until</span></code> Action</a></li>
+<li class="toctree-l2"><a class="reference internal" href="automations.html#component-update-action"><code class="docutils literal notranslate"><span class="pre">component.update</span></code> Action</a></li>
+<li class="toctree-l2"><a class="reference internal" href="automations.html#globals-set-action"><code class="docutils literal notranslate"><span class="pre">globals.set</span></code> Action</a></li>
+<li class="toctree-l2"><a class="reference internal" href="automations.html#script-component"><code class="docutils literal notranslate"><span class="pre">script</span></code> Component</a></li>
+<li class="toctree-l2"><a class="reference internal" href="automations.html#script-execute-action"><code class="docutils literal notranslate"><span class="pre">script.execute</span></code> Action</a></li>
+<li class="toctree-l2"><a class="reference internal" href="automations.html#script-stop-action"><code class="docutils literal notranslate"><span class="pre">script.stop</span></code> Action</a></li>
+<li class="toctree-l2"><a class="reference internal" href="automations.html#script-wait-action"><code class="docutils literal notranslate"><span class="pre">script.wait</span></code> Action</a></li>
+<li class="toctree-l2"><a class="reference internal" href="automations.html#script-is-running-condition"><code class="docutils literal notranslate"><span class="pre">script.is_running</span></code> Condition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="automations.html#for-condition"><code class="docutils literal notranslate"><span class="pre">for</span></code> Condition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="automations.html#interval-component"><code class="docutils literal notranslate"><span class="pre">interval</span></code> Component</a></li>
+<li class="toctree-l2"><a class="reference internal" href="automations.html#timers-and-timeouts">Timers and timeouts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="automations.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cli.html">Command Line Interface</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="cli.html#base-usage">Base Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cli.html#help-option"><code class="docutils literal notranslate"><span class="pre">--help</span></code> Option</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cli.html#verbose-option"><code class="docutils literal notranslate"><span class="pre">--verbose</span></code> Option</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cli.html#quiet-option"><code class="docutils literal notranslate"><span class="pre">--quiet</span></code> Option</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cli.html#substitution-option"><code class="docutils literal notranslate"><span class="pre">--substitution</span></code> Option</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cli.html#run-command"><code class="docutils literal notranslate"><span class="pre">run</span></code> Command</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cli.html#config-command"><code class="docutils literal notranslate"><span class="pre">config</span></code> Command</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cli.html#compile-command"><code class="docutils literal notranslate"><span class="pre">compile</span></code> Command</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cli.html#upload-command"><code class="docutils literal notranslate"><span class="pre">upload</span></code> Command</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cli.html#clean-mqtt-command"><code class="docutils literal notranslate"><span class="pre">clean-mqtt</span></code> Command</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cli.html#wizard-command"><code class="docutils literal notranslate"><span class="pre">wizard</span></code> Command</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cli.html#mqtt-fingerprint-command"><code class="docutils literal notranslate"><span class="pre">mqtt-fingerprint</span></code> Command</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cli.html#version-command"><code class="docutils literal notranslate"><span class="pre">version</span></code> Command</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cli.html#clean-command"><code class="docutils literal notranslate"><span class="pre">clean</span></code> Command</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cli.html#hass-config-command"><code class="docutils literal notranslate"><span class="pre">hass-config</span></code> Command</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cli.html#dashboard-command"><code class="docutils literal notranslate"><span class="pre">dashboard</span></code> Command</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cli.html#logs-command"><code class="docutils literal notranslate"><span class="pre">logs</span></code> Command</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="configuration-types.html">Configuration Types</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="configuration-types.html#config-id">ID</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration-types.html#pin">Pin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration-types.html#pin-schema">Pin Schema</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration-types.html#time">Time</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration-types.html#substitutions">Substitutions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="configuration-types.html#command-line-substitutions">Command line substitutions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="configuration-types.html#packages">Packages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration-types.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#contributing-to-esphome-docs">Contributing to ESPHome-Docs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#syntax">Syntax</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#build">Build</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#notes">Notes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#setting-up-development-environment">Setting Up Development Environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#setting-up-git-environment">Setting Up Git Environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#contributing-to-esphome">Contributing to ESPHome</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#directory-structure">1. Directory Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#config-validation">2. Config Validation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#code-generation">3. Code Generation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#runtime">4. Runtime</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#extras">5. Extras</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#codebase-standards">Codebase Standards</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#esphome-via-gitpod">ESPHome via Gitpod</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="diy.html">DIY Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="diy.html#blog-posts-videos">Blog Posts &amp; Videos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="diy.html#custom-components-code">Custom Components &amp; Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="diy.html#sample-configurations">Sample Configurations</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">Frequently Asked Questions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="faq.html#tips-for-using-esphome">Tips for using ESPHome</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faq.html#i-can-t-get-flashing-over-usb-to-work">I can’t get flashing over USB to work.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faq.html#help-something-s-not-working">Help! Something’s not working!!</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faq.html#how-to-submit-an-issue-report">How to submit an issue report</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faq.html#how-do-i-update-to-the-latest-version">How do I update to the latest version?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faq.html#how-do-i-update-to-the-latest-beta-release">How do I update to the latest beta release?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faq.html#how-do-i-use-the-latest-bleeding-edge-version">How do I use the latest bleeding edge version?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faq.html#how-do-i-use-my-home-assistant-secrets-yaml">How do I use my Home Assistant secrets.yaml?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faq.html#does-esphome-support-this-device-feature">Does ESPHome support [this device/feature]?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faq.html#i-have-a-question-how-can-i-contact-you">I have a question… How can I contact you?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faq.html#my-node-keeps-reconnecting-randomly">My node keeps reconnecting randomly</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faq.html#docker-reference">Docker Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faq.html#can-configuration-files-be-recovered-from-the-device">Can Configuration Files Be Recovered From The Device?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faq.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started_command_line.html">Getting Started with ESPHome</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_command_line.html#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_command_line.html#creating-a-project">Creating a Project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_command_line.html#adding-some-features">Adding some features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_command_line.html#first-uploading">First uploading</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_command_line.html#adding-a-binary-sensor">Adding A Binary Sensor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_command_line.html#where-to-go-next">Where To Go Next</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_command_line.html#bonus-esphome-dashboard">Bonus: ESPHome dashboard</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_command_line.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started_hassio.html">Getting Started with ESPHome and Home Assistant</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_hassio.html#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_hassio.html#dashboard-interface">Dashboard Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_hassio.html#adding-some-basic-features">Adding some (basic) features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_hassio.html#connecting-your-device-to-home-assistant">Connecting your device to Home Assistant</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_hassio.html#adding-a-binary-sensor">Adding A Binary Sensor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_hassio.html#where-to-go-next">Where To Go Next</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_hassio.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="migrate_espeasy.html">Migrating from ESPEasy</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="migrate_espeasy.html#getting-binary">Getting Binary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="migrate_espeasy.html#uploading-binary">Uploading Binary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="migrate_espeasy.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="migrate_espurna.html">Migrating from ESPurna</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="migrate_espurna.html#getting-binary">Getting Binary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="migrate_espurna.html#uploading-binary">Uploading Binary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="migrate_espurna.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="migrate_sonoff_tasmota.html">Migrating from Sonoff Tasmota</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="migrate_sonoff_tasmota.html#getting-the-binary">Getting the Binary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="migrate_sonoff_tasmota.html#uploading-the-binary">Uploading the Binary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="migrate_sonoff_tasmota.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="supporters.html">Contributors</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="supporters.html#id1">Contributors</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+  <div id="upgrade-footer">
+    A new version has been release since you last visited this page: 1.17.2 🎉
+    <div class="footer-button-container">
+      <div role="button" id="upgrade-footer-dismiss" class="footer-button">Dismiss</div>
+      <a id="upgrade-footer-changelog" class="footer-button" href="../changelog/v1.17.0.html">View Changelog</a>  
+    </div>
+  </div>
+  <script>
+    var old = window.localStorage.getItem("version");
+    if (old === null) { window.localStorage.setItem("version", "1.17");
+    } else if (old !== "1.17") {
+      const footerEl = document.getElementById("upgrade-footer");
+      footerEl.classList.add("not-hidden");
+      footerEl.addEventListener('click', function () {
+        window.localStorage.setItem("version", "1.17");
+        footerEl.classList.remove("not-hidden");
+      });
+    }
+  </script>
+
+  </body>
+
+<!-- Mirrored from esphome.io/guides/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 16 May 2021 03:03:13 GMT -->
+</html>

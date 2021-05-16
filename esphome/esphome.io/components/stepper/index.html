@@ -1,0 +1,455 @@
+
+  <!DOCTYPE html>
+
+
+<html lang="en">
+  
+<!-- Mirrored from esphome.io/components/stepper/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 16 May 2021 03:02:28 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+<meta name="description" content="Instructions for setting up stepper motor drivers in ESPHome">
+<meta name="keywords" content="stepper motor, stepper driver, a4988">
+<meta itemprop="name" content="Stepper Component">
+<meta itemprop="description" content="Instructions for setting up stepper motor drivers in ESPHome">
+<meta itemprop="image" content="../../_images/folder-open.png">
+<meta name="twitter:title" content="Stepper Component">
+<meta name="twitter:image:src" content="../../_images/folder-open.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@OttoWinter_">
+<meta name="twitter:description" content="Instructions for setting up stepper motor drivers in ESPHome">
+<meta property="og:title" content="Stepper Component">
+<meta property="og:image" content="../../_images/folder-open.png">
+<meta property="og:type" content="website">
+<meta property="og:description" content="Instructions for setting up stepper motor drivers in ESPHome">
+
+    <title>Stepper Component &#8212; ESPHome</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/alabaster.css" />
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <link rel="canonical" href="index.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Native API Component" href="../api.html" />
+    <link rel="prev" title="WiFi Info Text Sensor" href="../text_sensor/wifi_info.html" />
+  <link rel="stylesheet" href="../../_static/customf001.css?hash=f908c2b5" type="text/css" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../../_static/apple-touch-icon.png">
+  <link rel="shortcut icon" href="../../_static/favicon.ico">
+  <link rel="icon" type="image/png" sizes="512x512" href="../../_static/favicon-512x512.png">
+  <link rel="icon" type="image/png" sizes="256x256" href="../../_static/favicon-256x256.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="../../_static/favicon-192x192.png">
+  <link rel="icon" type="image/png" sizes="128x128" href="../../_static/favicon-128x128.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../_static/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../../_static/favicon-16x16.png">
+  <link rel="manifest" href="../../_static/site.webmanifest">
+  <link rel="mask-icon" href="../../_static/safari-pinned-tab.svg" color="#646464">
+  <meta name="apple-mobile-web-app-title" content="ESPHome">
+  <meta name="application-name" content="ESPHome">
+  <meta name="msapplication-TileColor" content="#dfdfdf">
+  <meta name="msapplication-config" content="/_static/browserconfig.xml">
+  <meta name="theme-color" content="#dfdfdf">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta property="og:site_name" content="ESPHome">
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head><body>
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../index-2.html">
+              <img class="logo" src="../../_static/logo-text.svg" alt="Logo"/>
+            </a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="https://esphome.io/search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+  <h3><a href="../../index-2.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Stepper Component</a><ul>
+<li><a class="reference internal" href="#base-stepper-configuration">Base Stepper Configuration</a></li>
+<li><a class="reference internal" href="#a4988-component">A4988 Component</a></li>
+<li><a class="reference internal" href="#uln2003-component">ULN2003 Component</a></li>
+<li><a class="reference internal" href="#stepper-set-target-action"><code class="docutils literal notranslate"><span class="pre">stepper.set_target</span></code> Action</a></li>
+<li><a class="reference internal" href="#stepper-report-position-action"><code class="docutils literal notranslate"><span class="pre">stepper.report_position</span></code> Action</a></li>
+<li><a class="reference internal" href="#stepper-set-speed-action"><code class="docutils literal notranslate"><span class="pre">stepper.set_speed</span></code> Action</a></li>
+<li><a class="reference internal" href="#home-assistant-configuration">Home Assistant Configuration</a></li>
+<li><a class="reference internal" href="#lambda-calls">lambda calls</a></li>
+<li><a class="reference internal" href="#see-also">See Also</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="stepper-component">
+<h1>Stepper Component<a class="headerlink" href="#stepper-component" title="Permalink to this headline">¶</a></h1>
+<p>The <code class="docutils literal notranslate"><span class="pre">stepper</span></code> component allows you to use stepper motors with ESPHome.
+Currently only the A4988 stepper driver
+(<a class="reference external" href="https://www.pololu.com/file/0J450/a4988_DMOS_microstepping_driver_with_translator.pdf">datasheet</a>)
+and ULN2003 (<a class="reference external" href="https://www.ti.com/lit/ds/symlink/uln2003a.pdf">datasheet</a>) are supported.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This component will not show up in the Home Assistant front-end automatically because
+Home Assistant doesn’t have support for steppers. Please see <a class="reference internal" href="#stepper-ha-config"><span class="std std-ref">Home Assistant Configuration</span></a>.</p>
+</div>
+<section id="base-stepper-configuration">
+<span id="base-stepper-config"></span><h2>Base Stepper Configuration<a class="headerlink" href="#base-stepper-configuration" title="Permalink to this headline">¶</a></h2>
+<p>All stepper configuration schemas inherit these options.</p>
+<p>Configuration variables:</p>
+<ul class="simple">
+<li><p><strong>max_speed</strong> (<strong>Required</strong>, float): The maximum speed in <code class="docutils literal notranslate"><span class="pre">steps/s</span></code> (steps per seconds) to drive the
+stepper at. Note most steppers can’t step properly with speeds higher than 250 steps/s.</p></li>
+<li><p><strong>acceleration</strong> (<em>Optional</em>, float): The acceleration in <code class="docutils literal notranslate"><span class="pre">steps/s^2</span></code> (steps per seconds squared)
+to use when starting to move. The default is <code class="docutils literal notranslate"><span class="pre">inf</span></code> which means infinite acceleration, so the
+stepper will try to drive with the full speed immediately. This value is helpful if that first motion of
+the motor is too jerky for what it’s moving.  If you make this a small number, it will take the motor a
+moment to get up  to speed.</p></li>
+<li><p><strong>deceleration</strong> (<em>Optional</em>, float): The same as <code class="docutils literal notranslate"><span class="pre">acceleration</span></code>, but for when the motor is decelerating
+shortly before reaching the set position. Defaults to <code class="docutils literal notranslate"><span class="pre">inf</span></code> (immediate deceleration).</p></li>
+</ul>
+</section>
+<section id="a4988-component">
+<h2>A4988 Component<a class="headerlink" href="#a4988-component" title="Permalink to this headline">¶</a></h2>
+<p>Put this code into the configuration file on ESPhome for this device.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">stepper</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">a4988</span>
+    <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">my_stepper</span>
+    <span class="nt">step_pin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">D0</span>
+    <span class="nt">dir_pin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">D1</span>
+    <span class="nt">max_speed</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">250 steps/s</span>
+
+    <span class="c1"># Optional:</span>
+    <span class="nt">sleep_pin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">D2</span>
+    <span class="nt">acceleration</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">inf</span>
+    <span class="nt">deceleration</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">inf</span>
+</pre></div>
+</div>
+<p>Configuration variables:</p>
+<ul class="simple">
+<li><p><strong>id</strong> (<strong>Required</strong>, <a class="reference internal" href="../../guides/configuration-types.html#config-id"><span class="std std-ref">ID</span></a>): Specify the ID of the stepper so that you can control it.</p></li>
+<li><p><strong>step_pin</strong> (<strong>Required</strong>, <a class="reference internal" href="../../guides/configuration-types.html#config-pin-schema"><span class="std std-ref">Pin Schema</span></a>): The <code class="docutils literal notranslate"><span class="pre">STEP</span></code> pin of the A4988
+stepper driver.</p></li>
+<li><p><strong>dir_pin</strong> (<strong>Required</strong>, <a class="reference internal" href="../../guides/configuration-types.html#config-pin-schema"><span class="std std-ref">Pin Schema</span></a>): The <code class="docutils literal notranslate"><span class="pre">DIRECTION</span></code> pin of the A4988
+stepper driver.</p></li>
+<li><p><strong>sleep_pin</strong> (<em>Optional</em>, <a class="reference internal" href="../../guides/configuration-types.html#config-pin-schema"><span class="std std-ref">Pin Schema</span></a>): Optionally also use the <code class="docutils literal notranslate"><span class="pre">SLEEP</span></code> pin
+of the A4988 stepper driver. If specified, the driver will be put into sleep mode as soon as the stepper
+reaches the target steps.</p></li>
+<li><p>All other from <a class="reference internal" href="#base-stepper-config"><span class="std std-ref">Base Stepper Configuration</span></a>.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If the stepper is driving in the wrong direction, you can invert the <code class="docutils literal notranslate"><span class="pre">dir_pin</span></code>:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">stepper</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">a4988</span>
+    <span class="c1"># ...</span>
+    <span class="nt">dir_pin</span><span class="p">:</span>
+      <span class="nt">number</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">D1</span>
+      <span class="nt">inverted</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">True</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="uln2003-component">
+<h2>ULN2003 Component<a class="headerlink" href="#uln2003-component" title="Permalink to this headline">¶</a></h2>
+<p>Put this code into the configuration file on ESPHome for this device.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example configuration entry</span>
+<span class="nt">stepper</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">uln2003</span>
+    <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">my_stepper</span>
+    <span class="nt">pin_a</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">D0</span>
+    <span class="nt">pin_b</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">D1</span>
+    <span class="nt">pin_c</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">D2</span>
+    <span class="nt">pin_d</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">D3</span>
+    <span class="nt">max_speed</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">250 steps/s</span>
+
+    <span class="c1"># Optional:</span>
+    <span class="nt">acceleration</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">inf</span>
+    <span class="nt">deceleration</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">inf</span>
+</pre></div>
+</div>
+<p>Configuration variables:</p>
+<ul>
+<li><p><strong>id</strong> (<strong>Required</strong>, <a class="reference internal" href="../../guides/configuration-types.html#config-id"><span class="std std-ref">ID</span></a>): Specify the ID of the stepper so that you can control it.</p></li>
+<li><p><strong>pin_a</strong> (<strong>Required</strong>, <a class="reference internal" href="../../guides/configuration-types.html#config-pin-schema"><span class="std std-ref">Pin Schema</span></a>): The pin <strong>a</strong> of the stepper control board.</p></li>
+<li><p><strong>pin_b</strong> (<strong>Required</strong>, <a class="reference internal" href="../../guides/configuration-types.html#config-pin-schema"><span class="std std-ref">Pin Schema</span></a>): The pin <strong>b</strong> of the stepper control board.</p></li>
+<li><p><strong>pin_c</strong> (<strong>Required</strong>, <a class="reference internal" href="../../guides/configuration-types.html#config-pin-schema"><span class="std std-ref">Pin Schema</span></a>): The pin <strong>c</strong> of the stepper control board.</p></li>
+<li><p><strong>pin_d</strong> (<strong>Required</strong>, <a class="reference internal" href="../../guides/configuration-types.html#config-pin-schema"><span class="std std-ref">Pin Schema</span></a>): The pin <strong>d</strong> of the stepper control board.</p></li>
+<li><p><strong>sleep_when_done</strong> (<em>Optional</em>, boolean): Whether to turn off all coils when the stepper has
+reached the target position</p></li>
+<li><p><strong>step_mode</strong> (<em>Optional</em>, string): The step mode to operate the motor with. One of:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">FULL_STEP</span></code> (Default)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">HALF_STEP</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">WAVE_DRIVE</span></code></p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>All other from <a class="reference internal" href="#base-stepper-config"><span class="std std-ref">Base Stepper Configuration</span></a>.</p></li>
+</ul>
+</section>
+<section id="stepper-set-target-action">
+<span id="id1"></span><h2><code class="docutils literal notranslate"><span class="pre">stepper.set_target</span></code> Action<a class="headerlink" href="#stepper-set-target-action" title="Permalink to this headline">¶</a></h2>
+<p>To use your stepper motor in <a class="reference internal" href="../../guides/automations.html#automation"><span class="std std-ref">automations</span></a> or templates, you can use this action to set the target
+position (in steps). The stepper will always run towards the target position and stop once it has reached the target.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">on_...</span><span class="p">:</span>
+  <span class="nt">then</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">stepper.set_target</span><span class="p">:</span>
+      <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">my_stepper</span>
+      <span class="nt">target</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">250</span>
+
+  <span class="c1"># Templated</span>
+  <span class="p p-Indicator">-</span> <span class="nt">stepper.set_target</span><span class="p">:</span>
+      <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">my_stepper</span>
+      <span class="nt">target</span><span class="p">:</span> <span class="kt">!lambda</span> <span class="p p-Indicator">|-</span>
+        <span class="no">if (id(my_binary_sensor).state) {</span>
+          <span class="no">return 1000;</span>
+        <span class="no">} else {</span>
+          <span class="no">return -1000;</span>
+        <span class="no">}</span>
+</pre></div>
+</div>
+<p>Configuration options:</p>
+<ul class="simple">
+<li><p><strong>id</strong> (<strong>Required</strong>, <a class="reference internal" href="../../guides/configuration-types.html#config-id"><span class="std std-ref">ID</span></a>): The ID of the stepper.</p></li>
+<li><p><strong>target</strong> (<strong>Required</strong>, int, <a class="reference internal" href="../../guides/automations.html#config-templatable"><span class="std std-ref">templatable</span></a>): The target position in steps.</p></li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This turns the stepper to an absolute position! To have the servo move <em>relative</em> to the current
+position, first reset the current position and then set the target to the relative value.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">on_...</span><span class="p">:</span>
+  <span class="nt">then</span><span class="p">:</span>
+    <span class="c1"># Move 150 steps forward</span>
+    <span class="p p-Indicator">-</span> <span class="nt">stepper.report_position</span><span class="p">:</span>
+        <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">my_stepper</span>
+        <span class="nt">position</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">0</span>
+    <span class="p p-Indicator">-</span> <span class="nt">stepper.set_target</span><span class="p">:</span>
+        <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">my_stepper</span>
+        <span class="nt">target</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">150</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="stepper-report-position-action">
+<span id="id2"></span><h2><code class="docutils literal notranslate"><span class="pre">stepper.report_position</span></code> Action<a class="headerlink" href="#stepper-report-position-action" title="Permalink to this headline">¶</a></h2>
+<p>All steppers start out with a target and current position of <code class="docutils literal notranslate"><span class="pre">0</span></code> on boot. However, if you for example want to home
+a stepper motor, it can be useful to <strong>report</strong> the stepper where it is currently at.</p>
+<p>With this action, you can set the stepper’s internal position counter to a specific value (in steps). Please note
+that reporting the position can create unexpected moves of the stepper. For example, if the stepper’s target and
+current position is at 1000 steps and you “report” a position of 0, the stepper will move 1000 steps forward to match
+the target again.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">on_...</span><span class="p">:</span>
+  <span class="nt">then</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">stepper.report_position</span><span class="p">:</span>
+      <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">my_stepper</span>
+      <span class="nt">position</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">250</span>
+  <span class="c1"># It&#39;s best to call set_target directly after report_position, so that the stepper doesn&#39;t move</span>
+  <span class="p p-Indicator">-</span> <span class="nt">stepper.set_target</span><span class="p">:</span>
+      <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">my_stepper</span>
+      <span class="nt">target</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">250</span>
+
+  <span class="c1"># Templated</span>
+  <span class="p p-Indicator">-</span> <span class="nt">stepper.report_position</span><span class="p">:</span>
+      <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">my_stepper</span>
+      <span class="nt">position</span><span class="p">:</span> <span class="kt">!lambda</span> <span class="p p-Indicator">|-</span>
+        <span class="no">if (id(my_binary_sensor).state) {</span>
+          <span class="no">return 0;</span>
+        <span class="no">} else {</span>
+          <span class="no">return -1000;</span>
+        <span class="no">}</span>
+</pre></div>
+</div>
+<p>Configuration variables:</p>
+<ul class="simple">
+<li><p><strong>id</strong> (<strong>Required</strong>, <a class="reference internal" href="../../guides/configuration-types.html#config-id"><span class="std std-ref">ID</span></a>): The ID of the stepper.</p></li>
+<li><p><strong>position</strong> (<strong>Required</strong>, int, <a class="reference internal" href="../../guides/automations.html#config-templatable"><span class="std std-ref">templatable</span></a>): The position to report in steps.</p></li>
+</ul>
+</section>
+<section id="stepper-set-speed-action">
+<span id="id3"></span><h2><code class="docutils literal notranslate"><span class="pre">stepper.set_speed</span></code> Action<a class="headerlink" href="#stepper-set-speed-action" title="Permalink to this headline">¶</a></h2>
+<p>This <a class="reference internal" href="../../guides/automations.html#config-action"><span class="std std-ref">Action</span></a> allows you to set the speed of a stepper at runtime.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">on_...</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">stepper.set_speed</span><span class="p">:</span>
+      <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">my_stepper</span>
+      <span class="nt">speed</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">250 steps/s</span>
+</pre></div>
+</div>
+<p>Configuration variables:</p>
+<ul class="simple">
+<li><p><strong>id</strong> (<strong>Required</strong>, <a class="reference internal" href="../../guides/configuration-types.html#config-id"><span class="std std-ref">ID</span></a>): The ID of the stepper.</p></li>
+<li><p><strong>speed</strong> (<strong>Required</strong>, <a class="reference internal" href="../../guides/automations.html#config-templatable"><span class="std std-ref">templatable</span></a>, float): The speed
+in <code class="docutils literal notranslate"><span class="pre">steps/s</span></code> (steps per seconds) to drive the stepper at.</p></li>
+</ul>
+</section>
+<section id="home-assistant-configuration">
+<span id="stepper-ha-config"></span><h2>Home Assistant Configuration<a class="headerlink" href="#home-assistant-configuration" title="Permalink to this headline">¶</a></h2>
+<p>This component will not show up in the Home Assistant front-end (Overview) automatically because
+Home Assistant does not support steppers natively.</p>
+<p>You can add the stepper component code below to your Home Assistant configuration (<code class="docutils literal notranslate"><span class="pre">configuration.yaml</span></code>) to
+be able to control the stepper from the front-end.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Add a slider control to Home Assistant to set an integer value</span>
+<span class="nt">input_number</span><span class="p">:</span>
+  <span class="nt">stepper_control</span><span class="p">:</span>
+    <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Stepper Control</span>
+    <span class="nt">initial</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">0</span>
+    <span class="nt">min</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">-1000</span>
+    <span class="nt">max</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">1000</span>
+    <span class="nt">step</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">1</span>
+    <span class="nt">mode</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">slider</span>
+
+<span class="c1"># Do something when the slider changes</span>
+<span class="nt">automation</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">alias</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Write Stepper Value to ESP</span>
+    <span class="nt">trigger</span><span class="p">:</span>
+      <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">state</span>
+      <span class="nt">entity_id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">input_number.stepper_control</span>
+    <span class="nt">action</span><span class="p">:</span>
+      <span class="c1"># Replace livingroom with the name you gave the ESP</span>
+      <span class="p p-Indicator">-</span> <span class="nt">service</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">esphome.livingroom_control_stepper</span>
+        <span class="nt">data_template</span><span class="p">:</span>
+          <span class="nt">target</span><span class="p">:</span> <span class="s">&#39;{{</span><span class="nv"> </span><span class="s">trigger.to_state.state</span><span class="nv"> </span><span class="s">|</span><span class="nv"> </span><span class="s">int</span><span class="nv"> </span><span class="s">}}&#39;</span>
+</pre></div>
+</div>
+<p>In the above code, “stepper_control” is the ID of a numeric input field. It must be unique and it is
+used in the automation section as a reference name. The display name for this field is in
+stepper_control’s <code class="docutils literal notranslate"><span class="pre">name</span></code> key.</p>
+<p>If you want your user interface to give you more control over your stepper controller, such as
+setting the acceleration, deceleration, etc, then you can add more input fields after <code class="docutils literal notranslate"><span class="pre">stepper_control</span></code>
+but before <code class="docutils literal notranslate"><span class="pre">automation</span></code>. They can be a simple number-entry field (mode: box) or a slider like this.
+Each of these extra input fields needs an associated input parameter defined on the ESPHome device’s
+API service.</p>
+<p>The automation section tells Home Assistant what to do when the slider changes. It needs a trigger
+(state of the <code class="docutils literal notranslate"><span class="pre">stepper_control</span></code> slider) and an action. In the trigger section, <code class="docutils literal notranslate"><span class="pre">entity_id</span></code> must refer
+back to the configuration ID that triggers the automation. For us, that is the <code class="docutils literal notranslate"><span class="pre">stepper_control</span></code>
+field in the <code class="docutils literal notranslate"><span class="pre">input_number</span></code> item. That’s why the value is <code class="docutils literal notranslate"><span class="pre">input_number.stepper_control</span></code>.</p>
+<p>In the action section, the service name is vital to get right: it’s the glue that connects Home Automation’s
+front-end to the ESPHome device configuration. While you might expect the syntax to be <code class="docutils literal notranslate"><span class="pre">esphome.&lt;your_device&gt;.&lt;api_service&gt;</span></code>,
+the correct syntax is to join the device ID to the API service ID with an underscore,
+as in <code class="docutils literal notranslate"><span class="pre">esphome.livingroom_control_stepper</span></code> where “Livingroom” is a device in ESPHome and “control_stepper” is an
+API service for that device.</p>
+<p>The template string is used to get the “state” value from the <code class="docutils literal notranslate"><span class="pre">target</span></code> field (defined in the target section) on the
+<code class="docutils literal notranslate"><span class="pre">input_number</span></code> component of the Home Assistant front-end. This value is then passed to the API service as defined in
+the ESPHome device’s configuration. The <code class="docutils literal notranslate"><span class="pre">data_template</span></code> section lists one value for each of the input parameters on
+the service being called by the automation. In our case, the ESPHome device has an API service with a single parameter,
+“target”. If you called this “my_target”, then the last line above should be <code class="docutils literal notranslate"><span class="pre">my_target:</span> <span class="pre">'{{</span> <span class="pre">trigger.to_state.state</span> <span class="pre">|</span> <span class="pre">int</span> <span class="pre">}}'</span></code>.
+Getting this linkage right is very important.</p>
+<p>The following code needs to go in the ESPHome configuration file for this device. Above, we mention “API service”
+a lot. This code is where that is defined. You may have already added it (or something similar). Note
+that the input variable for the <code class="docutils literal notranslate"><span class="pre">control_stepper</span></code> service is called <code class="docutils literal notranslate"><span class="pre">target</span></code>. That’s what matches with the
+automation configuration above. Also note that the variable <code class="docutils literal notranslate"><span class="pre">target</span></code> is defined as an integer. That means it
+must be an integer number, not a string.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># ESPHome configuration</span>
+<span class="nt">api</span><span class="p">:</span>
+  <span class="nt">services</span><span class="p">:</span>
+    <span class="p p-Indicator">-</span> <span class="nt">service</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">control_stepper</span>
+      <span class="nt">variables</span><span class="p">:</span>
+        <span class="nt">target</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">int</span>
+      <span class="nt">then</span><span class="p">:</span>
+        <span class="p p-Indicator">-</span> <span class="nt">stepper.set_target</span><span class="p">:</span>
+            <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">my_stepper</span>
+            <span class="nt">target</span><span class="p">:</span> <span class="kt">!lambda</span> <span class="s">&#39;return</span><span class="nv"> </span><span class="s">target;&#39;</span>
+
+<span class="nt">stepper</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">...</span>
+    <span class="c1"># [...] stepper config</span>
+    <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">my_stepper</span>
+</pre></div>
+</div>
+</section>
+<section id="lambda-calls">
+<span id="stepper-lambda-calls"></span><h2>lambda calls<a class="headerlink" href="#lambda-calls" title="Permalink to this headline">¶</a></h2>
+<p>From <a class="reference internal" href="../../guides/automations.html#config-lambda"><span class="std std-ref">lambdas</span></a>, you can call several methods on stepper motors to do some
+advanced stuff (see the full API Reference for more info).</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">set_target</span></code>: Set the target position of the motor as an integer.</p>
+<blockquote>
+<div><div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// Argument is integer (signed int)</span>
+<span class="c1">// Set the (absolute) target position to 250 steps</span>
+<span class="n">id</span><span class="p">(</span><span class="n">my_stepper</span><span class="p">).</span><span class="n">set_target</span><span class="p">(</span><span class="mi">250</span><span class="p">);</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">report_position</span></code>: Report the current position as an integer.</p>
+<blockquote>
+<div><div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// Report the (absolute) current position as 250 steps</span>
+<span class="n">id</span><span class="p">(</span><span class="n">my_stepper</span><span class="p">).</span><span class="n">report_position</span><span class="p">(</span><span class="mi">250</span><span class="p">);</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">current_position</span></code>: Get the current position of the stepper as an integer.</p>
+<blockquote>
+<div><div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="n">pos</span> <span class="o">=</span> <span class="n">id</span><span class="p">(</span><span class="n">my_stepper</span><span class="p">).</span><span class="n">current_position</span><span class="p">;</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">target_position</span></code>: Get the set target position of the stepper  as an integer.</p>
+<blockquote>
+<div><div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="n">pos</span> <span class="o">=</span> <span class="n">id</span><span class="p">(</span><span class="n">my_stepper</span><span class="p">).</span><span class="n">target_position</span><span class="p">;</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+</ul>
+</section>
+<section id="see-also">
+<h2>See Also<a class="headerlink" href="#see-also" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="../../api/stepper_8h.html">API Reference</a></p></li>
+<li><p><a class="reference external" href="https://github.com/esphome/esphome-docs/blob/current/components/stepper/index.rst">Edit this page on GitHub</a></p></li>
+</ul>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+  <div id="upgrade-footer">
+    A new version has been release since you last visited this page: 1.17.2 🎉
+    <div class="footer-button-container">
+      <div role="button" id="upgrade-footer-dismiss" class="footer-button">Dismiss</div>
+      <a id="upgrade-footer-changelog" class="footer-button" href="../../changelog/v1.17.0.html">View Changelog</a>  
+    </div>
+  </div>
+  <script>
+    var old = window.localStorage.getItem("version");
+    if (old === null) { window.localStorage.setItem("version", "1.17");
+    } else if (old !== "1.17") {
+      const footerEl = document.getElementById("upgrade-footer");
+      footerEl.classList.add("not-hidden");
+      footerEl.addEventListener('click', function () {
+        window.localStorage.setItem("version", "1.17");
+        footerEl.classList.remove("not-hidden");
+      });
+    }
+  </script>
+
+  </body>
+
+<!-- Mirrored from esphome.io/components/stepper/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 16 May 2021 03:02:28 GMT -->
+</html>

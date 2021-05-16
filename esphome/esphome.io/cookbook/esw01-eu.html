@@ -1,0 +1,234 @@
+
+  <!DOCTYPE html>
+
+
+<html lang="en">
+  
+<!-- Mirrored from esphome.io/cookbook/esw01-eu.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 16 May 2021 03:02:49 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+<meta name="description" content="Configure an Etekcity Voltson and calculate the missing current sensor">
+<meta name="keywords" content="Etekcity, Voltson, ESW01, ESW01-EU, HLW8012, Home Assistant, ESPHome">
+<meta itemprop="name" content="Etekcity Voltson (ESW01-EU)">
+<meta itemprop="description" content="Configure an Etekcity Voltson and calculate the missing current sensor">
+<meta itemprop="image" content="../_images/esw01-eu.jpg">
+<meta name="twitter:title" content="Etekcity Voltson (ESW01-EU)">
+<meta name="twitter:image:src" content="../_images/esw01-eu.jpg">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@OttoWinter_">
+<meta name="twitter:description" content="Configure an Etekcity Voltson and calculate the missing current sensor">
+<meta property="og:title" content="Etekcity Voltson (ESW01-EU)">
+<meta property="og:image" content="../_images/esw01-eu.jpg">
+<meta property="og:type" content="website">
+<meta property="og:description" content="Configure an Etekcity Voltson and calculate the missing current sensor">
+
+    <title>Etekcity Voltson (ESW01-EU) &#8212; ESPHome</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <link rel="canonical" href="esw01-eu.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Simple Garage Door" href="garage-door.html" />
+    <link rel="prev" title="Template Cover with Endstops" href="endstop-cover.html" />
+  <link rel="stylesheet" href="../_static/customf001.css?hash=f908c2b5" type="text/css" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../_static/apple-touch-icon.png">
+  <link rel="shortcut icon" href="../_static/favicon.ico">
+  <link rel="icon" type="image/png" sizes="512x512" href="../_static/favicon-512x512.png">
+  <link rel="icon" type="image/png" sizes="256x256" href="../_static/favicon-256x256.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="../_static/favicon-192x192.png">
+  <link rel="icon" type="image/png" sizes="128x128" href="../_static/favicon-128x128.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../_static/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../_static/favicon-16x16.png">
+  <link rel="manifest" href="../_static/site.webmanifest">
+  <link rel="mask-icon" href="../_static/safari-pinned-tab.svg" color="#646464">
+  <meta name="apple-mobile-web-app-title" content="ESPHome">
+  <meta name="application-name" content="ESPHome">
+  <meta name="msapplication-TileColor" content="#dfdfdf">
+  <meta name="msapplication-config" content="/_static/browserconfig.xml">
+  <meta name="theme-color" content="#dfdfdf">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta property="og:site_name" content="ESPHome">
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head><body>
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index-2.html">
+              <img class="logo" src="../_static/logo-text.svg" alt="Logo"/>
+            </a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="https://esphome.io/search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+  <h3><a href="../index-2.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Etekcity Voltson (ESW01-EU)</a><ul>
+<li><a class="reference internal" href="#flashing">Flashing</a></li>
+<li><a class="reference internal" href="#configuration">Configuration</a></li>
+<li><a class="reference internal" href="#see-also">See Also</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="etekcity-voltson-esw01-eu">
+<h1>Etekcity Voltson (ESW01-EU)<a class="headerlink" href="#etekcity-voltson-esw01-eu" title="Permalink to this headline">¶</a></h1>
+<p>The Etekcity Voltson brings a 10A relay, two LEDs (blue and yellow), a push button and a <a class="reference internal" href="../components/sensor/hlw8012.html"><span class="doc">HLW8012 Power Sensor</span></a>
+in a very small package and at a reasonable price.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>There are quite a few hardware revisions out there. Also reginal versions like US, UK and EU are different.</p>
+</div>
+<section id="flashing">
+<h2>Flashing<a class="headerlink" href="#flashing" title="Permalink to this headline">¶</a></h2>
+<p>Opening the case for flashing varies a lot for different hardware revisions. Mine was easy as it had two tiny T5 Torx screws in the front and four Philipps screws inside.
+Once you have opened the case, remove the PCB from it and attach your TTL as follows:</p>
+<p>5V and GND go to the bottom:</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/esw01-eu-pcb-bottom.jpg"><img alt="../_images/esw01-eu-pcb-bottom.jpg" src="../_images/esw01-eu-pcb-bottom.jpg" style="width: 75.0%;" /></a>
+</figure>
+<p>On the opposite side, T12 is TX, T13 is RX. During boot you need to connect T11 and T16 pads to GND. Easiest is to flash with pogo pins.</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/esw01-eu-pcb-top.jpg"><img alt="../_images/esw01-eu-pcb-top.jpg" src="../_images/esw01-eu-pcb-top.jpg" style="width: 75.0%;" /></a>
+</figure>
+</section>
+<section id="configuration">
+<h2>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h2>
+<p>As the Voltson has its SEL pin permanently pulled high, we are unable to switch from voltage measurement to current measurement.
+This will be circumvented by defining the initial mode to be voltage measurement (see <a class="reference internal" href="../components/sensor/hlw8012.html"><span class="doc">HLW8012 Power Sensor</span></a> documentation)
+and calculating the current with <a class="reference external" href="https://en.wikipedia.org/wiki/Ohm%27s_law">Ohm’s law</a>: <code class="docutils literal notranslate"><span class="pre">P</span> <span class="pre">(watts)</span> <span class="pre">=</span> <span class="pre">V</span> <span class="pre">(volts)</span> <span class="pre">x</span> <span class="pre">I</span> <span class="pre">(amps)</span></code></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">esphome</span><span class="p">:</span>
+  <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">voltson</span>
+  <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ESP8266</span>
+  <span class="nt">board</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">esp01_1m</span>
+
+<span class="c1">### you wifi and other settings here ###</span>
+
+<span class="c1">### pins ###</span>
+<span class="c1"># D1 GPIO5  | LED blue    | status_led</span>
+<span class="c1"># D0 GPIO16 | LED yellow  | led1</span>
+<span class="c1"># D5 GPIO14 | SW1         | button1</span>
+<span class="c1"># D2 GPIO4  | REL1        | relay1</span>
+<span class="c1"># D6 GPIO12 | HLW8012/CF1 | cf1_pin</span>
+<span class="c1"># D7 GPIO13 | HLW8012/CF  | cf_pin</span>
+
+<span class="nt">status_led</span><span class="p">:</span>
+  <span class="nt">pin</span><span class="p">:</span>
+    <span class="nt">number</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO5</span>
+
+<span class="nt">output</span><span class="p">:</span>
+<span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">gpio</span>
+  <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">relay1</span>
+  <span class="nt">pin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO4</span>
+<span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">gpio</span>
+  <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">led1</span>
+  <span class="nt">pin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO16</span>
+
+<span class="nt">switch</span><span class="p">:</span>
+<span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">output</span>
+  <span class="nt">name</span><span class="p">:</span> <span class="s">&quot;Voltson</span><span class="nv"> </span><span class="s">Relay&quot;</span>
+  <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">switch1</span>
+  <span class="nt">output</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">relay1</span>
+  <span class="nt">on_turn_on</span><span class="p">:</span>
+    <span class="p p-Indicator">-</span> <span class="nt">output.turn_on</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">led1</span>
+  <span class="nt">on_turn_off</span><span class="p">:</span>
+    <span class="p p-Indicator">-</span> <span class="nt">output.turn_off</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">led1</span>
+
+<span class="nt">binary_sensor</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">gpio</span>
+    <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">button1</span>
+    <span class="nt">pin</span><span class="p">:</span>
+      <span class="nt">number</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO14</span>
+      <span class="nt">mode</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">INPUT_PULLUP</span>
+      <span class="nt">inverted</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+    <span class="nt">on_press</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="nt">switch.toggle</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">switch1</span>
+
+<span class="nt">sensor</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">hlw8012</span>
+    <span class="nt">sel_pin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">0</span>   <span class="c1"># not connected</span>
+    <span class="nt">cf_pin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO13</span>
+    <span class="nt">cf1_pin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO12</span>
+    <span class="nt">voltage</span><span class="p">:</span>
+      <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">hlw8012_voltage</span>
+      <span class="nt">name</span><span class="p">:</span> <span class="s">&quot;HLW8012</span><span class="nv"> </span><span class="s">Voltage&quot;</span>
+    <span class="nt">power</span><span class="p">:</span>
+      <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">hlw8012_power</span>
+      <span class="nt">name</span><span class="p">:</span> <span class="s">&quot;HLW8012</span><span class="nv"> </span><span class="s">Power&quot;</span>
+      <span class="nt">on_value</span><span class="p">:</span>
+        <span class="p p-Indicator">-</span> <span class="nt">sensor.template.publish</span><span class="p">:</span>
+            <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">hlw8012_current_calculated</span>
+            <span class="nt">state</span><span class="p">:</span> <span class="kt">!lambda</span> <span class="s">&#39;return</span><span class="nv"> </span><span class="s">id(hlw8012_power).state</span><span class="nv"> </span><span class="s">/</span><span class="nv"> </span><span class="s">id(hlw8012_voltage).state;&#39;</span>
+    <span class="nt">update_interval</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">10s</span>
+    <span class="nt">initial_mode</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">VOLTAGE</span>
+    <span class="nt">change_mode_every</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">4294967295</span> <span class="c1"># basically never</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">template</span>
+    <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">hlw8012_current_calculated</span>
+    <span class="nt">name</span><span class="p">:</span> <span class="s">&quot;HLW8012</span><span class="nv"> </span><span class="s">Current</span><span class="nv"> </span><span class="s">(calculated)&quot;</span>
+    <span class="nt">unit_of_measurement</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">A</span>
+    <span class="nt">accuracy_decimals</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">2</span>
+</pre></div>
+</div>
+</section>
+<section id="see-also">
+<h2>See Also<a class="headerlink" href="#see-also" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="../components/sensor/hlw8012.html"><span class="doc">HLW8012 Power Sensor</span></a></p></li>
+<li><p><a class="reference external" href="https://github.com/esphome/esphome-docs/blob/current/cookbook/esw01-eu.rst">Edit this page on GitHub</a></p></li>
+</ul>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+  <div id="upgrade-footer">
+    A new version has been release since you last visited this page: 1.17.2 🎉
+    <div class="footer-button-container">
+      <div role="button" id="upgrade-footer-dismiss" class="footer-button">Dismiss</div>
+      <a id="upgrade-footer-changelog" class="footer-button" href="../changelog/v1.17.0.html">View Changelog</a>  
+    </div>
+  </div>
+  <script>
+    var old = window.localStorage.getItem("version");
+    if (old === null) { window.localStorage.setItem("version", "1.17");
+    } else if (old !== "1.17") {
+      const footerEl = document.getElementById("upgrade-footer");
+      footerEl.classList.add("not-hidden");
+      footerEl.addEventListener('click', function () {
+        window.localStorage.setItem("version", "1.17");
+        footerEl.classList.remove("not-hidden");
+      });
+    }
+  </script>
+
+  </body>
+
+<!-- Mirrored from esphome.io/cookbook/esw01-eu.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 16 May 2021 03:02:50 GMT -->
+</html>

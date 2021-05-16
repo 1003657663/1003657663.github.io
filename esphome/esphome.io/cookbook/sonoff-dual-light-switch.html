@@ -1,0 +1,361 @@
+
+  <!DOCTYPE html>
+
+
+<html lang="en">
+  
+<!-- Mirrored from esphome.io/cookbook/sonoff-dual-light-switch.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 16 May 2021 03:11:10 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+<meta name="description" content="An example of how to integrate a dual light switch into Home Assistant using ESPHome">
+<meta name="keywords" content="Relay, Sonoff Dual Dual R1, Light, HASS, Home Assistant, ESPHome">
+<meta itemprop="name" content="DIY Light switch using a Sonoff Dual">
+<meta itemprop="description" content="An example of how to integrate a dual light switch into Home Assistant using ESPHome">
+<meta itemprop="image" content="../_images/sonoff_light_switch-2.html">
+<meta name="twitter:title" content="DIY Light switch using a Sonoff Dual">
+<meta name="twitter:image:src" content="../_images/sonoff_light_switch-2.html">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@OttoWinter_">
+<meta name="twitter:description" content="An example of how to integrate a dual light switch into Home Assistant using ESPHome">
+<meta property="og:title" content="DIY Light switch using a Sonoff Dual">
+<meta property="og:image" content="../_images/sonoff_light_switch-2.html">
+<meta property="og:type" content="website">
+<meta property="og:description" content="An example of how to integrate a dual light switch into Home Assistant using ESPHome">
+
+    <title>DIY Light switch using a Sonoff Dual &#8212; ESPHome</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <link rel="canonical" href="sonoff-dual-light-switch.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Sonoff Fish Pond Pump" href="sonoff-fishpond-pump.html" />
+    <link rel="prev" title="DIY Light switch using a Sonoff Basic" href="sonoff-basic-light-switch.html" />
+  <link rel="stylesheet" href="../_static/customf001.css?hash=f908c2b5" type="text/css" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../_static/apple-touch-icon.png">
+  <link rel="shortcut icon" href="../_static/favicon.ico">
+  <link rel="icon" type="image/png" sizes="512x512" href="../_static/favicon-512x512.png">
+  <link rel="icon" type="image/png" sizes="256x256" href="../_static/favicon-256x256.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="../_static/favicon-192x192.png">
+  <link rel="icon" type="image/png" sizes="128x128" href="../_static/favicon-128x128.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../_static/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../_static/favicon-16x16.png">
+  <link rel="manifest" href="../_static/site.webmanifest">
+  <link rel="mask-icon" href="../_static/safari-pinned-tab.svg" color="#646464">
+  <meta name="apple-mobile-web-app-title" content="ESPHome">
+  <meta name="application-name" content="ESPHome">
+  <meta name="msapplication-TileColor" content="#dfdfdf">
+  <meta name="msapplication-config" content="/_static/browserconfig.xml">
+  <meta name="theme-color" content="#dfdfdf">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta property="og:site_name" content="ESPHome">
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head><body>
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index-2.html">
+              <img class="logo" src="../_static/logo-text.svg" alt="Logo"/>
+            </a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="https://esphome.io/search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+  <h3><a href="../index-2.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">DIY Light switch using a Sonoff Dual</a><ul>
+<li><a class="reference internal" href="#r1">R1</a></li>
+<li><a class="reference internal" href="#r2">R2</a></li>
+<li><a class="reference internal" href="#see-also">See Also</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="diy-light-switch-using-a-sonoff-dual">
+<h1>DIY Light switch using a Sonoff Dual<a class="headerlink" href="#diy-light-switch-using-a-sonoff-dual" title="Permalink to this headline">¶</a></h1>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This is a DIY solution, and you will need to have some knowledge of electrical wiring and enough
+capabilities to do this work safely.</p>
+<p>The author, and the ESPHome team, take no responsibility for any actions, injuries or outcomes
+from following this guide.</p>
+<p>In some countries you may need specific qualifications before you can carry out such work in
+a residential property.</p>
+</div>
+<p>Please read up on <a class="reference internal" href="sonoff-basic-light-switch.html"><span class="doc">DIY Light switch using a Sonoff Basic</span></a> to get the background and principals of
+the this project. It’s all basically the same, but with a double switch.</p>
+<p>So we will be using GPIO4 and GPIO14 for the two retractive switches, again they will both short to 0V
+when the switch is clicked.</p>
+<section id="r1">
+<h2>R1<a class="headerlink" href="#r1" title="Permalink to this headline">¶</a></h2>
+<p>The R1 version of the Dual controls the relays via the UART, so the code gets a bit complex here.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">esphome</span><span class="p">:</span>
+  <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">dual_ls</span>
+  <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ESP8266</span>
+  <span class="nt">board</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">esp01_1m</span>
+
+<span class="nt">wifi</span><span class="p">:</span>
+  <span class="nt">ssid</span><span class="p">:</span> <span class="kt">!secret</span> <span class="l l-Scalar l-Scalar-Plain">wifi_ssid</span>
+  <span class="nt">password</span><span class="p">:</span> <span class="kt">!secret</span> <span class="l l-Scalar l-Scalar-Plain">wifi_password</span>
+
+<span class="nt">logger</span><span class="p">:</span>
+  <span class="nt">baud_rate</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">0</span>
+
+<span class="c1"># Enable Home Assistant API</span>
+<span class="nt">api</span><span class="p">:</span>
+
+<span class="nt">ota</span><span class="p">:</span>
+
+<span class="nt">uart</span><span class="p">:</span>
+  <span class="nt">tx_pin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO01</span>
+  <span class="nt">rx_pin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO03</span>
+  <span class="nt">baud_rate</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">19200</span>
+
+<span class="nt">switch</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">template</span>
+    <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">relay_1</span>
+    <span class="nt">turn_on_action</span><span class="p">:</span>
+      <span class="nt">if</span><span class="p">:</span>
+        <span class="nt">condition</span><span class="p">:</span>
+          <span class="nt">switch.is_off</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">relay_2</span>
+        <span class="nt">then</span><span class="p">:</span>
+          <span class="p p-Indicator">-</span> <span class="nt">uart.write</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="nv">0xA0</span><span class="p p-Indicator">,</span> <span class="nv">0x04</span><span class="p p-Indicator">,</span> <span class="nv">0x01</span><span class="p p-Indicator">,</span> <span class="nv">0xA1</span><span class="p p-Indicator">]</span>
+        <span class="nt">else</span><span class="p">:</span>
+          <span class="p p-Indicator">-</span> <span class="nt">uart.write</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="nv">0xA0</span><span class="p p-Indicator">,</span> <span class="nv">0x04</span><span class="p p-Indicator">,</span> <span class="nv">0x03</span><span class="p p-Indicator">,</span> <span class="nv">0xA1</span><span class="p p-Indicator">]</span>
+    <span class="nt">turn_off_action</span><span class="p">:</span>
+      <span class="nt">if</span><span class="p">:</span>
+        <span class="nt">condition</span><span class="p">:</span>
+          <span class="nt">switch.is_off</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">relay_2</span>
+        <span class="nt">then</span><span class="p">:</span>
+          <span class="p p-Indicator">-</span> <span class="nt">uart.write</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="nv">0xA0</span><span class="p p-Indicator">,</span> <span class="nv">0x04</span><span class="p p-Indicator">,</span> <span class="nv">0x00</span><span class="p p-Indicator">,</span> <span class="nv">0xA1</span><span class="p p-Indicator">]</span>
+        <span class="nt">else</span><span class="p">:</span>
+          <span class="p p-Indicator">-</span> <span class="nt">uart.write</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="nv">0xA0</span><span class="p p-Indicator">,</span> <span class="nv">0x04</span><span class="p p-Indicator">,</span> <span class="nv">0x02</span><span class="p p-Indicator">,</span> <span class="nv">0xA1</span><span class="p p-Indicator">]</span>
+    <span class="nt">optimistic</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">template</span>
+    <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">relay_2</span>
+    <span class="nt">turn_on_action</span><span class="p">:</span>
+      <span class="nt">if</span><span class="p">:</span>
+        <span class="nt">condition</span><span class="p">:</span>
+          <span class="nt">switch.is_off</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">relay_1</span>
+        <span class="nt">then</span><span class="p">:</span>
+          <span class="p p-Indicator">-</span> <span class="nt">uart.write</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="nv">0xA0</span><span class="p p-Indicator">,</span> <span class="nv">0x04</span><span class="p p-Indicator">,</span> <span class="nv">0x02</span><span class="p p-Indicator">,</span> <span class="nv">0xA1</span><span class="p p-Indicator">]</span>
+        <span class="nt">else</span><span class="p">:</span>
+          <span class="p p-Indicator">-</span> <span class="nt">uart.write</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="nv">0xA0</span><span class="p p-Indicator">,</span> <span class="nv">0x04</span><span class="p p-Indicator">,</span> <span class="nv">0x03</span><span class="p p-Indicator">,</span> <span class="nv">0xA1</span><span class="p p-Indicator">]</span>
+    <span class="nt">turn_off_action</span><span class="p">:</span>
+      <span class="nt">if</span><span class="p">:</span>
+        <span class="nt">condition</span><span class="p">:</span>
+          <span class="nt">switch.is_off</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">relay_1</span>
+        <span class="nt">then</span><span class="p">:</span>
+          <span class="p p-Indicator">-</span> <span class="nt">uart.write</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="nv">0xA0</span><span class="p p-Indicator">,</span> <span class="nv">0x04</span><span class="p p-Indicator">,</span> <span class="nv">0x00</span><span class="p p-Indicator">,</span> <span class="nv">0xA1</span><span class="p p-Indicator">]</span>
+        <span class="nt">else</span><span class="p">:</span>
+          <span class="p p-Indicator">-</span> <span class="nt">uart.write</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="nv">0xA0</span><span class="p p-Indicator">,</span> <span class="nv">0x04</span><span class="p p-Indicator">,</span> <span class="nv">0x01</span><span class="p p-Indicator">,</span> <span class="nv">0xA1</span><span class="p p-Indicator">]</span>
+    <span class="nt">optimistic</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+
+<span class="nt">binary_sensor</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">gpio</span>
+    <span class="nt">pin</span><span class="p">:</span>
+      <span class="nt">number</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO4</span>
+      <span class="nt">mode</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">INPUT_PULLUP</span>
+      <span class="nt">inverted</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">True</span>
+    <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">button_1</span>
+    <span class="nt">on_press</span><span class="p">:</span>
+      <span class="nt">then</span><span class="p">:</span>
+        <span class="p p-Indicator">-</span> <span class="nt">light.toggle</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">light_1</span>
+
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">gpio</span>
+    <span class="nt">pin</span><span class="p">:</span>
+      <span class="nt">number</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO14</span>
+      <span class="nt">mode</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">INPUT_PULLUP</span>
+      <span class="nt">inverted</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">True</span>
+    <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">button_2</span>
+    <span class="nt">on_press</span><span class="p">:</span>
+      <span class="nt">then</span><span class="p">:</span>
+        <span class="p p-Indicator">-</span> <span class="nt">light.toggle</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">light_2</span>
+
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">status</span>
+    <span class="nt">name</span><span class="p">:</span> <span class="s">&quot;Dual</span><span class="nv"> </span><span class="s">LS</span><span class="nv"> </span><span class="s">Status&quot;</span>
+
+<span class="nt">status_led</span><span class="p">:</span>
+  <span class="nt">pin</span><span class="p">:</span>
+    <span class="nt">number</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO13</span>
+    <span class="nt">inverted</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">yes</span>
+
+<span class="nt">output</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">template</span>
+    <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">binary</span>
+    <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">out_1</span>
+    <span class="nt">write_action</span><span class="p">:</span>
+      <span class="nt">if</span><span class="p">:</span>
+        <span class="nt">condition</span><span class="p">:</span>
+          <span class="nt">light.is_on</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">light_1</span>
+        <span class="nt">then</span><span class="p">:</span>
+          <span class="p p-Indicator">-</span> <span class="nt">switch.turn_on</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">relay_1</span>
+        <span class="nt">else</span><span class="p">:</span>
+          <span class="p p-Indicator">-</span> <span class="nt">switch.turn_off</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">relay_1</span>
+
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">template</span>
+    <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">binary</span>
+    <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">out_2</span>
+    <span class="nt">write_action</span><span class="p">:</span>
+      <span class="nt">if</span><span class="p">:</span>
+        <span class="nt">condition</span><span class="p">:</span>
+          <span class="nt">light.is_on</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">light_2</span>
+        <span class="nt">then</span><span class="p">:</span>
+          <span class="p p-Indicator">-</span> <span class="nt">switch.turn_on</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">relay_2</span>
+        <span class="nt">else</span><span class="p">:</span>
+          <span class="p p-Indicator">-</span> <span class="nt">switch.turn_off</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">relay_2</span>
+
+<span class="nt">light</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">binary</span>
+    <span class="nt">name</span><span class="p">:</span> <span class="s">&quot;Dual</span><span class="nv"> </span><span class="s">L1&quot;</span>
+    <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">light_1</span>
+    <span class="nt">output</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">out_1</span>
+
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">binary</span>
+    <span class="nt">name</span><span class="p">:</span> <span class="s">&quot;Dual</span><span class="nv"> </span><span class="s">L2&quot;</span>
+    <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">light_2</span>
+    <span class="nt">output</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">out_2</span>
+</pre></div>
+</div>
+<p>In the above code block, there is a <em>secrets.yaml</em> file so that you have just one place to change WiFi
+details for all your devices.</p>
+<p>The logger baud_rate: 0 is required to make sure the logged does not send any data over the UART or it would
+mess with the relays.</p>
+<p>Although not visible day to day, there is also the status LED configured so that it can be used when setting
+up / debugging. Also a configured binary sensor to give status in case you want to perform an action / alert
+if the light switch disconnects for any reason.</p>
+</section>
+<section id="r2">
+<h2>R2<a class="headerlink" href="#r2" title="Permalink to this headline">¶</a></h2>
+<p>This one is a lot simpler as it uses real GPIO for its relays. Please note this is untested, but should work!
+It’s basically the same as the <a class="reference internal" href="sonoff-t1-3.html"><span class="doc">T2</span></a></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">esphome</span><span class="p">:</span>
+  <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">dual_ls</span>
+  <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ESP8266</span>
+  <span class="nt">board</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">esp01_1m</span>
+
+<span class="nt">wifi</span><span class="p">:</span>
+  <span class="nt">ssid</span><span class="p">:</span> <span class="kt">!secret</span> <span class="l l-Scalar l-Scalar-Plain">wifi_ssid</span>
+  <span class="nt">password</span><span class="p">:</span> <span class="kt">!secret</span> <span class="l l-Scalar l-Scalar-Plain">wifi_password</span>
+
+<span class="nt">logger</span><span class="p">:</span>
+
+<span class="nt">api</span><span class="p">:</span>
+
+<span class="nt">ota</span><span class="p">:</span>
+
+<span class="nt">binary_sensor</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">gpio</span>
+    <span class="nt">pin</span><span class="p">:</span>
+      <span class="nt">number</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO0</span>
+      <span class="nt">mode</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">INPUT_PULLUP</span>
+      <span class="nt">inverted</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">True</span>
+    <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">button</span>
+    <span class="nt">on_press</span><span class="p">:</span>
+      <span class="nt">then</span><span class="p">:</span>
+        <span class="p p-Indicator">-</span> <span class="nt">light.toggle</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">light_1</span>
+
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">gpio</span>
+    <span class="nt">pin</span><span class="p">:</span>
+      <span class="nt">number</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO14</span>
+      <span class="nt">mode</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">INPUT_PULLUP</span>
+      <span class="nt">inverted</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">True</span>
+    <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">button</span>
+    <span class="nt">on_press</span><span class="p">:</span>
+      <span class="nt">then</span><span class="p">:</span>
+        <span class="p p-Indicator">-</span> <span class="nt">light.toggle</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">light_2</span>
+
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">status</span>
+    <span class="nt">name</span><span class="p">:</span> <span class="s">&quot;Dual</span><span class="nv"> </span><span class="s">LS</span><span class="nv"> </span><span class="s">Status&quot;</span>
+
+<span class="nt">output</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">gpio</span>
+    <span class="nt">pin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO12</span>
+    <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">relay_1</span>
+
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">gpio</span>
+    <span class="nt">pin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO5</span>
+    <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">relay_2</span>
+
+<span class="nt">light</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">binary</span>
+    <span class="nt">name</span><span class="p">:</span> <span class="s">&quot;Dual</span><span class="nv"> </span><span class="s">L1&quot;</span>
+    <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">light_1</span>
+    <span class="nt">output</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">relay_1</span>
+
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">binary</span>
+    <span class="nt">name</span><span class="p">:</span> <span class="s">&quot;Dual</span><span class="nv"> </span><span class="s">L2&quot;</span>
+    <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">light_2</span>
+    <span class="nt">output</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">relay_2</span>
+
+<span class="nt">status_led</span><span class="p">:</span>
+  <span class="nt">pin</span><span class="p">:</span>
+    <span class="nt">number</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO13</span>
+    <span class="nt">inverted</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">yes</span>
+</pre></div>
+</div>
+</section>
+<section id="see-also">
+<h2>See Also<a class="headerlink" href="#see-also" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="sonoff-light-switch.html"><span class="doc">Sonoff Light switch options</span></a></p></li>
+<li><p><a class="reference internal" href="../guides/automations.html"><span class="doc">Automations and Templates</span></a></p></li>
+<li><p><a class="reference internal" href="../devices/sonoff_basic.html"><span class="doc">Using With Sonoff Basic</span></a></p></li>
+</ul>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+  <div id="upgrade-footer">
+    A new version has been release since you last visited this page: 1.17.2 🎉
+    <div class="footer-button-container">
+      <div role="button" id="upgrade-footer-dismiss" class="footer-button">Dismiss</div>
+      <a id="upgrade-footer-changelog" class="footer-button" href="../changelog/v1.17.0.html">View Changelog</a>  
+    </div>
+  </div>
+  <script>
+    var old = window.localStorage.getItem("version");
+    if (old === null) { window.localStorage.setItem("version", "1.17");
+    } else if (old !== "1.17") {
+      const footerEl = document.getElementById("upgrade-footer");
+      footerEl.classList.add("not-hidden");
+      footerEl.addEventListener('click', function () {
+        window.localStorage.setItem("version", "1.17");
+        footerEl.classList.remove("not-hidden");
+      });
+    }
+  </script>
+
+  </body>
+
+<!-- Mirrored from esphome.io/cookbook/sonoff-dual-light-switch.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 16 May 2021 03:11:10 GMT -->
+</html>

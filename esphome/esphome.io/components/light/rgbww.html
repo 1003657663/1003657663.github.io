@@ -1,0 +1,212 @@
+
+  <!DOCTYPE html>
+
+
+<html lang="en">
+  
+<!-- Mirrored from esphome.io/components/light/rgbww.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 16 May 2021 03:01:13 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+<meta name="description" content="Instructions for setting up RGBWW lights.">
+<meta itemprop="name" content="RGBWW Light">
+<meta itemprop="description" content="Instructions for setting up RGBWW lights.">
+<meta itemprop="image" content="../../_images/rgbw.png">
+<meta name="twitter:title" content="RGBWW Light">
+<meta name="twitter:image:src" content="../../_images/rgbw.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@OttoWinter_">
+<meta name="twitter:description" content="Instructions for setting up RGBWW lights.">
+<meta property="og:title" content="RGBWW Light">
+<meta property="og:image" content="../../_images/rgbw.png">
+<meta property="og:type" content="website">
+<meta property="og:description" content="Instructions for setting up RGBWW lights.">
+
+    <title>RGBWW Light &#8212; ESPHome</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/alabaster.css" />
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <link rel="canonical" href="rgbww.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Tuya Dimmer" href="tuya.html" />
+    <link rel="prev" title="RGBW Light" href="rgbw.html" />
+  <link rel="stylesheet" href="../../_static/customf001.css?hash=f908c2b5" type="text/css" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../../_static/apple-touch-icon.png">
+  <link rel="shortcut icon" href="../../_static/favicon.ico">
+  <link rel="icon" type="image/png" sizes="512x512" href="../../_static/favicon-512x512.png">
+  <link rel="icon" type="image/png" sizes="256x256" href="../../_static/favicon-256x256.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="../../_static/favicon-192x192.png">
+  <link rel="icon" type="image/png" sizes="128x128" href="../../_static/favicon-128x128.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../_static/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../../_static/favicon-16x16.png">
+  <link rel="manifest" href="../../_static/site.webmanifest">
+  <link rel="mask-icon" href="../../_static/safari-pinned-tab.svg" color="#646464">
+  <meta name="apple-mobile-web-app-title" content="ESPHome">
+  <meta name="application-name" content="ESPHome">
+  <meta name="msapplication-TileColor" content="#dfdfdf">
+  <meta name="msapplication-config" content="/_static/browserconfig.xml">
+  <meta name="theme-color" content="#dfdfdf">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta property="og:site_name" content="ESPHome">
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head><body>
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../index-2.html">
+              <img class="logo" src="../../_static/logo-text.svg" alt="Logo"/>
+            </a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="https://esphome.io/search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+  <h3><a href="../../index-2.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">RGBWW Light</a><ul>
+<li><a class="reference internal" href="#color-correction">Color Correction</a></li>
+<li><a class="reference internal" href="#configuration-variables">Configuration variables:</a></li>
+<li><a class="reference internal" href="#see-also">See Also</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="rgbww-light">
+<h1>RGBWW Light<a class="headerlink" href="#rgbww-light" title="Permalink to this headline">¶</a></h1>
+<p>The <code class="docutils literal notranslate"><span class="pre">rgbww</span></code> light platform creates an RGBWW (cold white + warm white)
+light from 5 <a class="reference internal" href="../output/index.html#output"><span class="std std-ref">float output components</span></a> (one for each channel). The cold white
+and warm white channels will be mixed using the color temperature configuration options.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example configuration entry</span>
+<span class="nt">light</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">rgbww</span>
+    <span class="nt">name</span><span class="p">:</span> <span class="s">&quot;Livingroom</span><span class="nv"> </span><span class="s">Lights&quot;</span>
+    <span class="nt">red</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">output_component1</span>
+    <span class="nt">green</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">output_component2</span>
+    <span class="nt">blue</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">output_component3</span>
+    <span class="nt">cold_white</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">output_component4</span>
+    <span class="nt">warm_white</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">output_component5</span>
+    <span class="nt">cold_white_color_temperature</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">6536 K</span>
+    <span class="nt">warm_white_color_temperature</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">2000 K</span>
+</pre></div>
+</div>
+<section id="color-correction">
+<h2>Color Correction<a class="headerlink" href="#color-correction" title="Permalink to this headline">¶</a></h2>
+<p>It is often favourable to calibrate/correct the color produced by an LED strip light as the
+perceived intensity of different colors will generally vary. This can be done by using
+<a class="reference internal" href="../output/index.html#config-output"><span class="std std-ref">max_power</span></a> on individual output channels:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example configuration entry</span>
+<span class="nt">light</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">rgbw</span>
+    <span class="nt">name</span><span class="p">:</span> <span class="s">&quot;Livingroom</span><span class="nv"> </span><span class="s">Lights&quot;</span>
+    <span class="nt">red</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">output_component1</span>
+    <span class="nt">green</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">output_component2</span>
+    <span class="nt">blue</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">output_component3</span>
+    <span class="nt">white</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">output_component4</span>
+
+<span class="c1"># Example output entry</span>
+<span class="nt">output</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">esp8266_pwm</span>
+    <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">output_component1</span>
+    <span class="nt">pin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">D1</span>
+    <span class="nt">max_power</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">80%</span>
+</pre></div>
+</div>
+</section>
+<section id="configuration-variables">
+<h2>Configuration variables:<a class="headerlink" href="#configuration-variables" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><strong>name</strong> (<strong>Required</strong>, string): The name of the light.</p></li>
+<li><p><strong>red</strong> (<strong>Required</strong>, <a class="reference internal" href="../../guides/configuration-types.html#config-id"><span class="std std-ref">ID</span></a>): The id of the float <a class="reference internal" href="../output/index.html#output"><span class="std std-ref">Output Component</span></a> to use for the red channel.</p></li>
+<li><p><strong>green</strong> (<strong>Required</strong>, <a class="reference internal" href="../../guides/configuration-types.html#config-id"><span class="std std-ref">ID</span></a>): The id of the float <a class="reference internal" href="../output/index.html#output"><span class="std std-ref">Output Component</span></a> to use for the green channel.</p></li>
+<li><p><strong>blue</strong> (<strong>Required</strong>, <a class="reference internal" href="../../guides/configuration-types.html#config-id"><span class="std std-ref">ID</span></a>): The id of the float <a class="reference internal" href="../output/index.html#output"><span class="std std-ref">Output Component</span></a> to use for the blue channel.</p></li>
+<li><p><strong>cold_white</strong> (<strong>Required</strong>, <a class="reference internal" href="../../guides/configuration-types.html#config-id"><span class="std std-ref">ID</span></a>): The id of the float <a class="reference internal" href="../output/index.html#output"><span class="std std-ref">Output Component</span></a> to use for the cold
+white channel.</p></li>
+<li><p><strong>warm_white</strong> (<strong>Required</strong>, <a class="reference internal" href="../../guides/configuration-types.html#config-id"><span class="std std-ref">ID</span></a>): The id of the float <a class="reference internal" href="../output/index.html#output"><span class="std std-ref">Output Component</span></a> to use for the warm
+white channel.</p></li>
+<li><p><strong>cold_white_color_temperature</strong> (<strong>Required</strong>, float): The color temperate (in
+<a class="reference external" href="https://en.wikipedia.org/wiki/Mired">mireds</a> or Kelvin) of the cold white channel.</p></li>
+<li><p><strong>warm_white_color_temperature</strong> (<strong>Required</strong>, float): The color temperate (in
+<a class="reference external" href="https://en.wikipedia.org/wiki/Mired">mireds</a> or Kelvin) of the warm white channel.</p></li>
+<li><p><strong>constant_brightness</strong> (<em>Optional</em>, boolean): When enabled, this will keep the overall brightness of the
+cold and warm white channels constant by limiting the combined output to 100% of a single channel. This
+reduces the possible overall brightness but is necessary for some power supplies that are not able to run
+both channels at full brightness at once. Defaults to <code class="docutils literal notranslate"><span class="pre">false</span></code>.</p></li>
+<li><p><strong>color_interlock</strong> (<em>Optional</em>, boolean): When enabled, this will prevent white leds being on at the same
+time as RGB leds. See <a class="reference internal" href="rgbw.html#rgbw-color-interlock"><span class="std std-ref">Color Interlock</span></a> for more information. Defaults to <code class="docutils literal notranslate"><span class="pre">false</span></code>.</p></li>
+<li><p><strong>effects</strong> (<em>Optional</em>, list): A list of <a class="reference internal" href="index.html#light-effects"><span class="std std-ref">light effects</span></a> to use for this light.</p></li>
+<li><p><strong>id</strong> (<em>Optional</em>, <a class="reference internal" href="../../guides/configuration-types.html#config-id"><span class="std std-ref">ID</span></a>): Manually specify the ID used for code generation.</p></li>
+<li><p>All other options from <a class="reference internal" href="index.html#config-light"><span class="std std-ref">Light</span></a>.</p></li>
+</ul>
+</section>
+<section id="see-also">
+<h2>See Also<a class="headerlink" href="#see-also" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="../output/index.html"><span class="doc">Output Component</span></a></p></li>
+<li><p><a class="reference internal" href="index.html"><span class="doc">Light Component</span></a></p></li>
+<li><p><a class="reference internal" href="rgb.html"><span class="doc">RGB Light</span></a></p></li>
+<li><p><a class="reference internal" href="rgbw.html"><span class="doc">RGBW Light</span></a></p></li>
+<li><p><a class="reference internal" href="../power_supply.html"><span class="doc">Power Supply Component</span></a></p></li>
+<li><p><a class="reference internal" href="../output/ledc.html"><span class="doc">ESP32 LEDC Output</span></a></p></li>
+<li><p><a class="reference internal" href="../output/esp8266_pwm.html"><span class="doc">ESP8266 Software PWM Output</span></a></p></li>
+<li><p><a class="reference internal" href="../output/pca9685.html"><span class="doc">PCA9685</span></a></p></li>
+<li><p><a class="reference internal" href="../output/tlc59208f.html"><span class="doc">TLC59208F</span></a></p></li>
+<li><p><a class="reference internal" href="../output/my9231.html"><span class="doc">MY9231/MY9291 LED driver</span></a></p></li>
+<li><p><a class="reference internal" href="../output/sm16716.html"><span class="doc">SM16716 LED driver</span></a></p></li>
+<li><p><a class="reference external" href="../../api/rgbww__light__output_8h.html">API Reference</a></p></li>
+<li><p><a class="reference external" href="https://github.com/esphome/esphome-docs/blob/current/components/light/rgbww.rst">Edit this page on GitHub</a></p></li>
+</ul>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+  <div id="upgrade-footer">
+    A new version has been release since you last visited this page: 1.17.2 🎉
+    <div class="footer-button-container">
+      <div role="button" id="upgrade-footer-dismiss" class="footer-button">Dismiss</div>
+      <a id="upgrade-footer-changelog" class="footer-button" href="../../changelog/v1.17.0.html">View Changelog</a>  
+    </div>
+  </div>
+  <script>
+    var old = window.localStorage.getItem("version");
+    if (old === null) { window.localStorage.setItem("version", "1.17");
+    } else if (old !== "1.17") {
+      const footerEl = document.getElementById("upgrade-footer");
+      footerEl.classList.add("not-hidden");
+      footerEl.addEventListener('click', function () {
+        window.localStorage.setItem("version", "1.17");
+        footerEl.classList.remove("not-hidden");
+      });
+    }
+  </script>
+
+  </body>
+
+<!-- Mirrored from esphome.io/components/light/rgbww.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 16 May 2021 03:01:14 GMT -->
+</html>

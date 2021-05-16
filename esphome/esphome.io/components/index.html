@@ -1,0 +1,1954 @@
+
+  <!DOCTYPE html>
+
+
+<html lang="en">
+  
+<!-- Mirrored from esphome.io/components/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 16 May 2021 03:10:10 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Components &#8212; ESPHome</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <link rel="canonical" href="index.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Binary Sensor Component" href="binary_sensor/index.html" />
+    <link rel="prev" title="Privacy Policy" href="../misc/privacy.html" />
+  <link rel="stylesheet" href="../_static/customf001.css?hash=f908c2b5" type="text/css" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../_static/apple-touch-icon.png">
+  <link rel="shortcut icon" href="../_static/favicon.ico">
+  <link rel="icon" type="image/png" sizes="512x512" href="../_static/favicon-512x512.png">
+  <link rel="icon" type="image/png" sizes="256x256" href="../_static/favicon-256x256.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="../_static/favicon-192x192.png">
+  <link rel="icon" type="image/png" sizes="128x128" href="../_static/favicon-128x128.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../_static/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../_static/favicon-16x16.png">
+  <link rel="manifest" href="../_static/site.webmanifest">
+  <link rel="mask-icon" href="../_static/safari-pinned-tab.svg" color="#646464">
+  <meta name="apple-mobile-web-app-title" content="ESPHome">
+  <meta name="application-name" content="ESPHome">
+  <meta name="msapplication-TileColor" content="#dfdfdf">
+  <meta name="msapplication-config" content="/_static/browserconfig.xml">
+  <meta name="theme-color" content="#dfdfdf">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta property="og:site_name" content="ESPHome">
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head><body>
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index-2.html">
+              <img class="logo" src="../_static/logo-text.svg" alt="Logo"/>
+            </a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="https://esphome.io/search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="components">
+<h1>Components<a class="headerlink" href="#components" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="binary_sensor/index.html">Binary Sensor Component</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="binary_sensor/index.html#base-binary-sensor-configuration">Base Binary Sensor Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="binary_sensor/index.html#binary-sensor-filters">Binary Sensor Filters</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="binary_sensor/index.html#invert"><code class="docutils literal notranslate"><span class="pre">invert</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="binary_sensor/index.html#delayed-on"><code class="docutils literal notranslate"><span class="pre">delayed_on</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="binary_sensor/index.html#delayed-off"><code class="docutils literal notranslate"><span class="pre">delayed_off</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="binary_sensor/index.html#delayed-on-off"><code class="docutils literal notranslate"><span class="pre">delayed_on_off</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="binary_sensor/index.html#lambda"><code class="docutils literal notranslate"><span class="pre">lambda</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="binary_sensor/index.html#binary-sensor-automation">Binary Sensor Automation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="binary_sensor/index.html#on-press"><code class="docutils literal notranslate"><span class="pre">on_press</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="binary_sensor/index.html#on-release"><code class="docutils literal notranslate"><span class="pre">on_release</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="binary_sensor/index.html#on-state"><code class="docutils literal notranslate"><span class="pre">on_state</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="binary_sensor/index.html#on-click"><code class="docutils literal notranslate"><span class="pre">on_click</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="binary_sensor/index.html#on-double-click"><code class="docutils literal notranslate"><span class="pre">on_double_click</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="binary_sensor/index.html#on-multi-click"><code class="docutils literal notranslate"><span class="pre">on_multi_click</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="binary_sensor/index.html#binary-sensor-is-on-binary-sensor-is-off-condition"><code class="docutils literal notranslate"><span class="pre">binary_sensor.is_on</span></code> / <code class="docutils literal notranslate"><span class="pre">binary_sensor.is_off</span></code> Condition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="binary_sensor/index.html#lambda-calls">lambda calls</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="binary_sensor/index.html#see-also">See Also</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="binary_sensor/ble_presence.html">ESP32 Bluetooth Low Energy Device</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="binary_sensor/ble_presence.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="binary_sensor/ble_presence.html#setting-up-devices">Setting Up Devices</a></li>
+<li class="toctree-l4"><a class="reference internal" href="binary_sensor/ble_presence.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="binary_sensor/custom.html">Custom Binary Sensor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="binary_sensor/custom.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="binary_sensor/esp32_touch.html">ESP32 Touch Pad</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="binary_sensor/esp32_touch.html#component-hub">Component/Hub</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="binary_sensor/esp32_touch.html#configuration-variables">Configuration variables:</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="binary_sensor/esp32_touch.html#binary-sensor">Binary Sensor</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="binary_sensor/esp32_touch.html#id1">Configuration variables:</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="binary_sensor/esp32_touch.html#touch-pad-pins">Touch Pad Pins</a></li>
+<li class="toctree-l4"><a class="reference internal" href="binary_sensor/esp32_touch.html#finding-thresholds">Finding thresholds</a></li>
+<li class="toctree-l4"><a class="reference internal" href="binary_sensor/esp32_touch.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="binary_sensor/gpio.html">GPIO Binary Sensor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="binary_sensor/gpio.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="binary_sensor/gpio.html#activating-internal-pullups">Activating internal pullups</a></li>
+<li class="toctree-l4"><a class="reference internal" href="binary_sensor/gpio.html#inverting-values">Inverting Values</a></li>
+<li class="toctree-l4"><a class="reference internal" href="binary_sensor/gpio.html#debouncing-values">Debouncing Values</a></li>
+<li class="toctree-l4"><a class="reference internal" href="binary_sensor/gpio.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="binary_sensor/homeassistant.html">Home Assistant Binary Sensor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="binary_sensor/homeassistant.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="binary_sensor/homeassistant.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="binary_sensor/mpr121.html">MPR121 Capacitive Touch Sensor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="binary_sensor/mpr121.html#component-hub">Component/Hub</a></li>
+<li class="toctree-l4"><a class="reference internal" href="binary_sensor/mpr121.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="binary_sensor/mpr121.html#binary-sensor">Binary Sensor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="binary_sensor/mpr121.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="binary_sensor/nextion.html">Nextion Touch Component</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="binary_sensor/nextion.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="binary_sensor/nextion.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="binary_sensor/pn532.html">PN532 NFC/RFID</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="binary_sensor/pn532.html#component-hub">Component/Hub</a></li>
+<li class="toctree-l4"><a class="reference internal" href="binary_sensor/pn532.html#over-spi">Over SPI</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="binary_sensor/pn532.html#configuration-variables">Configuration variables:</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="binary_sensor/pn532.html#over-i2c">Over I²C</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="binary_sensor/pn532.html#id1">Configuration variables:</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="binary_sensor/pn532.html#on-tag-action"><code class="docutils literal notranslate"><span class="pre">on_tag</span></code> Action</a></li>
+<li class="toctree-l4"><a class="reference internal" href="binary_sensor/pn532.html#pn532-binary-sensor"><code class="docutils literal notranslate"><span class="pre">pn532</span></code> Binary Sensor</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="binary_sensor/pn532.html#id2">Configuration variables:</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="binary_sensor/pn532.html#setting-up-tags">Setting Up Tags</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="binary_sensor/pn532.html#ndef">NDEF</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="binary_sensor/pn532.html#ndef-reading">NDEF reading</a></li>
+<li class="toctree-l4"><a class="reference internal" href="binary_sensor/pn532.html#ndef-writing">NDEF Writing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="binary_sensor/pn532.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="binary_sensor/rc522.html">RC522 RFID</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="binary_sensor/rc522.html#component-hub">Component/Hub</a></li>
+<li class="toctree-l4"><a class="reference internal" href="binary_sensor/rc522.html#over-spi">Over SPI</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="binary_sensor/rc522.html#configuration-variables">Configuration variables:</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="binary_sensor/rc522.html#over-i2c">Over I²C</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="binary_sensor/rc522.html#id1">Configuration variables:</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="binary_sensor/rc522.html#on-tag-action"><code class="docutils literal notranslate"><span class="pre">on_tag</span></code> Action</a></li>
+<li class="toctree-l4"><a class="reference internal" href="binary_sensor/rc522.html#rc522-binary-sensor"><code class="docutils literal notranslate"><span class="pre">rc522</span></code> Binary Sensor</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="binary_sensor/rc522.html#id2">Configuration variables:</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="binary_sensor/rc522.html#setting-up-tags">Setting Up Tags</a></li>
+<li class="toctree-l4"><a class="reference internal" href="binary_sensor/rc522.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="binary_sensor/rdm6300.html">RDM6300 NFC/RFID</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="binary_sensor/rdm6300.html#component-hub">Component/Hub</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="binary_sensor/rdm6300.html#configuration-variables">Configuration variables:</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="binary_sensor/rdm6300.html#on-tag"><code class="docutils literal notranslate"><span class="pre">on_tag</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="binary_sensor/rdm6300.html#rdm6300-binary-sensor"><code class="docutils literal notranslate"><span class="pre">rdm6300</span></code> Binary Sensor</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="binary_sensor/rdm6300.html#id1">Configuration variables:</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="binary_sensor/rdm6300.html#setting-up-tags">Setting Up Tags</a></li>
+<li class="toctree-l4"><a class="reference internal" href="binary_sensor/rdm6300.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="binary_sensor/status.html">Status Binary Sensor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="binary_sensor/status.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="binary_sensor/status.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="binary_sensor/template.html">Template Binary Sensor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="binary_sensor/template.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="binary_sensor/template.html#binary-sensor-template-publish-action"><code class="docutils literal notranslate"><span class="pre">binary_sensor.template.publish</span></code> Action</a></li>
+<li class="toctree-l4"><a class="reference internal" href="binary_sensor/template.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="binary_sensor/ttp229.html">TTP229 Capacitive Touch Sensor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="binary_sensor/ttp229.html#ttp229-lsf-component"><code class="docutils literal notranslate"><span class="pre">ttp229_lsf</span></code> Component</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="binary_sensor/ttp229.html#configuration-variables">Configuration variables:</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="binary_sensor/ttp229.html#ttp229-lsf-binary-sensor"><code class="docutils literal notranslate"><span class="pre">ttp229_lsf</span></code> Binary Sensor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="binary_sensor/ttp229.html#ttp229-bsf-component"><code class="docutils literal notranslate"><span class="pre">ttp229_bsf</span></code> Component</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="binary_sensor/ttp229.html#id1">Configuration variables:</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="binary_sensor/ttp229.html#ttp229-bsf-binary-sensor"><code class="docutils literal notranslate"><span class="pre">ttp229_bsf</span></code> Binary Sensor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="binary_sensor/ttp229.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="binary_sensor/tuya.html">Tuya Binary Sensor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="binary_sensor/tuya.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="binary_sensor/tuya.html#see-also">See Also</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="climate/index.html">Climate Component</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="climate/index.html#base-climate-configuration">Base Climate Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="climate/index.html#climate-automation">Climate Automation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="climate/index.html#climate-control-action"><code class="docutils literal notranslate"><span class="pre">climate.control</span></code> Action</a></li>
+<li class="toctree-l3"><a class="reference internal" href="climate/index.html#lambda-calls">lambda calls</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="climate/index.html#see-also">See Also</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="climate/bang_bang.html">Bang Bang Climate Controller</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="climate/bang_bang.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="climate/bang_bang.html#bang-bang-vs-thermostat">Bang-bang vs. Thermostat</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="climate/bang_bang.html#the-problem-with-dual-function-systems">The Problem with Dual-Function Systems</a></li>
+<li class="toctree-l5"><a class="reference internal" href="climate/bang_bang.html#user-interface">User Interface</a></li>
+<li class="toctree-l5"><a class="reference internal" href="climate/bang_bang.html#which-is-right-for-me">Which is Right for Me?</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="climate/bang_bang.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="climate/custom.html">Custom Climate</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="climate/custom.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="climate/ir_climate.html">IR Remote Climate</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="climate/ir_climate.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="climate/ir_climate.html#using-a-receiver">Using a Receiver</a></li>
+<li class="toctree-l4"><a class="reference internal" href="climate/ir_climate.html#whirlpool-climate"><code class="docutils literal notranslate"><span class="pre">whirlpool</span></code> Climate</a></li>
+<li class="toctree-l4"><a class="reference internal" href="climate/ir_climate.html#climate-ir-lg-climate"><code class="docutils literal notranslate"><span class="pre">climate_ir_lg</span></code> Climate</a></li>
+<li class="toctree-l4"><a class="reference internal" href="climate/ir_climate.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="climate/midea_ac.html">Midea Air Conditioner</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="climate/midea_ac.html#configuration-variables">Configuration variables:</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="climate/midea_ac.html#configuration-variables-of-midea-dongle-component">Configuration variables of midea-dongle component:</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="climate/midea_ac.html#acknowledgments">Acknowledgments:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="climate/midea_ac.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="climate/pid.html">PID Climate</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="climate/pid.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="climate/pid.html#pid-controller-setup">PID Controller Setup</a></li>
+<li class="toctree-l4"><a class="reference internal" href="climate/pid.html#autotuning">Autotuning</a></li>
+<li class="toctree-l4"><a class="reference internal" href="climate/pid.html#climate-pid-autotune-action"><code class="docutils literal notranslate"><span class="pre">climate.pid.autotune</span></code> Action</a></li>
+<li class="toctree-l4"><a class="reference internal" href="climate/pid.html#climate-pid-set-control-parameters-action"><code class="docutils literal notranslate"><span class="pre">climate.pid.set_control_parameters</span></code> Action</a></li>
+<li class="toctree-l4"><a class="reference internal" href="climate/pid.html#climate-pid-reset-integral-term-action"><code class="docutils literal notranslate"><span class="pre">climate.pid.reset_integral_term</span></code> Action</a></li>
+<li class="toctree-l4"><a class="reference internal" href="climate/pid.html#pid-sensor"><code class="docutils literal notranslate"><span class="pre">pid</span></code> Sensor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="climate/pid.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="climate/thermostat.html">Thermostat Climate Controller</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="climate/thermostat.html#controller-behavior-and-hysteresis">Controller Behavior and Hysteresis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="climate/thermostat.html#important-terminology">Important Terminology</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="climate/thermostat.html#default-target-temperatures">Default Target Temperatures</a></li>
+<li class="toctree-l5"><a class="reference internal" href="climate/thermostat.html#heating-and-cooling-actions">Heating and Cooling Actions</a></li>
+<li class="toctree-l5"><a class="reference internal" href="climate/thermostat.html#heating-and-cooling-modes">Heating and Cooling Modes</a></li>
+<li class="toctree-l5"><a class="reference internal" href="climate/thermostat.html#fan-mode-actions">Fan Mode Actions</a></li>
+<li class="toctree-l5"><a class="reference internal" href="climate/thermostat.html#swing-mode-actions">Swing Mode Actions</a></li>
+<li class="toctree-l5"><a class="reference internal" href="climate/thermostat.html#advanced-options">Advanced Options</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="climate/thermostat.html#bang-bang-vs-thermostat">Bang-bang vs. Thermostat</a></li>
+<li class="toctree-l4"><a class="reference internal" href="climate/thermostat.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="climate/tuya.html">Tuya Climate</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="climate/tuya.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="climate/tuya.html#temperature-multiplier">Temperature multiplier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="climate/tuya.html#see-also">See Also</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="cover/index.html">Cover Component</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="cover/index.html#base-cover-configuration">Base Cover Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cover/index.html#cover-open-action"><code class="docutils literal notranslate"><span class="pre">cover.open</span></code> Action</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cover/index.html#cover-close-action"><code class="docutils literal notranslate"><span class="pre">cover.close</span></code> Action</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cover/index.html#cover-stop-action"><code class="docutils literal notranslate"><span class="pre">cover.stop</span></code> Action</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cover/index.html#cover-control-action"><code class="docutils literal notranslate"><span class="pre">cover.control</span></code> Action</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cover/index.html#lambda-calls">lambda calls</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cover/index.html#see-also">See Also</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cover/custom.html">Custom Cover</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cover/custom.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="cover/endstop.html">Endstop Cover</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cover/endstop.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cover/endstop.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="cover/template.html">Template Cover</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cover/template.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cover/template.html#cover-template-publish-action"><code class="docutils literal notranslate"><span class="pre">cover.template.publish</span></code> Action</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cover/template.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="cover/time_based.html">Time-Based Cover</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cover/time_based.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cover/time_based.html#see-also">See Also</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="fan/index.html">Fan Component</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="fan/index.html#base-fan-configuration">Base Fan Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fan/index.html#fan-toggle-action"><code class="docutils literal notranslate"><span class="pre">fan.toggle</span></code> Action</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fan/index.html#fan-turn-off-action"><code class="docutils literal notranslate"><span class="pre">fan.turn_off</span></code> Action</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fan/index.html#fan-turn-on-action"><code class="docutils literal notranslate"><span class="pre">fan.turn_on</span></code> Action</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fan/index.html#full-fan-index">Full Fan Index</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="fan/binary.html">Binary Fan</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="fan/binary.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="fan/binary.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="fan/speed.html">Speed Fan</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="fan/speed.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="fan/speed.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="fan/tuya.html">Tuya Fan</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="fan/tuya.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="fan/tuya.html#see-also">See Also</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="light/index.html">Light Component</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="light/index.html#base-light-configuration">Base Light Configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="light/index.html#light-toggle-action"><code class="docutils literal notranslate"><span class="pre">light.toggle</span></code> Action</a></li>
+<li class="toctree-l3"><a class="reference internal" href="light/index.html#light-turn-on-action"><code class="docutils literal notranslate"><span class="pre">light.turn_on</span></code> Action</a></li>
+<li class="toctree-l3"><a class="reference internal" href="light/index.html#light-turn-off-action"><code class="docutils literal notranslate"><span class="pre">light.turn_off</span></code> Action</a></li>
+<li class="toctree-l3"><a class="reference internal" href="light/index.html#light-control-action"><code class="docutils literal notranslate"><span class="pre">light.control</span></code> Action</a></li>
+<li class="toctree-l3"><a class="reference internal" href="light/index.html#light-dim-relative-action"><code class="docutils literal notranslate"><span class="pre">light.dim_relative</span></code> Action</a></li>
+<li class="toctree-l3"><a class="reference internal" href="light/index.html#light-addressable-set-action"><code class="docutils literal notranslate"><span class="pre">light.addressable_set</span></code> Action</a></li>
+<li class="toctree-l3"><a class="reference internal" href="light/index.html#light-is-on-light-is-off-condition"><code class="docutils literal notranslate"><span class="pre">light.is_on</span></code> / <code class="docutils literal notranslate"><span class="pre">light.is_off</span></code> Condition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="light/index.html#light-on-turn-on-light-on-turn-off-trigger"><code class="docutils literal notranslate"><span class="pre">light.on_turn_on</span></code> / <code class="docutils literal notranslate"><span class="pre">light.on_turn_off</span></code> Trigger</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="light/index.html#light-effects">Light Effects</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="light/index.html#random-effect">Random Effect</a></li>
+<li class="toctree-l3"><a class="reference internal" href="light/index.html#strobe-effect">Strobe Effect</a></li>
+<li class="toctree-l3"><a class="reference internal" href="light/index.html#flicker-effect">Flicker Effect</a></li>
+<li class="toctree-l3"><a class="reference internal" href="light/index.html#lambda-effect">Lambda Effect</a></li>
+<li class="toctree-l3"><a class="reference internal" href="light/index.html#addressable-rainbow-effect">Addressable Rainbow Effect</a></li>
+<li class="toctree-l3"><a class="reference internal" href="light/index.html#addressable-color-wipe-effect">Addressable Color Wipe Effect</a></li>
+<li class="toctree-l3"><a class="reference internal" href="light/index.html#addressable-scan-effect">Addressable Scan Effect</a></li>
+<li class="toctree-l3"><a class="reference internal" href="light/index.html#addressable-twinkle-effect">Addressable Twinkle Effect</a></li>
+<li class="toctree-l3"><a class="reference internal" href="light/index.html#addressable-random-twinkle-effect">Addressable Random Twinkle Effect</a></li>
+<li class="toctree-l3"><a class="reference internal" href="light/index.html#addressable-fireworks-effect">Addressable Fireworks Effect</a></li>
+<li class="toctree-l3"><a class="reference internal" href="light/index.html#addressable-flicker-effect">Addressable Flicker Effect</a></li>
+<li class="toctree-l3"><a class="reference internal" href="light/index.html#addressable-lambda-effect">Addressable Lambda Effect</a></li>
+<li class="toctree-l3"><a class="reference internal" href="light/index.html#automation-light-effect">Automation Light Effect</a></li>
+<li class="toctree-l3"><a class="reference internal" href="light/index.html#e1-31-effect">E1.31 Effect</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="light/index.html#e1-31-component">E1.31 Component</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="light/index.html#adalight-effect">Adalight Effect</a></li>
+<li class="toctree-l3"><a class="reference internal" href="light/index.html#wled-effect">WLED Effect</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="light/index.html#see-also">See Also</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="light/binary.html">Binary Light</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="light/binary.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="light/binary.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="light/custom.html">Custom Light Output</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="light/custom.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="light/cwww.html">Cold White + Warm White Light</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="light/cwww.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="light/cwww.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="light/fastled.html">FastLED Light</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="light/fastled.html#clockless">Clockless</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="light/fastled.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l5"><a class="reference internal" href="light/fastled.html#supported-chipsets">Supported Chipsets</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="light/fastled.html#spi">SPI</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="light/fastled.html#id1">Configuration variables:</a></li>
+<li class="toctree-l5"><a class="reference internal" href="light/fastled.html#fastled-spi-chipsets">Supported Chipsets</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="light/fastled.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="light/hbridge.html">H-bridge Light</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="light/hbridge.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="light/hbridge.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="light/monochromatic.html">Monochromatic Light</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="light/monochromatic.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="light/monochromatic.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="light/neopixelbus.html">Neopixelbus Light</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="light/neopixelbus.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="light/neopixelbus.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="light/partition.html">Light Partition</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="light/partition.html#splitting-a-single-led-strip">Splitting a single LED strip</a></li>
+<li class="toctree-l4"><a class="reference internal" href="light/partition.html#joining-multiple-led-strips-into-one">Joining multiple LED strips into one</a></li>
+<li class="toctree-l4"><a class="reference internal" href="light/partition.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="light/partition.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="light/rgb.html">RGB Light</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="light/rgb.html#color-correction">Color Correction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="light/rgb.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="light/rgb.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="light/rgbw.html">RGBW Light</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="light/rgbw.html#color-correction">Color Correction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="light/rgbw.html#configuration-variables">Configuration variables:</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="light/rgbw.html#color-interlock">Color Interlock</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="light/rgbw.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="light/rgbww.html">RGBWW Light</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="light/rgbww.html#color-correction">Color Correction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="light/rgbww.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="light/rgbww.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="light/tuya.html">Tuya Dimmer</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="light/tuya.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="light/tuya.html#see-also">See Also</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="output/index.html">Output Component</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="output/index.html#base-output-configuration">Base Output Configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="output/index.html#output-turn-on-action"><code class="docutils literal notranslate"><span class="pre">output.turn_on</span></code> Action</a></li>
+<li class="toctree-l3"><a class="reference internal" href="output/index.html#output-turn-off-action"><code class="docutils literal notranslate"><span class="pre">output.turn_off</span></code> Action</a></li>
+<li class="toctree-l3"><a class="reference internal" href="output/index.html#output-set-level-action"><code class="docutils literal notranslate"><span class="pre">output.set_level</span></code> Action</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="output/index.html#full-output-index">Full Output Index</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="output/ac_dimmer.html">AC Dimmer Component</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="output/ac_dimmer.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="output/ac_dimmer.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="output/custom.html">Custom Output</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="output/custom.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="output/esp32_dac.html">ESP32 DAC</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="output/esp32_dac.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="output/esp32_dac.html#use-cases">Use Cases</a></li>
+<li class="toctree-l4"><a class="reference internal" href="output/esp32_dac.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="output/esp8266_pwm.html">ESP8266 Software PWM Output</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="output/esp8266_pwm.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="output/esp8266_pwm.html#output-esp8266-pwm-set-frequency-action"><code class="docutils literal notranslate"><span class="pre">output.esp8266_pwm.set_frequency</span></code> Action</a></li>
+<li class="toctree-l4"><a class="reference internal" href="output/esp8266_pwm.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="output/gpio.html">GPIO Output</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="output/gpio.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="output/gpio.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="output/ledc.html">ESP32 LEDC Output</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="output/ledc.html#example-usage-for-a-light">Example Usage For a Light</a></li>
+<li class="toctree-l4"><a class="reference internal" href="output/ledc.html#example-usage-for-a-piezo-buzzer">Example Usage For a Piezo Buzzer</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="output/ledc.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l5"><a class="reference internal" href="output/ledc.html#recommended-frequencies">Recommended frequencies</a></li>
+<li class="toctree-l5"><a class="reference internal" href="output/ledc.html#output-ledc-set-frequency-action"><code class="docutils literal notranslate"><span class="pre">output.ledc.set_frequency</span></code> Action</a></li>
+<li class="toctree-l5"><a class="reference internal" href="output/ledc.html#see-also">See Also</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="output/mcp4725.html">MCP4725 Output</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="output/mcp4725.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="output/mcp4725.html#usage-with-voltages-higher-than-3-3v">Usage with voltages higher than 3.3v</a></li>
+<li class="toctree-l4"><a class="reference internal" href="output/mcp4725.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="output/my9231.html">MY9231/MY9291 LED driver</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="output/my9231.html#component-hub">Component/Hub</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="output/my9231.html#configuration-variables">Configuration variables:</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="output/my9231.html#output">Output</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="output/my9231.html#id1">Configuration variables:</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="output/my9231.html#sonoff-b1-configuration-example">Sonoff B1 configuration example</a></li>
+<li class="toctree-l4"><a class="reference internal" href="output/my9231.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="output/pca9685.html">PCA9685</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="output/pca9685.html#component-hub">Component/Hub</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="output/pca9685.html#configuration-variables">Configuration variables:</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="output/pca9685.html#pwm-output">PWM Output</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="output/pca9685.html#id1">Configuration variables:</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="output/pca9685.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="output/slow_pwm.html">Slow PWM Output</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="output/slow_pwm.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="output/slow_pwm.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="output/sm16716.html">SM16716 LED driver</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="output/sm16716.html#component-hub">Component/Hub</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="output/sm16716.html#configuration-variables">Configuration variables:</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="output/sm16716.html#output">Output</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="output/sm16716.html#id1">Configuration variables:</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="output/sm16716.html#feit-electric-a19-smart-wifi-bulb">Feit Electric A19 Smart WiFi Bulb</a></li>
+<li class="toctree-l4"><a class="reference internal" href="output/sm16716.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="output/template.html">Template Output</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="output/template.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="output/template.html#write-action-trigger"><code class="docutils literal notranslate"><span class="pre">write_action</span></code> Trigger</a></li>
+<li class="toctree-l4"><a class="reference internal" href="output/template.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="output/tlc59208f.html">TLC59208F</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="output/tlc59208f.html#component">Component</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="output/tlc59208f.html#configuration-variables">Configuration variables:</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="output/tlc59208f.html#pwm-output">PWM Output</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="output/tlc59208f.html#id1">Configuration variables:</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="output/tlc59208f.html#see-also">See Also</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="sensor/index.html">Sensor Component</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="sensor/index.html#base-sensor-configuration">Base Sensor Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sensor/index.html#sensor-filters">Sensor Filters</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="sensor/index.html#offset"><code class="docutils literal notranslate"><span class="pre">offset</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="sensor/index.html#multiply"><code class="docutils literal notranslate"><span class="pre">multiply</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="sensor/index.html#calibrate-linear"><code class="docutils literal notranslate"><span class="pre">calibrate_linear</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="sensor/index.html#calibrate-polynomial"><code class="docutils literal notranslate"><span class="pre">calibrate_polynomial</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="sensor/index.html#filter-out"><code class="docutils literal notranslate"><span class="pre">filter_out</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="sensor/index.html#median"><code class="docutils literal notranslate"><span class="pre">median</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="sensor/index.html#min"><code class="docutils literal notranslate"><span class="pre">min</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="sensor/index.html#max"><code class="docutils literal notranslate"><span class="pre">max</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="sensor/index.html#sliding-window-moving-average"><code class="docutils literal notranslate"><span class="pre">sliding_window_moving_average</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="sensor/index.html#exponential-moving-average"><code class="docutils literal notranslate"><span class="pre">exponential_moving_average</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="sensor/index.html#throttle"><code class="docutils literal notranslate"><span class="pre">throttle</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="sensor/index.html#heartbeat"><code class="docutils literal notranslate"><span class="pre">heartbeat</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="sensor/index.html#debounce"><code class="docutils literal notranslate"><span class="pre">debounce</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="sensor/index.html#delta"><code class="docutils literal notranslate"><span class="pre">delta</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="sensor/index.html#or"><code class="docutils literal notranslate"><span class="pre">or</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="sensor/index.html#lambda"><code class="docutils literal notranslate"><span class="pre">lambda</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="sensor/index.html#example-converting-celsius-to-fahrenheit">Example: Converting Celsius to Fahrenheit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sensor/index.html#sensor-automation">Sensor Automation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="sensor/index.html#on-value"><code class="docutils literal notranslate"><span class="pre">on_value</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="sensor/index.html#on-value-range"><code class="docutils literal notranslate"><span class="pre">on_value_range</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="sensor/index.html#on-raw-value"><code class="docutils literal notranslate"><span class="pre">on_raw_value</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="sensor/index.html#sensor-in-range-condition"><code class="docutils literal notranslate"><span class="pre">sensor.in_range</span></code> Condition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sensor/index.html#lambda-calls">lambda calls</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="sensor/index.html#see-also">See Also</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="sensor/adc.html">Analog To Digital Sensor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sensor/adc.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/adc.html#esp32-attenuation">ESP32 Attenuation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/adc.html#esp8266-measuring-vcc">ESP8266 Measuring VCC</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/adc.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sensor/ade7953.html">ADE7953 Power Sensor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sensor/ade7953.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/ade7953.html#use-with-shelly-2-5">Use with Shelly 2.5</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/ade7953.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sensor/ads1115.html">ADS1115 Sensor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sensor/ads1115.html#component-hub">Component/Hub</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="sensor/ads1115.html#configuration-variables">Configuration variables:</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/ads1115.html#i2c-addresses">I²C Addresses</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/ads1115.html#sensor">Sensor</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="sensor/ads1115.html#id3">Configuration variables:</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/ads1115.html#multiplexer-and-gain">Multiplexer And Gain</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/ads1115.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sensor/aht10.html">AHT10 Temperature+Humidity Sensor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sensor/aht10.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/aht10.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sensor/am2320.html">AM2320 Temperature+Humidity Sensor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sensor/am2320.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/am2320.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sensor/apds9960.html">APDS9960 Sensor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sensor/apds9960.html#component-hub">Component/Hub</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/apds9960.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/apds9960.html#sensor">Sensor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/apds9960.html#binary-sensor">Binary Sensor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/apds9960.html#troubleshooting">Troubleshooting:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/apds9960.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sensor/as3935.html">AMS AS3935 Franklin Lightning Sensor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sensor/as3935.html#component-hub">Component/Hub</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/as3935.html#module-pins">Module Pins</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/as3935.html#over-spi">Over SPI</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="sensor/as3935.html#configuration-variables">Configuration variables:</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/as3935.html#over-i2c">Over I²C</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="sensor/as3935.html#id1">Configuration variables:</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/as3935.html#sensor">Sensor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/as3935.html#binary-sensor">Binary Sensor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/as3935.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sensor/atm90e32.html">ATM90E32 Power Sensor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sensor/atm90e32.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/atm90e32.html#calibration">Calibration</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="sensor/atm90e32.html#voltage">Voltage</a></li>
+<li class="toctree-l5"><a class="reference internal" href="sensor/atm90e32.html#current">Current</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/atm90e32.html#additional-examples">Additional Examples</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/atm90e32.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sensor/bh1750.html">BH1750 Ambient Light Sensor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sensor/bh1750.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/bh1750.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sensor/binary_sensor_map.html">Binary Sensor Map</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sensor/binary_sensor_map.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/binary_sensor_map.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sensor/ble_rssi.html">ESP32 Bluetooth Low Energy RSSI Sensor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sensor/ble_rssi.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/ble_rssi.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sensor/bme280.html">BME280 Temperature+Pressure+Humidity Sensor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sensor/bme280.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/bme280.html#oversampling-options">Oversampling Options</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/bme280.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sensor/bme680.html">BME680 Temperature+Pressure+Humidity+Gas Sensor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sensor/bme680.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/bme680.html#oversampling-options">Oversampling Options</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/bme680.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sensor/bmp085.html">BMP085 Temperature+Pressure Sensor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sensor/bmp085.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/bmp085.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sensor/bmp280.html">BMP280 Temperature+Pressure Sensor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sensor/bmp280.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/bmp280.html#oversampling-options">Oversampling Options</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/bmp280.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sensor/ccs811.html">CCS811 CO_2 and Volatile Organic Compound Sensor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sensor/ccs811.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/ccs811.html#calibrating-baseline">Calibrating Baseline</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/ccs811.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sensor/cse7766.html">CSE7766 Power Sensor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sensor/cse7766.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/cse7766.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sensor/ct_clamp.html">CT Clamp Current Sensor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sensor/ct_clamp.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/ct_clamp.html#calibration">Calibration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/ct_clamp.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sensor/custom.html">Custom Sensor Component</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sensor/custom.html#step-1-custom-sensor-definition">Step 1: Custom Sensor Definition</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/custom.html#step-2-registering-the-custom-sensor">Step 2: Registering the custom sensor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/custom.html#step-3-bmp180-support">Step 3: BMP180 support</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/custom.html#step-4-additional-overrides">Step 4: Additional Overrides</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/custom.html#bonus-sensors-with-multiple-output-values">Bonus: Sensors With Multiple Output Values</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="sensor/custom.html#configuration-variables">Configuration variables:</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/custom.html#logging-in-custom-components">Logging in Custom Components</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/custom.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sensor/dallas.html">Dallas Temperature Sensor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sensor/dallas.html#component-hub">Component/Hub</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="sensor/dallas.html#configuration-variables">Configuration variables:</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/dallas.html#sensor">Sensor</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="sensor/dallas.html#id1">Configuration variables:</a></li>
+<li class="toctree-l5"><a class="reference internal" href="sensor/dallas.html#getting-sensor-ids">Getting Sensor IDs</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/dallas.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sensor/dht.html">DHT Temperature+Humidity Sensor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sensor/dht.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/dht.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sensor/dht12.html">DHT12 Temperature+Humidity Sensor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sensor/dht12.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/dht12.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sensor/duty_cycle.html">Duty Cycle Sensor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sensor/duty_cycle.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/duty_cycle.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sensor/esp32_hall.html">ESP32 Hall Sensor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sensor/esp32_hall.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/esp32_hall.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sensor/ezo.html">EZO sensor circuits</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sensor/ezo.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/ezo.html#lambda-calls">lambda calls</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/ezo.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sensor/hdc1080.html">HDC1080 Temperature+Humidity Sensor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sensor/hdc1080.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/hdc1080.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sensor/hlw8012.html">HLW8012 Power Sensor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sensor/hlw8012.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/hlw8012.html#permanent-sel-pin">Permanent SEL Pin</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/hlw8012.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sensor/hm3301.html">The Grove - Laser PM2.5 Sensor (HM3301)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sensor/hm3301.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/hm3301.html#air-quality-sensor">Air Quality Sensor:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/hm3301.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sensor/hmc5883l.html">HMC5883L Magnetometer</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sensor/hmc5883l.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/hmc5883l.html#oversampling-options">Oversampling Options</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/hmc5883l.html#range-options">Range Options</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/hmc5883l.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sensor/homeassistant.html">Home Assistant Sensor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sensor/homeassistant.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/homeassistant.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sensor/htu21d.html">HTU21D Temperature+Humidity Sensor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sensor/htu21d.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/htu21d.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sensor/hx711.html">HX711 Load Cell Amplifier</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sensor/hx711.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/hx711.html#converting-units">Converting Units</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/hx711.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sensor/ina219.html">INA219 DC Current Sensor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sensor/ina219.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/ina219.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sensor/ina226.html">INA226 DC current and power sensor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sensor/ina226.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/ina226.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sensor/ina3221.html">INA3221 3-Channel DC Current Sensor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sensor/ina3221.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/ina3221.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sensor/inkbird_ibsth1_mini.html">Inkbird IBS-TH1 Mini BLE Sensor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sensor/inkbird_ibsth1_mini.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/inkbird_ibsth1_mini.html#setting-up-devices">Setting Up Devices</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/inkbird_ibsth1_mini.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sensor/integration.html">Integration Sensor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sensor/integration.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/integration.html#sensor-integration-reset-action"><code class="docutils literal notranslate"><span class="pre">sensor.integration.reset</span></code> Action</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/integration.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sensor/max31855.html">MAX31855 K-Type Thermocouple Temperature Sensor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sensor/max31855.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/max31855.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sensor/max31856.html">MAX31856 Thermocouple Temperature Sensor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sensor/max31856.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/max31856.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sensor/max31865.html">MAX31865 Platinum RTD Temperature Sensor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sensor/max31865.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/max31865.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sensor/max6675.html">MAX6675 K-Type Thermocouple Temperature Sensor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sensor/max6675.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/max6675.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sensor/mcp3008.html">MCP3008 I/O Expander</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sensor/mcp3008.html#component-hub">Component/Hub</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/mcp3008.html#sensor">Sensor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/mcp3008.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sensor/mcp9808.html">MCP9808 Temperature Sensor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sensor/mcp9808.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/mcp9808.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sensor/mhz19.html">MH-Z19 CO_2 and Temperature Sensor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sensor/mhz19.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/mhz19.html#mhz19-calibrate-zero-action"><code class="docutils literal notranslate"><span class="pre">mhz19.calibrate_zero</span></code> Action</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/mhz19.html#mhz19-abc-enable-action"><code class="docutils literal notranslate"><span class="pre">mhz19.abc_enable</span></code> Action</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/mhz19.html#mhz19-abc-disable-action"><code class="docutils literal notranslate"><span class="pre">mhz19.abc_disable</span></code> Action</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/mhz19.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sensor/mpu6050.html">MPU6050 Accelerometer/Gyroscope Sensor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sensor/mpu6050.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/mpu6050.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sensor/mqtt_subscribe.html">MQTT Subscribe Sensor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sensor/mqtt_subscribe.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/mqtt_subscribe.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sensor/ms5611.html">MS5611 Atmospheric Pressure Sensor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sensor/ms5611.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/ms5611.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sensor/ntc.html">NTC Sensor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sensor/ntc.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/ntc.html#self-heating">Self-Heating</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/ntc.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sensor/pmsx003.html">PMSX003 Particulate Matter Sensor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sensor/pmsx003.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/pmsx003.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sensor/pulse_counter.html">Pulse Counter Sensor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sensor/pulse_counter.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/pulse_counter.html#converting-units">Converting units</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/pulse_counter.html#counting-total-pulses">Counting total pulses</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/pulse_counter.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sensor/pulse_meter.html">Pulse Meter Sensor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sensor/pulse_meter.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/pulse_meter.html#converting-units">Converting units</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/pulse_meter.html#counting-total-pulses">Counting total pulses</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/pulse_meter.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sensor/pulse_width.html">Pulse Width Sensor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sensor/pulse_width.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/pulse_width.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sensor/pzem004t.html">Peacefair PZEM-004T Energy Monitor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sensor/pzem004t.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/pzem004t.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sensor/pzemac.html">Peacefair PZEM-004T V3 Energy Monitor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sensor/pzemac.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/pzemac.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sensor/pzemdc.html">Peacefair PZEM-00X DC Energy Monitor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sensor/pzemdc.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/pzemdc.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sensor/qmc5883l.html">QMC5883L Magnetometer</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sensor/qmc5883l.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/qmc5883l.html#range-options">Range Options</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/qmc5883l.html#oversampling-options">Oversampling Options</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/qmc5883l.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sensor/resistance.html">Resistance Sensor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sensor/resistance.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/resistance.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sensor/rotary_encoder.html">Rotary Encoder Sensor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sensor/rotary_encoder.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/rotary_encoder.html#sensor-rotary-encoder-set-value-action"><code class="docutils literal notranslate"><span class="pre">sensor.rotary_encoder.set_value</span></code> Action</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/rotary_encoder.html#on-clockwise-and-on-anticlockwise-triggers"><code class="docutils literal notranslate"><span class="pre">on_clockwise</span></code> and <code class="docutils literal notranslate"><span class="pre">on_anticlockwise</span></code> Triggers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/rotary_encoder.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sensor/ruuvitag.html">RuuviTag Open Source BLE Sensor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sensor/ruuvitag.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/ruuvitag.html#setting-up-devices">Setting Up Devices</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/ruuvitag.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sensor/scd30.html">SCD30 CO₂, Temperature and Relative Humidity Sensor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sensor/scd30.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/scd30.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sensor/sds011.html">SDS011 Particulate Matter Sensor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sensor/sds011.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/sds011.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sensor/senseair.html">SenseAir CO_2 Sensor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sensor/senseair.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/senseair.html#senseair-background-calibration-action"><code class="docutils literal notranslate"><span class="pre">senseair.background_calibration</span></code> Action</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/senseair.html#senseair-background-calibration-result-action"><code class="docutils literal notranslate"><span class="pre">senseair.background_calibration_result</span></code> Action</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/senseair.html#senseair-abc-get-period-action"><code class="docutils literal notranslate"><span class="pre">senseair.abc_get_period</span></code> Action</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/senseair.html#senseair-abc-enable-action"><code class="docutils literal notranslate"><span class="pre">senseair.abc_enable</span></code> Action</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/senseair.html#senseair-abc-disable-action"><code class="docutils literal notranslate"><span class="pre">senseair.abc_disable</span></code> Action</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/senseair.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sensor/sgp30.html">SGP30 CO₂ and Volatile Organic Compound Sensor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sensor/sgp30.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/sgp30.html#calibrating-baseline">Calibrating Baseline</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/sgp30.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sensor/sht3xd.html">SHT3X-D Temperature+Humidity Sensor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sensor/sht3xd.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/sht3xd.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sensor/shtcx.html">SHTCx Temperature+Humidity Sensors</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sensor/shtcx.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/shtcx.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sensor/sm300d2.html">SM300D2 7-in-1 Air Quality Sensor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sensor/sm300d2.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/sm300d2.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sensor/sps30.html">SPS30 Particulate Matter Sensor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sensor/sps30.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/sps30.html#wiring">Wiring:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/sps30.html#automatic-cleaning">Automatic Cleaning:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/sps30.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sensor/sts3x.html">STS3X Temperature Sensor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sensor/sts3x.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/sts3x.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sensor/tcs34725.html">TCS34725 RGB Color Sensor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sensor/tcs34725.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/tcs34725.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sensor/teleinfo.html">Teleinformation from Linky electrical counter.</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sensor/teleinfo.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/teleinfo.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sensor/template.html">Template Sensor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sensor/template.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/template.html#sensor-template-publish-action"><code class="docutils literal notranslate"><span class="pre">sensor.template.publish</span></code> Action</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/template.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sensor/tmp102.html">TMP102 Temperature Sensor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sensor/tmp102.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/tmp102.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sensor/tmp117.html">TMP117 Temperature Sensor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sensor/tmp117.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/tmp117.html#i2c-addresses">I²C Addresses</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sensor/total_daily_energy.html">Total Daily Energy Sensor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sensor/total_daily_energy.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/total_daily_energy.html#converting-from-w-to-kw">Converting from W to kW</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/total_daily_energy.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sensor/tsl2561.html">TSL2561 Ambient Light Sensor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sensor/tsl2561.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/tsl2561.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sensor/tuya.html">Tuya Sensor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sensor/tuya.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/tuya.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sensor/tx20.html">TX20/TX23 Wind Speed/Direction Sensor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sensor/tx20.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/tx20.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sensor/ultrasonic.html">Ultrasonic Distance Sensor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sensor/ultrasonic.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/ultrasonic.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sensor/uptime.html">Uptime Sensor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sensor/uptime.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/uptime.html#human-readable-sensor">Human readable sensor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/uptime.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sensor/vl53l0x.html">VL53L0X Time Of Flight Distance Sensor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sensor/vl53l0x.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/vl53l0x.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sensor/wifi_signal.html">WiFi Signal Sensor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sensor/wifi_signal.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/wifi_signal.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sensor/xiaomi_ble.html">Xiaomi Mijia BLE Sensors</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sensor/xiaomi_ble.html#supported-devices">Supported Devices</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="sensor/xiaomi_ble.html#hhccjcy01">HHCCJCY01</a></li>
+<li class="toctree-l5"><a class="reference internal" href="sensor/xiaomi_ble.html#gcls002">GCLS002</a></li>
+<li class="toctree-l5"><a class="reference internal" href="sensor/xiaomi_ble.html#hhccpot002">HHCCPOT002</a></li>
+<li class="toctree-l5"><a class="reference internal" href="sensor/xiaomi_ble.html#lywsdcgq">LYWSDCGQ</a></li>
+<li class="toctree-l5"><a class="reference internal" href="sensor/xiaomi_ble.html#lywsd02">LYWSD02</a></li>
+<li class="toctree-l5"><a class="reference internal" href="sensor/xiaomi_ble.html#cgg1">CGG1</a></li>
+<li class="toctree-l5"><a class="reference internal" href="sensor/xiaomi_ble.html#lywsd03mmc">LYWSD03MMC</a></li>
+<li class="toctree-l5"><a class="reference internal" href="sensor/xiaomi_ble.html#mho-c401">MHO-C401</a></li>
+<li class="toctree-l5"><a class="reference internal" href="sensor/xiaomi_ble.html#cgd1">CGD1</a></li>
+<li class="toctree-l5"><a class="reference internal" href="sensor/xiaomi_ble.html#jqjcy01ym">JQJCY01YM</a></li>
+<li class="toctree-l5"><a class="reference internal" href="sensor/xiaomi_ble.html#wx08zm">WX08ZM</a></li>
+<li class="toctree-l5"><a class="reference internal" href="sensor/xiaomi_ble.html#mue4094rt">MUE4094RT</a></li>
+<li class="toctree-l5"><a class="reference internal" href="sensor/xiaomi_ble.html#mjyd02yl-a">MJYD02YL-A</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/xiaomi_ble.html#setting-up-devices">Setting Up Devices</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/xiaomi_ble.html#obtaining-the-bindkey">Obtaining The Bindkey</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="sensor/xiaomi_ble.html#id2">LYWSD03MMC</a></li>
+<li class="toctree-l5"><a class="reference internal" href="sensor/xiaomi_ble.html#other-encrypted-devices">Other encrypted devices</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/xiaomi_ble.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sensor/xiaomi_hhccjcy01.html">HHCCJCY01 Moved To Xiaomi BLE</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sensor/xiaomi_lywsdcgq.html">LYWSDCGQ Moved To Xiaomi BLE</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sensor/xiaomi_miscale.html">Xiaomi Miscale Sensors</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sensor/xiaomi_miscale.html#supported-devices">Supported Devices</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="sensor/xiaomi_miscale.html#xmtzc01hm-xmtzc04hm">XMTZC01HM, XMTZC04HM</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/xiaomi_miscale.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sensor/xiaomi_miscale2.html">Xiaomi Miscale2 Sensors</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sensor/xiaomi_miscale2.html#supported-devices">Supported Devices</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="sensor/xiaomi_miscale2.html#xmtzc02hm-xmtzc05hm">XMTZC02HM, XMTZC05HM</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/xiaomi_miscale2.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sensor/zyaura.html">ZyAura CO2 &amp; Temperature &amp; Humidity Sensor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sensor/zyaura.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sensor/zyaura.html#see-also">See Also</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="switch/index.html">Switch Component</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="switch/index.html#base-switch-configuration">Base Switch Configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="switch/index.html#switch-toggle-action"><code class="docutils literal notranslate"><span class="pre">switch.toggle</span></code> Action</a></li>
+<li class="toctree-l3"><a class="reference internal" href="switch/index.html#switch-turn-on-action"><code class="docutils literal notranslate"><span class="pre">switch.turn_on</span></code> Action</a></li>
+<li class="toctree-l3"><a class="reference internal" href="switch/index.html#switch-turn-off-action"><code class="docutils literal notranslate"><span class="pre">switch.turn_off</span></code> Action</a></li>
+<li class="toctree-l3"><a class="reference internal" href="switch/index.html#switch-is-on-switch-is-off-condition"><code class="docutils literal notranslate"><span class="pre">switch.is_on</span></code> / <code class="docutils literal notranslate"><span class="pre">switch.is_off</span></code> Condition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="switch/index.html#lambda-calls">lambda calls</a></li>
+<li class="toctree-l3"><a class="reference internal" href="switch/index.html#switch-is-on-off-condition"><code class="docutils literal notranslate"><span class="pre">switch.is_on</span></code> / <code class="docutils literal notranslate"><span class="pre">switch.is_off</span></code> Condition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="switch/index.html#switch-on-turn-on-switch-on-turn-off-trigger"><code class="docutils literal notranslate"><span class="pre">switch.on_turn_on</span></code> / <code class="docutils literal notranslate"><span class="pre">switch.on_turn_off</span></code> Trigger</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="switch/index.html#see-also">See Also</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="switch/custom.html">Custom Switch</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="switch/custom.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="switch/gpio.html">GPIO Switch</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="switch/gpio.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="switch/gpio.html#active-low-switch">Active Low Switch</a></li>
+<li class="toctree-l4"><a class="reference internal" href="switch/gpio.html#momentary-switch">Momentary Switch</a></li>
+<li class="toctree-l4"><a class="reference internal" href="switch/gpio.html#interlocking">Interlocking</a></li>
+<li class="toctree-l4"><a class="reference internal" href="switch/gpio.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="switch/output.html">Generic Output Switch</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="switch/output.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="switch/output.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="switch/restart.html">Restart Switch</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="switch/restart.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="switch/restart.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="switch/shutdown.html">Shutdown Switch</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="switch/shutdown.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="switch/shutdown.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="switch/template.html">Template Switch</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="switch/template.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="switch/template.html#switch-template-publish-action"><code class="docutils literal notranslate"><span class="pre">switch.template.publish</span></code> Action</a></li>
+<li class="toctree-l4"><a class="reference internal" href="switch/template.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="switch/tuya.html">Tuya Switch</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="switch/tuya.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="switch/tuya.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="switch/uart.html">UART Switch</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="switch/uart.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="switch/uart.html#see-also">See Also</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="display/index.html">Display Component</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="display/index.html#display-rendering-engine">Display Rendering Engine</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="display/index.html#basic-shapes">Basic Shapes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="display/index.html#drawing-static-text">Drawing Static Text</a></li>
+<li class="toctree-l3"><a class="reference internal" href="display/index.html#formatted-text">Formatted Text</a></li>
+<li class="toctree-l3"><a class="reference internal" href="display/index.html#displaying-time">Displaying Time</a></li>
+<li class="toctree-l3"><a class="reference internal" href="display/index.html#color">Color</a></li>
+<li class="toctree-l3"><a class="reference internal" href="display/index.html#images">Images</a></li>
+<li class="toctree-l3"><a class="reference internal" href="display/index.html#animation">Animation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="display/index.html#configuration-variables">Configuration variables:</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="display/index.html#display-pages">Display Pages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="display/index.html#see-also">See Also</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="display/addressable_light.html">Addressable Light</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="display/addressable_light.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="display/addressable_light.html#pixel-mapper">pixel_mapper</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="display/addressable_light.html#default">Default</a></li>
+<li class="toctree-l5"><a class="reference internal" href="display/addressable_light.html#btf-lighting-8x32-ws2812b-flexible-led-matrix">BTF-Lighting 8x32 WS2812B Flexible LED Matrix</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="display/addressable_light.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="display/ili9341.html">ILI9341 TFT LCD</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="display/ili9341.html#usage">Usage</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="display/ili9341.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l5"><a class="reference internal" href="display/ili9341.html#configuration-examples">Configuration examples</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="display/ili9341.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="display/inkplate6.html">Inkplate 6</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="display/inkplate6.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="display/inkplate6.html#complete-example">Complete example</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="display/inkplate6.html#see-also">See Also</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="display/lcd_display.html">Character-Based LCD Display</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="display/lcd_display.html#lcd-pcf8574-component">lcd_pcf8574 Component</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="display/lcd_display.html#configuration-variables">Configuration variables:</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="display/lcd_display.html#lcd-gpio-component">lcd_gpio Component</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="display/lcd_display.html#id1">Configuration variables:</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="display/lcd_display.html#rendering-lambda">Rendering Lambda</a></li>
+<li class="toctree-l4"><a class="reference internal" href="display/lcd_display.html#backlight-control">Backlight Control</a></li>
+<li class="toctree-l4"><a class="reference internal" href="display/lcd_display.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="display/max7219.html">MAX7219 7-Segment Display</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="display/max7219.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="display/max7219.html#rendering-lambda">Rendering Lambda</a></li>
+<li class="toctree-l4"><a class="reference internal" href="display/max7219.html#all-7-segment-characters">All 7-Segment Characters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="display/max7219.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="display/max7219digit.html">MAX7219 Digit Display</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="display/max7219digit.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="display/max7219digit.html#rendering-lambda">Rendering Lambda</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="display/max7219digit.html#scrolling">Scrolling</a></li>
+<li class="toctree-l5"><a class="reference internal" href="display/max7219digit.html#screen-inversion">Screen inversion</a></li>
+<li class="toctree-l5"><a class="reference internal" href="display/max7219digit.html#screen-intensity">Screen intensity</a></li>
+<li class="toctree-l5"><a class="reference internal" href="display/max7219digit.html#screen-on-off">Screen ON/OFF</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="display/max7219digit.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="display/nextion.html">Nextion TFT LCD Display</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="display/nextion.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="display/nextion.html#rendering-lambda">Rendering Lambda</a></li>
+<li class="toctree-l4"><a class="reference internal" href="display/nextion.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="display/pcd8544.html">PCD 8544 Display (Nokia 5110/3310)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="display/pcd8544.html#usage">Usage</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="display/pcd8544.html#backlight">Backlight</a></li>
+<li class="toctree-l5"><a class="reference internal" href="display/pcd8544.html#configuration-variables">Configuration variables:</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="display/pcd8544.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="display/ssd1306.html">SSD1306 OLED Display</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="display/ssd1306.html#over-i2c">Over I²C</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="display/ssd1306.html#configuration-variables">Configuration variables:</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="display/ssd1306.html#over-spi">Over SPI</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="display/ssd1306.html#id1">Configuration variables:</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="display/ssd1306.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="display/ssd1322.html">SSD1322 OLED Display</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="display/ssd1322.html#ssd1322-spi-component"><code class="docutils literal notranslate"><span class="pre">ssd1322_spi</span></code> Component</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="display/ssd1322.html#configuration-variables">Configuration variables:</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="display/ssd1322.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="display/ssd1325.html">SSD1325/7 OLED Display</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="display/ssd1325.html#ssd1325-spi-component"><code class="docutils literal notranslate"><span class="pre">ssd1325_spi</span></code> Component</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="display/ssd1325.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l5"><a class="reference internal" href="display/ssd1325.html#configuration-examples">Configuration examples</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="display/ssd1325.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="display/ssd1327.html">SSD1327 OLED Display</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="display/ssd1327.html#over-i2c">Over I²C</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="display/ssd1327.html#configuration-variables">Configuration variables:</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="display/ssd1327.html#over-spi">Over SPI</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="display/ssd1327.html#id1">Configuration variables:</a></li>
+<li class="toctree-l5"><a class="reference internal" href="display/ssd1327.html#configuration-examples">Configuration examples</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="display/ssd1327.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="display/ssd1331.html">SSD1331 OLED Display</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="display/ssd1331.html#usage">Usage</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="display/ssd1331.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l5"><a class="reference internal" href="display/ssd1331.html#configuration-examples">Configuration examples</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="display/ssd1331.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="display/ssd1351.html">SSD1351 OLED Display</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="display/ssd1351.html#ssd1351-spi-component"><code class="docutils literal notranslate"><span class="pre">ssd1351_spi</span></code> Component</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="display/ssd1351.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l5"><a class="reference internal" href="display/ssd1351.html#configuration-examples">Configuration examples</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="display/ssd1351.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="display/st7735.html">ST7735 Display</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="display/st7735.html#usage">Usage</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="display/st7735.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l5"><a class="reference internal" href="display/st7735.html#memory-notes">Memory notes:</a></li>
+<li class="toctree-l5"><a class="reference internal" href="display/st7735.html#models">Models:</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="display/st7735.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="display/st7789v.html">ST7789V TFT LCD</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="display/st7789v.html#usage">Usage</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="display/st7789v.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l5"><a class="reference internal" href="display/st7789v.html#configuration-examples">Configuration examples</a></li>
+<li class="toctree-l5"><a class="reference internal" href="display/st7789v.html#complete-example">Complete example</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="display/st7789v.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="display/tm1637.html">TM1637 7-Segment Display</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="display/tm1637.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="display/tm1637.html#rendering-lambda">Rendering Lambda</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="display/tm1637.html#creating-a-digital-clock">Creating a digital clock</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="display/tm1637.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="display/waveshare_epaper.html">Waveshare E-Paper Display</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="display/waveshare_epaper.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="display/waveshare_epaper.html#see-also">See Also</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="text_sensor/index.html">Text Sensor Component</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="text_sensor/index.html#base-text-sensor-configuration">Base Text Sensor Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="text_sensor/index.html#text-sensor-automation">Text Sensor Automation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="text_sensor/index.html#on-value"><code class="docutils literal notranslate"><span class="pre">on_value</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="text_sensor/index.html#text-sensor-state-condition"><code class="docutils literal notranslate"><span class="pre">text_sensor.state</span></code> Condition</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="text_sensor/index.html#lambda-calls">lambda calls</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="text_sensor/index.html#see-also">See Also</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="text_sensor/ble_scanner.html">ESP32 Bluetooth Low Energy Scanner</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="text_sensor/ble_scanner.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="text_sensor/ble_scanner.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="text_sensor/custom.html">Custom Text Sensor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="text_sensor/custom.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="text_sensor/homeassistant.html">Home Assistant Text Sensor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="text_sensor/homeassistant.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="text_sensor/homeassistant.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="text_sensor/mqtt_subscribe.html">MQTT Subscribe Text Sensor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="text_sensor/mqtt_subscribe.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="text_sensor/mqtt_subscribe.html#example-usage-for-displays">Example Usage for Displays</a></li>
+<li class="toctree-l4"><a class="reference internal" href="text_sensor/mqtt_subscribe.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="text_sensor/template.html">Template Text Sensor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="text_sensor/template.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="text_sensor/template.html#text-sensor-template-publish-action"><code class="docutils literal notranslate"><span class="pre">text_sensor.template.publish</span></code> Action</a></li>
+<li class="toctree-l4"><a class="reference internal" href="text_sensor/template.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="text_sensor/version.html">Version Text Sensor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="text_sensor/version.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="text_sensor/version.html#disabling-the-compilation-timestamp">Disabling the compilation timestamp:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="text_sensor/version.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="text_sensor/wifi_info.html">WiFi Info Text Sensor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="text_sensor/wifi_info.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="text_sensor/wifi_info.html#see-also">See Also</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="stepper/index.html">Stepper Component</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="stepper/index.html#base-stepper-configuration">Base Stepper Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stepper/index.html#a4988-component">A4988 Component</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stepper/index.html#uln2003-component">ULN2003 Component</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stepper/index.html#stepper-set-target-action"><code class="docutils literal notranslate"><span class="pre">stepper.set_target</span></code> Action</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stepper/index.html#stepper-report-position-action"><code class="docutils literal notranslate"><span class="pre">stepper.report_position</span></code> Action</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stepper/index.html#stepper-set-speed-action"><code class="docutils literal notranslate"><span class="pre">stepper.set_speed</span></code> Action</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stepper/index.html#home-assistant-configuration">Home Assistant Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stepper/index.html#lambda-calls">lambda calls</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stepper/index.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">Native API Component</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#homeassistant-service-action"><code class="docutils literal notranslate"><span class="pre">homeassistant.service</span></code> Action</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#user-defined-services">User-defined Services</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#api-connected-condition"><code class="docutils literal notranslate"><span class="pre">api.connected</span></code> Condition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#advantages-over-mqtt">Advantages over MQTT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#homeassistant-event-action"><code class="docutils literal notranslate"><span class="pre">homeassistant.event</span></code> Action</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#homeassistant-tag-scanned-action"><code class="docutils literal notranslate"><span class="pre">homeassistant.tag_scanned</span></code> Action</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="canbus.html">CAN bus</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="canbus.html#base-can-bus-configuration">Base CAN Bus Configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="canbus.html#on-frame"><code class="docutils literal notranslate"><span class="pre">on_frame</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="canbus.html#canbus-send-action"><code class="docutils literal notranslate"><span class="pre">canbus.send</span></code> Action</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="canbus.html#mcp2515-component">MCP2515 Component</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="canbus.html#configuration-variables">Configuration variables:</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="canbus.html#wiring-options">Wiring options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="canbus.html#extended-id">Extended ID</a></li>
+<li class="toctree-l2"><a class="reference internal" href="canbus.html#binary-sensor-example">Binary Sensor Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="canbus.html#cover-example">Cover Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="canbus.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="captive_portal.html">Captive Portal</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="captive_portal.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="debug.html">Debug Component</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="debug.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="deep_sleep.html">Deep Sleep Component</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="deep_sleep.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deep_sleep.html#esp32-wakeup-pin-mode">ESP32 Wakeup Pin Mode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deep_sleep.html#deep-sleep-enter-action"><code class="docutils literal notranslate"><span class="pre">deep_sleep.enter</span></code> Action</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deep_sleep.html#deep-sleep-prevent-action"><code class="docutils literal notranslate"><span class="pre">deep_sleep.prevent</span></code> Action</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deep_sleep.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="dfplayer.html">DF-Player mini</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="dfplayer.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dfplayer.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dfplayer.html#dfplayer-is-playing-condition"><code class="docutils literal notranslate"><span class="pre">dfplayer.is_playing</span></code> Condition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dfplayer.html#dfplayer-play-next-action"><code class="docutils literal notranslate"><span class="pre">dfplayer.play_next</span></code> Action</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dfplayer.html#dfplayer-play-previous-action"><code class="docutils literal notranslate"><span class="pre">dfplayer.play_previous</span></code> Action</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dfplayer.html#dfplayer-play-action"><code class="docutils literal notranslate"><span class="pre">dfplayer.play</span></code> Action</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dfplayer.html#dfplayer-play-folder-action"><code class="docutils literal notranslate"><span class="pre">dfplayer.play_folder</span></code> Action</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dfplayer.html#dfplayer-set-device-action"><code class="docutils literal notranslate"><span class="pre">dfplayer.set_device</span></code> Action</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dfplayer.html#dfplayer-set-volume-action"><code class="docutils literal notranslate"><span class="pre">dfplayer.set_volume</span></code> Action</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dfplayer.html#dfplayer-set-eq-action"><code class="docutils literal notranslate"><span class="pre">dfplayer.set_eq</span></code> Action</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dfplayer.html#dfplayer-sleep-action"><code class="docutils literal notranslate"><span class="pre">dfplayer.sleep</span></code> Action</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dfplayer.html#dfplayer-reset-action"><code class="docutils literal notranslate"><span class="pre">dfplayer.reset</span></code> Action</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dfplayer.html#dfplayer-start-action"><code class="docutils literal notranslate"><span class="pre">dfplayer.start</span></code> Action</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dfplayer.html#dfplayer-pause-action"><code class="docutils literal notranslate"><span class="pre">dfplayer.pause</span></code> Action</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dfplayer.html#dfplayer-stop-action"><code class="docutils literal notranslate"><span class="pre">dfplayer.stop</span></code> Action</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dfplayer.html#dfplayer-random-action"><code class="docutils literal notranslate"><span class="pre">dfplayer.random</span></code> Action</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dfplayer.html#all-actions">All actions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dfplayer.html#test-setup">Test setup</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dfplayer.html#sample-code">Sample code</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="dfplayer.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="esp32_ble_beacon.html">ESP32 Bluetooth Low Energy Beacon</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="esp32_ble_beacon.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="esp32_ble_beacon.html#setting-up">Setting Up</a></li>
+<li class="toctree-l2"><a class="reference internal" href="esp32_ble_beacon.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="esp32_ble_tracker.html">ESP32 Bluetooth Low Energy Tracker Hub</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="esp32_ble_tracker.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="esp32_ble_tracker.html#esp32-bluetooth-low-energy-tracker-automation">ESP32 Bluetooth Low Energy Tracker Automation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="esp32_ble_tracker.html#on-ble-advertise"><code class="docutils literal notranslate"><span class="pre">on_ble_advertise</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="esp32_ble_tracker.html#on-ble-manufacturer-data-advertise"><code class="docutils literal notranslate"><span class="pre">on_ble_manufacturer_data_advertise</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="esp32_ble_tracker.html#on-ble-service-data-advertise"><code class="docutils literal notranslate"><span class="pre">on_ble_service_data_advertise</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="esp32_ble_tracker.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="esp32_camera.html">ESP32 Camera Component</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="esp32_camera.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="esp32_camera.html#configuration-for-ai-thinker-camera">Configuration for Ai-Thinker Camera</a></li>
+<li class="toctree-l2"><a class="reference internal" href="esp32_camera.html#configuration-for-m5stack-camera">Configuration for M5Stack Camera</a></li>
+<li class="toctree-l2"><a class="reference internal" href="esp32_camera.html#configuration-for-wrover-kit-boards">Configuration for Wrover Kit Boards</a></li>
+<li class="toctree-l2"><a class="reference internal" href="esp32_camera.html#configuration-for-ttgo-t-camera-v05">Configuration for TTGO T-Camera V05</a></li>
+<li class="toctree-l2"><a class="reference internal" href="esp32_camera.html#configuration-for-ttgo-t-camera-v162">Configuration for TTGO T-Camera V162</a></li>
+<li class="toctree-l2"><a class="reference internal" href="esp32_camera.html#configuration-for-ttgo-t-camera-v17">Configuration for TTGO T-Camera V17</a></li>
+<li class="toctree-l2"><a class="reference internal" href="esp32_camera.html#configuration-for-ttgo-t-journal">Configuration for TTGO T-Journal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="esp32_camera.html#configuration-for-ttgo-camera-plus">Configuration for TTGO-Camera Plus</a></li>
+<li class="toctree-l2"><a class="reference internal" href="esp32_camera.html#configuration-for-ttgo-camera-mini">Configuration for TTGO-Camera Mini</a></li>
+<li class="toctree-l2"><a class="reference internal" href="esp32_camera.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="esphome.html">ESPHome Core Configuration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="esphome.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="esphome.html#arduino-version"><code class="docutils literal notranslate"><span class="pre">arduino_version</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="esphome.html#esp8266-restore-from-flash"><code class="docutils literal notranslate"><span class="pre">esp8266_restore_from_flash</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="esphome.html#on-boot"><code class="docutils literal notranslate"><span class="pre">on_boot</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="esphome.html#on-shutdown"><code class="docutils literal notranslate"><span class="pre">on_shutdown</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="esphome.html#on-loop"><code class="docutils literal notranslate"><span class="pre">on_loop</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="esphome.html#platformio-options"><code class="docutils literal notranslate"><span class="pre">platformio_options</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="esphome.html#includes"><code class="docutils literal notranslate"><span class="pre">includes</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="esphome.html#changing-esphome-node-name">Changing ESPHome Node Name</a></li>
+<li class="toctree-l2"><a class="reference internal" href="esphome.html#adding-the-mac-address-as-a-suffix-to-the-device-name">Adding the MAC address as a suffix to the device name</a></li>
+<li class="toctree-l2"><a class="reference internal" href="esphome.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ethernet.html">Ethernet Component</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ethernet.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ethernet.html#configuration-for-wesp32-board">Configuration for wESP32 board</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ethernet.html#configuration-for-olimex-esp32-poe">Configuration for Olimex ESP32-POE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ethernet.html#configuration-for-lilygo-ttgo-t-internet-poe-esp32-wroom-lan8270a-chip">Configuration for LILYGO TTGO T-Internet-POE ESP32-WROOM LAN8270A Chip</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ethernet.html#configuration-for-openhacks-lan8720">Configuration for OpenHacks LAN8720</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ethernet.html#configuration-for-wireless-tag-wt32-eth01">Configuration for Wireless Tag WT32-ETH01</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ethernet.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="exposure_notifications.html">Exposure Notification Listener</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="exposure_notifications.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exposure_notifications.html#indicator-of-device-with-exposure-notifications">Indicator of device with exposure notifications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exposure_notifications.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="gps.html">GPS Component</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="gps.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="http_request.html">HTTP Request</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="http_request.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="http_request.html#http-request-actions">HTTP Request Actions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="http_request.html#http-request-get-action"><code class="docutils literal notranslate"><span class="pre">http_request.get</span></code> Action</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http_request.html#http-request-post-action"><code class="docutils literal notranslate"><span class="pre">http_request.post</span></code> Action</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http_request.html#http-request-send-action"><code class="docutils literal notranslate"><span class="pre">http_request.send</span></code> Action</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="http_request.html#on-response-trigger"><code class="docutils literal notranslate"><span class="pre">on_response</span></code> Trigger</a></li>
+<li class="toctree-l2"><a class="reference internal" href="http_request.html#examples">Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="http_request.html#templatable-values">Templatable values</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http_request.html#body-in-json-format-syntax-1">Body in JSON format (syntax 1)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http_request.html#body-in-json-format-syntax-2">Body in JSON format (syntax 2)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="http_request.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="i2c.html">I²C Bus</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="i2c.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="i2c.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="logger.html">Logger Component</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="logger.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logger.html#hardware-uarts">Hardware UARTs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logger.html#log-levels">Log Levels</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logger.html#manual-tag-specific-log-levels">Manual Tag-Specific Log Levels</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logger.html#logger-log-action"><code class="docutils literal notranslate"><span class="pre">logger.log</span></code> Action</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logger.html#logger-automation">Logger Automation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="logger.html#on-message"><code class="docutils literal notranslate"><span class="pre">on_message</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="logger.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="mcp230xx.html">MCP230xx I/O Expander</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="mcp230xx.html#mcp23008-component">MCP23008 Component</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="mcp230xx.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mcp230xx.html#pin-configuration-variables">Pin configuration variables:</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="mcp230xx.html#mcp23016-component">MCP23016 Component</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="mcp230xx.html#id1">Configuration variables:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mcp230xx.html#id2">Pin configuration variables:</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="mcp230xx.html#mcp23017-component">MCP23017 Component</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="mcp230xx.html#id3">Configuration variables:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mcp230xx.html#id4">Pin configuration variables:</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="mcp230xx.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="mcp23sxx.html">MCP23Sxx I/O Expander</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="mcp23sxx.html#mcp23s08-component">MCP23S08 Component</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="mcp23sxx.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mcp23sxx.html#pin-configuration-variables">Pin Configuration Variables:</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="mcp23sxx.html#mcp23s17-component">MCP23S17 Component</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="mcp23sxx.html#id1">Configuration variables:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mcp23sxx.html#id2">Pin Configuration Variables:</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="mcp23sxx.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="mqtt.html">MQTT Client Component</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="mqtt.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mqtt.html#mqttmessage">MQTTMessage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mqtt.html#using-with-home-assistant">Using with Home Assistant</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mqtt.html#defaults">Defaults</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mqtt.html#last-will-and-birth-messages">Last Will And Birth Messages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mqtt.html#ssl-fingerprints">SSL Fingerprints</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mqtt.html#mqtt-component-base-configuration">MQTT Component Base Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mqtt.html#on-message-trigger"><code class="docutils literal notranslate"><span class="pre">on_message</span></code> Trigger</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mqtt.html#on-json-message-trigger"><code class="docutils literal notranslate"><span class="pre">on_json_message</span></code> Trigger</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mqtt.html#mqtt-publish-action"><code class="docutils literal notranslate"><span class="pre">mqtt.publish</span></code> Action</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mqtt.html#mqtt-publish-json-action"><code class="docutils literal notranslate"><span class="pre">mqtt.publish_json</span></code> Action</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mqtt.html#mqtt-connected-condition"><code class="docutils literal notranslate"><span class="pre">mqtt.connected</span></code> Condition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mqtt.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ota.html">OTA Update Component</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ota.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ota.html#updating-the-password">Updating the password:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ota.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pcf8574.html">PCF8574 I/O Expander</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pcf8574.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pcf8574.html#pin-configuration-variables">Pin configuration variables:</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pcf8574.html#see-also">See Also</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="power_supply.html">Power Supply Component</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="power_supply.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="power_supply.html#atx-power-supplies">ATX Power Supplies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="power_supply.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="prometheus.html">Prometheus Component</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="prometheus.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="prometheus.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="remote_receiver.html">Remote Receiver</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="remote_receiver.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="remote_receiver.html#binary-sensor">Binary Sensor</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="remote_receiver.html#id1">Configuration variables:</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="remote_receiver.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="remote_transmitter.html">Remote Transmitter</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="remote_transmitter.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="remote_transmitter.html#remote-transmitter-actions">Remote Transmitter Actions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="remote_transmitter.html#remote-transmitter-transmit-raw-action"><code class="docutils literal notranslate"><span class="pre">remote_transmitter.transmit_raw</span></code> Action</a></li>
+<li class="toctree-l3"><a class="reference internal" href="remote_transmitter.html#remote-transmitter-transmit-jvc-action"><code class="docutils literal notranslate"><span class="pre">remote_transmitter.transmit_jvc</span></code> Action</a></li>
+<li class="toctree-l3"><a class="reference internal" href="remote_transmitter.html#remote-transmitter-transmit-lg-action"><code class="docutils literal notranslate"><span class="pre">remote_transmitter.transmit_lg</span></code> Action</a></li>
+<li class="toctree-l3"><a class="reference internal" href="remote_transmitter.html#remote-transmitter-transmit-nec-action"><code class="docutils literal notranslate"><span class="pre">remote_transmitter.transmit_nec</span></code> Action</a></li>
+<li class="toctree-l3"><a class="reference internal" href="remote_transmitter.html#remote-transmitter-transmit-sony-action"><code class="docutils literal notranslate"><span class="pre">remote_transmitter.transmit_sony</span></code> Action</a></li>
+<li class="toctree-l3"><a class="reference internal" href="remote_transmitter.html#remote-transmitter-transmit-rc5-action"><code class="docutils literal notranslate"><span class="pre">remote_transmitter.transmit_rc5</span></code> Action</a></li>
+<li class="toctree-l3"><a class="reference internal" href="remote_transmitter.html#remote-transmitter-transmit-samsung-action"><code class="docutils literal notranslate"><span class="pre">remote_transmitter.transmit_samsung</span></code> Action</a></li>
+<li class="toctree-l3"><a class="reference internal" href="remote_transmitter.html#remote-transmitter-transmit-samsung36-action"><code class="docutils literal notranslate"><span class="pre">remote_transmitter.transmit_samsung36</span></code> Action</a></li>
+<li class="toctree-l3"><a class="reference internal" href="remote_transmitter.html#remote-transmitter-transmit-panasonic-action"><code class="docutils literal notranslate"><span class="pre">remote_transmitter.transmit_panasonic</span></code> Action</a></li>
+<li class="toctree-l3"><a class="reference internal" href="remote_transmitter.html#remote-transmitter-transmit-pioneer-action"><code class="docutils literal notranslate"><span class="pre">remote_transmitter.transmit_pioneer</span></code> Action</a></li>
+<li class="toctree-l3"><a class="reference internal" href="remote_transmitter.html#remote-transmitter-transmit-rc-switch-raw-action"><code class="docutils literal notranslate"><span class="pre">remote_transmitter.transmit_rc_switch_raw</span></code> Action</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="remote_transmitter.html#rc-switch-protocol">RC Switch Protocol</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="remote_transmitter.html#remote-transmitter-transmit-rc-switch-type-a-action"><code class="docutils literal notranslate"><span class="pre">remote_transmitter.transmit_rc_switch_type_a</span></code> Action</a></li>
+<li class="toctree-l3"><a class="reference internal" href="remote_transmitter.html#remote-transmitter-transmit-rc-switch-type-b-action"><code class="docutils literal notranslate"><span class="pre">remote_transmitter.transmit_rc_switch_type_b</span></code> Action</a></li>
+<li class="toctree-l3"><a class="reference internal" href="remote_transmitter.html#remote-transmitter-transmit-rc-switch-type-c-action"><code class="docutils literal notranslate"><span class="pre">remote_transmitter.transmit_rc_switch_type_c</span></code> Action</a></li>
+<li class="toctree-l3"><a class="reference internal" href="remote_transmitter.html#remote-transmitter-transmit-rc-switch-type-d-action"><code class="docutils literal notranslate"><span class="pre">remote_transmitter.transmit_rc_switch_type_d</span></code> Action</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="remote_transmitter.html#setting-up-infrared-devices">Setting up Infrared Devices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="remote_transmitter.html#setting-up-rf-devices">Setting Up RF Devices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="remote_transmitter.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="rf_bridge.html">RF Bridge Component</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="rf_bridge.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rf_bridge.html#on-code-received-trigger"><code class="docutils literal notranslate"><span class="pre">on_code_received</span></code> Trigger</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rf_bridge.html#rf-bridge-send-code-action"><code class="docutils literal notranslate"><span class="pre">rf_bridge.send_code</span></code> Action</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rf_bridge.html#rf-bridge-send-raw-action"><code class="docutils literal notranslate"><span class="pre">rf_bridge.send_raw</span></code> Action</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rf_bridge.html#rf-bridge-learn-action"><code class="docutils literal notranslate"><span class="pre">rf_bridge.learn</span></code> Action</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rf_bridge.html#portisch-firmware">Portisch firmware</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rf_bridge.html#on-advanced-code-received-trigger"><code class="docutils literal notranslate"><span class="pre">on_advanced_code_received</span></code> Trigger</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rf_bridge.html#rf-bridge-send-advanced-code-action"><code class="docutils literal notranslate"><span class="pre">rf_bridge.send_advanced_code</span></code> Action</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rf_bridge.html#rf-bridge-start-advanced-sniffing-action"><code class="docutils literal notranslate"><span class="pre">rf_bridge.start_advanced_sniffing</span></code> Action</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rf_bridge.html#rf-bridge-stop-advanced-sniffing-action"><code class="docutils literal notranslate"><span class="pre">rf_bridge.stop_advanced_sniffing</span></code> Action</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rf_bridge.html#getting-started-with-home-assistant">Getting started with Home Assistant</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rf_bridge.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="rtttl.html">Rtttl Buzzer</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="rtttl.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rtttl.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rtttl.html#rtttl-play-action"><code class="docutils literal notranslate"><span class="pre">rtttl.play</span></code> Action</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rtttl.html#rtttl-stop-action"><code class="docutils literal notranslate"><span class="pre">rtttl.stop</span></code> Action</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rtttl.html#all-actions">All actions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rtttl.html#rtttl-is-playing-condition"><code class="docutils literal notranslate"><span class="pre">rtttl.is_playing</span></code> Condition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rtttl.html#common-beeps">Common beeps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rtttl.html#test-setup">Test setup</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="rtttl.html#sample-code">Sample code</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="rtttl.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="servo.html">Servo Component</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="servo.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="servo.html#servo-write-action"><code class="docutils literal notranslate"><span class="pre">servo.write</span></code> Action</a></li>
+<li class="toctree-l2"><a class="reference internal" href="servo.html#servo-detach-action"><code class="docutils literal notranslate"><span class="pre">servo.detach</span></code> Action</a></li>
+<li class="toctree-l2"><a class="reference internal" href="servo.html#home-assistant-configuration">Home Assistant Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="servo.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="sim800l.html">Sim800L Component</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="sim800l.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sim800l.html#on-sms-received-trigger"><code class="docutils literal notranslate"><span class="pre">on_sms_received</span></code> Trigger</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sim800l.html#sim800l-send-sms-action"><code class="docutils literal notranslate"><span class="pre">sim800l.send_sms</span></code> Action</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sim800l.html#sim800l-dial-action"><code class="docutils literal notranslate"><span class="pre">sim800l.dial</span></code> Action</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sim800l.html#getting-started-with-home-assistant">Getting started with Home Assistant</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sim800l.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="sn74hc595.html">SN74HC595 I/O Expander (shift register)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="sn74hc595.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sn74hc595.html#pin-configuration-variables">Pin configuration variables:</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="sn74hc595.html#see-also">See Also</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="spi.html">SPI Bus</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="spi.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spi.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="status_led.html">Status LED</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="status_led.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="status_led.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="sun.html">Sun</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="sun.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sun.html#sun-sensor"><code class="docutils literal notranslate"><span class="pre">sun</span></code> Sensor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sun.html#sun-text-sensor"><code class="docutils literal notranslate"><span class="pre">sun</span></code> Text Sensor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sun.html#sun-is-above-horizon-sun-is-below-horizon-conditions"><code class="docutils literal notranslate"><span class="pre">sun.is_above_horizon</span></code> / <code class="docutils literal notranslate"><span class="pre">sun.is_below_horizon</span></code> Conditions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sun.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="sx1509.html">SX1509 16 channel I/O Expander with LED driver and keypad engine</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="sx1509.html#configuration-variables">Configuration variables:</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="sx1509.html#binary-sensor">Binary Sensor</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="sx1509.html#id1">Configuration variables:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sx1509.html#pin-configuration-variables">Pin configuration variables:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sx1509.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="time.html">Time</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="time.html#base-time-configuration">Base Time Configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="time.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="time.html#time-has-time-condition"><code class="docutils literal notranslate"><span class="pre">time.has_time</span></code> Condition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="time.html#on-time-trigger"><code class="docutils literal notranslate"><span class="pre">on_time</span></code> Trigger</a></li>
+<li class="toctree-l3"><a class="reference internal" href="time.html#on-time-sync-trigger"><code class="docutils literal notranslate"><span class="pre">on_time_sync</span></code> Trigger</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="time.html#home-assistant-time-source">Home Assistant Time Source</a></li>
+<li class="toctree-l2"><a class="reference internal" href="time.html#sntp-time-source">SNTP Time Source</a></li>
+<li class="toctree-l2"><a class="reference internal" href="time.html#gps-time-source">GPS Time Source</a></li>
+<li class="toctree-l2"><a class="reference internal" href="time.html#ds1307-time-source">DS1307 Time Source</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="time.html#ds1307-write-time-action"><code class="docutils literal notranslate"><span class="pre">ds1307.write_time</span></code> Action</a></li>
+<li class="toctree-l3"><a class="reference internal" href="time.html#ds1307-read-time-action"><code class="docutils literal notranslate"><span class="pre">ds1307.read_time</span></code> Action</a></li>
+<li class="toctree-l3"><a class="reference internal" href="time.html#configuration-example">Configuration Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="time.html#use-in-lambdas">Use In Lambdas</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="time.html#strftime">strftime</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="time.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tm1651.html">TM1651 Battery Display</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tm1651.html#battery-display">Battery Display</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tm1651.html#configuration-variables">Configuration variables:</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tm1651.html#tm1651-set-level-percent-action"><code class="docutils literal notranslate"><span class="pre">tm1651.set_level_percent</span></code> Action</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tm1651.html#tm1651-set-level-action"><code class="docutils literal notranslate"><span class="pre">tm1651.set_level</span></code> Action</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tm1651.html#tm1651-set-brightness-action"><code class="docutils literal notranslate"><span class="pre">tm1651.set_brightness</span></code> Action</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tm1651.html#tm1651-turn-off-action"><code class="docutils literal notranslate"><span class="pre">tm1651.turn_off</span></code> Action</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tm1651.html#tm1651-turn-on-action"><code class="docutils literal notranslate"><span class="pre">tm1651.turn_on</span></code> Action</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tm1651.html#advanced-configuration">Advanced Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tm1651.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tuya.html">Tuya MCU</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tuya.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tuya.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="uart.html">UART Bus</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="uart.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uart.html#hardware-uarts">Hardware UARTs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uart.html#uart-write-action"><code class="docutils literal notranslate"><span class="pre">uart.write</span></code> Action</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uart.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="web_server.html">Web Server Component</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="web_server.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="web_server.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="wifi.html">WiFi Component</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="wifi.html#configuration-variables">Configuration variables:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wifi.html#access-point-mode">Access Point Mode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wifi.html#manual-ips">Manual IPs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wifi.html#power-save-mode">Power Save Mode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wifi.html#connecting-to-multiple-networks">Connecting to Multiple Networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wifi.html#enterprise-authentication">Enterprise Authentication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wifi.html#wifi-connected-condition"><code class="docutils literal notranslate"><span class="pre">wifi.connected</span></code> Condition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wifi.html#see-also">See Also</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+  <div id="upgrade-footer">
+    A new version has been release since you last visited this page: 1.17.2 🎉
+    <div class="footer-button-container">
+      <div role="button" id="upgrade-footer-dismiss" class="footer-button">Dismiss</div>
+      <a id="upgrade-footer-changelog" class="footer-button" href="../changelog/v1.17.0.html">View Changelog</a>  
+    </div>
+  </div>
+  <script>
+    var old = window.localStorage.getItem("version");
+    if (old === null) { window.localStorage.setItem("version", "1.17");
+    } else if (old !== "1.17") {
+      const footerEl = document.getElementById("upgrade-footer");
+      footerEl.classList.add("not-hidden");
+      footerEl.addEventListener('click', function () {
+        window.localStorage.setItem("version", "1.17");
+        footerEl.classList.remove("not-hidden");
+      });
+    }
+  </script>
+
+  </body>
+
+<!-- Mirrored from esphome.io/components/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 16 May 2021 03:10:10 GMT -->
+</html>

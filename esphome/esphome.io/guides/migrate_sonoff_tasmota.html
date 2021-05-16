@@ -1,0 +1,191 @@
+
+  <!DOCTYPE html>
+
+
+<html lang="en">
+  
+<!-- Mirrored from esphome.io/guides/migrate_sonoff_tasmota.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 16 May 2021 02:58:24 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+<meta name="description" content="Migration guide for installing ESPHome on ESPs running Sonoff Tasmota.">
+<meta itemprop="name" content="Migrating from Sonoff Tasmota">
+<meta itemprop="description" content="Migration guide for installing ESPHome on ESPs running Sonoff Tasmota.">
+<meta itemprop="image" content="../_images/tasmota.png">
+<meta name="twitter:title" content="Migrating from Sonoff Tasmota">
+<meta name="twitter:image:src" content="../_images/tasmota.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@OttoWinter_">
+<meta name="twitter:description" content="Migration guide for installing ESPHome on ESPs running Sonoff Tasmota.">
+<meta property="og:title" content="Migrating from Sonoff Tasmota">
+<meta property="og:image" content="../_images/tasmota.png">
+<meta property="og:type" content="website">
+<meta property="og:description" content="Migration guide for installing ESPHome on ESPs running Sonoff Tasmota.">
+
+    <title>Migrating from Sonoff Tasmota &#8212; ESPHome</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <link rel="canonical" href="migrate_sonoff_tasmota.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Contributors" href="supporters.html" />
+    <link rel="prev" title="Migrating from ESPurna" href="migrate_espurna.html" />
+  <link rel="stylesheet" href="../_static/customf001.css?hash=f908c2b5" type="text/css" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../_static/apple-touch-icon.png">
+  <link rel="shortcut icon" href="../_static/favicon.ico">
+  <link rel="icon" type="image/png" sizes="512x512" href="../_static/favicon-512x512.png">
+  <link rel="icon" type="image/png" sizes="256x256" href="../_static/favicon-256x256.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="../_static/favicon-192x192.png">
+  <link rel="icon" type="image/png" sizes="128x128" href="../_static/favicon-128x128.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../_static/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../_static/favicon-16x16.png">
+  <link rel="manifest" href="../_static/site.webmanifest">
+  <link rel="mask-icon" href="../_static/safari-pinned-tab.svg" color="#646464">
+  <meta name="apple-mobile-web-app-title" content="ESPHome">
+  <meta name="application-name" content="ESPHome">
+  <meta name="msapplication-TileColor" content="#dfdfdf">
+  <meta name="msapplication-config" content="/_static/browserconfig.xml">
+  <meta name="theme-color" content="#dfdfdf">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta property="og:site_name" content="ESPHome">
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head><body>
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index-2.html">
+              <img class="logo" src="../_static/logo-text.svg" alt="Logo"/>
+            </a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="https://esphome.io/search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+  <h3><a href="../index-2.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Migrating from Sonoff Tasmota</a><ul>
+<li><a class="reference internal" href="#getting-the-binary">Getting the Binary</a></li>
+<li><a class="reference internal" href="#uploading-the-binary">Uploading the Binary</a></li>
+<li><a class="reference internal" href="#see-also">See Also</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="migrating-from-sonoff-tasmota">
+<h1>Migrating from Sonoff Tasmota<a class="headerlink" href="#migrating-from-sonoff-tasmota" title="Permalink to this headline">¶</a></h1>
+<p>Migrating from previous Sonoff Tasmota setups is very easy. You just need to have
+ESPHome create a binary for you and then upload that in the Tasmota web interface.</p>
+<section id="getting-the-binary">
+<h2>Getting the Binary<a class="headerlink" href="#getting-the-binary" title="Permalink to this headline">¶</a></h2>
+<p>First follow the guides for the <a class="reference internal" href="../index-2.html#devices"><span class="std std-ref">different supported devices</span></a> and create a configuration
+file. Then, generate and download the binary:</p>
+<ul>
+<li><p><strong>Using the Hass.io add-on/dashboard</strong>: Just click the <code class="docutils literal notranslate"><span class="pre">COMPILE</span></code> button, wait for
+the compilation to end and press the <code class="docutils literal notranslate"><span class="pre">DOWNLOAD</span> <span class="pre">BINARY</span></code> button.</p>
+<figure class="align-default">
+<img alt="../_images/download_binary.png" src="../_images/download_binary.png" />
+</figure>
+</li>
+<li><p><strong>Using the command line</strong>: run <code class="docutils literal notranslate"><span class="pre">esphome</span> <span class="pre">livingroom.yaml</span> <span class="pre">compile</span></code> (replacing
+<code class="docutils literal notranslate"><span class="pre">livingroom.yaml</span></code> with your configuration file of course) and navigate to the
+<code class="docutils literal notranslate"><span class="pre">&lt;NODE_NAME&gt;/.pioenvs/&lt;NODE_NAME&gt;/</span></code> folder. There you will find a <code class="docutils literal notranslate"><span class="pre">firmware.bin</span></code> file.
+This is the binary that you will upload.</p></li>
+</ul>
+</section>
+<section id="uploading-the-binary">
+<h2>Uploading the Binary<a class="headerlink" href="#uploading-the-binary" title="Permalink to this headline">¶</a></h2>
+<p>To upload the binary, navigate to the Tasmota web interface and enter the
+“Firmware Upgrade” section.</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/tasmota_main.png"><img alt="../_images/tasmota_main.png" src="../_images/tasmota_main.png" style="width: 60.0%;" /></a>
+</figure>
+<p>In the “Upgrade by file upload” section, choose the binary you previously downloaded</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/tasmota_ota.png"><img alt="../_images/tasmota_ota.png" src="../_images/tasmota_ota.png" style="width: 60.0%;" /></a>
+</figure>
+<p>If everything succeeds, you will see an “Upload Successful” message and ESPHome
+will connect to the WiFi network configured in your .yaml file. 🎉</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/tasmota_upload.png"><img alt="../_images/tasmota_upload.png" src="../_images/tasmota_upload.png" style="width: 60.0%;" /></a>
+</figure>
+<p>Happy Hacking!</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When using the <a class="reference internal" href="../components/output/esp8266_pwm.html"><span class="doc">esp8266_pwm output</span></a> platform and
+switching from Tasmota, you need to power-cycle the device once. After that
+the dimming functionality will work as usual and no more power cycles are required.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you are using Tasmota 8+ and get an error after uploading the firmware, go to the console and type <code class="docutils literal notranslate"><span class="pre">`SetOption78</span> <span class="pre">1`</span></code>, then restart the device and try the firmware again.</p>
+</div>
+</section>
+<section id="see-also">
+<h2>See Also<a class="headerlink" href="#see-also" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="../devices/sonoff_s20.html"><span class="doc">Using With Sonoff S20</span></a></p></li>
+<li><p><a class="reference internal" href="../devices/sonoff_4ch.html"><span class="doc">Using With Sonoff 4CH</span></a></p></li>
+<li><p><a class="reference internal" href="../devices/sonoff.html"><span class="doc">Generic Sonoff</span></a></p></li>
+<li><p><a class="reference internal" href="../devices/nodemcu_esp8266.html"><span class="doc">NodeMCU ESP8266</span></a></p></li>
+<li><p><a class="reference internal" href="../devices/nodemcu_esp32.html"><span class="doc">NodeMCU ESP32</span></a></p></li>
+<li><p><a class="reference internal" href="../devices/esp8266.html"><span class="doc">Generic ESP8266</span></a></p></li>
+<li><p><a class="reference internal" href="../devices/esp32.html"><span class="doc">Generic ESP32</span></a></p></li>
+<li><p><a class="reference internal" href="migrate_espurna.html"><span class="doc">Migrating from ESPurna</span></a></p></li>
+<li><p><a class="reference internal" href="migrate_espeasy.html"><span class="doc">Migrating from ESPEasy</span></a></p></li>
+<li><p><a class="reference external" href="https://github.com/esphome/esphome-docs/blob/current/guides/migrate_sonoff_tasmota.rst">Edit this page on GitHub</a></p></li>
+</ul>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+  <div id="upgrade-footer">
+    A new version has been release since you last visited this page: 1.17.2 🎉
+    <div class="footer-button-container">
+      <div role="button" id="upgrade-footer-dismiss" class="footer-button">Dismiss</div>
+      <a id="upgrade-footer-changelog" class="footer-button" href="../changelog/v1.17.0.html">View Changelog</a>  
+    </div>
+  </div>
+  <script>
+    var old = window.localStorage.getItem("version");
+    if (old === null) { window.localStorage.setItem("version", "1.17");
+    } else if (old !== "1.17") {
+      const footerEl = document.getElementById("upgrade-footer");
+      footerEl.classList.add("not-hidden");
+      footerEl.addEventListener('click', function () {
+        window.localStorage.setItem("version", "1.17");
+        footerEl.classList.remove("not-hidden");
+      });
+    }
+  </script>
+
+  </body>
+
+<!-- Mirrored from esphome.io/guides/migrate_sonoff_tasmota.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 16 May 2021 02:58:27 GMT -->
+</html>

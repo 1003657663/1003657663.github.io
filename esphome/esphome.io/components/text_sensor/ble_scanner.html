@@ -1,0 +1,167 @@
+
+  <!DOCTYPE html>
+
+
+<html lang="en">
+  
+<!-- Mirrored from esphome.io/components/text_sensor/ble_scanner.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 16 May 2021 03:02:09 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+<meta name="description" content="Instructions for setting up BLE text sensors for the ESP32.">
+<meta name="keywords" content="ESP32">
+<meta itemprop="name" content="ESP32 Bluetooth Low Energy Scanner">
+<meta itemprop="description" content="Instructions for setting up BLE text sensors for the ESP32.">
+<meta itemprop="image" content="../../_images/bluetooth.png">
+<meta name="twitter:title" content="ESP32 Bluetooth Low Energy Scanner">
+<meta name="twitter:image:src" content="../../_images/bluetooth.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@OttoWinter_">
+<meta name="twitter:description" content="Instructions for setting up BLE text sensors for the ESP32.">
+<meta property="og:title" content="ESP32 Bluetooth Low Energy Scanner">
+<meta property="og:image" content="../../_images/bluetooth.png">
+<meta property="og:type" content="website">
+<meta property="og:description" content="Instructions for setting up BLE text sensors for the ESP32.">
+
+    <title>ESP32 Bluetooth Low Energy Scanner &#8212; ESPHome</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/alabaster.css" />
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <link rel="canonical" href="ble_scanner.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Custom Text Sensor" href="custom.html" />
+    <link rel="prev" title="Text Sensor Component" href="index.html" />
+  <link rel="stylesheet" href="../../_static/customf001.css?hash=f908c2b5" type="text/css" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../../_static/apple-touch-icon.png">
+  <link rel="shortcut icon" href="../../_static/favicon.ico">
+  <link rel="icon" type="image/png" sizes="512x512" href="../../_static/favicon-512x512.png">
+  <link rel="icon" type="image/png" sizes="256x256" href="../../_static/favicon-256x256.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="../../_static/favicon-192x192.png">
+  <link rel="icon" type="image/png" sizes="128x128" href="../../_static/favicon-128x128.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../_static/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../../_static/favicon-16x16.png">
+  <link rel="manifest" href="../../_static/site.webmanifest">
+  <link rel="mask-icon" href="../../_static/safari-pinned-tab.svg" color="#646464">
+  <meta name="apple-mobile-web-app-title" content="ESPHome">
+  <meta name="application-name" content="ESPHome">
+  <meta name="msapplication-TileColor" content="#dfdfdf">
+  <meta name="msapplication-config" content="/_static/browserconfig.xml">
+  <meta name="theme-color" content="#dfdfdf">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta property="og:site_name" content="ESPHome">
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head><body>
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../index-2.html">
+              <img class="logo" src="../../_static/logo-text.svg" alt="Logo"/>
+            </a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="https://esphome.io/search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+  <h3><a href="../../index-2.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">ESP32 Bluetooth Low Energy Scanner</a><ul>
+<li><a class="reference internal" href="#configuration-variables">Configuration variables:</a></li>
+<li><a class="reference internal" href="#see-also">See Also</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="esp32-bluetooth-low-energy-scanner">
+<h1>ESP32 Bluetooth Low Energy Scanner<a class="headerlink" href="#esp32-bluetooth-low-energy-scanner" title="Permalink to this headline">¶</a></h1>
+<p>The <code class="docutils literal notranslate"><span class="pre">ble_scanner</span></code> text sensor platform lets you track reachable BLE devices.
+See the <a class="reference internal" href="../esp32_ble_tracker.html#config-esp32-ble-tracker"><span class="std std-ref">BLE Tracker Configuration variables</span></a> for
+instructions for setting up scan parameters.
+The sensor platform is similar to <a class="reference internal" href="../sensor/ble_rssi.html"><span class="doc">ESP32 Bluetooth Low Energy RSSI Sensor</span></a> but in contrast to that platform, this text sensor sends out all raw BLE scan information and does not filter devices.</p>
+<p>The data this sensor publishes is intended to be processed by the remote (for example an MQTT client) and sends the data in JSON format.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example configuration entry</span>
+<span class="nt">esp32_ble_tracker</span><span class="p">:</span>
+
+<span class="nt">text_sensor</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ble_scanner</span>
+    <span class="nt">name</span><span class="p">:</span> <span class="s">&quot;BLE</span><span class="nv"> </span><span class="s">Devices</span><span class="nv"> </span><span class="s">Scanner&quot;</span>
+</pre></div>
+</div>
+<p>Example json log:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;timestamp&quot;</span><span class="p">:</span><span class="mi">1578254525</span><span class="p">,</span>
+    <span class="nt">&quot;address&quot;</span><span class="p">:</span><span class="s2">&quot;D7:E7:E7:66:DD:33&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;rssi&quot;</span><span class="p">:</span><span class="s2">&quot;-80&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot;MI Band 2&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<section id="configuration-variables">
+<h2>Configuration variables:<a class="headerlink" href="#configuration-variables" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><strong>name</strong> (<strong>Required</strong>, string): The name of the sensor.</p></li>
+<li><p>All other options from <a class="reference internal" href="index.html#config-text-sensor"><span class="std std-ref">Text Sensor</span></a>.</p></li>
+</ul>
+</section>
+<section id="see-also">
+<h2>See Also<a class="headerlink" href="#see-also" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="../esp32_ble_tracker.html"><span class="doc">ESP32 Bluetooth Low Energy Tracker Hub</span></a></p></li>
+<li><p><a class="reference internal" href="index.html"><span class="doc">Text Sensor Component</span></a></p></li>
+<li><p><a class="reference external" href="../../api/ble__scanner_8h.html">API Reference</a></p></li>
+<li><p><a class="reference external" href="https://github.com/esphome/esphome-docs/blob/current/components/text_sensor/ble_scanner.rst">Edit this page on GitHub</a></p></li>
+</ul>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+  <div id="upgrade-footer">
+    A new version has been release since you last visited this page: 1.17.2 🎉
+    <div class="footer-button-container">
+      <div role="button" id="upgrade-footer-dismiss" class="footer-button">Dismiss</div>
+      <a id="upgrade-footer-changelog" class="footer-button" href="../../changelog/v1.17.0.html">View Changelog</a>  
+    </div>
+  </div>
+  <script>
+    var old = window.localStorage.getItem("version");
+    if (old === null) { window.localStorage.setItem("version", "1.17");
+    } else if (old !== "1.17") {
+      const footerEl = document.getElementById("upgrade-footer");
+      footerEl.classList.add("not-hidden");
+      footerEl.addEventListener('click', function () {
+        window.localStorage.setItem("version", "1.17");
+        footerEl.classList.remove("not-hidden");
+      });
+    }
+  </script>
+
+  </body>
+
+<!-- Mirrored from esphome.io/components/text_sensor/ble_scanner.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 16 May 2021 03:02:09 GMT -->
+</html>

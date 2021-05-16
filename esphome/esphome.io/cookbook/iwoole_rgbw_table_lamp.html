@@ -1,0 +1,281 @@
+
+  <!DOCTYPE html>
+
+
+<html lang="en">
+  
+<!-- Mirrored from esphome.io/cookbook/iwoole_rgbw_table_lamp.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 16 May 2021 03:03:01 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+<meta name="description" content="Instructions for flashing and configuring IWOOLE Table Lamps.">
+<meta itemprop="name" content="IWOOLE Table Lamp">
+<meta itemprop="description" content="Instructions for flashing and configuring IWOOLE Table Lamps.">
+<meta name="twitter:title" content="IWOOLE Table Lamp">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@OttoWinter_">
+<meta name="twitter:description" content="Instructions for flashing and configuring IWOOLE Table Lamps.">
+<meta property="og:title" content="IWOOLE Table Lamp">
+<meta property="og:type" content="website">
+<meta property="og:description" content="Instructions for flashing and configuring IWOOLE Table Lamps.">
+
+    <title>IWOOLE Table Lamp &#8212; ESPHome</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <link rel="canonical" href="iwoole_rgbw_table_lamp.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="ESP32 Water Leak Detector (with notification)" href="leak-detector-m5stickc.html" />
+    <link rel="prev" title="Infostripe" href="infostrip.html" />
+  <link rel="stylesheet" href="../_static/customf001.css?hash=f908c2b5" type="text/css" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../_static/apple-touch-icon.png">
+  <link rel="shortcut icon" href="../_static/favicon.ico">
+  <link rel="icon" type="image/png" sizes="512x512" href="../_static/favicon-512x512.png">
+  <link rel="icon" type="image/png" sizes="256x256" href="../_static/favicon-256x256.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="../_static/favicon-192x192.png">
+  <link rel="icon" type="image/png" sizes="128x128" href="../_static/favicon-128x128.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../_static/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../_static/favicon-16x16.png">
+  <link rel="manifest" href="../_static/site.webmanifest">
+  <link rel="mask-icon" href="../_static/safari-pinned-tab.svg" color="#646464">
+  <meta name="apple-mobile-web-app-title" content="ESPHome">
+  <meta name="application-name" content="ESPHome">
+  <meta name="msapplication-TileColor" content="#dfdfdf">
+  <meta name="msapplication-config" content="/_static/browserconfig.xml">
+  <meta name="theme-color" content="#dfdfdf">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta property="og:site_name" content="ESPHome">
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head><body>
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index-2.html">
+              <img class="logo" src="../_static/logo-text.svg" alt="Logo"/>
+            </a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="https://esphome.io/search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+  <h3><a href="../index-2.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">IWOOLE Table Lamp</a></li>
+<li><a class="reference internal" href="#device-overview">1. Device overview</a><ul>
+<li><a class="reference internal" href="#internal-markings">1.1 Internal markings</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#esphome-configuration">2. ESPHome configuration</a><ul>
+<li><a class="reference internal" href="#example-configuration">2.1 Example configuration</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#flashing">3. Flashing</a><ul>
+<li><a class="reference internal" href="#tuya-convert">3.1 Tuya-convert</a></li>
+<li><a class="reference internal" href="#serial-connection">3.2 Serial connection</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#see-also">See Also</a></li>
+</ul>
+
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="iwoole-table-lamp">
+<h1>IWOOLE Table Lamp<a class="headerlink" href="#iwoole-table-lamp" title="Permalink to this headline">¶</a></h1>
+<p>The IWOOLE Table Lamp is a RGBW lamp normally configured using the Tuya Smart App.
+It is available from various retailers online or directly from <a class="reference external" href="https://www.iwoole.com/product/category/wifi-smart-table-lamp/">iwoole.com</a>.</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/iwoole_rgbw_table_lamp.png"><img alt="../_images/iwoole_rgbw_table_lamp.png" src="../_images/iwoole_rgbw_table_lamp.png" style="width: 50.0%;" /></a>
+</figure>
+</section>
+<section id="device-overview">
+<h1>1. Device overview<a class="headerlink" href="#device-overview" title="Permalink to this headline">¶</a></h1>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The following information relates to the desk model depicted above. A free-standing version and a desk version with a longer arm are available. They are likely to share the same internals and configuration, but I can not be certain.</p>
+</div>
+<p>My device had no external markings at all.</p>
+<p>The device is a basic 4-channel PWM RGBW light in a simple elegant housing.
+The LEDs are not individually addressable.
+No other sensors, outputs or status LEDs are available.</p>
+<p>The MOSFETs for the different color channels are connected as follows:</p>
+<ul class="simple">
+<li><p>GPIO04: White</p></li>
+<li><p>GPIO12: Green</p></li>
+<li><p>GPIO13: Blue</p></li>
+<li><p>GPIO14: Red</p></li>
+</ul>
+<section id="internal-markings">
+<h2>1.1 Internal markings<a class="headerlink" href="#internal-markings" title="Permalink to this headline">¶</a></h2>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/iwoole_rgbw_table_lamp_internal_1.jpg"><img alt="../_images/iwoole_rgbw_table_lamp_internal_1.jpg" src="../_images/iwoole_rgbw_table_lamp_internal_1.jpg" style="width: 40.0%;" /></a>
+</figure>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/iwoole_rgbw_table_lamp_internal_2.jpg"><img alt="../_images/iwoole_rgbw_table_lamp_internal_2.jpg" src="../_images/iwoole_rgbw_table_lamp_internal_2.jpg" style="width: 40.0%;" /></a>
+</figure>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/iwoole_rgbw_table_lamp_internal_3.jpg"><img alt="../_images/iwoole_rgbw_table_lamp_internal_3.jpg" src="../_images/iwoole_rgbw_table_lamp_internal_3.jpg" style="width: 40.0%;" /></a>
+</figure>
+</section>
+</section>
+<section id="esphome-configuration">
+<h1>2. ESPHome configuration<a class="headerlink" href="#esphome-configuration" title="Permalink to this headline">¶</a></h1>
+<p>Since there is only one RGBW light to configure the .yaml file is fairly straightforward.
+Alternatively, you could configure each channel as a separate light if desired.
+I prefer to use the <a class="reference internal" href="../components/light/rgbw.html#rgbw-color-interlock"><span class="std std-ref">color-interlock</span></a> option along with the configuration below.</p>
+<section id="example-configuration">
+<h2>2.1 Example configuration<a class="headerlink" href="#example-configuration" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">esphome</span><span class="p">:</span>
+  <span class="nt">name</span><span class="p">:</span> <span class="s">&quot;IWOOLE</span><span class="nv"> </span><span class="s">Table</span><span class="nv"> </span><span class="s">Lamp&quot;</span>
+  <span class="c1">#ESP type is ESP8266EX with 1MB flash</span>
+  <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ESP8266</span>
+  <span class="nt">board</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">esp01_1m</span>
+
+<span class="c1"># Insert wifi and api configuration here</span>
+
+<span class="c1"># Configuration for IWOOLE PWM light</span>
+<span class="nt">light</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">rgbw</span>
+    <span class="nt">name</span><span class="p">:</span> <span class="s">&quot;Light&quot;</span>
+    <span class="nt">red</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">output_red</span>
+    <span class="nt">green</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">output_green</span>
+    <span class="nt">blue</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">output_blue</span>
+    <span class="nt">white</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">output_white</span>
+
+<span class="nt">output</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">esp8266_pwm</span>
+    <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">output_red</span>
+    <span class="nt">pin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO14</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">esp8266_pwm</span>
+    <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">output_green</span>
+    <span class="nt">pin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO12</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">esp8266_pwm</span>
+    <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">output_blue</span>
+    <span class="nt">pin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO13</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">esp8266_pwm</span>
+    <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">output_white</span>
+    <span class="nt">pin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO4</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="flashing">
+<h1>3. Flashing<a class="headerlink" href="#flashing" title="Permalink to this headline">¶</a></h1>
+<p>There are two ways to get ESPHome onto this device.
+For both ways you will need to get the binary file with ESPHome’s software by compiling your configuration and then downloading the binary.</p>
+<section id="tuya-convert">
+<h2>3.1 Tuya-convert<a class="headerlink" href="#tuya-convert" title="Permalink to this headline">¶</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>According to <a class="reference external" href="https://templates.blakadder.com/iwoole_table_lamp.html">blakadder.com</a> recent versions of this device can’t be flashed via this method anymore.</p>
+</div>
+<p>The first device I bought could be flashed using Tuya-convert. However, I still wanted to try and flash it via serial to see if it was possible. I messed this up and had to buy a new unit. This new unit could not be flashed using Tuya-convert.
+Unfortunately it looks like new devices are being shipped with new firmware preloaded.
+If the device has older firmware but is connected to the Tuya Smart app, it might upgrade and lose it’s ability to be flashed.</p>
+<p>For instructions on how to actually flash using <a class="reference external" href="https://github.com/ct-Open-Source/tuya-convert">Tuya-convert</a> please see the linked GitHub page.</p>
+<p>To get this device into flashing mode, from off, switch it on-off-on-off-on.
+Load the Tasmota binary when prompted, and you can upload the ESPHome firmware from there.</p>
+</section>
+<section id="serial-connection">
+<h2>3.2 Serial connection<a class="headerlink" href="#serial-connection" title="Permalink to this headline">¶</a></h2>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The circuit inside will be exposed to mains voltage. Do not connect your device to the mains when flashing. Flashing this device via a serial connection will involve precarious soldering and cutting through insulating heat-shrink tubing which will have to be replaced.
+If you are uncomfortable with this, or are not confident around mains voltage, do not attempt to do this! Using the Tuya-convert method is preferred.</p>
+</div>
+<ol class="arabic simple">
+<li><p>Disconnect the device from mains voltage!</p></li>
+<li><p>Open the device. The plastic and aluminum halves can be separated by twisting the plastic part counter-clockwise. If you’re okay with a few scuffs you can also use a screwdriver (or a spudger) to separate the two halves.</p></li>
+<li><p>Remove the two screws holding the round plate with the LEDs. It is connected to the main PCB with a little cable. Make note of the orientation of this connection to ensure you reconnect it correctly later.</p></li>
+<li><p>Carefully remove the heat-shrink tubing around the two main PCBs.</p></li>
+<li><p>Like any ESP device, to flash this chip using serial you’ll need 3V3, GND, RX, TX and GPIO0</p></li>
+</ol>
+<figure class="align-left">
+<a class="reference internal image-reference" href="../_images/iwoole_rgbw_table_lamp_connections_top.jpg"><img alt="../_images/iwoole_rgbw_table_lamp_connections_top.jpg" src="../_images/iwoole_rgbw_table_lamp_connections_top.jpg" style="width: 60.0%;" /></a>
+</figure>
+<p>There are pads available for 3V3 and GPIO0 on the back. I have tried to find easier solder points on the front, marked in the image above.
+Be aware that the pin labeled VCC does not carry 3V3, but 24V DC. If, for any reason, you wanted to connect any other sensor or component, the exposed pin for GPIO5 can be used, in addition to RX (GPIO3) and TX (GPIO1).</p>
+<figure class="align-left">
+<a class="reference internal image-reference" href="../_images/iwoole_rgbw_table_lamp_connections_bottom.jpg"><img alt="../_images/iwoole_rgbw_table_lamp_connections_bottom.jpg" src="../_images/iwoole_rgbw_table_lamp_connections_bottom.jpg" style="width: 60.0%;" /></a>
+</figure>
+<p>I have made the following connections, I used the pad for GPIO0 because I did not know of the other connection point yet.</p>
+<figure class="align-left">
+<a class="reference internal image-reference" href="../_images/iwoole_rgbw_table_lamp_wires_top.jpg"><img alt="../_images/iwoole_rgbw_table_lamp_wires_top.jpg" src="../_images/iwoole_rgbw_table_lamp_wires_top.jpg" style="width: 60.0%;" /></a>
+</figure>
+<figure class="align-left">
+<a class="reference internal image-reference" href="../_images/iwoole_rgbw_table_lamp_wires_bottom.jpg"><img alt="../_images/iwoole_rgbw_table_lamp_wires_bottom.jpg" src="../_images/iwoole_rgbw_table_lamp_wires_bottom.jpg" style="width: 60.0%;" /></a>
+</figure>
+<ol class="arabic simple" start="6">
+<li><p>Flash the chip as you would with any other, using <a class="reference external" href="https://github.com/esphome/esphome-flasher">ESPHome-Flasher</a> or any other tool of your choosing. While this is not meant as a tutorial on flashing ESP chips, some general hints:</p></li>
+</ol>
+<ul class="simple">
+<li><p>Always double-check your connections, and don’t change any when the ESP is powered. I fried one of these mood lights this way.</p></li>
+<li><p>Ensure GPIO0 is connected to ground to get the device into programming mode, but also don’t forget to disconnect this when you expect the device to start in normal mode.</p></li>
+<li><p>When working with a breadboard, an FTDI adapter and jumper wires, it is very easy for something to become disconnected. Try to use as few wires as possible.</p></li>
+</ul>
+<ol class="arabic simple" start="7">
+<li><p>Re-apply some heat-shrink tubing or cover the PCBs in electrical tape. Make sure none of the traces or solder joints are exposed anymore. Re-connect the LEDs (see cable orientation in one of the images above).</p></li>
+<li><p>Screw down the plate with LEDs and close the device.</p></li>
+</ol>
+</section>
+</section>
+<section id="see-also">
+<h1>See Also<a class="headerlink" href="#see-also" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p><a class="reference internal" href="../components/light/index.html"><span class="doc">Light Component</span></a></p></li>
+<li><p><a class="reference internal" href="../components/light/rgbw.html"><span class="doc">RGBW Light</span></a></p></li>
+<li><p><a class="reference internal" href="../components/output/index.html"><span class="doc">Output Component</span></a></p></li>
+<li><p><a class="reference internal" href="../components/output/esp8266_pwm.html"><span class="doc">ESP8266 Software PWM Output</span></a></p></li>
+<li><p><a class="reference external" href="https://github.com/esphome/esphome-docs/blob/current/cookbook/iwoole_rgbw_table_lamp.rst">Edit this page on GitHub</a></p></li>
+</ul>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+  <div id="upgrade-footer">
+    A new version has been release since you last visited this page: 1.17.2 🎉
+    <div class="footer-button-container">
+      <div role="button" id="upgrade-footer-dismiss" class="footer-button">Dismiss</div>
+      <a id="upgrade-footer-changelog" class="footer-button" href="../changelog/v1.17.0.html">View Changelog</a>  
+    </div>
+  </div>
+  <script>
+    var old = window.localStorage.getItem("version");
+    if (old === null) { window.localStorage.setItem("version", "1.17");
+    } else if (old !== "1.17") {
+      const footerEl = document.getElementById("upgrade-footer");
+      footerEl.classList.add("not-hidden");
+      footerEl.addEventListener('click', function () {
+        window.localStorage.setItem("version", "1.17");
+        footerEl.classList.remove("not-hidden");
+      });
+    }
+  </script>
+
+  </body>
+
+<!-- Mirrored from esphome.io/cookbook/iwoole_rgbw_table_lamp.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 16 May 2021 03:03:06 GMT -->
+</html>

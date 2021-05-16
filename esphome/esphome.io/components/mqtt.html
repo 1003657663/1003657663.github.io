@@ -1,0 +1,613 @@
+
+  <!DOCTYPE html>
+
+
+<html lang="en">
+  
+<!-- Mirrored from esphome.io/components/mqtt.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 16 May 2021 02:58:44 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+<meta name="description" content="Instructions for setting up the MQTT client to communicate with the local network in ESPHome.">
+<meta name="keywords" content="MQTT">
+<meta itemprop="name" content="MQTT Client Component">
+<meta itemprop="description" content="Instructions for setting up the MQTT client to communicate with the local network in ESPHome.">
+<meta itemprop="image" content="../_images/mqtt.png">
+<meta name="twitter:title" content="MQTT Client Component">
+<meta name="twitter:image:src" content="../_images/mqtt.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@OttoWinter_">
+<meta name="twitter:description" content="Instructions for setting up the MQTT client to communicate with the local network in ESPHome.">
+<meta property="og:title" content="MQTT Client Component">
+<meta property="og:image" content="../_images/mqtt.png">
+<meta property="og:type" content="website">
+<meta property="og:description" content="Instructions for setting up the MQTT client to communicate with the local network in ESPHome.">
+
+    <title>MQTT Client Component &#8212; ESPHome</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <link rel="canonical" href="mqtt.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="OTA Update Component" href="ota.html" />
+    <link rel="prev" title="MCP23Sxx I/O Expander" href="mcp23sxx.html" />
+  <link rel="stylesheet" href="../_static/customf001.css?hash=f908c2b5" type="text/css" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../_static/apple-touch-icon.png">
+  <link rel="shortcut icon" href="../_static/favicon.ico">
+  <link rel="icon" type="image/png" sizes="512x512" href="../_static/favicon-512x512.png">
+  <link rel="icon" type="image/png" sizes="256x256" href="../_static/favicon-256x256.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="../_static/favicon-192x192.png">
+  <link rel="icon" type="image/png" sizes="128x128" href="../_static/favicon-128x128.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../_static/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../_static/favicon-16x16.png">
+  <link rel="manifest" href="../_static/site.webmanifest">
+  <link rel="mask-icon" href="../_static/safari-pinned-tab.svg" color="#646464">
+  <meta name="apple-mobile-web-app-title" content="ESPHome">
+  <meta name="application-name" content="ESPHome">
+  <meta name="msapplication-TileColor" content="#dfdfdf">
+  <meta name="msapplication-config" content="/_static/browserconfig.xml">
+  <meta name="theme-color" content="#dfdfdf">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta property="og:site_name" content="ESPHome">
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head><body>
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index-2.html">
+              <img class="logo" src="../_static/logo-text.svg" alt="Logo"/>
+            </a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="https://esphome.io/search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+  <h3><a href="../index-2.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">MQTT Client Component</a><ul>
+<li><a class="reference internal" href="#configuration-variables">Configuration variables:</a></li>
+<li><a class="reference internal" href="#mqttmessage">MQTTMessage</a></li>
+<li><a class="reference internal" href="#using-with-home-assistant">Using with Home Assistant</a></li>
+<li><a class="reference internal" href="#defaults">Defaults</a></li>
+<li><a class="reference internal" href="#last-will-and-birth-messages">Last Will And Birth Messages</a></li>
+<li><a class="reference internal" href="#ssl-fingerprints">SSL Fingerprints</a></li>
+<li><a class="reference internal" href="#mqtt-component-base-configuration">MQTT Component Base Configuration</a></li>
+<li><a class="reference internal" href="#on-message-trigger"><code class="docutils literal notranslate"><span class="pre">on_message</span></code> Trigger</a></li>
+<li><a class="reference internal" href="#on-json-message-trigger"><code class="docutils literal notranslate"><span class="pre">on_json_message</span></code> Trigger</a></li>
+<li><a class="reference internal" href="#mqtt-publish-action"><code class="docutils literal notranslate"><span class="pre">mqtt.publish</span></code> Action</a></li>
+<li><a class="reference internal" href="#mqtt-publish-json-action"><code class="docutils literal notranslate"><span class="pre">mqtt.publish_json</span></code> Action</a></li>
+<li><a class="reference internal" href="#mqtt-connected-condition"><code class="docutils literal notranslate"><span class="pre">mqtt.connected</span></code> Condition</a></li>
+<li><a class="reference internal" href="#see-also">See Also</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="mqtt-client-component">
+<h1>MQTT Client Component<a class="headerlink" href="#mqtt-client-component" title="Permalink to this headline">¶</a></h1>
+<p>The MQTT Client Component sets up the MQTT connection to your broker and
+is currently required for ESPHome to work. In most cases, you will
+just be able to copy over the <a class="reference external" href="https://www.home-assistant.io/components/mqtt/">MQTT
+section</a> of your Home
+Assistant configuration.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>When enabling MQTT and you do <em>not</em> use the “native API” for Home Assistant, you must
+remove the <code class="docutils literal notranslate"><span class="pre">api:</span></code> line from your ESPHome configuration, otherwise the ESP will
+reboot every 5 minutes because no client connected to the native API.</p>
+</div>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example configuration entry</span>
+<span class="nt">mqtt</span><span class="p">:</span>
+  <span class="nt">broker</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">10.0.0.2</span>
+  <span class="nt">username</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">livingroom</span>
+  <span class="nt">password</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">MyMQTTPassword</span>
+</pre></div>
+</div>
+<section id="configuration-variables">
+<h2>Configuration variables:<a class="headerlink" href="#configuration-variables" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><strong>broker</strong> (<strong>Required</strong>, string): The host of your MQTT broker.</p></li>
+<li><p><strong>port</strong> (<em>Optional</em>, int): The port to connect to. Defaults to 1883.</p></li>
+<li><p><strong>username</strong> (<em>Optional</em>, string): The username to use for
+authentication. Empty (the default) means no authentication.</p></li>
+<li><p><strong>password</strong> (<em>Optional</em>, string): The password to use for
+authentication. Empty (the default) means no authentication.</p></li>
+<li><p><strong>client_id</strong> (<em>Optional</em>, string): The client id to use for opening
+connections. See <a class="reference internal" href="#mqtt-defaults"><span class="std std-ref">Defaults</span></a> for more information.</p></li>
+<li><p><strong>discovery</strong> (<em>Optional</em>, boolean): If Home Assistant automatic
+discovery should be enabled. Defaults to <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p></li>
+<li><p><strong>discovery_retain</strong> (<em>Optional</em>, boolean): Whether to retain MQTT
+discovery messages so that entities are added automatically on Home
+Assistant restart. Defaults to <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p></li>
+<li><p><strong>discovery_prefix</strong> (<em>Optional</em>, string): The prefix to use for Home
+Assistant’s MQTT discovery. Should not contain trailing slash.
+Defaults to <code class="docutils literal notranslate"><span class="pre">homeassistant</span></code>.</p></li>
+<li><p><strong>topic_prefix</strong> (<em>Optional</em>, string): The prefix used for all MQTT
+messages. Should not contain trailing slash. Defaults to
+<code class="docutils literal notranslate"><span class="pre">&lt;APP_NAME&gt;</span></code>.</p></li>
+<li><p><strong>log_topic</strong> (<em>Optional</em>, <a class="reference internal" href="#mqtt-message"><span class="std std-ref">MQTTMessage</span></a>): The topic to send MQTT log
+messages to.</p></li>
+<li><p><strong>birth_message</strong> (<em>Optional</em>, <a class="reference internal" href="#mqtt-message"><span class="std std-ref">MQTTMessage</span></a>): The message to send when
+a connection to the broker is established. See <a class="reference internal" href="#mqtt-last-will-birth"><span class="std std-ref">Last Will And Birth Messages</span></a> for more information.</p></li>
+<li><p><strong>will_message</strong> (<em>Optional</em>, <a class="reference internal" href="#mqtt-message"><span class="std std-ref">MQTTMessage</span></a>): The message to send when
+the MQTT connection is dropped. See <a class="reference internal" href="#mqtt-last-will-birth"><span class="std std-ref">Last Will And Birth Messages</span></a> for more information.</p></li>
+<li><p><strong>shutdown_message</strong> (<em>Optional</em>, <a class="reference internal" href="#mqtt-message"><span class="std std-ref">MQTTMessage</span></a>): The message to send when
+the node shuts down and the connection is closed cleanly. See <a class="reference internal" href="#mqtt-last-will-birth"><span class="std std-ref">Last Will And Birth Messages</span></a> for more information.</p></li>
+<li><p><strong>ssl_fingerprints</strong> (<em>Optional</em>, list): Only on ESP8266. A list of SHA1 hashes used
+for verifying SSL connections. See <a class="reference internal" href="#mqtt-ssl-fingerprints"><span class="std std-ref">SSL Fingerprints</span></a>
+for more information.</p></li>
+<li><p><strong>reboot_timeout</strong> (<em>Optional</em>, <a class="reference internal" href="../guides/configuration-types.html#config-time"><span class="std std-ref">time</span></a>): The amount of time to wait before rebooting when no
+MQTT connection exists. Can be disabled by setting this to <code class="docutils literal notranslate"><span class="pre">0s</span></code>. Defaults to <code class="docutils literal notranslate"><span class="pre">15min</span></code>.</p></li>
+<li><p><strong>keepalive</strong> (<em>Optional</em>, <a class="reference internal" href="../guides/configuration-types.html#config-time"><span class="std std-ref">Time</span></a>): The time
+to keep the MQTT socket alive, decreasing this can help with overall stability due to more
+WiFi traffic with more pings. Defaults to 15 seconds.</p></li>
+<li><p><strong>on_message</strong> (<em>Optional</em>, <a class="reference internal" href="../guides/automations.html#automation"><span class="std std-ref">Automation</span></a>): An action to be
+performed when a message on a specific MQTT topic is received. See <a class="reference internal" href="#mqtt-on-message"><span class="std std-ref">on_message Trigger</span></a>.</p></li>
+<li><p><strong>on_json_message</strong> (<em>Optional</em>, <a class="reference internal" href="../guides/automations.html#automation"><span class="std std-ref">Automation</span></a>): An action to be
+performed when a JSON message on a specific MQTT topic is received. See <a class="reference internal" href="#mqtt-on-json-message"><span class="std std-ref">on_json_message Trigger</span></a>.</p></li>
+<li><p><strong>id</strong> (<em>Optional</em>, <a class="reference internal" href="../guides/configuration-types.html#config-id"><span class="std std-ref">ID</span></a>): Manually specify the ID used for code generation.</p></li>
+</ul>
+</section>
+<section id="mqttmessage">
+<span id="mqtt-message"></span><h2>MQTTMessage<a class="headerlink" href="#mqttmessage" title="Permalink to this headline">¶</a></h2>
+<p>With the MQTT Message schema you can tell ESPHome how a specific MQTT message should be sent.
+It is used in several places like last will and birth messages or MQTT log options.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Simple:</span>
+<span class="nt">some_option</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">topic/to/send/to</span>
+
+<span class="c1"># Disable:</span>
+<span class="nt">some_option</span><span class="p">:</span>
+
+<span class="c1"># Advanced:</span>
+<span class="nt">some_option</span><span class="p">:</span>
+  <span class="nt">topic</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">topic/to/send/to</span>
+  <span class="nt">payload</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">online</span>
+  <span class="nt">qos</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">0</span>
+  <span class="nt">retain</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">True</span>
+</pre></div>
+</div>
+<p>Configuration options:</p>
+<ul class="simple">
+<li><p><strong>topic</strong> (<strong>Required</strong>, string): The MQTT topic to publish the message.</p></li>
+<li><p><strong>payload</strong> (<strong>Required</strong>, string): The message content. Will be filled by the actual payload with some
+options, like log_topic.</p></li>
+<li><p><strong>qos</strong> (<em>Optional</em>, int): The <a class="reference external" href="https://www.hivemq.com/blog/mqtt-essentials-part-6-mqtt-quality-of-service-levels">Quality of
+Service</a>
+level of the topic. Defaults to 0.</p></li>
+<li><p><strong>retain</strong> (<em>Optional</em>, boolean): If the published message should
+have a retain flag on or not. Defaults to <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p></li>
+</ul>
+<p>The <code class="docutils literal notranslate"><span class="pre">log_topic</span></code> has an additional configuration option:</p>
+<ul class="simple">
+<li><p><strong>level</strong> (<em>Optional</em>, string): The log level to use for MQTT logs. See
+<a class="reference internal" href="logger.html#logger-log-levels"><span class="std std-ref">Log Levels</span></a> for options.</p></li>
+</ul>
+</section>
+<section id="using-with-home-assistant">
+<span id="mqtt-using-with-home-assistant"></span><h2>Using with Home Assistant<a class="headerlink" href="#using-with-home-assistant" title="Permalink to this headline">¶</a></h2>
+<p>Using ESPHome with Home Assistant is easy, simply setup an MQTT
+broker (like <a class="reference external" href="https://mosquitto.org/">mosquitto</a>) and point both your
+Home Assistant installation and ESPHome to that broker. Next, enable
+discovery in your Home Assistant configuration with the following:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example Home Assistant configuration.yaml entry</span>
+<span class="nt">mqtt</span><span class="p">:</span>
+  <span class="nt">broker</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">...</span>
+  <span class="nt">discovery</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">True</span>
+</pre></div>
+</div>
+<p>And that should already be it 🎉 All devices defined through ESPHome should show up automatically
+in the entities section of Home Assistant.</p>
+<p>When adding new entities, you might run into trouble with old entities
+still appearing in Home Assistant’s front-end. This is because in order
+to have Home Assistant “discover” your devices on restart, all discovery
+MQTT messages need to be retained. Therefore the old entities will also
+re-appear on every Home Assistant restart even though they’re in
+ESPHome anymore.</p>
+<p>To fix this, ESPHome has a simple helper script that purges stale
+retained messages for you:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>esphome configuration.yaml clean-mqtt
+</pre></div>
+</div>
+<p>With Docker:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker run --rm -v <span class="s2">&quot;</span><span class="si">${</span><span class="nv">PWD</span><span class="si">}</span><span class="s2">&quot;</span>:/config -it esphome/esphome configuration.yaml clean-mqtt
+</pre></div>
+</div>
+<p>This will remove all retained messages with the topic
+<code class="docutils literal notranslate"><span class="pre">&lt;DISCOVERY_PREFIX&gt;/+/NODE_NAME/#</span></code>. If you want to purge on another
+topic, simply add <code class="docutils literal notranslate"><span class="pre">--topic</span> <span class="pre">&lt;your_topic&gt;</span></code> to the command.</p>
+</section>
+<section id="defaults">
+<span id="mqtt-defaults"></span><h2>Defaults<a class="headerlink" href="#defaults" title="Permalink to this headline">¶</a></h2>
+<p>By default, ESPHome will prefix all messages with your node name or
+<code class="docutils literal notranslate"><span class="pre">topic_prefix</span></code> if you have specified it manually. The client id will
+automatically be generated by using your node name and adding the MAC
+address of your device to it. Next, discovery is enabled by default with
+Home Assistant’s default prefix <code class="docutils literal notranslate"><span class="pre">homeassistant</span></code>.</p>
+<p>If you want to prefix all MQTT messages with a different prefix, like
+<code class="docutils literal notranslate"><span class="pre">home/living_room</span></code>, you can specify a custom <code class="docutils literal notranslate"><span class="pre">topic_prefix</span></code> in the
+configuration. That way, you can use your existing wildcards like
+<code class="docutils literal notranslate"><span class="pre">home/+/#</span></code> together with ESPHome. All other features of ESPHome
+(like availability) should still work correctly.</p>
+</section>
+<section id="last-will-and-birth-messages">
+<span id="mqtt-last-will-birth"></span><h2>Last Will And Birth Messages<a class="headerlink" href="#last-will-and-birth-messages" title="Permalink to this headline">¶</a></h2>
+<p>ESPHome uses the <a class="reference external" href="https://www.hivemq.com/blog/mqtt-essentials-part-9-last-will-and-testament">last will
+testament</a>
+and birth message feature of MQTT to achieve availability reporting for
+Home Assistant. If the node is not connected to MQTT, Home Assistant
+will show all its entities as unavailable (a feature 😉).</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/mqtt-availability.png"><img alt="../_images/mqtt-availability.png" src="../_images/mqtt-availability.png" style="width: 50.0%;" /></a>
+</figure>
+<p>By default, ESPHome will send a retained MQTT message to
+<code class="docutils literal notranslate"><span class="pre">&lt;TOPIC_PREFIX&gt;/status</span></code> with payload <code class="docutils literal notranslate"><span class="pre">online</span></code>, and will tell the
+broker to send a message <code class="docutils literal notranslate"><span class="pre">&lt;TOPIC_PREFIX&gt;/status</span></code> with payload
+<code class="docutils literal notranslate"><span class="pre">offline</span></code> if the connection drops.</p>
+<p>You can change these messages by overriding the <code class="docutils literal notranslate"><span class="pre">birth_message</span></code> and
+<code class="docutils literal notranslate"><span class="pre">will_message</span></code> with the following options.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">mqtt</span><span class="p">:</span>
+  <span class="c1"># ...</span>
+  <span class="nt">birth_message</span><span class="p">:</span>
+    <span class="nt">topic</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">myavailability/topic</span>
+    <span class="nt">payload</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">online</span>
+  <span class="nt">will_message</span><span class="p">:</span>
+    <span class="nt">topic</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">myavailability/topic</span>
+    <span class="nt">payload</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">offline</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>birth_message</strong> (<em>Optional</em>, <a class="reference internal" href="#mqtt-message"><span class="std std-ref">MQTTMessage</span></a>)</p></li>
+<li><p><strong>will_message</strong> (<em>Optional</em>, <a class="reference internal" href="#mqtt-message"><span class="std std-ref">MQTTMessage</span></a>)</p></li>
+</ul>
+<p>If the birth message and last will message have empty topics or topics
+that are different from each other, availability reporting will be
+disabled.</p>
+</section>
+<section id="ssl-fingerprints">
+<span id="mqtt-ssl-fingerprints"></span><h2>SSL Fingerprints<a class="headerlink" href="#ssl-fingerprints" title="Permalink to this headline">¶</a></h2>
+<p>On the ESP8266 you have the option to use SSL connections for MQTT. This feature
+will get expanded to the ESP32 once the base library, AsyncTCP, supports it. Please
+note that the SSL feature only checks the SHA1 hash of the SSL certificate to verify
+the integrity of the connection, so every time the certificate changes, you’ll have to
+update the fingerprints variable. Additionally, SHA1 is known to be partially insecure
+and with some computing power the fingerprint can be faked.</p>
+<p>To get this fingerprint, first put the broker and port options in the configuration and
+then run the <code class="docutils literal notranslate"><span class="pre">mqtt-fingerprint</span></code> script of ESPHome to get the certificate:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>esphome livingroom.yaml mqtt-fingerprint
+&gt; SHA1 Fingerprint: a502ff13999f8b398ef1834f1123650b3236fc07
+&gt; Copy above string into mqtt.ssl_fingerprints section of livingroom.yaml
+</pre></div>
+</div>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">mqtt</span><span class="p">:</span>
+  <span class="c1"># ...</span>
+  <span class="nt">ssl_fingerprints</span><span class="p">:</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">a502ff13999f8b398ef1834f1123650b3236fc07</span>
+</pre></div>
+</div>
+</section>
+<section id="mqtt-component-base-configuration">
+<span id="config-mqtt-component"></span><h2>MQTT Component Base Configuration<a class="headerlink" href="#mqtt-component-base-configuration" title="Permalink to this headline">¶</a></h2>
+<p>All components in ESPHome that do some sort of communication through
+MQTT can have some overrides for specific options.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span> <span class="s">&quot;Component</span><span class="nv"> </span><span class="s">Name&quot;</span>
+<span class="c1"># Optional variables:</span>
+<span class="nt">retain</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">True</span>
+<span class="nt">discovery</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">True</span>
+<span class="nt">availability</span><span class="p">:</span>
+  <span class="nt">topic</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">livingroom/status</span>
+  <span class="nt">payload_available</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">online</span>
+  <span class="nt">payload_not_available</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">offline</span>
+<span class="nt">state_topic</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">livingroom/custom_state_topic</span>
+<span class="nt">command_topic</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">livingroom/custom_command_topic</span>
+</pre></div>
+</div>
+<p>Configuration variables:</p>
+<ul class="simple">
+<li><p><strong>name</strong> (<strong>Required</strong>, string): The name to use for the MQTT
+Component.</p></li>
+<li><p><strong>retain</strong> (<em>Optional</em>, boolean): If all MQTT state messages should
+be retained. Defaults to <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p></li>
+<li><p><strong>discovery</strong> (<em>Optional</em>, boolean): Manually enable/disable
+discovery for a component. Defaults to the global default.</p></li>
+<li><p><strong>availability</strong> (<em>Optional</em>): Manually set what should be sent to
+Home Assistant for showing entity availability. Default derived from
+<a class="reference internal" href="#mqtt-last-will-birth"><span class="std std-ref">global birth/last will message</span></a>.</p></li>
+<li><p><strong>state_topic</strong> (<em>Optional</em>, string): The topic to publish state
+updates to. Defaults to
+<code class="docutils literal notranslate"><span class="pre">&lt;TOPIC_PREFIX&gt;/&lt;COMPONENT_TYPE&gt;/&lt;COMPONENT_NAME&gt;/state</span></code>.</p></li>
+<li><p><strong>command_topic</strong> (<em>Optional</em>, string): The topic to subscribe to for
+commands from the remote. Defaults to
+<code class="docutils literal notranslate"><span class="pre">&lt;TOPIC_PREFIX&gt;/&lt;COMPONENT_TYPE&gt;/&lt;COMPONENT_NAME&gt;/command</span></code>.</p></li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>When changing these options and you’re using MQTT discovery, you will need to restart Home Assistant.
+This is because Home Assistant only discovers a device once in every Home Assistant start.</p>
+</div>
+</section>
+<section id="on-message-trigger">
+<span id="mqtt-on-message"></span><h2><code class="docutils literal notranslate"><span class="pre">on_message</span></code> Trigger<a class="headerlink" href="#on-message-trigger" title="Permalink to this headline">¶</a></h2>
+<p>With this configuration option you can write complex automations whenever an MQTT
+message on a specific topic is received. To use the message content, use a <a class="reference internal" href="../guides/automations.html#config-lambda"><span class="std std-ref">lambda</span></a>
+template, the message payload is available under the name <code class="docutils literal notranslate"><span class="pre">x</span></code> inside that lambda.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">mqtt</span><span class="p">:</span>
+  <span class="c1"># ...</span>
+  <span class="nt">on_message</span><span class="p">:</span>
+    <span class="nt">topic</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">my/custom/topic</span>
+    <span class="nt">qos</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">0</span>
+    <span class="nt">then</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="nt">switch.turn_on</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">some_switch</span>
+</pre></div>
+</div>
+<p>Configuration variables:</p>
+<ul class="simple">
+<li><p><strong>topic</strong> (<strong>Required</strong>, string): The MQTT topic to subscribe to and listen for MQTT
+messages on. Every time a message with <strong>this exact topic</strong> is received, the automation will trigger.</p></li>
+<li><p><strong>qos</strong> (<em>Optional</em>, integer): The MQTT Quality of Service to subscribe to the topic with. Defaults
+to 0.</p></li>
+<li><p><strong>payload</strong> (<em>Optional</em>, string): Optionally set a payload to match. Only if exactly the payload
+you specify with this option is received, the automation will be executed.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You can even specify multiple <code class="docutils literal notranslate"><span class="pre">on_message</span></code> triggers by using a YAML list:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">mqtt</span><span class="p">:</span>
+  <span class="nt">on_message</span><span class="p">:</span>
+     <span class="p p-Indicator">-</span> <span class="nt">topic</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">some/topic</span>
+       <span class="nt">then</span><span class="p">:</span>
+         <span class="p p-Indicator">-</span> <span class="c1"># ...</span>
+     <span class="p p-Indicator">-</span> <span class="nt">topic</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">some/other/topic</span>
+       <span class="nt">then</span><span class="p">:</span>
+         <span class="p p-Indicator">-</span> <span class="c1"># ...</span>
+</pre></div>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This action can also be used in <a class="reference internal" href="../guides/automations.html#config-lambda"><span class="std std-ref">lambdas</span></a>:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">mqtt</span><span class="p">:</span>
+  <span class="c1"># Give the mqtt component an ID</span>
+  <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">mqtt_client</span>
+</pre></div>
+</div>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">id</span><span class="p">(</span><span class="n">mqtt_client</span><span class="p">).</span><span class="n">subscribe</span><span class="p">(</span><span class="s">&quot;the/topic&quot;</span><span class="p">,</span> <span class="p">[</span><span class="o">=</span><span class="p">](</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="o">&amp;</span><span class="n">payload</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// do something with payload</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="on-json-message-trigger">
+<span id="mqtt-on-json-message"></span><h2><code class="docutils literal notranslate"><span class="pre">on_json_message</span></code> Trigger<a class="headerlink" href="#on-json-message-trigger" title="Permalink to this headline">¶</a></h2>
+<p>With this configuration option you can write complex automations whenever a JSON-encoded MQTT
+message is received. To use the message content, use a <a class="reference internal" href="../guides/automations.html#config-lambda"><span class="std std-ref">lambda</span></a>
+template, the decoded message payload is available under the name <code class="docutils literal notranslate"><span class="pre">x</span></code> inside that lambda.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">x</span></code> object is of type <code class="docutils literal notranslate"><span class="pre">JsonObject</span></code> by the <a class="reference external" href="https://github.com/bblanchon/ArduinoJson">ArduinoJson</a>
+library, and you can use all of the methods of that library to access data.</p>
+<p>Basically, you can access elements by typing <code class="docutils literal notranslate"><span class="pre">x[&quot;THE_KEY&quot;]</span></code> and save them into local variables.
+Please note that it’s a good idea to check if the key exists in the Json Object by calling
+<code class="docutils literal notranslate"><span class="pre">containsKey</span></code> first as the ESP will crash if an element that does not exist is accessed.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">mqtt</span><span class="p">:</span>
+  <span class="c1"># ...</span>
+  <span class="nt">on_json_message</span><span class="p">:</span>
+    <span class="nt">topic</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">the/topic</span>
+    <span class="nt">then</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="nt">light.turn_on</span><span class="p">:</span>
+          <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">living_room_lights</span>
+
+          <span class="nt">transition_length</span><span class="p">:</span> <span class="kt">!lambda</span> <span class="p p-Indicator">|-</span>
+            <span class="no">int length = 1000;</span>
+            <span class="no">if (x.containsKey(&quot;length&quot;))</span>
+              <span class="no">length = x[&quot;length&quot;];</span>
+            <span class="no">return length;</span>
+
+          <span class="nt">brightness</span><span class="p">:</span> <span class="kt">!lambda</span> <span class="s">&quot;return</span><span class="nv"> </span><span class="s">x[&quot;</span><span class="l l-Scalar l-Scalar-Plain">bright&quot;];&quot;</span>
+
+          <span class="nt">effect</span><span class="p">:</span> <span class="kt">!lambda</span> <span class="p p-Indicator">|-</span>
+            <span class="no">const char *effect = &quot;None&quot;;</span>
+            <span class="no">if (x.containsKey(&quot;effect&quot;))</span>
+              <span class="no">effect = x[&quot;effect&quot;];</span>
+            <span class="no">return effect;</span>
+</pre></div>
+</div>
+<p>Configuration variables:</p>
+<ul class="simple">
+<li><p><strong>topic</strong> (<strong>Required</strong>, string): The MQTT topic to subscribe to and listen for MQTT
+messages on. Every time a message with <strong>this exact topic</strong> is received, the automation will trigger.</p></li>
+<li><p><strong>qos</strong> (<em>Optional</em>, integer): The MQTT Quality of Service to subscribe to the topic with. Defaults
+to 0.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Due to the way this trigger works internally it is incompatible with certain actions and will
+trigger a compile failure. For example with the <code class="docutils literal notranslate"><span class="pre">delay</span></code> action.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This action can also be used in <a class="reference internal" href="../guides/automations.html#config-lambda"><span class="std std-ref">lambdas</span></a>:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">mqtt</span><span class="p">:</span>
+  <span class="c1"># Give the mqtt component an ID</span>
+  <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">mqtt_client</span>
+</pre></div>
+</div>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">id</span><span class="p">(</span><span class="n">mqtt_client</span><span class="p">).</span><span class="n">subscribe_json</span><span class="p">(</span><span class="s">&quot;the/topic&quot;</span><span class="p">,</span> <span class="p">[</span><span class="o">=</span><span class="p">](</span><span class="n">JsonObject</span> <span class="o">&amp;</span><span class="n">root</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// do something with JSON-decoded value root</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="mqtt-publish-action">
+<span id="id1"></span><h2><code class="docutils literal notranslate"><span class="pre">mqtt.publish</span></code> Action<a class="headerlink" href="#mqtt-publish-action" title="Permalink to this headline">¶</a></h2>
+<p>Publish an MQTT message on a topic using this action in automations.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">on_...</span><span class="p">:</span>
+  <span class="nt">then</span><span class="p">:</span>
+    <span class="p p-Indicator">-</span> <span class="nt">mqtt.publish</span><span class="p">:</span>
+        <span class="nt">topic</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">some/topic</span>
+        <span class="nt">payload</span><span class="p">:</span> <span class="s">&quot;Something</span><span class="nv"> </span><span class="s">happened!&quot;</span>
+
+    <span class="c1"># Templated:</span>
+    <span class="p p-Indicator">-</span> <span class="nt">mqtt.publish</span><span class="p">:</span>
+        <span class="nt">topic</span><span class="p">:</span> <span class="kt">!lambda</span> <span class="p p-Indicator">|-</span>
+          <span class="no">if (id(reed_switch).state) return &quot;topic1&quot;;</span>
+          <span class="no">else return &quot;topic2&quot;;</span>
+        <span class="nt">payload</span><span class="p">:</span> <span class="kt">!lambda</span> <span class="p p-Indicator">|-</span>
+          <span class="no">return id(reed_switch).state ? &quot;YES&quot; : &quot;NO&quot;;</span>
+</pre></div>
+</div>
+<p>Configuration options:</p>
+<ul class="simple">
+<li><p><strong>topic</strong> (<strong>Required</strong>, string, <a class="reference internal" href="../guides/automations.html#config-templatable"><span class="std std-ref">templatable</span></a>):
+The MQTT topic to publish the message.</p></li>
+<li><p><strong>payload</strong> (<strong>Required</strong>, string, <a class="reference internal" href="../guides/automations.html#config-templatable"><span class="std std-ref">templatable</span></a>): The message content.</p></li>
+<li><p><strong>qos</strong> (<em>Optional</em>, int, <a class="reference internal" href="../guides/automations.html#config-templatable"><span class="std std-ref">templatable</span></a>): The <a class="reference external" href="https://www.hivemq.com/blog/mqtt-essentials-part-6-mqtt-quality-of-service-levels">Quality of
+Service</a>
+level of the topic. Defaults to 0.</p></li>
+<li><p><strong>retain</strong> (<em>Optional</em>, boolean, <a class="reference internal" href="../guides/automations.html#config-templatable"><span class="std std-ref">templatable</span></a>): If the published message should
+have a retain flag on or not. Defaults to <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This action can also be written in <a class="reference internal" href="../guides/automations.html#config-lambda"><span class="std std-ref">lambdas</span></a>:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">mqtt</span><span class="p">:</span>
+  <span class="c1"># Give the mqtt component an ID</span>
+  <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">mqtt_client</span>
+</pre></div>
+</div>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">id</span><span class="p">(</span><span class="n">mqtt_client</span><span class="p">).</span><span class="n">publish</span><span class="p">(</span><span class="s">&quot;the/topic&quot;</span><span class="p">,</span> <span class="s">&quot;The Payload&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="mqtt-publish-json-action">
+<span id="id2"></span><h2><code class="docutils literal notranslate"><span class="pre">mqtt.publish_json</span></code> Action<a class="headerlink" href="#mqtt-publish-json-action" title="Permalink to this headline">¶</a></h2>
+<p>Publish a JSON-formatted MQTT message on a topic using this action in automations.</p>
+<p>The JSON message will be constructed using the <a class="reference external" href="https://github.com/bblanchon/ArduinoJson">ArduinoJson</a> library.
+In the <code class="docutils literal notranslate"><span class="pre">payload</span></code> option you have access to a <code class="docutils literal notranslate"><span class="pre">root</span></code> object which will represents the base object
+of the JSON message. You can assign values to keys by using the <code class="docutils literal notranslate"><span class="pre">root[&quot;KEY_NAME&quot;]</span> <span class="pre">=</span> <span class="pre">VALUE;</span></code> syntax
+as seen below.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">on_...</span><span class="p">:</span>
+  <span class="nt">then</span><span class="p">:</span>
+    <span class="p p-Indicator">-</span> <span class="nt">mqtt.publish_json</span><span class="p">:</span>
+        <span class="nt">topic</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">the/topic</span>
+        <span class="nt">payload</span><span class="p">:</span> <span class="p p-Indicator">|-</span>
+          <span class="no">root[&quot;key&quot;] = id(my_sensor).state;</span>
+          <span class="no">root[&quot;greeting&quot;] = &quot;Hello World&quot;;</span>
+
+        <span class="c1"># Will produce:</span>
+        <span class="c1"># {&quot;key&quot;: 42.0, &quot;greeting&quot;: &quot;Hello World&quot;}</span>
+</pre></div>
+</div>
+<p>Configuration options:</p>
+<ul class="simple">
+<li><p><strong>topic</strong> (<strong>Required</strong>, string, <a class="reference internal" href="../guides/automations.html#config-templatable"><span class="std std-ref">templatable</span></a>):
+The MQTT topic to publish the message.</p></li>
+<li><p><strong>payload</strong> (<strong>Required</strong>, <a class="reference internal" href="../guides/automations.html#config-lambda"><span class="std std-ref">lambda</span></a>): The message content.</p></li>
+<li><p><strong>qos</strong> (<em>Optional</em>, int): The <a class="reference external" href="https://www.hivemq.com/blog/mqtt-essentials-part-6-mqtt-quality-of-service-levels">Quality of
+Service</a>
+level of the topic. Defaults to 0.</p></li>
+<li><p><strong>retain</strong> (<em>Optional</em>, boolean): If the published message should
+have a retain flag on or not. Defaults to <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This action can also be written in <a class="reference internal" href="../guides/automations.html#config-lambda"><span class="std std-ref">lambdas</span></a>:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">mqtt</span><span class="p">:</span>
+  <span class="c1"># Give the mqtt component an ID</span>
+  <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">mqtt_client</span>
+</pre></div>
+</div>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">id</span><span class="p">(</span><span class="n">mqtt_client</span><span class="p">).</span><span class="n">publish_json</span><span class="p">(</span><span class="s">&quot;the/topic&quot;</span><span class="p">,</span> <span class="p">[</span><span class="o">=</span><span class="p">](</span><span class="n">JsonObject</span> <span class="o">&amp;</span><span class="n">root</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">root</span><span class="p">[</span><span class="s">&quot;something&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">id</span><span class="p">(</span><span class="n">my_sensor</span><span class="p">).</span><span class="n">state</span><span class="p">;</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="mqtt-connected-condition">
+<span id="id3"></span><h2><code class="docutils literal notranslate"><span class="pre">mqtt.connected</span></code> Condition<a class="headerlink" href="#mqtt-connected-condition" title="Permalink to this headline">¶</a></h2>
+<p>This <a class="reference internal" href="../guides/automations.html#config-condition"><span class="std std-ref">Condition</span></a> checks if the MQTT client is currently connected to
+the MQTT broker.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">on_...</span><span class="p">:</span>
+  <span class="nt">if</span><span class="p">:</span>
+    <span class="nt">condition</span><span class="p">:</span>
+      <span class="nt">mqtt.connected</span><span class="p">:</span>
+    <span class="nt">then</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="nt">logger.log</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">MQTT is connected!</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This action can also be written in <a class="reference internal" href="../guides/automations.html#config-lambda"><span class="std std-ref">lambdas</span></a>:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">mqtt</span><span class="p">:</span>
+  <span class="c1"># Give the mqtt component an ID</span>
+  <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">mqtt_client</span>
+</pre></div>
+</div>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="n">id</span><span class="p">(</span><span class="n">mqtt_client</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">is_connected</span><span class="p">())</span> <span class="p">{</span>
+  <span class="c1">// do something if MQTT is connected</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="see-also">
+<h2>See Also<a class="headerlink" href="#see-also" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="../api/mqtt__client_8h.html">API Reference</a></p></li>
+<li><p><a class="reference external" href="https://github.com/esphome/esphome-docs/blob/current/components/mqtt.rst">Edit this page on GitHub</a></p></li>
+</ul>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+  <div id="upgrade-footer">
+    A new version has been release since you last visited this page: 1.17.2 🎉
+    <div class="footer-button-container">
+      <div role="button" id="upgrade-footer-dismiss" class="footer-button">Dismiss</div>
+      <a id="upgrade-footer-changelog" class="footer-button" href="../changelog/v1.17.0.html">View Changelog</a>  
+    </div>
+  </div>
+  <script>
+    var old = window.localStorage.getItem("version");
+    if (old === null) { window.localStorage.setItem("version", "1.17");
+    } else if (old !== "1.17") {
+      const footerEl = document.getElementById("upgrade-footer");
+      footerEl.classList.add("not-hidden");
+      footerEl.addEventListener('click', function () {
+        window.localStorage.setItem("version", "1.17");
+        footerEl.classList.remove("not-hidden");
+      });
+    }
+  </script>
+
+  </body>
+
+<!-- Mirrored from esphome.io/components/mqtt.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 16 May 2021 02:58:45 GMT -->
+</html>

@@ -1,0 +1,287 @@
+
+  <!DOCTYPE html>
+
+
+<html lang="en">
+  
+<!-- Mirrored from esphome.io/components/switch/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 16 May 2021 03:01:19 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+<meta name="description" content="Instructions for setting up generic switches in ESPHome.">
+<meta itemprop="name" content="Switch Component">
+<meta itemprop="description" content="Instructions for setting up generic switches in ESPHome.">
+<meta itemprop="image" content="../../_images/folder-open.png">
+<meta name="twitter:title" content="Switch Component">
+<meta name="twitter:image:src" content="../../_images/folder-open.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@OttoWinter_">
+<meta name="twitter:description" content="Instructions for setting up generic switches in ESPHome.">
+<meta property="og:title" content="Switch Component">
+<meta property="og:image" content="../../_images/folder-open.png">
+<meta property="og:type" content="website">
+<meta property="og:description" content="Instructions for setting up generic switches in ESPHome.">
+
+    <title>Switch Component &#8212; ESPHome</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/alabaster.css" />
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <link rel="canonical" href="index.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Custom Switch" href="custom.html" />
+    <link rel="prev" title="ZyAura CO2 &amp; Temperature &amp; Humidity Sensor" href="../sensor/zyaura.html" />
+  <link rel="stylesheet" href="../../_static/customf001.css?hash=f908c2b5" type="text/css" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../../_static/apple-touch-icon.png">
+  <link rel="shortcut icon" href="../../_static/favicon.ico">
+  <link rel="icon" type="image/png" sizes="512x512" href="../../_static/favicon-512x512.png">
+  <link rel="icon" type="image/png" sizes="256x256" href="../../_static/favicon-256x256.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="../../_static/favicon-192x192.png">
+  <link rel="icon" type="image/png" sizes="128x128" href="../../_static/favicon-128x128.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../_static/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../../_static/favicon-16x16.png">
+  <link rel="manifest" href="../../_static/site.webmanifest">
+  <link rel="mask-icon" href="../../_static/safari-pinned-tab.svg" color="#646464">
+  <meta name="apple-mobile-web-app-title" content="ESPHome">
+  <meta name="application-name" content="ESPHome">
+  <meta name="msapplication-TileColor" content="#dfdfdf">
+  <meta name="msapplication-config" content="/_static/browserconfig.xml">
+  <meta name="theme-color" content="#dfdfdf">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta property="og:site_name" content="ESPHome">
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head><body>
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../index-2.html">
+              <img class="logo" src="../../_static/logo-text.svg" alt="Logo"/>
+            </a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="https://esphome.io/search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+  <h3><a href="../../index-2.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Switch Component</a><ul>
+<li><a class="reference internal" href="#base-switch-configuration">Base Switch Configuration</a><ul>
+<li><a class="reference internal" href="#switch-toggle-action"><code class="docutils literal notranslate"><span class="pre">switch.toggle</span></code> Action</a></li>
+<li><a class="reference internal" href="#switch-turn-on-action"><code class="docutils literal notranslate"><span class="pre">switch.turn_on</span></code> Action</a></li>
+<li><a class="reference internal" href="#switch-turn-off-action"><code class="docutils literal notranslate"><span class="pre">switch.turn_off</span></code> Action</a></li>
+<li><a class="reference internal" href="#switch-is-on-switch-is-off-condition"><code class="docutils literal notranslate"><span class="pre">switch.is_on</span></code> / <code class="docutils literal notranslate"><span class="pre">switch.is_off</span></code> Condition</a></li>
+<li><a class="reference internal" href="#lambda-calls">lambda calls</a></li>
+<li><a class="reference internal" href="#switch-is-on-off-condition"><code class="docutils literal notranslate"><span class="pre">switch.is_on</span></code> / <code class="docutils literal notranslate"><span class="pre">switch.is_off</span></code> Condition</a></li>
+<li><a class="reference internal" href="#switch-on-turn-on-switch-on-turn-off-trigger"><code class="docutils literal notranslate"><span class="pre">switch.on_turn_on</span></code> / <code class="docutils literal notranslate"><span class="pre">switch.on_turn_off</span></code> Trigger</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#see-also">See Also</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="switch-component">
+<h1>Switch Component<a class="headerlink" href="#switch-component" title="Permalink to this headline">¶</a></h1>
+<p>The <code class="docutils literal notranslate"><span class="pre">switch</span></code> domain includes all platforms that should show up like a
+switch and can only be turned ON or OFF.</p>
+<section id="base-switch-configuration">
+<span id="config-switch"></span><h2>Base Switch Configuration<a class="headerlink" href="#base-switch-configuration" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">switch</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">...</span>
+    <span class="nt">name</span><span class="p">:</span> <span class="s">&quot;Switch</span><span class="nv"> </span><span class="s">Name&quot;</span>
+    <span class="nt">icon</span><span class="p">:</span> <span class="s">&quot;mdi:restart&quot;</span>
+</pre></div>
+</div>
+<p>Configuration variables:</p>
+<ul class="simple">
+<li><p><strong>name</strong> (<strong>Required</strong>, string): The name of the switch.</p></li>
+<li><p><strong>icon</strong> (<em>Optional</em>, icon): Manually set the icon to use for the
+sensor in the frontend.</p></li>
+<li><p><strong>inverted</strong> (<em>Optional</em>, boolean): Whether to invert the binary
+state, i.e. report ON states as OFF and vice versa. Defaults
+to <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p></li>
+<li><p><strong>internal</strong> (<em>Optional</em>, boolean): Mark this component as internal. Internal components will
+not be exposed to the frontend (like Home Assistant). Only specifying an <code class="docutils literal notranslate"><span class="pre">id</span></code> without
+a <code class="docutils literal notranslate"><span class="pre">name</span></code> will implicitly set this to true.</p></li>
+<li><p><strong>on_turn_on</strong> (<em>Optional</em>, <a class="reference internal" href="../../guides/automations.html#config-action"><span class="std std-ref">Action</span></a>): An automation to perform
+when the switch is turned on. See <a class="reference internal" href="#switch-on-turn-on-off-trigger"><span class="std std-ref">switch.on_turn_on / switch.on_turn_off Trigger</span></a>.</p></li>
+<li><p><strong>on_turn_off</strong> (<em>Optional</em>, <a class="reference internal" href="../../guides/automations.html#config-action"><span class="std std-ref">Action</span></a>): An automation to perform
+when the switch is turned off. See <a class="reference internal" href="#switch-on-turn-on-off-trigger"><span class="std std-ref">switch.on_turn_on / switch.on_turn_off Trigger</span></a>.</p></li>
+<li><p>If MQTT enabled, All other options from <a class="reference internal" href="../mqtt.html#config-mqtt-component"><span class="std std-ref">MQTT Component</span></a>.</p></li>
+</ul>
+<section id="switch-toggle-action">
+<span id="id1"></span><h3><code class="docutils literal notranslate"><span class="pre">switch.toggle</span></code> Action<a class="headerlink" href="#switch-toggle-action" title="Permalink to this headline">¶</a></h3>
+<p>This action toggles a switch with the given ID when executed.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">on_...</span><span class="p">:</span>
+  <span class="nt">then</span><span class="p">:</span>
+    <span class="p p-Indicator">-</span> <span class="nt">switch.toggle</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">relay_1</span>
+</pre></div>
+</div>
+</section>
+<section id="switch-turn-on-action">
+<span id="id2"></span><h3><code class="docutils literal notranslate"><span class="pre">switch.turn_on</span></code> Action<a class="headerlink" href="#switch-turn-on-action" title="Permalink to this headline">¶</a></h3>
+<p>This action turns a switch with the given ID on when executed.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">on_...</span><span class="p">:</span>
+  <span class="nt">then</span><span class="p">:</span>
+    <span class="p p-Indicator">-</span> <span class="nt">switch.turn_on</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">relay_1</span>
+</pre></div>
+</div>
+</section>
+<section id="switch-turn-off-action">
+<span id="id3"></span><h3><code class="docutils literal notranslate"><span class="pre">switch.turn_off</span></code> Action<a class="headerlink" href="#switch-turn-off-action" title="Permalink to this headline">¶</a></h3>
+<p>This action turns a switch with the given ID off when executed.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">on_...</span><span class="p">:</span>
+  <span class="nt">then</span><span class="p">:</span>
+    <span class="p p-Indicator">-</span> <span class="nt">switch.turn_off</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">relay_1</span>
+</pre></div>
+</div>
+</section>
+<section id="switch-is-on-switch-is-off-condition">
+<span id="switch-is-off-condition"></span><span id="switch-is-on-condition"></span><h3><code class="docutils literal notranslate"><span class="pre">switch.is_on</span></code> / <code class="docutils literal notranslate"><span class="pre">switch.is_off</span></code> Condition<a class="headerlink" href="#switch-is-on-switch-is-off-condition" title="Permalink to this headline">¶</a></h3>
+<p>This <a class="reference internal" href="../../guides/automations.html#config-condition"><span class="std std-ref">Condition</span></a> checks if the given switch is ON (or OFF).</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># In some trigger:</span>
+<span class="nt">on_...</span><span class="p">:</span>
+  <span class="nt">if</span><span class="p">:</span>
+    <span class="nt">condition</span><span class="p">:</span>
+      <span class="c1"># Same syntax for is_off</span>
+      <span class="nt">switch.is_on</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">my_switch</span>
+</pre></div>
+</div>
+</section>
+<section id="lambda-calls">
+<span id="switch-lambda-calls"></span><h3>lambda calls<a class="headerlink" href="#lambda-calls" title="Permalink to this headline">¶</a></h3>
+<p>From <a class="reference internal" href="../../guides/automations.html#config-lambda"><span class="std std-ref">lambdas</span></a>, you can call several methods on all covers to do some
+advanced stuff (see the full API Reference for more info).</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">publish_state()</span></code>: Manually cause the switch to publish a new state and store it internally.
+If it’s different from the last internal state, it’s additionally published to the frontend.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">// Within lambda, make the switch report a specific state</span>
+<span class="l l-Scalar l-Scalar-Plain">id(my_switch).publish_state(false);</span>
+<span class="l l-Scalar l-Scalar-Plain">id(my_switch).publish_state(true);</span>
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">state</span></code>: Retrieve the current state of the switch.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">// Within lambda, get the switch state and conditionally do something</span>
+<span class="l l-Scalar l-Scalar-Plain">if (id(my_switch).state) {</span>
+  <span class="l l-Scalar l-Scalar-Plain">// Switch is ON, do something here</span>
+<span class="l l-Scalar l-Scalar-Plain">} else {</span>
+  <span class="l l-Scalar l-Scalar-Plain">// Switch is OFF, do something else here</span>
+<span class="l l-Scalar l-Scalar-Plain">}</span>
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">turn_off()</span></code>/<code class="docutils literal notranslate"><span class="pre">turn_on()</span></code>: Manually turn the switch ON/OFF from code.
+Similar to the <code class="docutils literal notranslate"><span class="pre">switch.turn_on</span></code> and <code class="docutils literal notranslate"><span class="pre">switch.turn_off</span></code> actions,
+but can be used in complex lambda expressions.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">id(my_switch).turn_off();</span>
+<span class="l l-Scalar l-Scalar-Plain">id(my_switch).turn_on();</span>
+<span class="l l-Scalar l-Scalar-Plain">// Toggle the switch</span>
+<span class="l l-Scalar l-Scalar-Plain">id(my_switch).toggle();</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+<section id="switch-is-on-off-condition">
+<span id="id4"></span><h3><code class="docutils literal notranslate"><span class="pre">switch.is_on</span></code> / <code class="docutils literal notranslate"><span class="pre">switch.is_off</span></code> Condition<a class="headerlink" href="#switch-is-on-off-condition" title="Permalink to this headline">¶</a></h3>
+<p>This <a class="reference internal" href="../../guides/automations.html#config-condition"><span class="std std-ref">condition</span></a> passes if the given switch is on/off.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># in a trigger:</span>
+<span class="nt">on_...</span><span class="p">:</span>
+  <span class="nt">if</span><span class="p">:</span>
+    <span class="nt">condition</span><span class="p">:</span>
+      <span class="nt">switch.is_on</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">my_switch</span>
+      <span class="c1"># same goes for is_off</span>
+    <span class="nt">then</span><span class="p">:</span>
+    <span class="p p-Indicator">-</span> <span class="nt">script.execute</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">my_script</span>
+</pre></div>
+</div>
+</section>
+<section id="switch-on-turn-on-switch-on-turn-off-trigger">
+<span id="switch-on-turn-on-off-trigger"></span><h3><code class="docutils literal notranslate"><span class="pre">switch.on_turn_on</span></code> / <code class="docutils literal notranslate"><span class="pre">switch.on_turn_off</span></code> Trigger<a class="headerlink" href="#switch-on-turn-on-switch-on-turn-off-trigger" title="Permalink to this headline">¶</a></h3>
+<p>This trigger is activated each time the switch is turned on. It becomes active
+right after the switch component has acknowledged the state (e.g. after it switched
+ON/OFF itself).</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">switch</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">gpio</span>  <span class="c1"># or any other platform</span>
+    <span class="c1"># ...</span>
+    <span class="nt">on_turn_on</span><span class="p">:</span>
+    <span class="p p-Indicator">-</span> <span class="nt">logger.log</span><span class="p">:</span> <span class="s">&quot;Switch</span><span class="nv"> </span><span class="s">Turned</span><span class="nv"> </span><span class="s">On!&quot;</span>
+    <span class="nt">on_turn_off</span><span class="p">:</span>
+    <span class="p p-Indicator">-</span> <span class="nt">logger.log</span><span class="p">:</span> <span class="s">&quot;Switch</span><span class="nv"> </span><span class="s">Turned</span><span class="nv"> </span><span class="s">Off!&quot;</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="see-also">
+<h2>See Also<a class="headerlink" href="#see-also" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="../../api/switch_8h.html">API Reference</a></p></li>
+<li><p><a class="reference external" href="https://github.com/esphome/esphome-docs/blob/current/components/switch/index.rst">Edit this page on GitHub</a></p></li>
+</ul>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="custom.html">Custom Switch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gpio.html">GPIO Switch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="output.html">Generic Output Switch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="restart.html">Restart Switch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="shutdown.html">Shutdown Switch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="template.html">Template Switch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tuya.html">Tuya Switch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="uart.html">UART Switch</a></li>
+</ul>
+</div>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+  <div id="upgrade-footer">
+    A new version has been release since you last visited this page: 1.17.2 🎉
+    <div class="footer-button-container">
+      <div role="button" id="upgrade-footer-dismiss" class="footer-button">Dismiss</div>
+      <a id="upgrade-footer-changelog" class="footer-button" href="../../changelog/v1.17.0.html">View Changelog</a>  
+    </div>
+  </div>
+  <script>
+    var old = window.localStorage.getItem("version");
+    if (old === null) { window.localStorage.setItem("version", "1.17");
+    } else if (old !== "1.17") {
+      const footerEl = document.getElementById("upgrade-footer");
+      footerEl.classList.add("not-hidden");
+      footerEl.addEventListener('click', function () {
+        window.localStorage.setItem("version", "1.17");
+        footerEl.classList.remove("not-hidden");
+      });
+    }
+  </script>
+
+  </body>
+
+<!-- Mirrored from esphome.io/components/switch/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 16 May 2021 03:01:20 GMT -->
+</html>

@@ -1,0 +1,199 @@
+
+  <!DOCTYPE html>
+
+
+<html lang="en">
+  
+<!-- Mirrored from esphome.io/components/sensor/mpu6050.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 16 May 2021 02:59:51 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+<meta name="description" content="Instructions for setting up MPU6050 Accelerometer and Gyroscope sensors.">
+<meta itemprop="name" content="MPU6050 Accelerometer/Gyroscope Sensor">
+<meta itemprop="description" content="Instructions for setting up MPU6050 Accelerometer and Gyroscope sensors.">
+<meta itemprop="image" content="../../_images/mpu6050.jpg">
+<meta name="twitter:title" content="MPU6050 Accelerometer/Gyroscope Sensor">
+<meta name="twitter:image:src" content="../../_images/mpu6050.jpg">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@OttoWinter_">
+<meta name="twitter:description" content="Instructions for setting up MPU6050 Accelerometer and Gyroscope sensors.">
+<meta property="og:title" content="MPU6050 Accelerometer/Gyroscope Sensor">
+<meta property="og:image" content="../../_images/mpu6050.jpg">
+<meta property="og:type" content="website">
+<meta property="og:description" content="Instructions for setting up MPU6050 Accelerometer and Gyroscope sensors.">
+
+    <title>MPU6050 Accelerometer/Gyroscope Sensor &#8212; ESPHome</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/alabaster.css" />
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <link rel="canonical" href="mpu6050.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="MQTT Subscribe Sensor" href="mqtt_subscribe.html" />
+    <link rel="prev" title="MH-Z19 CO_2 and Temperature Sensor" href="mhz19.html" />
+  <link rel="stylesheet" href="../../_static/customf001.css?hash=f908c2b5" type="text/css" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../../_static/apple-touch-icon.png">
+  <link rel="shortcut icon" href="../../_static/favicon.ico">
+  <link rel="icon" type="image/png" sizes="512x512" href="../../_static/favicon-512x512.png">
+  <link rel="icon" type="image/png" sizes="256x256" href="../../_static/favicon-256x256.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="../../_static/favicon-192x192.png">
+  <link rel="icon" type="image/png" sizes="128x128" href="../../_static/favicon-128x128.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../_static/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../../_static/favicon-16x16.png">
+  <link rel="manifest" href="../../_static/site.webmanifest">
+  <link rel="mask-icon" href="../../_static/safari-pinned-tab.svg" color="#646464">
+  <meta name="apple-mobile-web-app-title" content="ESPHome">
+  <meta name="application-name" content="ESPHome">
+  <meta name="msapplication-TileColor" content="#dfdfdf">
+  <meta name="msapplication-config" content="/_static/browserconfig.xml">
+  <meta name="theme-color" content="#dfdfdf">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta property="og:site_name" content="ESPHome">
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head><body>
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../index-2.html">
+              <img class="logo" src="../../_static/logo-text.svg" alt="Logo"/>
+            </a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="https://esphome.io/search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+  <h3><a href="../../index-2.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">MPU6050 Accelerometer/Gyroscope Sensor</a><ul>
+<li><a class="reference internal" href="#configuration-variables">Configuration variables:</a></li>
+<li><a class="reference internal" href="#see-also">See Also</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="mpu6050-accelerometer-gyroscope-sensor">
+<h1>MPU6050 Accelerometer/Gyroscope Sensor<a class="headerlink" href="#mpu6050-accelerometer-gyroscope-sensor" title="Permalink to this headline">¶</a></h1>
+<p>The <code class="docutils literal notranslate"><span class="pre">mpu6050</span></code> sensor platform allows you to use your MPU6050 Accelerometer/Gyroscope
+(<a class="reference external" href="https://www.invensense.com/wp-content/uploads/2015/02/MPU-6000-Datasheet1.pdf">datasheet</a>,
+<a class="reference external" href="https://www.sparkfun.com/products/11028">SparkFun</a>) sensors with
+ESPHome. The <a class="reference internal" href="../i2c.html#i2c"><span class="std std-ref">I²C Bus</span></a> is
+required to be set up in your configuration for this sensor to work.</p>
+<p>This component only does some basic filtering and no calibration. Due to the complexity of
+this sensor and the amount of possible configuration options, you should probably
+create a custom component by copying and modifying the existing code if you want a specific
+new feature. Supporting all possible use-cases would be quite hard.</p>
+<figure class="align-center" id="id1">
+<a class="reference internal image-reference" href="../../_images/mpu6050-full.jpg"><img alt="../../_images/mpu6050-full.jpg" src="../../_images/mpu6050-full.jpg" style="width: 50.0%;" /></a>
+<figcaption>
+<p><span class="caption-text">MPU6050 Accelerometer/Gyroscope Sensor.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../../_images/mpu6050-ui.png"><img alt="../../_images/mpu6050-ui.png" src="../../_images/mpu6050-ui.png" style="width: 80.0%;" /></a>
+</figure>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example configuration entry</span>
+<span class="nt">sensor</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">mpu6050</span>
+    <span class="nt">address</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">0x68</span>
+    <span class="nt">accel_x</span><span class="p">:</span>
+      <span class="nt">name</span><span class="p">:</span> <span class="s">&quot;MPU6050</span><span class="nv"> </span><span class="s">Accel</span><span class="nv"> </span><span class="s">X&quot;</span>
+    <span class="nt">accel_y</span><span class="p">:</span>
+      <span class="nt">name</span><span class="p">:</span> <span class="s">&quot;MPU6050</span><span class="nv"> </span><span class="s">Accel</span><span class="nv"> </span><span class="s">Y&quot;</span>
+    <span class="nt">accel_z</span><span class="p">:</span>
+      <span class="nt">name</span><span class="p">:</span> <span class="s">&quot;MPU6050</span><span class="nv"> </span><span class="s">Accel</span><span class="nv"> </span><span class="s">z&quot;</span>
+    <span class="nt">gyro_x</span><span class="p">:</span>
+      <span class="nt">name</span><span class="p">:</span> <span class="s">&quot;MPU6050</span><span class="nv"> </span><span class="s">Gyro</span><span class="nv"> </span><span class="s">X&quot;</span>
+    <span class="nt">gyro_y</span><span class="p">:</span>
+      <span class="nt">name</span><span class="p">:</span> <span class="s">&quot;MPU6050</span><span class="nv"> </span><span class="s">Gyro</span><span class="nv"> </span><span class="s">Y&quot;</span>
+    <span class="nt">gyro_z</span><span class="p">:</span>
+      <span class="nt">name</span><span class="p">:</span> <span class="s">&quot;MPU6050</span><span class="nv"> </span><span class="s">Gyro</span><span class="nv"> </span><span class="s">z&quot;</span>
+    <span class="nt">temperature</span><span class="p">:</span>
+      <span class="nt">name</span><span class="p">:</span> <span class="s">&quot;MPU6050</span><span class="nv"> </span><span class="s">Temperature&quot;</span>
+</pre></div>
+</div>
+<section id="configuration-variables">
+<h2>Configuration variables:<a class="headerlink" href="#configuration-variables" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><strong>address</strong> (<em>Optional</em>, int): Manually specify the I²C address of the sensor. Defaults to <code class="docutils literal notranslate"><span class="pre">0x68</span></code>.</p></li>
+<li><p><strong>accel_x</strong> (<em>Optional</em>): Use the X-Axis of the Accelerometer. All options from
+<a class="reference internal" href="index.html#config-sensor"><span class="std std-ref">Sensor</span></a>.</p></li>
+<li><p><strong>accel_y</strong> (<em>Optional</em>): Use the Y-Axis of the Accelerometer. All options from
+<a class="reference internal" href="index.html#config-sensor"><span class="std std-ref">Sensor</span></a>.</p></li>
+<li><p><strong>accel_z</strong> (<em>Optional</em>): Use the Z-Axis of the Accelerometer. All options from
+<a class="reference internal" href="index.html#config-sensor"><span class="std std-ref">Sensor</span></a>.</p></li>
+<li><p><strong>gyro_x</strong> (<em>Optional</em>): Use the X-Axis of the Gyroscope. All options from
+<a class="reference internal" href="index.html#config-sensor"><span class="std std-ref">Sensor</span></a>.</p></li>
+<li><p><strong>gyro_y</strong> (<em>Optional</em>): Use the Y-Axis of the Gyroscope. All options from
+<a class="reference internal" href="index.html#config-sensor"><span class="std std-ref">Sensor</span></a>.</p></li>
+<li><p><strong>gyro_z</strong> (<em>Optional</em>): Use the Z-Axis of the Gyroscope. All options from
+<a class="reference internal" href="index.html#config-sensor"><span class="std std-ref">Sensor</span></a>.</p></li>
+<li><p><strong>temperature</strong> (<em>Optional</em>): Use the internal temperature of the sensor. All options from
+<a class="reference internal" href="index.html#config-sensor"><span class="std std-ref">Sensor</span></a>.</p></li>
+<li><p><strong>update_interval</strong> (<em>Optional</em>, <a class="reference internal" href="../../guides/configuration-types.html#config-time"><span class="std std-ref">Time</span></a>): The interval to check the sensor. Defaults to <code class="docutils literal notranslate"><span class="pre">60s</span></code>.</p></li>
+<li><p><strong>id</strong> (<em>Optional</em>, <a class="reference internal" href="../../guides/configuration-types.html#config-id"><span class="std std-ref">ID</span></a>): Manually specify the ID used for code generation.</p></li>
+</ul>
+</section>
+<section id="see-also">
+<h2>See Also<a class="headerlink" href="#see-also" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="index.html#sensor-filters"><span class="std std-ref">Sensor Filters</span></a></p></li>
+<li><p><a class="reference internal" href="template.html"><span class="doc">Template Sensor</span></a></p></li>
+<li><p><a class="reference internal" href="ultrasonic.html"><span class="doc">Ultrasonic Distance Sensor</span></a></p></li>
+<li><p><a class="reference external" href="../../api/mpu6050_8h.html">API Reference</a></p></li>
+<li><p><a class="reference external" href="https://github.com/jrowberg/i2cdevlib">i2cdevlib</a> by <a class="reference external" href="https://github.com/jrowberg">Jeff Rowberg</a></p></li>
+<li><p><a class="reference external" href="https://github.com/esphome/esphome-docs/blob/current/components/sensor/mpu6050.rst">Edit this page on GitHub</a></p></li>
+</ul>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+  <div id="upgrade-footer">
+    A new version has been release since you last visited this page: 1.17.2 🎉
+    <div class="footer-button-container">
+      <div role="button" id="upgrade-footer-dismiss" class="footer-button">Dismiss</div>
+      <a id="upgrade-footer-changelog" class="footer-button" href="../../changelog/v1.17.0.html">View Changelog</a>  
+    </div>
+  </div>
+  <script>
+    var old = window.localStorage.getItem("version");
+    if (old === null) { window.localStorage.setItem("version", "1.17");
+    } else if (old !== "1.17") {
+      const footerEl = document.getElementById("upgrade-footer");
+      footerEl.classList.add("not-hidden");
+      footerEl.addEventListener('click', function () {
+        window.localStorage.setItem("version", "1.17");
+        footerEl.classList.remove("not-hidden");
+      });
+    }
+  </script>
+
+  </body>
+
+<!-- Mirrored from esphome.io/components/sensor/mpu6050.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 16 May 2021 02:59:52 GMT -->
+</html>

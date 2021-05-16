@@ -1,0 +1,430 @@
+
+  <!DOCTYPE html>
+
+
+<html lang="en">
+  
+<!-- Mirrored from esphome.io/cookbook/mirabella-genio-bulb.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 16 May 2021 03:02:47 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Mirabella Genio Bulbs &#8212; ESPHome</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <link rel="canonical" href="mirabella-genio-bulb.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Passive Infrared Sensor" href="pir.html" />
+    <link rel="prev" title="ESP32 Water Leak Detector (with notification)" href="leak-detector-m5stickc.html" />
+  <link rel="stylesheet" href="../_static/customf001.css?hash=f908c2b5" type="text/css" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../_static/apple-touch-icon.png">
+  <link rel="shortcut icon" href="../_static/favicon.ico">
+  <link rel="icon" type="image/png" sizes="512x512" href="../_static/favicon-512x512.png">
+  <link rel="icon" type="image/png" sizes="256x256" href="../_static/favicon-256x256.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="../_static/favicon-192x192.png">
+  <link rel="icon" type="image/png" sizes="128x128" href="../_static/favicon-128x128.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../_static/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../_static/favicon-16x16.png">
+  <link rel="manifest" href="../_static/site.webmanifest">
+  <link rel="mask-icon" href="../_static/safari-pinned-tab.svg" color="#646464">
+  <meta name="apple-mobile-web-app-title" content="ESPHome">
+  <meta name="application-name" content="ESPHome">
+  <meta name="msapplication-TileColor" content="#dfdfdf">
+  <meta name="msapplication-config" content="/_static/browserconfig.xml">
+  <meta name="theme-color" content="#dfdfdf">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta property="og:site_name" content="ESPHome">
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head><body>
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index-2.html">
+              <img class="logo" src="../_static/logo-text.svg" alt="Logo"/>
+            </a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="https://esphome.io/search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+  <h3><a href="../index-2.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Mirabella Genio Bulbs</a><ul>
+<li><a class="reference internal" href="#create-the-esphome-firmware">1. Create the ESPHome Firmware</a></li>
+<li><a class="reference internal" href="#flashing">2. Flashing</a><ul>
+<li><a class="reference internal" href="#prerequisites">2.1 Prerequisites</a></li>
+<li><a class="reference internal" href="#installing-the-os">2.2 Installing the OS</a></li>
+<li><a class="reference internal" href="#connecting-to-the-pi-via-ssh">2.3 Connecting to the Pi via SSH</a></li>
+<li><a class="reference internal" href="#configuring-the-pi">2.4 Configuring the Pi</a></li>
+<li><a class="reference internal" href="#setup-and-install-tuya-convert">2.5 Setup and Install tuya-convert</a></li>
+<li><a class="reference internal" href="#upload-esphome-firmware-using-sftp">2.6 Upload ESPHome Firmware using SFTP</a></li>
+<li><a class="reference internal" href="#use-tuya-convert-to-install-esphome-firmware">2.7 Use tuya-convert to install ESPHome Firmware</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#bulb-configurations">3. Bulb Configurations</a><ul>
+<li><a class="reference internal" href="#monochromatic-bulbs">3.1 Monochromatic Bulbs</a></li>
+<li><a class="reference internal" href="#cold-warm-white-bulbs">3.2 Cold + Warm White Bulbs</a></li>
+<li><a class="reference internal" href="#rgbw-color-bulbs">3.3 RGBW Color Bulbs</a></li>
+<li><a class="reference internal" href="#cwww-mirabella-genio-downlights">3.4 CWWW Mirabella Genio Downlights</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#adding-to-home-assistant">4. Adding to Home Assistant</a></li>
+<li><a class="reference internal" href="#see-also">See Also</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="mirabella-genio-bulbs">
+<h1>Mirabella Genio Bulbs<a class="headerlink" href="#mirabella-genio-bulbs" title="Permalink to this headline">¶</a></h1>
+<p>The Mirabella Genio is a Tuya-based smart bulb sold by Kmart in Australia.</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/mirabella-genio-b22-rgbw.jpg"><img alt="../_images/mirabella-genio-b22-rgbw.jpg" src="../_images/mirabella-genio-b22-rgbw.jpg" style="width: 50.0%;" /></a>
+</figure>
+<p>Originally intended to be used with their companion app once flashed using <a class="reference external" href="https://github.com/ct-Open-Source/tuya-convert">tuya-convert</a> ESPHome generated
+firmware can be uploaded allowing you to control the bulbs via Home Assistant.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Please note that the new version of this bulb that comes in a cardboard box are using the TYLC5 module which does not work via tuya-convert.
+These bulbs are also using the SM2135 chipset and not PWM anymore.</p>
+</div>
+<section id="create-the-esphome-firmware">
+<h2>1. Create the ESPHome Firmware<a class="headerlink" href="#create-the-esphome-firmware" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li><p>Refer to either <a class="reference internal" href="../guides/getting_started_command_line.html"><span class="doc">Getting Started with ESPHome</span></a> or <a class="reference internal" href="../guides/getting_started_hassio.html"><span class="doc">Getting Started with ESPHome and Home Assistant</span></a> before moving onto the next step.</p></li>
+<li><p>Select a bulb configuration below based on the bulb/s you have and copy all of the text in the code block and paste into your
+<code class="docutils literal notranslate"><span class="pre">name_of_esphome_configuration.yaml</span></code> file.</p></li>
+<li><p>Compile the firmware, again depending on your chosen setup refer to the guides in the first point.</p></li>
+</ol>
+</section>
+<section id="flashing">
+<h2>2. Flashing<a class="headerlink" href="#flashing" title="Permalink to this headline">¶</a></h2>
+<section id="prerequisites">
+<h3>2.1 Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li><p>Before you begin you’ll need one of the following Linux machines running the latest copy of <a class="reference external" href="https://www.raspberrypi.org/downloads/raspbian/">Raspbian Stretch Lite</a></p></li>
+</ol>
+<blockquote>
+<div><ol class="loweralpha simple">
+<li><p>Raspberry Pi 2B/B+ with <a class="reference external" href="https://www.raspberrypi.org/products/raspberry-pi-usb-wifi-dongle/">USB WiFi Dongle</a>.</p></li>
+<li><p>Raspberry Pi 3B/B+.</p></li>
+</ol>
+</div></blockquote>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>As per the <a class="reference external" href="https://github.com/ct-Open-Source/tuya-convert/blob/master/README.md#requirements">tuya-convert documentation</a>:</p>
+<p>Any Linux with a Wifi adapter which can act as an Access Point should also work. Please note that we have tested the Raspberry Pi with clean installations
+only. If you use your Raspberry Pi for anything else, we recommend using another SD card with a clean installation.</p>
+</div>
+<ol class="arabic simple">
+<li><p>A microSD card (minimum 2GB, 8GB+ recommended).</p></li>
+<li><p>Any WiFi device which can connect to the SSID generated by the Raspberry Pi and eventually the flashed Tuya device. <strong>This cannot be an iOS / Apple device.
+Android devices will work.</strong></p></li>
+</ol>
+</section>
+<section id="installing-the-os">
+<h3>2.2 Installing the OS<a class="headerlink" href="#installing-the-os" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li><p>It’s recommended to read the documentation provided by the Raspberry Pi Foundation on the best way to flash the OS to the microSD card depending on your
+platform - <a class="reference external" href="https://www.raspberrypi.org/documentation/installation/installing-images/">Installing operating system images</a>.</p></li>
+<li><p>After you’ve flashed the microSD card browse to the “boot” partition and add a blank file called “ssh” <strong>(without any extension)</strong> which will enable the
+SSH server upon first boot, extended information on this step can be found <a class="reference external" href="https://www.raspberrypi.org/documentation/remote-access/ssh/README.md#3-enable-ssh-on-a-headless-raspberry-pi-add-file-to-sd-card-on-another-machine">here</a>.</p></li>
+<li><p>Plug the microSD card into the Raspberry Pi, connect network cable and power, the Raspberry Pi will start to boot.</p></li>
+</ol>
+</section>
+<section id="connecting-to-the-pi-via-ssh">
+<h3>2.3 Connecting to the Pi via SSH<a class="headerlink" href="#connecting-to-the-pi-via-ssh" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li><p>Download and install <a class="reference external" href="https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html">Putty</a>.</p></li>
+<li><p>Open Putty.</p></li>
+<li><p>Enter the IP of Raspberry Pi in the box that says “Host Name”, leaving the port set to 22 (default for SSH). A list of recommended ways can be found <a class="reference external" href="https://www.raspberrypi.org/documentation/remote-access/ip-address.md">here</a>, but the easiest is to download and use <a class="reference external" href="https://www.fing.com/">Fing</a>
+(<a class="reference external" href="https://play.google.com/store/apps/details?id=com.overlook.android.fing&amp;hl=en_GB">Android</a> / <a class="reference external" href="https://itunes.apple.com/us/app/fing-network-scanner/id430921107?mt=8">iOS</a>).</p></li>
+<li><p>In the “Saved Sessions” input box, name the Raspberry Pi connection and then press “Save”.</p></li>
+<li><p>Select your new saved session from the list.</p></li>
+<li><p>Press “Open”.</p></li>
+</ol>
+</section>
+<section id="configuring-the-pi">
+<h3>2.4 Configuring the Pi<a class="headerlink" href="#configuring-the-pi" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li><p>In the putty window login with the <strong>pi</strong> as the user and <strong>raspberry</strong> for the password.</p></li>
+<li><p>Type <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt-get</span> <span class="pre">update</span> <span class="pre">&amp;&amp;</span> <span class="pre">sudo</span> <span class="pre">apt-get</span> <span class="pre">dist-upgrade</span> <span class="pre">-y</span></code> and wait for the upgrades to install.</p></li>
+<li><p>Type <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt-get</span> <span class="pre">install</span> <span class="pre">git</span></code> and wait for it to install.</p></li>
+</ol>
+</section>
+<section id="setup-and-install-tuya-convert">
+<h3>2.5 Setup and Install tuya-convert<a class="headerlink" href="#setup-and-install-tuya-convert" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li><p>In the putty window type <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span> <span class="pre">https://github.com/ct-Open-Source/tuya-convert</span></code> press enter and wait while the repository is cloned.</p></li>
+<li><p>Type <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">tuya-convert</span></code> and press enter.</p></li>
+<li><p>Type <code class="docutils literal notranslate"><span class="pre">./install_prereq.sh</span></code> press enter and wait as the script gathers all the required components needed to function.</p></li>
+</ol>
+</section>
+<section id="upload-esphome-firmware-using-sftp">
+<h3>2.6 Upload ESPHome Firmware using SFTP<a class="headerlink" href="#upload-esphome-firmware-using-sftp" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li><p>Download <a class="reference external" href="https://filezilla-project.org/download.php?type=client">FileZilla</a> or <a class="reference external" href="https://winscp.net/eng/index.php">WinSCP</a> or use your preferred FTP
+client.</p></li>
+<li><p>Depending on the program you need to connect to the Pi using the IP address as the hostname and the username and password the same as you used to connect
+via SSH and ensure your connection type is set to <strong>SFTP</strong></p></li>
+<li><p>Browse to <code class="docutils literal notranslate"><span class="pre">/root/tuya-convert/files</span></code>.</p></li>
+<li><p>Upload your compiled <code class="docutils literal notranslate"><span class="pre">firmware.bin</span></code> file to this directory. For command line based installs you can access the file under
+<code class="docutils literal notranslate"><span class="pre">&lt;CONFIG_DIR&gt;/&lt;NODE_NAME&gt;/.pioenvs/&lt;NODE_NAME&gt;/firmware.bin</span></code> alternatively Hass.io users can download the file directly from the web ui.</p></li>
+</ol>
+</section>
+<section id="use-tuya-convert-to-install-esphome-firmware">
+<h3>2.7 Use tuya-convert to install ESPHome Firmware<a class="headerlink" href="#use-tuya-convert-to-install-esphome-firmware" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li><p>Type <code class="docutils literal notranslate"><span class="pre">./start_flash.sh</span></code></p></li>
+<li><p>Type <code class="docutils literal notranslate"><span class="pre">yes</span></code> to accept the warning.</p></li>
+<li><p>Connect your alternative WiFi device (non iOS / Apple based) to the <code class="docutils literal notranslate"><span class="pre">vtrust-flash</span></code> SSID using <code class="docutils literal notranslate"><span class="pre">flashmeifyoucan</span></code> as the password. This is the network
+being broadcast by the Pi from the tuya flash script.</p></li>
+<li><p>If you haven’t already install your bulb and flip the switch. It should automatically enter pairing mode represented by the bulb flashing on and off. If it
+doesn’t, switch your bulb, on-off-on-off-on as per the instructions <a class="reference external" href="https://img1.wsimg.com/blobby/go/67cdd3b9-3600-4104-b097-603c05201237/downloads/1cq3j1sq1_277630.pdf">here</a>.</p></li>
+<li><p>Press enter on your putty window to start the flash process and wait. The bulb will stop flashing followed by a large amount of scrolling text, this is the
+script backing up the factory shipped firmware.</p></li>
+<li><p>Once the process is complete you can type <code class="docutils literal notranslate"><span class="pre">curl</span> <span class="pre">http://10.42.42.42/flashURL?url=http://10.42.42.1/files/firmware.bin</span></code></p></li>
+<li><p>The bulb will restart and if everything is working correctly after a few seconds the light should be on.</p></li>
+</ol>
+</section>
+</section>
+<section id="bulb-configurations">
+<h2>3. Bulb Configurations<a class="headerlink" href="#bulb-configurations" title="Permalink to this headline">¶</a></h2>
+<p>Thanks to the <a class="reference external" href="https://github.com/arendst/Sonoff-tasmota/wiki/Mirabella-Genio-Bulb">existing work</a> by
+<a class="reference external" href="https://github.com/arendst/Sonoff-tasmota/wiki/Mirabella-Genio-Bulb">&#64;so3n</a> which these adaptions created by <a class="reference external" href="https://community.home-assistant.io/u/cryptelli">&#64;cryptelli</a> and <a class="reference external" href="https://community.home-assistant.io/u/bircoe">&#64;bircoe</a> are based on.</p>
+<section id="monochromatic-bulbs">
+<h3>3.1 Monochromatic Bulbs<a class="headerlink" href="#monochromatic-bulbs" title="Permalink to this headline">¶</a></h3>
+<p>The brightness of the bulb can be controlled using the <code class="docutils literal notranslate"><span class="pre">esp8266_pwm</span></code> output component connected to the light component using the id configuration
+variable <code class="docutils literal notranslate"><span class="pre">output_component1</span></code>.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">esphome</span><span class="p">:</span>
+  <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">mirabella_genio_cw_1</span>
+  <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ESP8266</span>
+  <span class="nt">board</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">esp01_1m</span>
+
+<span class="nt">wifi</span><span class="p">:</span>
+  <span class="nt">ssid</span><span class="p">:</span> <span class="s">&#39;WIFI&#39;</span>
+  <span class="nt">password</span><span class="p">:</span> <span class="s">&#39;WIFIPASS&#39;</span>
+
+<span class="nt">logger</span><span class="p">:</span>
+
+<span class="nt">api</span><span class="p">:</span>
+
+<span class="nt">ota</span><span class="p">:</span>
+
+<span class="nt">light</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">monochromatic</span>
+    <span class="nt">name</span><span class="p">:</span> <span class="s">&quot;Mirabella</span><span class="nv"> </span><span class="s">Genio</span><span class="nv"> </span><span class="s">Smart</span><span class="nv"> </span><span class="s">Bulb&quot;</span>
+    <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">light</span>
+    <span class="nt">output</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">output_component1</span>
+
+    <span class="c1"># Ensure the light turns on by default if the physical switch is actuated.</span>
+    <span class="nt">restore_mode</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ALWAYS_ON</span>
+
+<span class="nt">output</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">esp8266_pwm</span>
+    <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">output_component1</span>
+    <span class="c1"># May need to use GPIO14 instead for certain globes</span>
+    <span class="nt">pin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO13</span>
+</pre></div>
+</div>
+</section>
+<section id="cold-warm-white-bulbs">
+<h3>3.2 Cold + Warm White Bulbs<a class="headerlink" href="#cold-warm-white-bulbs" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">esphome</span><span class="p">:</span>
+  <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">mirabella_genio_cwww_1</span>
+  <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ESP8266</span>
+  <span class="nt">board</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">esp01_1m</span>
+
+<span class="nt">wifi</span><span class="p">:</span>
+  <span class="nt">ssid</span><span class="p">:</span> <span class="s">&#39;WIFI&#39;</span>
+  <span class="nt">password</span><span class="p">:</span> <span class="s">&#39;WIFIPASS&#39;</span>
+
+<span class="nt">logger</span><span class="p">:</span>
+
+<span class="nt">api</span><span class="p">:</span>
+
+<span class="nt">ota</span><span class="p">:</span>
+
+<span class="nt">output</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">esp8266_pwm</span>
+    <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">output_warm_white</span>
+    <span class="nt">pin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO13</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">esp8266_pwm</span>
+    <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">output_daylight</span>
+    <span class="nt">pin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO5</span>
+
+<span class="nt">light</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">cwww</span>
+    <span class="nt">name</span><span class="p">:</span> <span class="s">&quot;Mirabella</span><span class="nv"> </span><span class="s">Genio</span><span class="nv"> </span><span class="s">Smart</span><span class="nv"> </span><span class="s">Bulb&quot;</span>
+    <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">light</span>
+    <span class="nt">cold_white</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">output_daylight</span>
+    <span class="nt">warm_white</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">output_warm_white</span>
+    <span class="nt">cold_white_color_temperature</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">6500 K</span>
+    <span class="nt">warm_white_color_temperature</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">2700 K</span>
+
+    <span class="c1"># Ensure the light turns on by default if the physical switch is actuated.</span>
+    <span class="nt">restore_mode</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ALWAYS_ON</span>
+</pre></div>
+</div>
+</section>
+<section id="rgbw-color-bulbs">
+<h3>3.3 RGBW Color Bulbs<a class="headerlink" href="#rgbw-color-bulbs" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">esphome</span><span class="p">:</span>
+  <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">rgbw_e27_01</span>
+  <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ESP8266</span>
+  <span class="nt">board</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">esp01_1m</span>
+
+<span class="nt">wifi</span><span class="p">:</span>
+  <span class="nt">ssid</span><span class="p">:</span> <span class="s">&#39;WIFI&#39;</span>
+  <span class="nt">password</span><span class="p">:</span> <span class="s">&#39;WIFIPASS&#39;</span>
+
+<span class="nt">logger</span><span class="p">:</span>
+
+<span class="nt">api</span><span class="p">:</span>
+
+<span class="nt">ota</span><span class="p">:</span>
+
+<span class="nt">output</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">esp8266_pwm</span>
+    <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">output_red</span>
+    <span class="nt">pin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO4</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">esp8266_pwm</span>
+    <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">output_green</span>
+    <span class="nt">pin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO12</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">esp8266_pwm</span>
+    <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">output_blue</span>
+    <span class="nt">pin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO14</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">esp8266_pwm</span>
+    <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">output_white</span>
+    <span class="nt">pin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO5</span>
+
+<span class="nt">light</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">rgbw</span>
+    <span class="nt">name</span><span class="p">:</span> <span class="s">&quot;rgbw_e27_01&quot;</span>
+    <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">light</span>
+    <span class="nt">red</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">output_red</span>
+    <span class="nt">green</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">output_green</span>
+    <span class="nt">blue</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">output_blue</span>
+    <span class="nt">white</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">output_white</span>
+
+    <span class="c1"># Ensure the light turns on by default if the physical switch is actuated.</span>
+    <span class="nt">restore_mode</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ALWAYS_ON</span>
+</pre></div>
+</div>
+</section>
+<section id="cwww-mirabella-genio-downlights">
+<h3>3.4 CWWW Mirabella Genio Downlights<a class="headerlink" href="#cwww-mirabella-genio-downlights" title="Permalink to this headline">¶</a></h3>
+<p>Kmart also sell a <a class="reference external" href="https://www.kmart.com.au/product/mirabella-genio-wi-fi-dimmable-9w-led-downlight/2754331">downlight option</a>, which works quite well however the PWM method that is used is different to the way the CWWW lights in ESPHome works.</p>
+<p>A <a class="reference external" href="https://github.com/ssieb/custom_components/tree/master/cwww2">project by ssieb</a> resolves this using a custom component.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">esphome</span><span class="p">:</span>
+  <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">rgbw_e27_01</span>
+  <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ESP8266</span>
+  <span class="nt">board</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">esp01_1m</span>
+
+<span class="nt">wifi</span><span class="p">:</span>
+  <span class="nt">ssid</span><span class="p">:</span> <span class="s">&#39;WIFI&#39;</span>
+  <span class="nt">password</span><span class="p">:</span> <span class="s">&#39;WIFIPASS&#39;</span>
+
+<span class="nt">logger</span><span class="p">:</span>
+
+<span class="nt">api</span><span class="p">:</span>
+
+<span class="nt">ota</span><span class="p">:</span>
+
+<span class="nt">output</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">esp8266_pwm</span>
+    <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">output1</span>
+    <span class="nt">pin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO14</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">esp8266_pwm</span>
+    <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">output2</span>
+    <span class="nt">pin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO12</span>
+
+<span class="nt">light</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">cwww2</span>
+    <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">LED</span>
+    <span class="nt">name</span><span class="p">:</span> <span class="s">&quot;Downlight&quot;</span>
+    <span class="nt">color_temperature</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">output2</span>
+    <span class="nt">brightness</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">output1</span>
+    <span class="nt">cold_white_color_temperature</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">6500 K</span>
+    <span class="nt">warm_white_color_temperature</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">2700 K</span>
+
+    <span class="c1"># Ensure the light turns on by default if the physical switch is actuated.</span>
+    <span class="nt">restore_mode</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ALWAYS_ON</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="adding-to-home-assistant">
+<h2>4. Adding to Home Assistant<a class="headerlink" href="#adding-to-home-assistant" title="Permalink to this headline">¶</a></h2>
+<p>You can now add your bulb to home assistant via the configurations page, look for ‘ESPHome’ under the Integrations option and click ‘Configure’.</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/mirabella-genio-b22-rgbw-homeassistant.jpg"><img alt="../_images/mirabella-genio-b22-rgbw-homeassistant.jpg" src="../_images/mirabella-genio-b22-rgbw-homeassistant.jpg" style="width: 50.0%;" /></a>
+</figure>
+</section>
+<section id="see-also">
+<h2>See Also<a class="headerlink" href="#see-also" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="../components/light/index.html"><span class="doc">Light Component</span></a></p></li>
+<li><p><a class="reference internal" href="../components/light/monochromatic.html"><span class="doc">Monochromatic Light</span></a></p></li>
+<li><p><a class="reference internal" href="../components/light/cwww.html"><span class="doc">Cold White + Warm White Light</span></a></p></li>
+<li><p><a class="reference internal" href="../components/light/rgbw.html"><span class="doc">RGBW Light</span></a></p></li>
+<li><p><a class="reference internal" href="../components/output/index.html"><span class="doc">Output Component</span></a></p></li>
+<li><p><a class="reference internal" href="../components/output/esp8266_pwm.html"><span class="doc">ESP8266 Software PWM Output</span></a></p></li>
+<li><p><a class="reference internal" href="../guides/automations.html"><span class="doc">Automations and Templates</span></a></p></li>
+<li><p><a class="reference external" href="https://github.com/esphome/esphome-docs/blob/current/cookbook/mirabella-genio-bulb.rst">Edit this page on GitHub</a></p></li>
+</ul>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+  <div id="upgrade-footer">
+    A new version has been release since you last visited this page: 1.17.2 🎉
+    <div class="footer-button-container">
+      <div role="button" id="upgrade-footer-dismiss" class="footer-button">Dismiss</div>
+      <a id="upgrade-footer-changelog" class="footer-button" href="../changelog/v1.17.0.html">View Changelog</a>  
+    </div>
+  </div>
+  <script>
+    var old = window.localStorage.getItem("version");
+    if (old === null) { window.localStorage.setItem("version", "1.17");
+    } else if (old !== "1.17") {
+      const footerEl = document.getElementById("upgrade-footer");
+      footerEl.classList.add("not-hidden");
+      footerEl.addEventListener('click', function () {
+        window.localStorage.setItem("version", "1.17");
+        footerEl.classList.remove("not-hidden");
+      });
+    }
+  </script>
+
+  </body>
+
+<!-- Mirrored from esphome.io/cookbook/mirabella-genio-bulb.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 16 May 2021 03:02:47 GMT -->
+</html>

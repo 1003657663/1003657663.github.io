@@ -1,0 +1,248 @@
+
+  <!DOCTYPE html>
+
+
+<html lang="en">
+  
+<!-- Mirrored from esphome.io/components/climate/midea_ac.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 16 May 2021 03:02:16 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+<meta name="description" content="Instructions for setting up a Midea climate device">
+<meta itemprop="name" content="Midea Air Conditioner">
+<meta itemprop="description" content="Instructions for setting up a Midea climate device">
+<meta itemprop="image" content="../../_images/air-conditioner.png">
+<meta name="twitter:title" content="Midea Air Conditioner">
+<meta name="twitter:image:src" content="../../_images/air-conditioner.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@OttoWinter_">
+<meta name="twitter:description" content="Instructions for setting up a Midea climate device">
+<meta property="og:title" content="Midea Air Conditioner">
+<meta property="og:image" content="../../_images/air-conditioner.png">
+<meta property="og:type" content="website">
+<meta property="og:description" content="Instructions for setting up a Midea climate device">
+
+    <title>Midea Air Conditioner &#8212; ESPHome</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/alabaster.css" />
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <link rel="canonical" href="midea_ac.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="PID Climate" href="pid.html" />
+    <link rel="prev" title="IR Remote Climate" href="ir_climate.html" />
+  <link rel="stylesheet" href="../../_static/customf001.css?hash=f908c2b5" type="text/css" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../../_static/apple-touch-icon.png">
+  <link rel="shortcut icon" href="../../_static/favicon.ico">
+  <link rel="icon" type="image/png" sizes="512x512" href="../../_static/favicon-512x512.png">
+  <link rel="icon" type="image/png" sizes="256x256" href="../../_static/favicon-256x256.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="../../_static/favicon-192x192.png">
+  <link rel="icon" type="image/png" sizes="128x128" href="../../_static/favicon-128x128.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../_static/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../../_static/favicon-16x16.png">
+  <link rel="manifest" href="../../_static/site.webmanifest">
+  <link rel="mask-icon" href="../../_static/safari-pinned-tab.svg" color="#646464">
+  <meta name="apple-mobile-web-app-title" content="ESPHome">
+  <meta name="application-name" content="ESPHome">
+  <meta name="msapplication-TileColor" content="#dfdfdf">
+  <meta name="msapplication-config" content="/_static/browserconfig.xml">
+  <meta name="theme-color" content="#dfdfdf">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta property="og:site_name" content="ESPHome">
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head><body>
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../index-2.html">
+              <img class="logo" src="../../_static/logo-text.svg" alt="Logo"/>
+            </a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="https://esphome.io/search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+  <h3><a href="../../index-2.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Midea Air Conditioner</a><ul>
+<li><a class="reference internal" href="#configuration-variables">Configuration variables:</a><ul>
+<li><a class="reference internal" href="#configuration-variables-of-midea-dongle-component">Configuration variables of midea-dongle component:</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#acknowledgments">Acknowledgments:</a></li>
+<li><a class="reference internal" href="#see-also">See Also</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="midea-air-conditioner">
+<h1>Midea Air Conditioner<a class="headerlink" href="#midea-air-conditioner" title="Permalink to this headline">¶</a></h1>
+<p>The <code class="docutils literal notranslate"><span class="pre">midea_ac</span></code> component creates a Midea air conditioner climate device.</p>
+<p>This component requires a auto-loaded <code class="docutils literal notranslate"><span class="pre">midea-dongle</span></code> component, that use hardware UART.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This protocol also used by some vendors:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><a class="reference external" href="https://www.electrolux.ru/">Electrolux</a></p></li>
+<li><p><a class="reference external" href="https://www.qlima.com/">Qlima</a></p></li>
+<li><p><a class="reference external" href="https://www.artelgroup.com/">Artel</a></p></li>
+<li><p><a class="reference external" href="https://www.carrier.com/">Carrier</a></p></li>
+<li><p><a class="reference external" href="http://www.comfee-russia.ru/">Comfee</a></p></li>
+<li><p><a class="reference external" href="https://www.inventorairconditioner.com/">Inventor</a></p></li>
+<li><p>and maybe others</p></li>
+</ul>
+</div></blockquote>
+<p>Example of hardware implementation is <a class="reference external" href="https://github.com/dudanov/midea-open-dongle">Midea Open Dongle</a> in free <a class="reference external" href="https://kicad-pcb.org/">KiCad</a> format.</p>
+</div>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example configuration entry</span>
+
+<span class="c1"># Disable logging over UART (required)</span>
+<span class="nt">logger</span><span class="p">:</span>
+  <span class="nt">baud_rate</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">0</span>
+
+<span class="c1"># UART settings for Midea dongle (required)</span>
+<span class="nt">uart</span><span class="p">:</span>
+  <span class="nt">tx_pin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">1</span>
+  <span class="nt">rx_pin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">3</span>
+  <span class="nt">baud_rate</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">9600</span>
+
+<span class="c1"># Optional (if you want modify settings)</span>
+<span class="nt">midea_dongle</span><span class="p">:</span>
+  <span class="nt">strength_icon</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+
+<span class="c1"># Main settings</span>
+<span class="nt">climate</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">midea_ac</span>
+    <span class="nt">name</span><span class="p">:</span> <span class="s">&quot;My</span><span class="nv"> </span><span class="s">Midea</span><span class="nv"> </span><span class="s">AC&quot;</span>
+    <span class="nt">visual</span><span class="p">:</span>
+      <span class="nt">min_temperature</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">18 °C</span>
+      <span class="nt">max_temperature</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">25 °C</span>
+      <span class="nt">temperature_step</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">0.1 °C</span>
+    <span class="nt">beeper</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+    <span class="nt">swing_horizontal</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+    <span class="nt">swing_both</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+    <span class="nt">outdoor_temperature</span><span class="p">:</span>
+      <span class="nt">name</span><span class="p">:</span> <span class="s">&quot;Temp&quot;</span>
+    <span class="nt">power_usage</span><span class="p">:</span>
+      <span class="nt">name</span><span class="p">:</span> <span class="s">&quot;Power&quot;</span>
+    <span class="nt">humidity_setpoint</span><span class="p">:</span>
+      <span class="nt">name</span><span class="p">:</span> <span class="s">&quot;Hum&quot;</span>
+</pre></div>
+</div>
+<section id="configuration-variables">
+<h2>Configuration variables:<a class="headerlink" href="#configuration-variables" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><strong>id</strong> (<em>Optional</em>, <a class="reference internal" href="../../guides/configuration-types.html#config-id"><span class="std std-ref">ID</span></a>): Manually specify the ID used for code generation.</p></li>
+<li><p><strong>midea_dongle_id</strong> (<em>Optional</em>, <a class="reference internal" href="../../guides/configuration-types.html#config-id"><span class="std std-ref">ID</span></a>): Manually specify the ID of the <code class="docutils literal notranslate"><span class="pre">midea_dongle</span></code> if you want to use multiple devices.</p></li>
+<li><p><strong>name</strong> (<strong>Required</strong>, string): The name of the climate device.</p></li>
+<li><p><strong>outdoor_temperature</strong> (<em>Optional</em>): The information for the outdoor temperature
+sensor.</p>
+<ul>
+<li><p><strong>name</strong> (<strong>Required</strong>, string): The name of the sensor.</p></li>
+<li><p><strong>id</strong> (<em>Optional</em>, <a class="reference internal" href="../../guides/configuration-types.html#config-id"><span class="std std-ref">ID</span></a>): Set the ID of this sensor for use in lambdas.</p></li>
+<li><p>All other options from <a class="reference internal" href="../sensor/index.html#config-sensor"><span class="std std-ref">Sensor</span></a>.</p></li>
+</ul>
+</li>
+<li><p><strong>power_usage</strong> (<em>Optional</em>): The information for the current power consumption
+sensor.</p>
+<ul>
+<li><p><strong>name</strong> (<strong>Required</strong>, string): The name of the sensor.</p></li>
+<li><p><strong>id</strong> (<em>Optional</em>, <a class="reference internal" href="../../guides/configuration-types.html#config-id"><span class="std std-ref">ID</span></a>): Set the ID of this sensor for use in lambdas.</p></li>
+<li><p>All other options from <a class="reference internal" href="../sensor/index.html#config-sensor"><span class="std std-ref">Sensor</span></a>.</p></li>
+</ul>
+</li>
+<li><p><strong>humidity_setpoint</strong> (<em>Optional</em>): The information for the humidity indoor
+sensor (experimental).</p>
+<ul>
+<li><p><strong>name</strong> (<strong>Required</strong>, string): The name of the sensor.</p></li>
+<li><p><strong>id</strong> (<em>Optional</em>, <a class="reference internal" href="../../guides/configuration-types.html#config-id"><span class="std std-ref">ID</span></a>): Set the ID of this sensor for use in lambdas.</p></li>
+<li><p>All other options from <a class="reference internal" href="../sensor/index.html#config-sensor"><span class="std std-ref">Sensor</span></a>.</p></li>
+</ul>
+</li>
+<li><p><strong>beeper</strong> (<em>Optional</em>, boolean): Beeper feedback on command. Defaults to <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p></li>
+<li><p><strong>swing_horizontal</strong> (<em>Optional</em>, boolean): Enable <strong>swing horizontal</strong> option. Defaults to <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p></li>
+<li><p><strong>swing_both</strong> (<em>Optional</em>, boolean): Enable <strong>swing both</strong> option. Defaults to <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p></li>
+<li><p>All other options from <a class="reference internal" href="index.html#config-climate"><span class="std std-ref">Climate</span></a>.</p></li>
+</ul>
+<section id="configuration-variables-of-midea-dongle-component">
+<h3>Configuration variables of midea-dongle component:<a class="headerlink" href="#configuration-variables-of-midea-dongle-component" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><strong>id</strong> (<em>Optional</em>, <a class="reference internal" href="../../guides/configuration-types.html#config-id"><span class="std std-ref">ID</span></a>): Manually specify the ID used for code generation.</p></li>
+<li><p><strong>uart_id</strong> (<em>Optional</em>, <a class="reference internal" href="../../guides/configuration-types.html#config-id"><span class="std std-ref">ID</span></a>): Manually specify the ID of the <a class="reference internal" href="../uart.html"><span class="doc">UART Bus</span></a> if you want
+to use multiple UART buses.</p></li>
+<li><p><strong>strength_icon</strong> (<em>Optional</em>, boolean): Set if your device have signal strength icon
+and you want to use this feature. By default, on connected state, icon show maximum signal quality. Defaults to <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p></li>
+</ul>
+</section>
+</section>
+<section id="acknowledgments">
+<h2>Acknowledgments:<a class="headerlink" href="#acknowledgments" title="Permalink to this headline">¶</a></h2>
+<p>Thanks to the following people for their contributions to reverse engineering the UART protocol and source code in the following repositories:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/mac-zhou/midea-msmart">Mac Zhou</a></p></li>
+<li><p><a class="reference external" href="https://github.com/NeoAcheron/midea-ac-py">NeoAcheron</a></p></li>
+<li><p><a class="reference external" href="https://github.com/reneklootwijk/node-mideahvac">Rene Klootwijk</a></p></li>
+</ul>
+</section>
+<section id="see-also">
+<h2>See Also<a class="headerlink" href="#see-also" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="index.html"><span class="doc">Climate Component</span></a></p></li>
+<li><p><a class="reference external" href="../../api/midea__ac_8h.html">API Reference</a></p></li>
+<li><p><a class="reference external" href="https://github.com/esphome/esphome-docs/blob/current/components/climate/midea_ac.rst">Edit this page on GitHub</a></p></li>
+</ul>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+  <div id="upgrade-footer">
+    A new version has been release since you last visited this page: 1.17.2 🎉
+    <div class="footer-button-container">
+      <div role="button" id="upgrade-footer-dismiss" class="footer-button">Dismiss</div>
+      <a id="upgrade-footer-changelog" class="footer-button" href="../../changelog/v1.17.0.html">View Changelog</a>  
+    </div>
+  </div>
+  <script>
+    var old = window.localStorage.getItem("version");
+    if (old === null) { window.localStorage.setItem("version", "1.17");
+    } else if (old !== "1.17") {
+      const footerEl = document.getElementById("upgrade-footer");
+      footerEl.classList.add("not-hidden");
+      footerEl.addEventListener('click', function () {
+        window.localStorage.setItem("version", "1.17");
+        footerEl.classList.remove("not-hidden");
+      });
+    }
+  </script>
+
+  </body>
+
+<!-- Mirrored from esphome.io/components/climate/midea_ac.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 16 May 2021 03:02:16 GMT -->
+</html>

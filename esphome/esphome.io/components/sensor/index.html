@@ -1,0 +1,746 @@
+
+  <!DOCTYPE html>
+
+
+<html lang="en">
+  
+<!-- Mirrored from esphome.io/components/sensor/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 16 May 2021 02:59:00 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+<meta name="description" content="Instructions for setting up sensor components in ESPHome.">
+<meta itemprop="name" content="Sensor Component">
+<meta itemprop="description" content="Instructions for setting up sensor components in ESPHome.">
+<meta itemprop="image" content="../../_images/folder-open.png">
+<meta name="twitter:title" content="Sensor Component">
+<meta name="twitter:image:src" content="../../_images/folder-open.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@OttoWinter_">
+<meta name="twitter:description" content="Instructions for setting up sensor components in ESPHome.">
+<meta property="og:title" content="Sensor Component">
+<meta property="og:image" content="../../_images/folder-open.png">
+<meta property="og:type" content="website">
+<meta property="og:description" content="Instructions for setting up sensor components in ESPHome.">
+
+    <title>Sensor Component &#8212; ESPHome</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/alabaster.css" />
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <link rel="canonical" href="index.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Analog To Digital Sensor" href="adc.html" />
+    <link rel="prev" title="TLC59208F" href="../output/tlc59208f.html" />
+  <link rel="stylesheet" href="../../_static/customf001.css?hash=f908c2b5" type="text/css" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../../_static/apple-touch-icon.png">
+  <link rel="shortcut icon" href="../../_static/favicon.ico">
+  <link rel="icon" type="image/png" sizes="512x512" href="../../_static/favicon-512x512.png">
+  <link rel="icon" type="image/png" sizes="256x256" href="../../_static/favicon-256x256.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="../../_static/favicon-192x192.png">
+  <link rel="icon" type="image/png" sizes="128x128" href="../../_static/favicon-128x128.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../_static/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../../_static/favicon-16x16.png">
+  <link rel="manifest" href="../../_static/site.webmanifest">
+  <link rel="mask-icon" href="../../_static/safari-pinned-tab.svg" color="#646464">
+  <meta name="apple-mobile-web-app-title" content="ESPHome">
+  <meta name="application-name" content="ESPHome">
+  <meta name="msapplication-TileColor" content="#dfdfdf">
+  <meta name="msapplication-config" content="/_static/browserconfig.xml">
+  <meta name="theme-color" content="#dfdfdf">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta property="og:site_name" content="ESPHome">
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head><body>
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../index-2.html">
+              <img class="logo" src="../../_static/logo-text.svg" alt="Logo"/>
+            </a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="https://esphome.io/search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+  <h3><a href="../../index-2.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Sensor Component</a><ul>
+<li><a class="reference internal" href="#base-sensor-configuration">Base Sensor Configuration</a></li>
+<li><a class="reference internal" href="#sensor-filters">Sensor Filters</a><ul>
+<li><a class="reference internal" href="#offset"><code class="docutils literal notranslate"><span class="pre">offset</span></code></a></li>
+<li><a class="reference internal" href="#multiply"><code class="docutils literal notranslate"><span class="pre">multiply</span></code></a></li>
+<li><a class="reference internal" href="#calibrate-linear"><code class="docutils literal notranslate"><span class="pre">calibrate_linear</span></code></a></li>
+<li><a class="reference internal" href="#calibrate-polynomial"><code class="docutils literal notranslate"><span class="pre">calibrate_polynomial</span></code></a></li>
+<li><a class="reference internal" href="#filter-out"><code class="docutils literal notranslate"><span class="pre">filter_out</span></code></a></li>
+<li><a class="reference internal" href="#median"><code class="docutils literal notranslate"><span class="pre">median</span></code></a></li>
+<li><a class="reference internal" href="#min"><code class="docutils literal notranslate"><span class="pre">min</span></code></a></li>
+<li><a class="reference internal" href="#max"><code class="docutils literal notranslate"><span class="pre">max</span></code></a></li>
+<li><a class="reference internal" href="#sliding-window-moving-average"><code class="docutils literal notranslate"><span class="pre">sliding_window_moving_average</span></code></a></li>
+<li><a class="reference internal" href="#exponential-moving-average"><code class="docutils literal notranslate"><span class="pre">exponential_moving_average</span></code></a></li>
+<li><a class="reference internal" href="#throttle"><code class="docutils literal notranslate"><span class="pre">throttle</span></code></a></li>
+<li><a class="reference internal" href="#heartbeat"><code class="docutils literal notranslate"><span class="pre">heartbeat</span></code></a></li>
+<li><a class="reference internal" href="#debounce"><code class="docutils literal notranslate"><span class="pre">debounce</span></code></a></li>
+<li><a class="reference internal" href="#delta"><code class="docutils literal notranslate"><span class="pre">delta</span></code></a></li>
+<li><a class="reference internal" href="#or"><code class="docutils literal notranslate"><span class="pre">or</span></code></a></li>
+<li><a class="reference internal" href="#lambda"><code class="docutils literal notranslate"><span class="pre">lambda</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#example-converting-celsius-to-fahrenheit">Example: Converting Celsius to Fahrenheit</a></li>
+<li><a class="reference internal" href="#sensor-automation">Sensor Automation</a><ul>
+<li><a class="reference internal" href="#on-value"><code class="docutils literal notranslate"><span class="pre">on_value</span></code></a></li>
+<li><a class="reference internal" href="#on-value-range"><code class="docutils literal notranslate"><span class="pre">on_value_range</span></code></a></li>
+<li><a class="reference internal" href="#on-raw-value"><code class="docutils literal notranslate"><span class="pre">on_raw_value</span></code></a></li>
+<li><a class="reference internal" href="#sensor-in-range-condition"><code class="docutils literal notranslate"><span class="pre">sensor.in_range</span></code> Condition</a></li>
+<li><a class="reference internal" href="#lambda-calls">lambda calls</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#see-also">See Also</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="sensor-component">
+<h1>Sensor Component<a class="headerlink" href="#sensor-component" title="Permalink to this headline">¶</a></h1>
+<p>ESPHome has support for many different sensors. Each of them is a
+platform of the <code class="docutils literal notranslate"><span class="pre">sensor</span></code> domain and each sensor has several base
+configuration options.</p>
+<section id="base-sensor-configuration">
+<span id="config-sensor"></span><h2>Base Sensor Configuration<a class="headerlink" href="#base-sensor-configuration" title="Permalink to this headline">¶</a></h2>
+<p>All sensors in ESPHome have a name and some other
+optional configuration options. By default, the sensor platform will
+chose appropriate values for all of these by default, but you can always
+override them if you want to.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example sensor configuration</span>
+<span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Livingroom Temperature</span>
+
+<span class="c1"># Optional variables:</span>
+<span class="nt">unit_of_measurement</span><span class="p">:</span> <span class="s">&quot;°C&quot;</span>
+<span class="nt">icon</span><span class="p">:</span> <span class="s">&quot;mdi:water-percent&quot;</span>
+<span class="nt">device_class</span><span class="p">:</span> <span class="s">&quot;temperature&quot;</span>
+<span class="nt">accuracy_decimals</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">1</span>
+<span class="nt">expire_after</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">30s</span>
+<span class="nt">filters</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">sliding_window_moving_average</span><span class="p">:</span>
+      <span class="nt">window_size</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">15</span>
+      <span class="nt">send_every</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">15</span>
+</pre></div>
+</div>
+<p>Configuration variables:</p>
+<ul class="simple">
+<li><p><strong>name</strong> (<strong>Required</strong>, string): The name for the sensor.</p></li>
+<li><p><strong>unit_of_measurement</strong> (<em>Optional</em>, string): Manually set the unit
+of measurement the sensor should advertise its values with. This does
+not actually do any maths (conversion between units).</p></li>
+<li><p><strong>device_class</strong> (<em>Optional</em>, string): The device class for the
+sensor. See <a class="reference external" href="https://www.home-assistant.io/integrations/sensor/#device-class">https://www.home-assistant.io/integrations/sensor/#device-class</a>
+for a list of available options. Set to <code class="docutils literal notranslate"><span class="pre">&quot;&quot;</span></code> to remove the default device class of a sensor.</p></li>
+<li><p><strong>icon</strong> (<em>Optional</em>, icon): Manually set the icon to use for the sensor in the frontend. The icon set here
+is ignored by Home Assistant, if a device class is already set.</p></li>
+<li><p><strong>accuracy_decimals</strong> (<em>Optional</em>, int): Manually set the accuracy of decimals to use when reporting values.</p></li>
+<li><p><strong>filters</strong> (<em>Optional</em>): Specify filters to use for some basic
+transforming of values. See <a class="reference internal" href="#sensor-filters"><span class="std std-ref">Sensor Filters</span></a> for more information.</p></li>
+<li><p><strong>internal</strong> (<em>Optional</em>, boolean): Mark this component as internal. Internal components will
+not be exposed to the frontend (like Home Assistant). Only specifying an <code class="docutils literal notranslate"><span class="pre">id</span></code> without
+a <code class="docutils literal notranslate"><span class="pre">name</span></code> will implicitly set this to true.</p></li>
+<li><p><strong>force_update</strong> (<em>Optional</em>, boolean): If true, this option will force the frontend (usually Home
+Assistant) to create a state changed event when the sensor updates even if the value stayed the same.
+Some applications like Grafana require this when working with Home Assistant, but beware it can
+significantly increase the database size. Defaults to <code class="docutils literal notranslate"><span class="pre">false</span></code>.</p></li>
+</ul>
+<p>Automations:</p>
+<ul class="simple">
+<li><p><strong>on_value</strong> (<em>Optional</em>, <a class="reference internal" href="../../guides/automations.html#automation"><span class="std std-ref">Automation</span></a>): An automation to perform
+when a new value is published. See <a class="reference internal" href="#sensor-on-value"><span class="std std-ref">on_value</span></a>.</p></li>
+<li><p><strong>on_value_range</strong> (<em>Optional</em>, <a class="reference internal" href="../../guides/automations.html#automation"><span class="std std-ref">Automation</span></a>): An automation to perform
+when a published value transition from outside to a range to inside. See <a class="reference internal" href="#sensor-on-value-range"><span class="std std-ref">on_value_range</span></a>.</p></li>
+<li><p><strong>on_raw_value</strong> (<em>Optional</em>, <a class="reference internal" href="../../guides/automations.html#automation"><span class="std std-ref">Automation</span></a>): An automation to perform
+when a raw value is received that hasn’t passed through any filters. See <a class="reference internal" href="#sensor-on-raw-value"><span class="std std-ref">on_raw_value</span></a>.</p></li>
+</ul>
+<p>MQTT Options:</p>
+<ul class="simple">
+<li><p><strong>expire_after</strong> (<em>Optional</em>, <a class="reference internal" href="../../guides/configuration-types.html#config-time"><span class="std std-ref">Time</span></a>): Manually set the time in which
+the sensor values should be marked as “expired”/“unknown”. Not providing any value means no expiry.</p></li>
+<li><p>All other options from <a class="reference internal" href="../mqtt.html#config-mqtt-component"><span class="std std-ref">MQTT Component</span></a>.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you’re trying to setup filters for a sensor that has multiple outputs - for example a DHT22 which
+reports temperature <em>and</em> humidity - put the <code class="docutils literal notranslate"><span class="pre">filters</span></code> option into each sensor output like this:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">sensor</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">dht</span>
+    <span class="c1"># ...</span>
+    <span class="nt">temperature</span><span class="p">:</span>
+      <span class="nt">filters</span><span class="p">:</span>
+        <span class="c1"># ...</span>
+    <span class="nt">humidity</span><span class="p">:</span>
+      <span class="nt">filters</span><span class="p">:</span>
+        <span class="c1"># ...</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="sensor-filters">
+<span id="id1"></span><h2>Sensor Filters<a class="headerlink" href="#sensor-filters" title="Permalink to this headline">¶</a></h2>
+<p>ESPHome allows you to do some basic pre-processing of
+sensor values before they’re sent to Home Assistant. This is for example
+useful if you want to apply some average over the last few values.</p>
+<p>There are a lot of filters that sensors support. You define them by adding a <code class="docutils literal notranslate"><span class="pre">filters</span></code>
+block in the sensor configuration (at the same level as <code class="docutils literal notranslate"><span class="pre">platform</span></code>; or inside each sensor block
+for platforms with multiple sensors)</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example filters:</span>
+<span class="nt">filters</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">offset</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">2.0</span>
+  <span class="p p-Indicator">-</span> <span class="nt">multiply</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">1.2</span>
+  <span class="p p-Indicator">-</span> <span class="nt">calibrate_linear</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">0.0 -&gt; 0.0</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">40.0 -&gt; 45.0</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">100.0 -&gt; 102.5</span>
+  <span class="p p-Indicator">-</span> <span class="nt">filter_out</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">42.0</span>
+  <span class="p p-Indicator">-</span> <span class="nt">median</span><span class="p">:</span>
+      <span class="nt">window_size</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">5</span>
+      <span class="nt">send_every</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">5</span>
+      <span class="nt">send_first_at</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">1</span>
+  <span class="p p-Indicator">-</span> <span class="nt">sliding_window_moving_average</span><span class="p">:</span>
+      <span class="nt">window_size</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">15</span>
+      <span class="nt">send_every</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">15</span>
+  <span class="p p-Indicator">-</span> <span class="nt">exponential_moving_average</span><span class="p">:</span>
+      <span class="nt">alpha</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">0.1</span>
+      <span class="nt">send_every</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">15</span>
+  <span class="p p-Indicator">-</span> <span class="nt">throttle</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">1s</span>
+  <span class="p p-Indicator">-</span> <span class="nt">heartbeat</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">5s</span>
+  <span class="p p-Indicator">-</span> <span class="nt">debounce</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">0.1s</span>
+  <span class="p p-Indicator">-</span> <span class="nt">delta</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">5.0</span>
+  <span class="p p-Indicator">-</span> <span class="nt">or</span><span class="p">:</span>
+    <span class="p p-Indicator">-</span> <span class="nt">throttle</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">1s</span>
+    <span class="p p-Indicator">-</span> <span class="nt">delta</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">5.0</span>
+  <span class="p p-Indicator">-</span> <span class="nt">lambda</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">return x * (9.0/5.0) + 32.0;</span>
+</pre></div>
+</div>
+<section id="offset">
+<h3><code class="docutils literal notranslate"><span class="pre">offset</span></code><a class="headerlink" href="#offset" title="Permalink to this headline">¶</a></h3>
+<p>Adds a constant value to each sensor value.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example configuration entry</span>
+<span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">adc</span>
+  <span class="c1"># ...</span>
+  <span class="nt">filters</span><span class="p">:</span>
+    <span class="p p-Indicator">-</span> <span class="nt">offset</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">2.0</span>
+    <span class="p p-Indicator">-</span> <span class="nt">multiply</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">1.2</span>
+</pre></div>
+</div>
+</section>
+<section id="multiply">
+<h3><code class="docutils literal notranslate"><span class="pre">multiply</span></code><a class="headerlink" href="#multiply" title="Permalink to this headline">¶</a></h3>
+<p>Multiplies each value by a constant value.</p>
+</section>
+<section id="calibrate-linear">
+<span id="sensor-filter-calibrate-linear"></span><h3><code class="docutils literal notranslate"><span class="pre">calibrate_linear</span></code><a class="headerlink" href="#calibrate-linear" title="Permalink to this headline">¶</a></h3>
+<p>Calibrate your sensor values by using values you measured with an accurate “truth” source.</p>
+<p>First, collect a bunch of values of what the sensor shows and what the real value should be.
+For temperature, this can for example be achieved by using an accurate thermometer. For other
+sensors like power sensor this can be done by connecting a known load and then writing down
+the value the sensor shows.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example configuration entry</span>
+<span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">dht</span>
+  <span class="c1"># ...</span>
+  <span class="nt">temperature</span><span class="p">:</span>
+    <span class="nt">name</span><span class="p">:</span> <span class="s">&quot;DHT22</span><span class="nv"> </span><span class="s">Temperature&quot;</span>
+    <span class="nt">filters</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="nt">calibrate_linear</span><span class="p">:</span>
+          <span class="c1"># Map 0.0 (from sensor) to 0.0 (true value)</span>
+          <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">0.0 -&gt; 0.0</span>
+          <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">10.0 -&gt; 12.1</span>
+</pre></div>
+</div>
+<p>The arguments are a list of data points, each in the form <code class="docutils literal notranslate"><span class="pre">MEASURED</span> <span class="pre">-&gt;</span> <span class="pre">TRUTH</span></code>. ESPHome will
+then fit a linear equation to the values (using least squares). So you need to supply at least
+two values.</p>
+</section>
+<section id="calibrate-polynomial">
+<span id="sensor-calibrate-polynomial"></span><h3><code class="docutils literal notranslate"><span class="pre">calibrate_polynomial</span></code><a class="headerlink" href="#calibrate-polynomial" title="Permalink to this headline">¶</a></h3>
+<p>Calibrate your sensor values by fitting them to a polynomial functions. This is similar to
+the <code class="docutils literal notranslate"><span class="pre">calibrate_linear</span></code> filter, but also allows for higher-order functions like quadratic polynomials.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example configuration entry</span>
+<span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">adc</span>
+  <span class="c1"># ...</span>
+  <span class="nt">filters</span><span class="p">:</span>
+    <span class="p p-Indicator">-</span> <span class="nt">calibrate_polynomial</span><span class="p">:</span>
+       <span class="nt">degree</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">2</span>
+       <span class="nt">datapoints</span><span class="p">:</span>
+        <span class="c1"># Map 0.0 (from sensor) to 0.0 (true value)</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">0.0 -&gt; 0.0</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">10.0 -&gt; 12.1</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">13.0 -&gt; 14.0</span>
+</pre></div>
+</div>
+<p>The arguments are a list of data points, each in the form <code class="docutils literal notranslate"><span class="pre">MEASURED</span> <span class="pre">-&gt;</span> <span class="pre">TRUTH</span></code>. Additionally, you need
+to specify the degree of the resulting polynomial, the datapoints will then be fitted to the given
+degree with a least squares solver.</p>
+</section>
+<section id="filter-out">
+<h3><code class="docutils literal notranslate"><span class="pre">filter_out</span></code><a class="headerlink" href="#filter-out" title="Permalink to this headline">¶</a></h3>
+<p>(<strong>Required</strong>, number): Filter out specific values to be displayed. For example to filter out the value <code class="docutils literal notranslate"><span class="pre">85.0</span></code></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example configuration entry</span>
+<span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">wifi_signal</span>
+  <span class="c1"># ...</span>
+  <span class="nt">filters</span><span class="p">:</span>
+    <span class="p p-Indicator">-</span> <span class="nt">filter_out</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">85.0</span>
+</pre></div>
+</div>
+</section>
+<section id="median">
+<h3><code class="docutils literal notranslate"><span class="pre">median</span></code><a class="headerlink" href="#median" title="Permalink to this headline">¶</a></h3>
+<p>A <a class="reference external" href="https://en.wikipedia.org/wiki/Median_filter#Worked_1D_example">simple moving median</a>
+over the last few values. This can be used to filter outliers from the received sensor data. A large
+window size will make the filter slow to react to input changes.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example configuration entry</span>
+<span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">wifi_signal</span>
+  <span class="c1"># ...</span>
+  <span class="nt">filters</span><span class="p">:</span>
+    <span class="p p-Indicator">-</span> <span class="nt">median</span><span class="p">:</span>
+        <span class="nt">window_size</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">7</span>
+        <span class="nt">send_every</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">4</span>
+        <span class="nt">send_first_at</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">3</span>
+</pre></div>
+</div>
+<p>Configuration variables:</p>
+<ul class="simple">
+<li><p><strong>window_size</strong> (<em>Optional</em>, integer): The number of values over which to calculate the median
+when pushing out a value. This number should
+be odd if you want an actual received value pushed out.
+Defaults to <code class="docutils literal notranslate"><span class="pre">5</span></code>.</p></li>
+<li><p><strong>send_every</strong> (<em>Optional</em>, integer): How often a sensor value should be pushed out. For
+example, in above configuration the median is calculated after every 4th
+received sensor value, over the last 7 received values.
+Defaults to <code class="docutils literal notranslate"><span class="pre">5</span></code>.</p></li>
+<li><p><strong>send_first_at</strong> (<em>Optional</em>, integer): By default, the very first raw value on boot is immediately
+published. With this parameter you can specify when the very first value is to be sent.
+Must be smaller than or equal to <code class="docutils literal notranslate"><span class="pre">send_every</span></code>
+Defaults to <code class="docutils literal notranslate"><span class="pre">1</span></code>.</p></li>
+</ul>
+</section>
+<section id="min">
+<h3><code class="docutils literal notranslate"><span class="pre">min</span></code><a class="headerlink" href="#min" title="Permalink to this headline">¶</a></h3>
+<p>A moving minimum over the last few values. A large window size will make the filter slow to
+react to input changes.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example configuration entry</span>
+<span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">wifi_signal</span>
+  <span class="c1"># ...</span>
+  <span class="nt">filters</span><span class="p">:</span>
+    <span class="p p-Indicator">-</span> <span class="nt">min</span><span class="p">:</span>
+        <span class="nt">window_size</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">7</span>
+        <span class="nt">send_every</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">4</span>
+        <span class="nt">send_first_at</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">3</span>
+</pre></div>
+</div>
+<p>Configuration variables:</p>
+<ul class="simple">
+<li><p><strong>window_size</strong> (<em>Optional</em>, integer): The number of values over which to calculate the min/max when pushing out a
+value. Defaults to <code class="docutils literal notranslate"><span class="pre">5</span></code>.</p></li>
+<li><p><strong>send_every</strong> (<em>Optional</em>, integer): How often a sensor value should be pushed out. For
+example, in above configuration the min is calculated after every 4th
+received sensor value, over the last 7 received values.
+Defaults to <code class="docutils literal notranslate"><span class="pre">5</span></code>.</p></li>
+<li><p><strong>send_first_at</strong> (<em>Optional</em>, integer): By default, the very first raw value on boot is immediately
+published. With this parameter you can specify when the very first value is to be sent.
+Must be smaller than or equal to <code class="docutils literal notranslate"><span class="pre">send_every</span></code>
+Defaults to <code class="docutils literal notranslate"><span class="pre">1</span></code>.</p></li>
+</ul>
+</section>
+<section id="max">
+<h3><code class="docutils literal notranslate"><span class="pre">max</span></code><a class="headerlink" href="#max" title="Permalink to this headline">¶</a></h3>
+<p>A moving maximum over the last few values. A large window size will make the filter slow to
+react to input changes.</p>
+<p>Configuration variables:</p>
+<ul class="simple">
+<li><p><strong>window_size</strong> (<em>Optional</em>, integer): The number of values over which to calculate the min/max
+when pushing out a value.
+Defaults to <code class="docutils literal notranslate"><span class="pre">5</span></code>.</p></li>
+<li><p><strong>send_every</strong> (<em>Optional</em>, integer): How often a sensor value should be pushed out. For
+example, in above configuration the min is calculated after every 4th
+received sensor value, over the last 7 received values.
+Defaults to <code class="docutils literal notranslate"><span class="pre">5</span></code>.</p></li>
+<li><p><strong>send_first_at</strong> (<em>Optional</em>, integer): By default, the very first raw value on boot is immediately
+published. With this parameter you can specify when the very first value is to be sent.
+Must be smaller than or equal to <code class="docutils literal notranslate"><span class="pre">send_every</span></code>
+Defaults to <code class="docutils literal notranslate"><span class="pre">1</span></code>.</p></li>
+</ul>
+</section>
+<section id="sliding-window-moving-average">
+<h3><code class="docutils literal notranslate"><span class="pre">sliding_window_moving_average</span></code><a class="headerlink" href="#sliding-window-moving-average" title="Permalink to this headline">¶</a></h3>
+<p>A <a class="reference external" href="https://en.wikipedia.org/wiki/Moving_average#Simple_moving_average">simple moving average</a>
+over the last few values. It can be used to have a short update interval on the sensor but only push
+out an average on a specific interval (thus increasing resolution).</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example configuration entry</span>
+<span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">wifi_signal</span>
+  <span class="c1"># ...</span>
+  <span class="nt">filters</span><span class="p">:</span>
+    <span class="p p-Indicator">-</span> <span class="nt">sliding_window_moving_average</span><span class="p">:</span>
+        <span class="nt">window_size</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">15</span>
+        <span class="nt">send_every</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">15</span>
+</pre></div>
+</div>
+<p>Configuration variables:</p>
+<ul class="simple">
+<li><p><strong>window_size</strong> (<em>Optional</em>, integer): The number of values over which to perform an
+average when pushing out a value.</p></li>
+<li><p><strong>send_every</strong> (<em>Optional</em>, integer): How often a sensor value should be pushed out. For
+example, in above configuration the weighted average is only
+pushed out on every 15th received sensor value.</p></li>
+<li><p><strong>send_first_at</strong> (<em>Optional</em>, integer): By default, the very first raw value on boot is immediately
+published. With this parameter you can specify when the very first value is to be sent.
+Defaults to <code class="docutils literal notranslate"><span class="pre">1</span></code>.</p></li>
+</ul>
+</section>
+<section id="exponential-moving-average">
+<h3><code class="docutils literal notranslate"><span class="pre">exponential_moving_average</span></code><a class="headerlink" href="#exponential-moving-average" title="Permalink to this headline">¶</a></h3>
+<p>A simple <a class="reference external" href="https://en.wikipedia.org/wiki/Moving_average#Exponential_moving_average">exponential moving average</a> over the last few
+values. It can be used to have a short update interval on the sensor but only push
+out an average on a specific interval (thus increasing resolution).</p>
+<p>Configuration variables:</p>
+<ul class="simple">
+<li><p><strong>alpha</strong> (<em>Optional</em>, float): The forget factor/alpha value of the filter. Defaults to <code class="docutils literal notranslate"><span class="pre">0.1</span></code>.</p></li>
+<li><p><strong>send_every</strong> (<em>Optional</em>, integer): How often a sensor value should be pushed out. Defaults to <code class="docutils literal notranslate"><span class="pre">15</span></code>.</p></li>
+</ul>
+</section>
+<section id="throttle">
+<h3><code class="docutils literal notranslate"><span class="pre">throttle</span></code><a class="headerlink" href="#throttle" title="Permalink to this headline">¶</a></h3>
+<p>Throttle the incoming values. When this filter gets an incoming value,
+it checks if the last incoming value is at least <code class="docutils literal notranslate"><span class="pre">specified</span> <span class="pre">time</span> <span class="pre">period</span></code> old.
+If it is not older than the configured value, the value is not passed forward.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example filters:</span>
+<span class="nt">filters</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">throttle</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">1s</span>
+  <span class="p p-Indicator">-</span> <span class="nt">heartbeat</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">5s</span>
+  <span class="p p-Indicator">-</span> <span class="nt">debounce</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">0.1s</span>
+  <span class="p p-Indicator">-</span> <span class="nt">delta</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">5.0</span>
+  <span class="p p-Indicator">-</span> <span class="nt">lambda</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">return x * (9.0/5.0) + 32.0;</span>
+</pre></div>
+</div>
+</section>
+<section id="heartbeat">
+<h3><code class="docutils literal notranslate"><span class="pre">heartbeat</span></code><a class="headerlink" href="#heartbeat" title="Permalink to this headline">¶</a></h3>
+<p>Send the last value that this sensor in the specified time interval.
+So a value of <code class="docutils literal notranslate"><span class="pre">10s</span></code> will cause the filter to output values every 10s regardless
+of the input values.</p>
+</section>
+<section id="debounce">
+<h3><code class="docutils literal notranslate"><span class="pre">debounce</span></code><a class="headerlink" href="#debounce" title="Permalink to this headline">¶</a></h3>
+<p>Only send values if the last incoming value is at least <code class="docutils literal notranslate"><span class="pre">specified</span> <span class="pre">time</span> <span class="pre">period</span></code>
+old. For example if two values come in at almost the same time, this filter will only output
+the last value and only after the specified time period has passed without any new incoming
+values.</p>
+</section>
+<section id="delta">
+<h3><code class="docutils literal notranslate"><span class="pre">delta</span></code><a class="headerlink" href="#delta" title="Permalink to this headline">¶</a></h3>
+<p>This filter stores the last value passed through this filter and only
+passes incoming values through if the absolute difference is greater than the configured
+value. For example if a value of 1.0 first comes in, it’s passed on. If the delta filter
+is configured with a value of 5, it will now not pass on an incoming value of 2.0, only values
+that are at least 6.0 big or -4.0.</p>
+</section>
+<section id="or">
+<h3><code class="docutils literal notranslate"><span class="pre">or</span></code><a class="headerlink" href="#or" title="Permalink to this headline">¶</a></h3>
+<p>Pass forward a value with the first child filter that returns. Above example
+will only pass forward values that are <em>either</em> at least 1s old or are if the absolute
+difference is at least 5.0.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example filters:</span>
+<span class="nt">filters</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">or</span><span class="p">:</span>
+    <span class="p p-Indicator">-</span> <span class="nt">throttle</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">1s</span>
+    <span class="p p-Indicator">-</span> <span class="nt">delta</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">5.0</span>
+</pre></div>
+</div>
+</section>
+<section id="lambda">
+<h3><code class="docutils literal notranslate"><span class="pre">lambda</span></code><a class="headerlink" href="#lambda" title="Permalink to this headline">¶</a></h3>
+<p>Perform a simple mathematical operation over the sensor values. The input value is <code class="docutils literal notranslate"><span class="pre">x</span></code> and
+the result of the lambda is used as the output (use <code class="docutils literal notranslate"><span class="pre">return</span></code>).</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">filters</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">lambda</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">return x * (9.0/5.0) + 32.0;</span>
+</pre></div>
+</div>
+<p>Make sure to add <code class="docutils literal notranslate"><span class="pre">.0</span></code> to all values in the lambda, otherwise divisions of integers will
+result in integers (not floating point values).</p>
+</section>
+</section>
+<section id="example-converting-celsius-to-fahrenheit">
+<h2>Example: Converting Celsius to Fahrenheit<a class="headerlink" href="#example-converting-celsius-to-fahrenheit" title="Permalink to this headline">¶</a></h2>
+<p>While I personally don’t like the Fahrenheit temperature scale, I do
+understand that having temperature values appear in the Fahrenheit unit
+is quite useful to some users. ESPHome uses the Celsius temperature
+unit internally, and I’m not planning on making converting between the
+two simple (😉), but you can use this filter to convert Celsius values to
+Fahrenheit.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">filters</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">lambda</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">return x * (9.0/5.0) + 32.0;</span>
+<span class="nt">unit_of_measurement</span><span class="p">:</span> <span class="s">&quot;°F&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="sensor-automation">
+<h2>Sensor Automation<a class="headerlink" href="#sensor-automation" title="Permalink to this headline">¶</a></h2>
+<p>You can access the most recent state of the sensor in <a class="reference internal" href="../../guides/automations.html#config-lambda"><span class="std std-ref">lambdas</span></a> using
+<code class="docutils literal notranslate"><span class="pre">id(sensor_id).state</span></code> and the most recent raw state using <code class="docutils literal notranslate"><span class="pre">id(sensor_id).raw_state</span></code>.</p>
+<section id="on-value">
+<span id="sensor-on-value"></span><h3><code class="docutils literal notranslate"><span class="pre">on_value</span></code><a class="headerlink" href="#on-value" title="Permalink to this headline">¶</a></h3>
+<p>This automation will be triggered when a new value that has passed through all filters
+is published. In <a class="reference internal" href="../../guides/automations.html#config-lambda"><span class="std std-ref">Lambdas</span></a> you can get the value from the trigger
+with <code class="docutils literal notranslate"><span class="pre">x</span></code>.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">sensor</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">dallas</span>
+    <span class="c1"># ...</span>
+    <span class="nt">on_value</span><span class="p">:</span>
+      <span class="nt">then</span><span class="p">:</span>
+        <span class="p p-Indicator">-</span> <span class="nt">light.turn_on</span><span class="p">:</span>
+            <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">light_1</span>
+            <span class="nt">red</span><span class="p">:</span> <span class="kt">!lambda</span> <span class="s">&quot;return</span><span class="nv"> </span><span class="s">x/255;&quot;</span>
+</pre></div>
+</div>
+<p>Configuration variables: See <a class="reference internal" href="../../guides/automations.html#automation"><span class="std std-ref">Automation</span></a>.</p>
+</section>
+<section id="on-value-range">
+<span id="sensor-on-value-range"></span><h3><code class="docutils literal notranslate"><span class="pre">on_value_range</span></code><a class="headerlink" href="#on-value-range" title="Permalink to this headline">¶</a></h3>
+<p>With this automation you can observe if a sensor value passes from outside
+a defined range of values to inside a range. For example you can have an
+automation that triggers when a humidity crosses a threshold, and then turns on a dehumidifier.
+This trigger will only trigger when the new value is inside the range and the previous value
+was outside the range. On startup, the last state before reboot is restored and if the value crossed
+the boundary during the boot process, the trigger is also executed.</p>
+<p>Define the range with <code class="docutils literal notranslate"><span class="pre">above</span></code> and <code class="docutils literal notranslate"><span class="pre">below</span></code>. If only one of them is defined, the interval is half-open.
+So for example <code class="docutils literal notranslate"><span class="pre">above:</span> <span class="pre">5</span></code> with no below would mean the range from 5 to positive infinity.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">sensor</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">dallas</span>
+    <span class="c1"># ...</span>
+    <span class="nt">on_value_range</span><span class="p">:</span>
+      <span class="nt">above</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">5</span>
+      <span class="nt">below</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">10</span>
+      <span class="nt">then</span><span class="p">:</span>
+        <span class="p p-Indicator">-</span> <span class="nt">switch.turn_on</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">relay_1</span>
+</pre></div>
+</div>
+<p>Configuration variables:</p>
+<ul class="simple">
+<li><p><strong>above</strong> (<em>Optional</em>, float): The minimum for the trigger.</p></li>
+<li><p><strong>below</strong> (<em>Optional</em>, float): The maximum for the trigger.</p></li>
+<li><p>See <a class="reference internal" href="../../guides/automations.html#automation"><span class="std std-ref">Automation</span></a>.</p></li>
+</ul>
+</section>
+<section id="on-raw-value">
+<span id="sensor-on-raw-value"></span><h3><code class="docutils literal notranslate"><span class="pre">on_raw_value</span></code><a class="headerlink" href="#on-raw-value" title="Permalink to this headline">¶</a></h3>
+<p>This automation will be triggered when a new value is received that hasn’t passed
+through any filters. In <a class="reference internal" href="../../guides/automations.html#config-lambda"><span class="std std-ref">Lambdas</span></a> you can get the value from the
+trigger with <code class="docutils literal notranslate"><span class="pre">x</span></code>.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">sensor</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">dallas</span>
+    <span class="c1"># ...</span>
+    <span class="nt">on_raw_value</span><span class="p">:</span>
+      <span class="nt">then</span><span class="p">:</span>
+        <span class="p p-Indicator">-</span> <span class="nt">light.turn_on</span><span class="p">:</span>
+            <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">light_1</span>
+            <span class="nt">red</span><span class="p">:</span> <span class="kt">!lambda</span> <span class="s">&quot;return</span><span class="nv"> </span><span class="s">x/255;&quot;</span>
+</pre></div>
+</div>
+<p>Configuration variables: See <a class="reference internal" href="../../guides/automations.html#automation"><span class="std std-ref">Automation</span></a>.</p>
+</section>
+<section id="sensor-in-range-condition">
+<span id="id2"></span><h3><code class="docutils literal notranslate"><span class="pre">sensor.in_range</span></code> Condition<a class="headerlink" href="#sensor-in-range-condition" title="Permalink to this headline">¶</a></h3>
+<p>This condition passes if the state of the given sensor is inside a range.</p>
+<p>Define the range with <code class="docutils literal notranslate"><span class="pre">above</span></code> and <code class="docutils literal notranslate"><span class="pre">below</span></code>. If only one of them is defined, the interval is half-open.
+So for example <code class="docutils literal notranslate"><span class="pre">above:</span> <span class="pre">5</span></code> with no below would mean the range from 5 to positive infinity.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># in a trigger:</span>
+<span class="nt">on_...</span><span class="p">:</span>
+  <span class="nt">if</span><span class="p">:</span>
+    <span class="nt">condition</span><span class="p">:</span>
+      <span class="nt">sensor.in_range</span><span class="p">:</span>
+        <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">my_sensor</span>
+        <span class="nt">above</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">50.0</span>
+    <span class="nt">then</span><span class="p">:</span>
+    <span class="p p-Indicator">-</span> <span class="nt">script.execute</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">my_script</span>
+</pre></div>
+</div>
+<p>Configuration variables:</p>
+<ul class="simple">
+<li><p><strong>above</strong> (<em>Optional</em>, float): The minimum for the condition.</p></li>
+<li><p><strong>below</strong> (<em>Optional</em>, float): The maximum for the condition.</p></li>
+</ul>
+</section>
+<section id="lambda-calls">
+<span id="sensor-lambda-calls"></span><h3>lambda calls<a class="headerlink" href="#lambda-calls" title="Permalink to this headline">¶</a></h3>
+<p>From <a class="reference internal" href="../../guides/automations.html#config-lambda"><span class="std std-ref">lambdas</span></a>, you can call several methods on all sensors to do some
+advanced stuff (see the full API Reference for more info).</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">publish_state()</span></code>: Manually cause the sensor to push out a value. It will then
+be processed by the sensor filters, and once done be published to MQTT.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// Within lambda, push a value of 42.0</span>
+<span class="n">id</span><span class="p">(</span><span class="n">my_sensor</span><span class="p">).</span><span class="n">publish_state</span><span class="p">(</span><span class="mf">42.0</span><span class="p">);</span>
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.state</span></code>: Retrieve the current value of the sensor that has passed through all sensor filters.
+Is <code class="docutils literal notranslate"><span class="pre">NAN</span></code> if no value has gotten through all filters yet.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// For example, create a custom log message when a value is received:</span>
+<span class="n">ESP_LOGI</span><span class="p">(</span><span class="s">&quot;main&quot;</span><span class="p">,</span> <span class="s">&quot;Value of my sensor: %f&quot;</span><span class="p">,</span> <span class="n">id</span><span class="p">(</span><span class="n">my_sensor</span><span class="p">).</span><span class="n">state</span><span class="p">);</span>
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">raw_state</span></code>: Retrieve the current value of the sensor that has not passed through any filters
+Is <code class="docutils literal notranslate"><span class="pre">NAN</span></code> if no value has been pushed by the sensor itself yet.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// For example, create a custom log message when a value is received:</span>
+<span class="n">ESP_LOGI</span><span class="p">(</span><span class="s">&quot;main&quot;</span><span class="p">,</span> <span class="s">&quot;Raw Value of my sensor: %f&quot;</span><span class="p">,</span> <span class="n">id</span><span class="p">(</span><span class="n">my_sensor</span><span class="p">).</span><span class="n">raw_state</span><span class="p">);</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+</section>
+<section id="see-also">
+<h2>See Also<a class="headerlink" href="#see-also" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="../../api/sensor_8h.html">API Reference</a></p></li>
+<li><p><a class="reference external" href="https://github.com/esphome/esphome-docs/blob/current/components/sensor/index.rst">Edit this page on GitHub</a></p></li>
+</ul>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="adc.html">Analog To Digital Sensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ade7953.html">ADE7953 Power Sensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ads1115.html">ADS1115 Sensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aht10.html">AHT10 Temperature+Humidity Sensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="am2320.html">AM2320 Temperature+Humidity Sensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="apds9960.html">APDS9960 Sensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="as3935.html">AMS AS3935 Franklin Lightning Sensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="atm90e32.html">ATM90E32 Power Sensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bh1750.html">BH1750 Ambient Light Sensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="binary_sensor_map.html">Binary Sensor Map</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ble_rssi.html">ESP32 Bluetooth Low Energy RSSI Sensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bme280.html">BME280 Temperature+Pressure+Humidity Sensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bme680.html">BME680 Temperature+Pressure+Humidity+Gas Sensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bmp085.html">BMP085 Temperature+Pressure Sensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bmp280.html">BMP280 Temperature+Pressure Sensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ccs811.html">CCS811 CO_2 and Volatile Organic Compound Sensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cse7766.html">CSE7766 Power Sensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ct_clamp.html">CT Clamp Current Sensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="custom.html">Custom Sensor Component</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dallas.html">Dallas Temperature Sensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dht.html">DHT Temperature+Humidity Sensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dht12.html">DHT12 Temperature+Humidity Sensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="duty_cycle.html">Duty Cycle Sensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="esp32_hall.html">ESP32 Hall Sensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ezo.html">EZO sensor circuits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hdc1080.html">HDC1080 Temperature+Humidity Sensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hlw8012.html">HLW8012 Power Sensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hm3301.html">The Grove - Laser PM2.5 Sensor (HM3301)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hmc5883l.html">HMC5883L Magnetometer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="homeassistant.html">Home Assistant Sensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="htu21d.html">HTU21D Temperature+Humidity Sensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hx711.html">HX711 Load Cell Amplifier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ina219.html">INA219 DC Current Sensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ina226.html">INA226 DC current and power sensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ina3221.html">INA3221 3-Channel DC Current Sensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="inkbird_ibsth1_mini.html">Inkbird IBS-TH1 Mini BLE Sensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="integration.html">Integration Sensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="max31855.html">MAX31855 K-Type Thermocouple Temperature Sensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="max31856.html">MAX31856 Thermocouple Temperature Sensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="max31865.html">MAX31865 Platinum RTD Temperature Sensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="max6675.html">MAX6675 K-Type Thermocouple Temperature Sensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mcp3008.html">MCP3008 I/O Expander</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mcp9808.html">MCP9808 Temperature Sensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mhz19.html">MH-Z19 CO_2 and Temperature Sensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mpu6050.html">MPU6050 Accelerometer/Gyroscope Sensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mqtt_subscribe.html">MQTT Subscribe Sensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ms5611.html">MS5611 Atmospheric Pressure Sensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ntc.html">NTC Sensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pmsx003.html">PMSX003 Particulate Matter Sensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pulse_counter.html">Pulse Counter Sensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pulse_meter.html">Pulse Meter Sensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pulse_width.html">Pulse Width Sensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pzem004t.html">Peacefair PZEM-004T Energy Monitor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pzemac.html">Peacefair PZEM-004T V3 Energy Monitor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pzemdc.html">Peacefair PZEM-00X DC Energy Monitor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="qmc5883l.html">QMC5883L Magnetometer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="resistance.html">Resistance Sensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rotary_encoder.html">Rotary Encoder Sensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ruuvitag.html">RuuviTag Open Source BLE Sensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scd30.html">SCD30 CO₂, Temperature and Relative Humidity Sensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sds011.html">SDS011 Particulate Matter Sensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="senseair.html">SenseAir CO_2 Sensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sgp30.html">SGP30 CO₂ and Volatile Organic Compound Sensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sht3xd.html">SHT3X-D Temperature+Humidity Sensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="shtcx.html">SHTCx Temperature+Humidity Sensors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sm300d2.html">SM300D2 7-in-1 Air Quality Sensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sps30.html">SPS30 Particulate Matter Sensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sts3x.html">STS3X Temperature Sensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tcs34725.html">TCS34725 RGB Color Sensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="teleinfo.html">Teleinformation from Linky electrical counter.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="template.html">Template Sensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tmp102.html">TMP102 Temperature Sensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tmp117.html">TMP117 Temperature Sensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="total_daily_energy.html">Total Daily Energy Sensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tsl2561.html">TSL2561 Ambient Light Sensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tuya.html">Tuya Sensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tx20.html">TX20/TX23 Wind Speed/Direction Sensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ultrasonic.html">Ultrasonic Distance Sensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="uptime.html">Uptime Sensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vl53l0x.html">VL53L0X Time Of Flight Distance Sensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wifi_signal.html">WiFi Signal Sensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="xiaomi_ble.html">Xiaomi Mijia BLE Sensors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="xiaomi_hhccjcy01.html">HHCCJCY01 Moved To Xiaomi BLE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="xiaomi_lywsdcgq.html">LYWSDCGQ Moved To Xiaomi BLE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="xiaomi_miscale.html">Xiaomi Miscale Sensors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="xiaomi_miscale2.html">Xiaomi Miscale2 Sensors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="zyaura.html">ZyAura CO2 &amp; Temperature &amp; Humidity Sensor</a></li>
+</ul>
+</div>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+  <div id="upgrade-footer">
+    A new version has been release since you last visited this page: 1.17.2 🎉
+    <div class="footer-button-container">
+      <div role="button" id="upgrade-footer-dismiss" class="footer-button">Dismiss</div>
+      <a id="upgrade-footer-changelog" class="footer-button" href="../../changelog/v1.17.0.html">View Changelog</a>  
+    </div>
+  </div>
+  <script>
+    var old = window.localStorage.getItem("version");
+    if (old === null) { window.localStorage.setItem("version", "1.17");
+    } else if (old !== "1.17") {
+      const footerEl = document.getElementById("upgrade-footer");
+      footerEl.classList.add("not-hidden");
+      footerEl.addEventListener('click', function () {
+        window.localStorage.setItem("version", "1.17");
+        footerEl.classList.remove("not-hidden");
+      });
+    }
+  </script>
+
+  </body>
+
+<!-- Mirrored from esphome.io/components/sensor/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 16 May 2021 02:59:01 GMT -->
+</html>

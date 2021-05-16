@@ -1,0 +1,264 @@
+
+  <!DOCTYPE html>
+
+
+<html lang="en">
+  
+<!-- Mirrored from esphome.io/components/sensor/xiaomi_miscale2.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 16 May 2021 03:00:37 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+<meta name="description" content="Instructions for setting up Xiaomi Miscale2 bluetooth-based sensors in ESPHome.">
+<meta name="keywords" content="Xiaomi, BLE, Bluetooth, XMTZC02HM, XMTZC05HM">
+<meta itemprop="name" content="Xiaomi Miscale2 Sensors">
+<meta itemprop="description" content="Instructions for setting up Xiaomi Miscale2 bluetooth-based sensors in ESPHome.">
+<meta itemprop="image" content="../../_images/xiaomi_miscale2.jpg">
+<meta name="twitter:title" content="Xiaomi Miscale2 Sensors">
+<meta name="twitter:image:src" content="../../_images/xiaomi_miscale2.jpg">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@OttoWinter_">
+<meta name="twitter:description" content="Instructions for setting up Xiaomi Miscale2 bluetooth-based sensors in ESPHome.">
+<meta property="og:title" content="Xiaomi Miscale2 Sensors">
+<meta property="og:image" content="../../_images/xiaomi_miscale2.jpg">
+<meta property="og:type" content="website">
+<meta property="og:description" content="Instructions for setting up Xiaomi Miscale2 bluetooth-based sensors in ESPHome.">
+
+    <title>Xiaomi Miscale2 Sensors &#8212; ESPHome</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/alabaster.css" />
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <link rel="canonical" href="xiaomi_miscale2.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="ZyAura CO2 &amp; Temperature &amp; Humidity Sensor" href="zyaura.html" />
+    <link rel="prev" title="Xiaomi Miscale Sensors" href="xiaomi_miscale.html" />
+  <link rel="stylesheet" href="../../_static/customf001.css?hash=f908c2b5" type="text/css" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../../_static/apple-touch-icon.png">
+  <link rel="shortcut icon" href="../../_static/favicon.ico">
+  <link rel="icon" type="image/png" sizes="512x512" href="../../_static/favicon-512x512.png">
+  <link rel="icon" type="image/png" sizes="256x256" href="../../_static/favicon-256x256.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="../../_static/favicon-192x192.png">
+  <link rel="icon" type="image/png" sizes="128x128" href="../../_static/favicon-128x128.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../_static/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../../_static/favicon-16x16.png">
+  <link rel="manifest" href="../../_static/site.webmanifest">
+  <link rel="mask-icon" href="../../_static/safari-pinned-tab.svg" color="#646464">
+  <meta name="apple-mobile-web-app-title" content="ESPHome">
+  <meta name="application-name" content="ESPHome">
+  <meta name="msapplication-TileColor" content="#dfdfdf">
+  <meta name="msapplication-config" content="/_static/browserconfig.xml">
+  <meta name="theme-color" content="#dfdfdf">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta property="og:site_name" content="ESPHome">
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head><body>
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../index-2.html">
+              <img class="logo" src="../../_static/logo-text.svg" alt="Logo"/>
+            </a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="https://esphome.io/search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+  <h3><a href="../../index-2.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Xiaomi Miscale2 Sensors</a><ul>
+<li><a class="reference internal" href="#supported-devices">Supported Devices</a><ul>
+<li><a class="reference internal" href="#xmtzc02hm-xmtzc05hm">XMTZC02HM, XMTZC05HM</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#see-also">See Also</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="xiaomi-miscale2-sensors">
+<h1>Xiaomi Miscale2 Sensors<a class="headerlink" href="#xiaomi-miscale2-sensors" title="Permalink to this headline">¶</a></h1>
+<p>The <code class="docutils literal notranslate"><span class="pre">xiaomi_miscale2</span></code> sensor platform lets you track the output of Xiaomi Bluetooth Low Energy devices using the <a class="reference internal" href="../esp32_ble_tracker.html"><span class="doc">ESP32 Bluetooth Low Energy Tracker Hub</span></a>. This component will track, for example, the weight and the impedance of the device every time the sensor sends out a BLE broadcast. Contrary to other implementations, <code class="docutils literal notranslate"><span class="pre">xiaomi_miscale2</span></code> listens passively to advertisement packets and does not pair with the device. Hence ESPHome has no impact on battery life.</p>
+<p>To get the body scores using your weight, height, age and gender see the custom_components <a class="reference external" href="https://github.com/dckiller51/bodymiscale">https://github.com/dckiller51/bodymiscale</a></p>
+<section id="supported-devices">
+<h2>Supported Devices<a class="headerlink" href="#supported-devices" title="Permalink to this headline">¶</a></h2>
+<section id="xmtzc02hm-xmtzc05hm">
+<h3>XMTZC02HM, XMTZC05HM<a class="headerlink" href="#xmtzc02hm-xmtzc05hm" title="Permalink to this headline">¶</a></h3>
+<p>Miscale2 measures weight and impedance.</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../../_images/xiaomi_miscale2.jpg"><img alt="../../_images/xiaomi_miscale2.jpg" src="../../_images/xiaomi_miscale2.jpg" style="width: 60.0%;" /></a>
+</figure>
+<p>Configuration example:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">sensor</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">xiaomi_miscale2</span>
+    <span class="nt">mac_address</span><span class="p">:</span> <span class="s">&#39;5C:CA:D3:70:D4:A2&#39;</span>
+    <span class="nt">weight</span><span class="p">:</span>
+      <span class="nt">name</span><span class="p">:</span> <span class="s">&quot;Xiaomi</span><span class="nv"> </span><span class="s">Mi</span><span class="nv"> </span><span class="s">Scale</span><span class="nv"> </span><span class="s">Weight&quot;</span>
+    <span class="nt">impedance</span><span class="p">:</span>
+      <span class="nt">name</span><span class="p">:</span> <span class="s">&quot;Xiaomi</span><span class="nv"> </span><span class="s">Mi</span><span class="nv"> </span><span class="s">Scale</span><span class="nv"> </span><span class="s">Impedance&quot;</span>
+</pre></div>
+</div>
+<p>Configuration example with multiple users :</p>
+<p>You have to replace the numbers in the lambdas to determine your weight which is between X weight and X weight.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">sensor</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">xiaomi_miscale2</span>
+    <span class="nt">mac_address</span><span class="p">:</span> <span class="s">&#39;5C:CA:D3:70:D4:A2&#39;</span>
+    <span class="nt">weight</span><span class="p">:</span>
+      <span class="nt">name</span><span class="p">:</span> <span class="s">&quot;Xiaomi</span><span class="nv"> </span><span class="s">Mi</span><span class="nv"> </span><span class="s">Scale</span><span class="nv"> </span><span class="s">Weight&quot;</span>
+      <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">weight_miscale</span>
+      <span class="nt">on_value</span><span class="p">:</span>
+        <span class="nt">then</span><span class="p">:</span>
+          <span class="p p-Indicator">-</span> <span class="nt">lambda</span><span class="p">:</span> <span class="p p-Indicator">|-</span>
+              <span class="no">if (id(weight_miscale).state &gt;= 69 &amp;&amp; id(weight_miscale).state &lt;= 74.49) {</span>
+                <span class="no">return id(weight_user1).publish_state(x);}</span>
+              <span class="no">else if (id(weight_miscale).state &gt;= 74.50 &amp;&amp; id(weight_miscale).state &lt;= 83) {</span>
+                <span class="no">return id(weight_user2).publish_state(x);}</span>
+              <span class="no">else if (id(weight_miscale).state &gt;= 46 &amp;&amp; id(weight_miscale).state &lt;= 65) {</span>
+                <span class="no">return id(weight_user3).publish_state(x);}</span>
+              <span class="no">else if (id(weight_miscale).state &gt;= 28 &amp;&amp; id(weight_miscale).state &lt;= 45) {</span>
+                <span class="no">return id(weight_user4).publish_state(x);}</span>
+              <span class="no">else if (id(weight_miscale).state &gt;= 5 &amp;&amp; id(weight_miscale).state &lt;= 20) {</span>
+                <span class="no">return id(weight_user5).publish_state(x);}</span>
+
+    <span class="nt">impedance</span><span class="p">:</span>
+      <span class="nt">name</span><span class="p">:</span> <span class="s">&quot;Xiaomi</span><span class="nv"> </span><span class="s">Mi</span><span class="nv"> </span><span class="s">Scale</span><span class="nv"> </span><span class="s">Impedance&quot;</span>
+      <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">impedance_xiaomi</span>
+      <span class="nt">on_value</span><span class="p">:</span>
+        <span class="nt">then</span><span class="p">:</span>
+          <span class="p p-Indicator">-</span> <span class="nt">lambda</span><span class="p">:</span> <span class="p p-Indicator">|-</span>
+              <span class="no">if (id(weight_miscale).state &gt;= 69 &amp;&amp; id(weight_miscale).state &lt;= 74.49) {</span>
+                <span class="no">return id(impedance_user1).publish_state(x);}</span>
+              <span class="no">else if (id(weight_miscale).state &gt;= 74.50 &amp;&amp; id(weight_miscale).state &lt;= 83) {</span>
+                <span class="no">return id(impedance_user2).publish_state(x);}</span>
+              <span class="no">else if (id(weight_miscale).state &gt;= 46 &amp;&amp; id(weight_miscale).state &lt;= 65) {</span>
+                <span class="no">return id(impedance_user3).publish_state(x);}</span>
+              <span class="no">else if (id(weight_miscale).state &gt;= 28 &amp;&amp; id(weight_miscale).state &lt;= 45) {</span>
+                <span class="no">return id(impedance_user4).publish_state(x);}</span>
+              <span class="no">else if (id(weight_miscale).state &gt;= 5 &amp;&amp; id(weight_miscale).state &lt;= 20) {</span>
+                <span class="no">return id(impedance_user5).publish_state(x);}</span>
+
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">template</span>
+    <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Weight Aurélien</span>
+    <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">weight_user1</span>
+    <span class="nt">unit_of_measurement</span><span class="p">:</span> <span class="s">&#39;kg&#39;</span>
+    <span class="nt">icon</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">mdi:weight-kilogram</span>
+    <span class="nt">accuracy_decimals</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">2</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">template</span>
+    <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Impedance Aurélien</span>
+    <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">impedance_user1</span>
+    <span class="nt">unit_of_measurement</span><span class="p">:</span> <span class="s">&#39;ohm&#39;</span>
+    <span class="nt">icon</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">mdi:omega</span>
+    <span class="nt">accuracy_decimals</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">0</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">template</span>
+    <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Weight Siham</span>
+    <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">weight_user2</span>
+    <span class="nt">unit_of_measurement</span><span class="p">:</span> <span class="s">&#39;kg&#39;</span>
+    <span class="nt">icon</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">mdi:weight-kilogram</span>
+    <span class="nt">accuracy_decimals</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">2</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">template</span>
+    <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Impedance Siham</span>
+    <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">impedance_user2</span>
+    <span class="nt">unit_of_measurement</span><span class="p">:</span> <span class="s">&#39;ohm&#39;</span>
+    <span class="nt">icon</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">mdi:omega</span>
+    <span class="nt">accuracy_decimals</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">0</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">template</span>
+    <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Weight Théo</span>
+    <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">weight_user3</span>
+    <span class="nt">unit_of_measurement</span><span class="p">:</span> <span class="s">&#39;kg&#39;</span>
+    <span class="nt">icon</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">mdi:weight-kilogram</span>
+    <span class="nt">accuracy_decimals</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">2</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">template</span>
+    <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Impedance Théo</span>
+    <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">impedance_user3</span>
+    <span class="nt">unit_of_measurement</span><span class="p">:</span> <span class="s">&#39;ohm&#39;</span>
+    <span class="nt">icon</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">mdi:omega</span>
+    <span class="nt">accuracy_decimals</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">0</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">template</span>
+    <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Weight Sacha</span>
+    <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">weight_user4</span>
+    <span class="nt">unit_of_measurement</span><span class="p">:</span> <span class="s">&#39;kg&#39;</span>
+    <span class="nt">icon</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">mdi:weight-kilogram</span>
+    <span class="nt">accuracy_decimals</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">2</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">template</span>
+    <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Impedance Sacha</span>
+    <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">impedance_user4</span>
+    <span class="nt">unit_of_measurement</span><span class="p">:</span> <span class="s">&#39;ohm&#39;</span>
+    <span class="nt">icon</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">mdi:omega</span>
+    <span class="nt">accuracy_decimals</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">0</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">template</span>
+    <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Weight Noham</span>
+    <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">weight_user5</span>
+    <span class="nt">unit_of_measurement</span><span class="p">:</span> <span class="s">&#39;kg&#39;</span>
+    <span class="nt">icon</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">mdi:weight-kilogram</span>
+    <span class="nt">accuracy_decimals</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">2</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">template</span>
+    <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Impedance Noham</span>
+    <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">impedance_user5</span>
+    <span class="nt">unit_of_measurement</span><span class="p">:</span> <span class="s">&#39;ohm&#39;</span>
+    <span class="nt">icon</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">mdi:omega</span>
+    <span class="nt">accuracy_decimals</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">0</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="see-also">
+<h2>See Also<a class="headerlink" href="#see-also" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="../esp32_ble_tracker.html"><span class="doc">ESP32 Bluetooth Low Energy Tracker Hub</span></a></p></li>
+<li><p><a class="reference internal" href="index.html"><span class="doc">Sensor Component</span></a></p></li>
+<li><p>bodymiscale score integration for Home Assistant (bodymiscale custom component) <a class="reference external" href="https://github.com/dckiller51/bodymiscale">https://github.com/dckiller51/bodymiscale</a></p></li>
+<li><p><a class="reference external" href="https://github.com/esphome/esphome-docs/blob/current/components/sensor/xiaomi_miscale2.rst">Edit this page on GitHub</a></p></li>
+</ul>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+  <div id="upgrade-footer">
+    A new version has been release since you last visited this page: 1.17.2 🎉
+    <div class="footer-button-container">
+      <div role="button" id="upgrade-footer-dismiss" class="footer-button">Dismiss</div>
+      <a id="upgrade-footer-changelog" class="footer-button" href="../../changelog/v1.17.0.html">View Changelog</a>  
+    </div>
+  </div>
+  <script>
+    var old = window.localStorage.getItem("version");
+    if (old === null) { window.localStorage.setItem("version", "1.17");
+    } else if (old !== "1.17") {
+      const footerEl = document.getElementById("upgrade-footer");
+      footerEl.classList.add("not-hidden");
+      footerEl.addEventListener('click', function () {
+        window.localStorage.setItem("version", "1.17");
+        footerEl.classList.remove("not-hidden");
+      });
+    }
+  </script>
+
+  </body>
+
+<!-- Mirrored from esphome.io/components/sensor/xiaomi_miscale2.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 16 May 2021 03:00:38 GMT -->
+</html>

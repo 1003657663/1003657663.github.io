@@ -1,0 +1,452 @@
+
+  <!DOCTYPE html>
+
+
+<html lang="en">
+  
+<!-- Mirrored from esphome.io/cookbook/leak-detector-m5stickc by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 16 May 2021 03:02:56 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+<meta name="description" content="Water leak detector with ESPhome on an M5StickC ESP32">
+<meta name="keywords" content="Leak Detector M5StickC M5Stack M5Atom">
+<meta itemprop="name" content="ESP32 Water Leak Detector (with notification)">
+<meta itemprop="description" content="Water leak detector with ESPhome on an M5StickC ESP32">
+<meta itemprop="image" content="../_images/images/leak-detector-m5stickC_dry.html">
+<meta name="twitter:title" content="ESP32 Water Leak Detector (with notification)">
+<meta name="twitter:image:src" content="../_images/images/leak-detector-m5stickC_dry.html">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@OttoWinter_">
+<meta name="twitter:description" content="Water leak detector with ESPhome on an M5StickC ESP32">
+<meta property="og:title" content="ESP32 Water Leak Detector (with notification)">
+<meta property="og:image" content="../_images/images/leak-detector-m5stickC_dry.html">
+<meta property="og:type" content="website">
+<meta property="og:description" content="Water leak detector with ESPhome on an M5StickC ESP32">
+
+    <title>ESP32 Water Leak Detector (with notification) &#8212; ESPHome</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <link rel="canonical" href="leak-detector-m5stickc.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Mirabella Genio Bulbs" href="mirabella-genio-bulb.html" />
+    <link rel="prev" title="IWOOLE Table Lamp" href="iwoole_rgbw_table_lamp.html" />
+  <link rel="stylesheet" href="../_static/customf001.css?hash=f908c2b5" type="text/css" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../_static/apple-touch-icon.png">
+  <link rel="shortcut icon" href="../_static/favicon.ico">
+  <link rel="icon" type="image/png" sizes="512x512" href="../_static/favicon-512x512.png">
+  <link rel="icon" type="image/png" sizes="256x256" href="../_static/favicon-256x256.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="../_static/favicon-192x192.png">
+  <link rel="icon" type="image/png" sizes="128x128" href="../_static/favicon-128x128.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../_static/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../_static/favicon-16x16.png">
+  <link rel="manifest" href="../_static/site.webmanifest">
+  <link rel="mask-icon" href="../_static/safari-pinned-tab.svg" color="#646464">
+  <meta name="apple-mobile-web-app-title" content="ESPHome">
+  <meta name="application-name" content="ESPHome">
+  <meta name="msapplication-TileColor" content="#dfdfdf">
+  <meta name="msapplication-config" content="/_static/browserconfig.xml">
+  <meta name="theme-color" content="#dfdfdf">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta property="og:site_name" content="ESPHome">
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head><body>
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index-2.html">
+              <img class="logo" src="../_static/logo-text.svg" alt="Logo"/>
+            </a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="https://esphome.io/search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+  <h3><a href="../index-2.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">ESP32 Water Leak Detector (with notification)</a><ul>
+<li><a class="reference internal" href="#things-you-ll-need">Things you’ll need</a></li>
+<li><a class="reference internal" href="#probe-connection">Probe Connection</a></li>
+<li><a class="reference internal" href="#assembled-components">Assembled Components</a></li>
+<li><a class="reference internal" href="#display-font">Display Font</a></li>
+<li><a class="reference internal" href="#flashing">Flashing</a></li>
+<li><a class="reference internal" href="#calibration-testing">Calibration &amp; Testing</a><ul>
+<li><a class="reference internal" href="#normal-state">Normal state</a></li>
+<li><a class="reference internal" href="#wet-state">Wet state</a></li>
+<li><a class="reference internal" href="#installed-project">Installed Project</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#esphome-configuration">ESPhome configuration</a></li>
+<li><a class="reference internal" href="#homeassistant-configuration">HomeAssistant configuration</a></li>
+<li><a class="reference internal" href="#see-also">See Also</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="esp32-water-leak-detector-with-notification">
+<h1>ESP32 Water Leak Detector (with notification)<a class="headerlink" href="#esp32-water-leak-detector-with-notification" title="Permalink to this headline">¶</a></h1>
+<p>Using the ESP32’s capacitive touch GPIOs, it’s relatively easy to build a water leak detector using ESPhome.  M5StickC was chosen as a platform due to the integrated Grove connector for clean connections and the fact it’s well housed.  The built-in display is a bonus, but not strictly necessary.  Notifications are performed via HomeAssistant’s ‘alert’ and ‘notify’ facilities, which send via Pushover to iOS &amp; Android.</p>
+<figure class="align-center">
+<img alt="../_images/leak-detector-m5stickC_LeakDetected.gif" src="../_images/leak-detector-m5stickC_LeakDetected.gif" />
+</figure>
+<section id="things-you-ll-need">
+<h2>Things you’ll need<a class="headerlink" href="#things-you-ll-need" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><dl class="simple">
+<dt>M5Stick esphome components</dt><dd><p><a class="reference external" href="https://github.com/airy10/esphome-m5stickC/issues/4">https://github.com/airy10/esphome-m5stickC/issues/4</a></p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>M5StickC ESP32 development kit</dt><dd><p><a class="reference external" href="https://m5stack.com/collections/m5-core/products/stick-c">M5Stack Link</a></p>
+</dd>
+</dl>
+</li>
+</ul>
+<figure class="align-center">
+<img alt="../_images/leak-detector-m5stickC-m5stickC.png" src="../_images/leak-detector-m5stickC-m5stickC.png" />
+</figure>
+<ul class="simple">
+<li><dl class="simple">
+<dt>Moisture sensor</dt><dd><p>This example uses a <a class="reference external" href="https://amazon.com/Guardian-by-Elexa-Remote-Sensor/dp/B07G5BMD7L">Guardian Remote Sensor Probe</a>
+which has a 6’ cord.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<figure class="align-center">
+<img alt="../_images/leak-detector-m5stickC_probe.jpg" src="../_images/leak-detector-m5stickC_probe.jpg" />
+</figure>
+<ul class="simple">
+<li><dl class="simple">
+<dt>Grove connector pigtail</dt><dd><p><a class="reference external" href="https://www.amazon.com/Cables-Grove-Female-Jumper-Grove-Conversion/dp/B01CNZ9EEC">Amazon Link</a></p>
+</dd>
+</dl>
+</li>
+</ul>
+<figure class="align-center">
+<img alt="../_images/leak-detector-m5stickC_grove1.jpg" src="../_images/leak-detector-m5stickC_grove1.jpg" />
+</figure>
+<ul class="simple">
+<li><dl class="simple">
+<dt>USB power supply with USB-C cable</dt><dd><p>(the M5StickC comes with the short black USB cable seen in the pictures)</p>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="probe-connection">
+<h2>Probe Connection<a class="headerlink" href="#probe-connection" title="Permalink to this headline">¶</a></h2>
+<p>Since the probe comes with an integrated 3.5mm male plug, a 3.5mm female jack has been connected to the Grove port to allow easy probe replacement in the future.  Orange connects to orange, blue connects to blue.  The pads on the opposite side of the probe are internally-connected identically to the front.  The two middle rings on the 3.5mm jack are unused.  There is no polarity – simply connect one terminal (orange or blue) to Grove GND, and the other to Grove G33.</p>
+<figure class="align-center">
+<img alt="../_images/leak-detector-m5stickC_pinout.jpg" src="../_images/leak-detector-m5stickC_pinout.jpg" />
+</figure>
+<figure class="align-center">
+<img alt="../_images/leak-detector-m5stickC_grove2.jpg" src="../_images/leak-detector-m5stickC_grove2.jpg" />
+</figure>
+</section>
+<section id="assembled-components">
+<h2>Assembled Components<a class="headerlink" href="#assembled-components" title="Permalink to this headline">¶</a></h2>
+<figure class="align-center">
+<img alt="../_images/leak-detector-m5stickC_overview2.jpg" src="../_images/leak-detector-m5stickC_overview2.jpg" />
+</figure>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Even though the M5StickC has a battery inside (which might be enough to cover short power outages), you’ll need to keep
+the unit on USB power 24/7.</p>
+</div>
+</section>
+<section id="display-font">
+<h2>Display Font<a class="headerlink" href="#display-font" title="Permalink to this headline">¶</a></h2>
+<p>You’ll need to place the <a class="reference external" href="https://fonts.google.com/specimen/Open+Sans">OpenSans-Regular</a> font (or another of your choosing) alongside your ESPhome yaml file.  See - <a class="reference internal" href="../components/display/index.html"><span class="doc">Display Component</span></a>.</p>
+</section>
+<section id="flashing">
+<h2>Flashing<a class="headerlink" href="#flashing" title="Permalink to this headline">¶</a></h2>
+<p>I initially had trouble flashing the M5StickC; this is the procedure that I’ve found to work well with these devices.</p>
+<p>You must provide the ESP32 bootloader during the initial flash over USB.  Compile your ESPhome binary, and flash it along with the required bootloader (bootloader_dio_80m.bin), <a class="reference external" href="https://github.com/espressif/arduino-esp32/tree/master/tools/sdk/bin">available here</a>, from the commandline (example under macos):</p>
+<p><code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">/Applications/ESPHome-Flasher-1.2.0-macOS.app/Contents/MacOS</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">./ESPHome-Flasher</span> <span class="pre">~/Desktop/basement_leak_detector.bin</span> <span class="pre">--bootloader</span> <span class="pre">~/Desktop/bootloader_dio_80m.bin</span>&#160; <span class="pre">--upload-baud-rate=115200</span></code></p>
+<p>I also needed this procedure to flash M5Stack ATOM Lite and ATOM Matrix modules, which you also might consider using for this project.  Both are smaller and more cost-effective than the M5stickC, and a generation newer – though they lack the TFT display.</p>
+<figure class="align-default">
+<img alt="../_images/leak-detector-m5stickC_atom_matrix.jpg" src="../_images/leak-detector-m5stickC_atom_matrix.jpg" />
+</figure>
+<figure class="align-default">
+<img alt="../_images/leak-detector-m5stickC_atom_lite.jpg" src="../_images/leak-detector-m5stickC_atom_lite.jpg" />
+</figure>
+</section>
+<section id="calibration-testing">
+<h2>Calibration &amp; Testing<a class="headerlink" href="#calibration-testing" title="Permalink to this headline">¶</a></h2>
+<p>Once everything is hooked up and flashed, enable <code class="docutils literal notranslate"><span class="pre">esp32_touch:</span></code> <code class="docutils literal notranslate"><span class="pre">setup_mode:</span> <span class="pre">True</span></code> and proceed to adjust the threshold setting on the touch-sensitive binary sensor (GPIO33) to find the proper value for your particular moisture sensor and cabling situation.  Grab a glass of water for testing, another for yourself, and dip away while watching the logs.  Your goal is to find a threshold value that is sufficient to trigger the binary sensor in water, but not otherwise.  See <a class="reference internal" href="../components/binary_sensor/esp32_touch.html#esp32-touch-binary-sensor"><span class="std std-ref">ESP32 Touch Pad</span></a> for more information.</p>
+<hr class="docutils" />
+<section id="normal-state">
+<h3>Normal state<a class="headerlink" href="#normal-state" title="Permalink to this headline">¶</a></h3>
+<figure class="align-center">
+<img alt="../_images/leak-detector-m5stickC_dry.jpg" src="../_images/leak-detector-m5stickC_dry.jpg" />
+</figure>
+</section>
+<section id="wet-state">
+<h3>Wet state<a class="headerlink" href="#wet-state" title="Permalink to this headline">¶</a></h3>
+<figure class="align-center">
+<img alt="../_images/leak-detector-m5stickC_wet.jpg" src="../_images/leak-detector-m5stickC_wet.jpg" />
+</figure>
+</section>
+<section id="installed-project">
+<h3>Installed Project<a class="headerlink" href="#installed-project" title="Permalink to this headline">¶</a></h3>
+<figure class="align-center">
+<img alt="../_images/leak-detector-m5stickC_overview1.jpg" src="../_images/leak-detector-m5stickC_overview1.jpg" />
+</figure>
+<p>Not shown: Probe is placed on the floor in the corner, out of the way, in the lowest part of the room</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="esphome-configuration">
+<h2>ESPhome configuration<a class="headerlink" href="#esphome-configuration" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">substitutions</span><span class="p">:</span>
+  <span class="nt">devicename</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">basement_leak_detector</span>
+  <span class="nt">friendly_name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Basement Leak Detector</span>
+  <span class="nt">device_description</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Leak detector in basement utility room</span>
+
+<span class="nt">esphome</span><span class="p">:</span>
+  <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">$devicename</span>
+  <span class="nt">comment</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">${device_description}</span>
+  <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ESP32</span>
+  <span class="nt">board</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">m5stick-c</span>
+  <span class="nt">platformio_options</span><span class="p">:</span>
+    <span class="nt">upload_speed</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">115200</span>
+
+<span class="nt">wifi</span><span class="p">:</span>
+  <span class="nt">ssid</span><span class="p">:</span> <span class="kt">!secret</span> <span class="l l-Scalar l-Scalar-Plain">wifi_ssid</span>
+  <span class="nt">password</span><span class="p">:</span> <span class="kt">!secret</span> <span class="l l-Scalar l-Scalar-Plain">wifi_password</span>
+  <span class="nt">domain</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">.lan</span>
+
+  <span class="c1"># Enable fallback hotspot (captive portal) in case wifi connection fails</span>
+  <span class="nt">ap</span><span class="p">:</span>
+    <span class="nt">ssid</span><span class="p">:</span> <span class="s">&quot;Basement</span><span class="nv"> </span><span class="s">Leak</span><span class="nv"> </span><span class="s">Det.</span><span class="nv"> </span><span class="s">Fallback</span><span class="nv"> </span><span class="s">AP&quot;</span>
+    <span class="nt">password</span><span class="p">:</span> <span class="kt">!secret</span> <span class="l l-Scalar l-Scalar-Plain">fallback_ap_password</span>
+
+  <span class="nt">manual_ip</span><span class="p">:</span>
+    <span class="nt">static_ip</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">x.x.x.x</span>
+    <span class="nt">gateway</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">x.x.x.x</span>
+    <span class="nt">subnet</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">x.x.x.x</span>
+
+<span class="nt">captive_portal</span><span class="p">:</span>
+
+<span class="nt">logger</span><span class="p">:</span>
+
+<span class="c1"># Enable Home Assistant API &amp; OTA Updates</span>
+<span class="nt">api</span><span class="p">:</span>
+  <span class="nt">password</span><span class="p">:</span> <span class="kt">!secret</span> <span class="l l-Scalar l-Scalar-Plain">api_password</span>
+<span class="nt">ota</span><span class="p">:</span>
+  <span class="nt">password</span><span class="p">:</span> <span class="kt">!secret</span> <span class="l l-Scalar l-Scalar-Plain">ota_password</span>
+
+<span class="nt">status_led</span><span class="p">:</span>
+  <span class="nt">pin</span><span class="p">:</span>
+    <span class="nt">number</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO10</span>
+    <span class="nt">inverted</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">True</span>
+
+<span class="nt">spi</span><span class="p">:</span>
+  <span class="nt">clk_pin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO13</span>
+  <span class="nt">mosi_pin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO15</span>
+
+<span class="nt">i2c</span><span class="p">:</span>
+   <span class="p p-Indicator">-</span> <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">bus_a</span>
+     <span class="nt">sda</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO21</span>
+     <span class="nt">scl</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO22</span>
+     <span class="nt">scan</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">True</span>
+
+<span class="nt">esp32_touch</span><span class="p">:</span>
+  <span class="c1">#setup_mode: True</span>
+  <span class="nt">iir_filter</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">10ms</span>
+
+<span class="nt">binary_sensor</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">gpio</span>
+    <span class="nt">pin</span><span class="p">:</span>
+      <span class="nt">number</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO37</span>
+      <span class="nt">inverted</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+    <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">button_a</span>
+    <span class="nt">on_press</span><span class="p">:</span>
+      <span class="nt">then</span><span class="p">:</span>
+        <span class="p p-Indicator">-</span> <span class="nt">switch.toggle</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">led1</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">gpio</span>
+    <span class="nt">pin</span><span class="p">:</span>
+      <span class="nt">number</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO39</span>
+      <span class="nt">inverted</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+    <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">button_b</span>
+    <span class="nt">on_press</span><span class="p">:</span>
+      <span class="nt">then</span><span class="p">:</span>
+        <span class="p p-Indicator">-</span> <span class="nt">switch.toggle</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">led1</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">status</span>
+    <span class="nt">name</span><span class="p">:</span> <span class="s">&quot;${friendly_name}</span><span class="nv"> </span><span class="s">Status&quot;</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">esp32_touch</span>
+    <span class="nt">name</span><span class="p">:</span> <span class="s">&quot;${friendly_name}</span><span class="nv"> </span><span class="s">Sensor&quot;</span>
+    <span class="nt">device_class</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">moisture</span>
+    <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">leak</span>
+    <span class="nt">pin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO33</span>
+    <span class="nt">threshold</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">30</span>
+    <span class="nt">on_press</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="nt">while</span><span class="p">:</span>
+          <span class="nt">condition</span><span class="p">:</span>
+            <span class="nt">binary_sensor.is_on</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">leak</span>
+          <span class="nt">then</span><span class="p">:</span>
+          <span class="p p-Indicator">-</span> <span class="nt">switch.turn_on</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">led1</span>
+          <span class="p p-Indicator">-</span> <span class="nt">delay</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">200ms</span>
+          <span class="p p-Indicator">-</span> <span class="nt">switch.turn_off</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">led1</span>
+          <span class="p p-Indicator">-</span> <span class="nt">delay</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">100ms</span>
+          <span class="p p-Indicator">-</span> <span class="nt">switch.turn_on</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">led1</span>
+          <span class="p p-Indicator">-</span> <span class="nt">delay</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">200ms</span>
+          <span class="p p-Indicator">-</span> <span class="nt">switch.turn_off</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">led1</span>
+          <span class="p p-Indicator">-</span> <span class="nt">delay</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">400ms</span>
+    <span class="nt">on_release</span><span class="p">:</span>
+      <span class="nt">then</span><span class="p">:</span>
+        <span class="p p-Indicator">-</span> <span class="nt">switch.turn_off</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">led1</span>
+
+<span class="nt">sensor</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">uptime</span>
+    <span class="nt">name</span><span class="p">:</span> <span class="s">&quot;${friendly_name}</span><span class="nv"> </span><span class="s">Uptime&quot;</span>
+
+    <span class="c1"># AXP192 power management - must be present to initialize TFT power on</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">axp192</span>
+    <span class="nt">address</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">0x34</span>
+    <span class="nt">i2c_id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">bus_a</span>
+    <span class="nt">update_interval</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">30s</span>
+    <span class="nt">battery_level</span><span class="p">:</span>
+      <span class="nt">name</span><span class="p">:</span> <span class="s">&quot;${friendly_name}</span><span class="nv"> </span><span class="s">Battery</span><span class="nv"> </span><span class="s">Level&quot;</span>
+      <span class="nt">id</span><span class="p">:</span> <span class="s">&quot;m5stick_batterylevel&quot;</span>
+
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">wifi_signal</span>
+    <span class="nt">name</span><span class="p">:</span> <span class="s">&quot;${friendly_name}</span><span class="nv"> </span><span class="s">WiFi</span><span class="nv"> </span><span class="s">Signal&quot;</span>
+    <span class="nt">update_interval</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">60s</span>
+
+<span class="nt">text_sensor</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">version</span>
+    <span class="nt">name</span><span class="p">:</span> <span class="s">&quot;${friendly_name}</span><span class="nv"> </span><span class="s">ESPHome</span><span class="nv"> </span><span class="s">version&quot;</span>
+
+<span class="nt">switch</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">gpio</span>
+    <span class="nt">pin</span><span class="p">:</span>
+      <span class="nt">number</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO10</span>
+      <span class="nt">inverted</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+    <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">led1</span>
+
+<span class="nt">font</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">file</span><span class="p">:</span> <span class="s">&#39;OpenSans-Regular.ttf&#39;</span>
+    <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">font1</span>
+    <span class="nt">size</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">66</span>
+
+<span class="c1"># built-in 80x160 TFT</span>
+<span class="nt">display</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">st7735</span>
+    <span class="nt">cs_pin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO5</span>
+    <span class="nt">dc_pin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO23</span>
+    <span class="nt">reset_pin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO18</span>
+    <span class="nt">rotation</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">180</span>
+    <span class="nt">lambda</span><span class="p">:</span> <span class="p p-Indicator">|-</span>
+      <span class="no">if (id(leak).state) {</span>
+        <span class="no">it.print(38, -24, id(font1), ST77XX_RED, TextAlign::TOP_CENTER, &quot;W&quot;);</span>
+        <span class="no">it.print(38, 32, id(font1), ST77XX_RED, TextAlign::TOP_CENTER, &quot;E&quot;);</span>
+        <span class="no">it.print(38, 85, id(font1), ST77XX_RED, TextAlign::TOP_CENTER, &quot;T&quot;);</span>
+      <span class="no">} else {</span>
+        <span class="no">it.print(38, -24, id(font1), ST77XX_GREEN, TextAlign::TOP_CENTER, &quot;D&quot;);</span>
+        <span class="no">it.print(38, 32, id(font1), ST77XX_GREEN, TextAlign::TOP_CENTER, &quot;R&quot;);</span>
+        <span class="no">it.print(38, 85, id(font1), ST77XX_GREEN, TextAlign::TOP_CENTER, &quot;Y&quot;);</span>
+      <span class="no">}</span>
+</pre></div>
+</div>
+</section>
+<section id="homeassistant-configuration">
+<h2>HomeAssistant configuration<a class="headerlink" href="#homeassistant-configuration" title="Permalink to this headline">¶</a></h2>
+<p>There are two sections: one for alert criteria, and another for notification via Pushover.
+See HomeAssistant’s <a class="reference external" href="https://www.home-assistant.io/integrations/pushover/">Pushover integration docs</a> for more details.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">alert</span><span class="p">:</span>
+  <span class="nt">basement_water_leak</span><span class="p">:</span>
+    <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Water detected in the basement</span>
+    <span class="nt">entity_id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">binary_sensor.basement_leak_detector_sensor</span>
+    <span class="nt">state</span><span class="p">:</span> <span class="s">&#39;on&#39;</span>
+    <span class="nt">repeat</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">30</span>
+    <span class="nt">can_acknowledge</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+    <span class="nt">notifiers</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">water_leak_notification_group</span>
+
+<span class="nt">notify</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">pushover</span>
+    <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">pushover</span>
+    <span class="nt">api_key</span><span class="p">:</span> <span class="kt">!secret</span> <span class="l l-Scalar l-Scalar-Plain">pushover_api_key</span>
+    <span class="nt">user_key</span><span class="p">:</span> <span class="kt">!secret</span> <span class="l l-Scalar l-Scalar-Plain">pushover_user_key</span>
+  <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">water_leak_notification_group</span>
+    <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">group</span>
+    <span class="nt">services</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="nt">service</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">pushover</span>
+        <span class="nt">data</span><span class="p">:</span>
+          <span class="nt">data</span><span class="p">:</span>
+            <span class="c1"># Pushover-provided sound effect (https://pushover.net/api#sounds)</span>
+            <span class="nt">sound</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">alien</span>
+</pre></div>
+</div>
+<p>Enjoy your locally-controlled leak detector with push notification!</p>
+<figure class="align-center">
+<img alt="../_images/leak-detector-m5stickC-ha_interface.jpg" src="../_images/leak-detector-m5stickC-ha_interface.jpg" />
+</figure>
+</section>
+<section id="see-also">
+<h2>See Also<a class="headerlink" href="#see-also" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="../components/display/index.html"><span class="doc">Display Component</span></a></p></li>
+<li><p><a class="reference internal" href="../components/binary_sensor/esp32_touch.html"><span class="doc">ESP32 Touch Pad</span></a></p></li>
+<li><p><a class="reference external" href="https://github.com/esphome/esphome-docs/blob/current/cookbook/leak-detector-m5stickC.rst">Edit this page on GitHub</a></p></li>
+</ul>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+  <div id="upgrade-footer">
+    A new version has been release since you last visited this page: 1.17.2 🎉
+    <div class="footer-button-container">
+      <div role="button" id="upgrade-footer-dismiss" class="footer-button">Dismiss</div>
+      <a id="upgrade-footer-changelog" class="footer-button" href="../changelog/v1.17.0.html">View Changelog</a>  
+    </div>
+  </div>
+  <script>
+    var old = window.localStorage.getItem("version");
+    if (old === null) { window.localStorage.setItem("version", "1.17");
+    } else if (old !== "1.17") {
+      const footerEl = document.getElementById("upgrade-footer");
+      footerEl.classList.add("not-hidden");
+      footerEl.addEventListener('click', function () {
+        window.localStorage.setItem("version", "1.17");
+        footerEl.classList.remove("not-hidden");
+      });
+    }
+  </script>
+
+  </body>
+
+<!-- Mirrored from esphome.io/cookbook/leak-detector-m5stickc by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 16 May 2021 03:03:01 GMT -->
+</html>

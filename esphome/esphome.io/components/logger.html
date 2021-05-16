@@ -1,0 +1,336 @@
+
+  <!DOCTYPE html>
+
+
+<html lang="en">
+  
+<!-- Mirrored from esphome.io/components/logger.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 16 May 2021 02:58:52 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+<meta name="description" content="Instructions for setting up the central logging component in ESPHome.">
+<meta itemprop="name" content="Logger Component">
+<meta itemprop="description" content="Instructions for setting up the central logging component in ESPHome.">
+<meta itemprop="image" content="../_images/file-document-box.png">
+<meta name="twitter:title" content="Logger Component">
+<meta name="twitter:image:src" content="../_images/file-document-box.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@OttoWinter_">
+<meta name="twitter:description" content="Instructions for setting up the central logging component in ESPHome.">
+<meta property="og:title" content="Logger Component">
+<meta property="og:image" content="../_images/file-document-box.png">
+<meta property="og:type" content="website">
+<meta property="og:description" content="Instructions for setting up the central logging component in ESPHome.">
+
+    <title>Logger Component &#8212; ESPHome</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <link rel="canonical" href="logger.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="MCP230xx I/O Expander" href="mcp230xx.html" />
+    <link rel="prev" title="I²C Bus" href="i2c.html" />
+  <link rel="stylesheet" href="../_static/customf001.css?hash=f908c2b5" type="text/css" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../_static/apple-touch-icon.png">
+  <link rel="shortcut icon" href="../_static/favicon.ico">
+  <link rel="icon" type="image/png" sizes="512x512" href="../_static/favicon-512x512.png">
+  <link rel="icon" type="image/png" sizes="256x256" href="../_static/favicon-256x256.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="../_static/favicon-192x192.png">
+  <link rel="icon" type="image/png" sizes="128x128" href="../_static/favicon-128x128.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../_static/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../_static/favicon-16x16.png">
+  <link rel="manifest" href="../_static/site.webmanifest">
+  <link rel="mask-icon" href="../_static/safari-pinned-tab.svg" color="#646464">
+  <meta name="apple-mobile-web-app-title" content="ESPHome">
+  <meta name="application-name" content="ESPHome">
+  <meta name="msapplication-TileColor" content="#dfdfdf">
+  <meta name="msapplication-config" content="/_static/browserconfig.xml">
+  <meta name="theme-color" content="#dfdfdf">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta property="og:site_name" content="ESPHome">
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head><body>
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index-2.html">
+              <img class="logo" src="../_static/logo-text.svg" alt="Logo"/>
+            </a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="https://esphome.io/search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+  <h3><a href="../index-2.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Logger Component</a><ul>
+<li><a class="reference internal" href="#configuration-variables">Configuration variables:</a></li>
+<li><a class="reference internal" href="#hardware-uarts">Hardware UARTs</a></li>
+<li><a class="reference internal" href="#log-levels">Log Levels</a></li>
+<li><a class="reference internal" href="#manual-tag-specific-log-levels">Manual Tag-Specific Log Levels</a></li>
+<li><a class="reference internal" href="#logger-log-action"><code class="docutils literal notranslate"><span class="pre">logger.log</span></code> Action</a></li>
+<li><a class="reference internal" href="#logger-automation">Logger Automation</a><ul>
+<li><a class="reference internal" href="#on-message"><code class="docutils literal notranslate"><span class="pre">on_message</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#see-also">See Also</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="logger-component">
+<h1>Logger Component<a class="headerlink" href="#logger-component" title="Permalink to this headline">¶</a></h1>
+<p>The logger component automatically logs all log messages through the
+serial port and through MQTT topics. By default, all logs with a
+severity higher than <code class="docutils literal notranslate"><span class="pre">DEBUG</span></code> will be shown. Decreasing the log level
+can help with the performance of the application and memory size.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example configuration entry</span>
+<span class="nt">logger</span><span class="p">:</span>
+  <span class="nt">level</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">DEBUG</span>
+</pre></div>
+</div>
+<section id="configuration-variables">
+<h2>Configuration variables:<a class="headerlink" href="#configuration-variables" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><strong>baud_rate</strong> (<em>Optional</em>, int): The baud rate to use for the serial
+UART port. Defaults to <code class="docutils literal notranslate"><span class="pre">115200</span></code>. Set to <code class="docutils literal notranslate"><span class="pre">0</span></code> to disable logging via UART.</p></li>
+<li><p><strong>level</strong> (<em>Optional</em>, string): The global log level. Any log message
+with a lower severity will not be shown. Defaults to <code class="docutils literal notranslate"><span class="pre">DEBUG</span></code>.</p></li>
+<li><p><strong>logs</strong> (<em>Optional</em>, mapping): Manually set the log level for a
+specific component or tag. See <a class="reference internal" href="#logger-manual-tag-specific-levels"><span class="std std-ref">Manual Log Levels for more
+information</span></a>.</p></li>
+<li><p><strong>id</strong> (<em>Optional</em>, <a class="reference internal" href="../guides/configuration-types.html#config-id"><span class="std std-ref">ID</span></a>): Manually specify the ID used for code generation.</p></li>
+</ul>
+<p>Advanced settings:</p>
+<ul class="simple">
+<li><p><strong>tx_buffer_size</strong> (<em>Optional</em>, int): The size of the buffer used
+for log messages. Decrease this if you’re having memory problems.
+Defaults to <code class="docutils literal notranslate"><span class="pre">512</span></code>.</p></li>
+<li><p><strong>hardware_uart</strong> (<em>Optional</em>, string): The Hardware UART to use for logging.
+Defaults to <code class="docutils literal notranslate"><span class="pre">UART0</span></code>.</p></li>
+<li><p><strong>esp8266_store_log_strings_in_flash</strong> (<em>Optional</em>, boolean): If set to false, disables storing
+log strings in the flash section of the device (uses more memory). Defaults to true.</p></li>
+<li><p><strong>on_message</strong> (<em>Optional</em>, <a class="reference internal" href="../guides/automations.html#automation"><span class="std std-ref">Automation</span></a>): An action to be
+performed when a message is to be looged. The vairables <code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">level</span></code>, <code class="docutils literal notranslate"><span class="pre">const</span> <span class="pre">char*</span> <span class="pre">tag</span></code> and
+<code class="docutils literal notranslate"><span class="pre">const</span> <span class="pre">char*</span> <span class="pre">message</span></code> are available for lambda processing.</p></li>
+</ul>
+</section>
+<section id="hardware-uarts">
+<span id="logger-hardware-uarts"></span><h2>Hardware UARTs<a class="headerlink" href="#hardware-uarts" title="Permalink to this headline">¶</a></h2>
+<p>The logger component makes use of platform-specific hardware UARTs for serial logging.
+By default, the logger will occupy <code class="docutils literal notranslate"><span class="pre">UART0</span></code>. The ESP32 has three hardware UARTs, all of
+which can be used for both transmit and receive. The ESP8266 only has two hardware UARTs,
+one of which is transmit-only. The ESP8266 <code class="docutils literal notranslate"><span class="pre">UART0</span></code> can also be ‘swapped’ to TX/RX on the
+CTS/RTS pins, if you need to use GPIO1 and GPIO3 for something else.</p>
+<p>Possible Hardware UART configurations:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">UART0</span></code> - TX: GPIO1, RX: GPIO3</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">UART0_SWAP</span></code> - TX: GPIO15, RX: GPIO13  (Only on ESP8266)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">UART1</span></code> - TX: GPIO2, RX: None  (Only on ESP8266)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">UART1</span></code> - TX: GPIO9, RX: GPIO10  (Only on ESP32)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">UART2</span></code> - TX: GPIO16, RX: GPIO17  (Only on ESP32)</p></li>
+</ul>
+</section>
+<section id="log-levels">
+<span id="logger-log-levels"></span><h2>Log Levels<a class="headerlink" href="#log-levels" title="Permalink to this headline">¶</a></h2>
+<p>Possible log levels are (sorted by severity):</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">NONE</span></code></p></li>
+</ul>
+<blockquote>
+<div><ul class="simple">
+<li><p>No messages are logged.</p></li>
+</ul>
+</div></blockquote>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ERROR</span></code></p></li>
+</ul>
+<blockquote>
+<div><ul class="simple">
+<li><p>With this log level, only errors are logged. Errors are issues that prevent the ESP from working
+correctly. Color: red</p></li>
+</ul>
+</div></blockquote>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">WARN</span></code></p></li>
+</ul>
+<blockquote>
+<div><ul class="simple">
+<li><p>With this log level, warnings and errors are logged. Warnings are issues like invalid readings from
+sensors that ESPHome can recover from. Color: yellow</p></li>
+</ul>
+</div></blockquote>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">INFO</span></code></p></li>
+</ul>
+<blockquote>
+<div><ul class="simple">
+<li><p>With this log level, everything up to info messages are logged; so errors, warnings and info. Color: green</p></li>
+</ul>
+</div></blockquote>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">DEBUG</span></code> (<strong>Default</strong>)</p></li>
+</ul>
+<blockquote>
+<div><ul class="simple">
+<li><p>Everything up to this log level is logged. Debug messages include the current readings from a sensor
+and status messages. Color: cyan</p></li>
+</ul>
+</div></blockquote>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">VERBOSE</span></code></p></li>
+</ul>
+<blockquote>
+<div><ul class="simple">
+<li><p>Like debug, but a few more messages that are usually deemed to be spam are also included. Color: grey</p></li>
+</ul>
+</div></blockquote>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">VERY_VERBOSE</span></code></p></li>
+</ul>
+<blockquote>
+<div><ul class="simple">
+<li><p>All internal messages are logged. Including all the data flowing through data buses like
+I²C, SPI or UART. Warning: May cause the device to slow down and have trouble staying
+connecting due to amount of generated messages. Color: white</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="manual-tag-specific-log-levels">
+<span id="logger-manual-tag-specific-levels"></span><h2>Manual Tag-Specific Log Levels<a class="headerlink" href="#manual-tag-specific-log-levels" title="Permalink to this headline">¶</a></h2>
+<p>If some component is spamming the logs and you want to manually set the
+log level for it, first identify the tag of the log messages in question
+and then disable them in your configuration.</p>
+<p>Suppose we want to have verbose log messages globally, but the MQTT
+client spams too much. In the following example, we’d first see that the
+tag of the MQTT client is <code class="docutils literal notranslate"><span class="pre">mqtt.client</span></code> (before the first colon) and
+the tag for MQTT components is <code class="docutils literal notranslate"><span class="pre">mqtt.component</span></code>.</p>
+<figure class="align-default">
+<img alt="../_images/logger-manual_log_level.png" src="../_images/logger-manual_log_level.png" />
+</figure>
+<p>Next, we can manually set the log levels in the configuration like this:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">logger</span><span class="p">:</span>
+  <span class="nt">level</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">VERBOSE</span>
+  <span class="nt">logs</span><span class="p">:</span>
+    <span class="nt">mqtt.component</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">DEBUG</span>
+    <span class="nt">mqtt.client</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ERROR</span>
+</pre></div>
+</div>
+<p>Please note that the global log level determines what log messages are
+saved in the binary. So for example an <code class="docutils literal notranslate"><span class="pre">INFO</span></code> global log message will
+purge all <code class="docutils literal notranslate"><span class="pre">DEBUG</span></code> log statements from the binary in order to conserve
+space. This however means that you cannot set tag-specific log levels
+that have a lower severity than the global log level.</p>
+</section>
+<section id="logger-log-action">
+<span id="id1"></span><h2><code class="docutils literal notranslate"><span class="pre">logger.log</span></code> Action<a class="headerlink" href="#logger-log-action" title="Permalink to this headline">¶</a></h2>
+<p>Print a formatted message to the logs.</p>
+<p>In the <code class="docutils literal notranslate"><span class="pre">format</span></code> option, you can use <code class="docutils literal notranslate"><span class="pre">printf</span></code>-style formatting (see <a class="reference internal" href="display/index.html#display-printf"><span class="std std-ref">Formatted Text</span></a>).</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">on_...</span><span class="p">:</span>
+  <span class="nt">then</span><span class="p">:</span>
+    <span class="p p-Indicator">-</span> <span class="nt">logger.log</span><span class="p">:</span> <span class="s">&quot;Hello</span><span class="nv"> </span><span class="s">World&quot;</span>
+
+    <span class="c1"># Formatted:</span>
+    <span class="p p-Indicator">-</span> <span class="nt">logger.log</span><span class="p">:</span>
+        <span class="nt">format</span><span class="p">:</span> <span class="s">&quot;The</span><span class="nv"> </span><span class="s">temperature</span><span class="nv"> </span><span class="s">sensor</span><span class="nv"> </span><span class="s">reports</span><span class="nv"> </span><span class="s">value</span><span class="nv"> </span><span class="s">%.1f</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">humidity</span><span class="nv"> </span><span class="s">%.1f&quot;</span>
+        <span class="nt">args</span><span class="p">:</span> <span class="p p-Indicator">[</span> <span class="s">&#39;id(temperature_sensor).state&#39;</span><span class="p p-Indicator">,</span> <span class="s">&#39;id(humidity_sensor).state&#39;</span> <span class="p p-Indicator">]</span>
+</pre></div>
+</div>
+<p>Configuration options:</p>
+<ul class="simple">
+<li><p><strong>format</strong> (<strong>Required</strong>, string): The format for the message in <a class="reference internal" href="display/index.html#display-printf"><span class="std std-ref">printf-style</span></a>.</p></li>
+<li><p><strong>args</strong> (<em>Optional</em>, list of <a class="reference internal" href="../guides/automations.html#config-lambda"><span class="std std-ref">lambda</span></a>): The optional arguments for the
+format message.</p></li>
+<li><p><strong>level</strong> (<em>Optional</em>, string): The <a class="reference internal" href="#logger-log-levels"><span class="std std-ref">log level</span></a> to print the message
+with. Defaults to <code class="docutils literal notranslate"><span class="pre">DEBUG</span></code>.</p></li>
+<li><p><strong>tag</strong> (<em>Optional</em>, string): The tag (seen in front of the message in the logs) to print the message
+with. Defaults to <code class="docutils literal notranslate"><span class="pre">main</span></code>.</p></li>
+</ul>
+</section>
+<section id="logger-automation">
+<h2>Logger Automation<a class="headerlink" href="#logger-automation" title="Permalink to this headline">¶</a></h2>
+<section id="on-message">
+<span id="logger-on-message"></span><h3><code class="docutils literal notranslate"><span class="pre">on_message</span></code><a class="headerlink" href="#on-message" title="Permalink to this headline">¶</a></h3>
+<p>This automation will be triggered when a new message is added to the log.
+In <a class="reference internal" href="../guides/automations.html#config-lambda"><span class="std std-ref">lambdas</span></a> you can get the message, log level and tag from the trigger
+using <code class="docutils literal notranslate"><span class="pre">message</span></code> (<code class="docutils literal notranslate"><span class="pre">const</span> <span class="pre">char</span> <span class="pre">*</span></code>), <code class="docutils literal notranslate"><span class="pre">level</span></code> (<code class="docutils literal notranslate"><span class="pre">int</span></code>) and <code class="docutils literal notranslate"><span class="pre">tag</span></code> (<code class="docutils literal notranslate"><span class="pre">const</span> <span class="pre">char</span> <span class="pre">*</span></code>).</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">logger</span><span class="p">:</span>
+  <span class="c1"># ...</span>
+  <span class="nt">on_message</span><span class="p">:</span>
+    <span class="nt">level</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ERROR</span>
+    <span class="nt">then</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="nt">mqtt.publish</span><span class="p">:</span>
+          <span class="nt">topic</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">some/topic</span>
+          <span class="nt">payload</span><span class="p">:</span> <span class="kt">!lambda</span> <span class="p p-Indicator">|-</span>
+            <span class="no">return &quot;Triggered on_message with level &quot; + std::to_string(level) + &quot;, tag &quot; + tag + &quot; and message &quot; + message;</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Logging will not work in the <code class="docutils literal notranslate"><span class="pre">on_message</span></code> trigger. You can’t use the <a class="reference internal" href="#logger-log-action"><span class="std std-ref">logger.log</span></a> action
+and the <code class="docutils literal notranslate"><span class="pre">ESP_LOGx</span></code> logging macros in this automation.</p>
+</div>
+</section>
+</section>
+<section id="see-also">
+<h2>See Also<a class="headerlink" href="#see-also" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="uart.html"><span class="doc">UART Bus</span></a></p></li>
+<li><p><a class="reference external" href="../api/logger_8h.html">API Reference</a></p></li>
+<li><p><a class="reference external" href="https://github.com/esphome/esphome-docs/blob/current/components/logger.rst">Edit this page on GitHub</a></p></li>
+</ul>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+  <div id="upgrade-footer">
+    A new version has been release since you last visited this page: 1.17.2 🎉
+    <div class="footer-button-container">
+      <div role="button" id="upgrade-footer-dismiss" class="footer-button">Dismiss</div>
+      <a id="upgrade-footer-changelog" class="footer-button" href="../changelog/v1.17.0.html">View Changelog</a>  
+    </div>
+  </div>
+  <script>
+    var old = window.localStorage.getItem("version");
+    if (old === null) { window.localStorage.setItem("version", "1.17");
+    } else if (old !== "1.17") {
+      const footerEl = document.getElementById("upgrade-footer");
+      footerEl.classList.add("not-hidden");
+      footerEl.addEventListener('click', function () {
+        window.localStorage.setItem("version", "1.17");
+        footerEl.classList.remove("not-hidden");
+      });
+    }
+  </script>
+
+  </body>
+
+<!-- Mirrored from esphome.io/components/logger.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 16 May 2021 02:58:53 GMT -->
+</html>

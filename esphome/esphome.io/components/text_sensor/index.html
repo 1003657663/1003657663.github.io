@@ -1,0 +1,250 @@
+
+  <!DOCTYPE html>
+
+
+<html lang="en">
+  
+<!-- Mirrored from esphome.io/components/text_sensor/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 16 May 2021 03:02:06 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+<meta name="description" content="Instructions for setting up text sensors that represent their state as a string of text.">
+<meta itemprop="name" content="Text Sensor Component">
+<meta itemprop="description" content="Instructions for setting up text sensors that represent their state as a string of text.">
+<meta itemprop="image" content="../../_images/folder-open.png">
+<meta name="twitter:title" content="Text Sensor Component">
+<meta name="twitter:image:src" content="../../_images/folder-open.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@OttoWinter_">
+<meta name="twitter:description" content="Instructions for setting up text sensors that represent their state as a string of text.">
+<meta property="og:title" content="Text Sensor Component">
+<meta property="og:image" content="../../_images/folder-open.png">
+<meta property="og:type" content="website">
+<meta property="og:description" content="Instructions for setting up text sensors that represent their state as a string of text.">
+
+    <title>Text Sensor Component &#8212; ESPHome</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/alabaster.css" />
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <link rel="canonical" href="index.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="ESP32 Bluetooth Low Energy Scanner" href="ble_scanner.html" />
+    <link rel="prev" title="Waveshare E-Paper Display" href="../display/waveshare_epaper.html" />
+  <link rel="stylesheet" href="../../_static/customf001.css?hash=f908c2b5" type="text/css" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../../_static/apple-touch-icon.png">
+  <link rel="shortcut icon" href="../../_static/favicon.ico">
+  <link rel="icon" type="image/png" sizes="512x512" href="../../_static/favicon-512x512.png">
+  <link rel="icon" type="image/png" sizes="256x256" href="../../_static/favicon-256x256.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="../../_static/favicon-192x192.png">
+  <link rel="icon" type="image/png" sizes="128x128" href="../../_static/favicon-128x128.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../_static/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../../_static/favicon-16x16.png">
+  <link rel="manifest" href="../../_static/site.webmanifest">
+  <link rel="mask-icon" href="../../_static/safari-pinned-tab.svg" color="#646464">
+  <meta name="apple-mobile-web-app-title" content="ESPHome">
+  <meta name="application-name" content="ESPHome">
+  <meta name="msapplication-TileColor" content="#dfdfdf">
+  <meta name="msapplication-config" content="/_static/browserconfig.xml">
+  <meta name="theme-color" content="#dfdfdf">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta property="og:site_name" content="ESPHome">
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head><body>
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../index-2.html">
+              <img class="logo" src="../../_static/logo-text.svg" alt="Logo"/>
+            </a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="https://esphome.io/search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+  <h3><a href="../../index-2.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Text Sensor Component</a><ul>
+<li><a class="reference internal" href="#base-text-sensor-configuration">Base Text Sensor Configuration</a></li>
+<li><a class="reference internal" href="#text-sensor-automation">Text Sensor Automation</a><ul>
+<li><a class="reference internal" href="#on-value"><code class="docutils literal notranslate"><span class="pre">on_value</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#text-sensor-state-condition"><code class="docutils literal notranslate"><span class="pre">text_sensor.state</span></code> Condition</a><ul>
+<li><a class="reference internal" href="#lambda-calls">lambda calls</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#see-also">See Also</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="text-sensor-component">
+<h1>Text Sensor Component<a class="headerlink" href="#text-sensor-component" title="Permalink to this headline">¶</a></h1>
+<p>Text sensors are a lot like normal <a class="reference internal" href="../sensor/index.html"><span class="doc">sensors</span></a>.
+But where the “normal” sensors only represent sensors that output <strong>numbers</strong>, this
+component can represent any <em>text</em>.</p>
+<section id="base-text-sensor-configuration">
+<span id="config-text-sensor"></span><h2>Base Text Sensor Configuration<a class="headerlink" href="#base-text-sensor-configuration" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example sensor configuration</span>
+<span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Livingroom Temperature</span>
+
+<span class="c1"># Optional variables:</span>
+<span class="nt">icon</span><span class="p">:</span> <span class="s">&quot;mdi:water-percent&quot;</span>
+</pre></div>
+</div>
+<p>Configuration variables:</p>
+<ul class="simple">
+<li><p><strong>name</strong> (<strong>Required</strong>, string): The name for the sensor.</p></li>
+<li><p><strong>icon</strong> (<em>Optional</em>, icon): Manually set the icon to use for the sensor in the frontend.</p></li>
+<li><p><strong>internal</strong> (<em>Optional</em>, boolean): Mark this component as internal. Internal components will
+not be exposed to the frontend (like Home Assistant). Only specifying an <code class="docutils literal notranslate"><span class="pre">id</span></code> without
+a <code class="docutils literal notranslate"><span class="pre">name</span></code> will implicitly set this to true.</p></li>
+<li><p>If MQTT enabled, All other options from <a class="reference internal" href="../mqtt.html#config-mqtt-component"><span class="std std-ref">MQTT Component</span></a>.</p></li>
+</ul>
+<p>Automations:</p>
+<ul class="simple">
+<li><p><strong>on_value</strong> (<em>Optional</em>, <a class="reference internal" href="../../guides/automations.html#automation"><span class="std std-ref">Automation</span></a>): An automation to perform
+when a new value is published. See <a class="reference internal" href="#text-sensor-on-value"><span class="std std-ref">on_value</span></a>.</p></li>
+</ul>
+</section>
+<section id="text-sensor-automation">
+<h2>Text Sensor Automation<a class="headerlink" href="#text-sensor-automation" title="Permalink to this headline">¶</a></h2>
+<p>You can access the most recent state of the sensor in <a class="reference internal" href="../../guides/automations.html#config-lambda"><span class="std std-ref">lambdas</span></a> using
+<code class="docutils literal notranslate"><span class="pre">id(sensor_id).state</span></code>.</p>
+<section id="on-value">
+<span id="text-sensor-on-value"></span><h3><code class="docutils literal notranslate"><span class="pre">on_value</span></code><a class="headerlink" href="#on-value" title="Permalink to this headline">¶</a></h3>
+<p>This automation will be triggered when a new value is published.
+In <a class="reference internal" href="../../guides/automations.html#config-lambda"><span class="std std-ref">Lambdas</span></a> you can get the value from the trigger with <code class="docutils literal notranslate"><span class="pre">x</span></code>.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">text_sensor</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">version</span>
+    <span class="c1"># ...</span>
+    <span class="nt">on_value</span><span class="p">:</span>
+      <span class="nt">then</span><span class="p">:</span>
+        <span class="p p-Indicator">-</span> <span class="nt">lambda</span><span class="p">:</span> <span class="p p-Indicator">|-</span>
+            <span class="no">ESP_LOGD(&quot;main&quot;, &quot;The current version is %s&quot;, x.c_str());</span>
+</pre></div>
+</div>
+<p>Configuration variables: See <a class="reference internal" href="../../guides/automations.html#automation"><span class="std std-ref">Automation</span></a>.</p>
+</section>
+</section>
+<section id="text-sensor-state-condition">
+<span id="id1"></span><h2><code class="docutils literal notranslate"><span class="pre">text_sensor.state</span></code> Condition<a class="headerlink" href="#text-sensor-state-condition" title="Permalink to this headline">¶</a></h2>
+<p>This <a class="reference internal" href="../../guides/automations.html#config-condition"><span class="std std-ref">Condition</span></a> allows you to check if a given text sensor
+has a specific state.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">on_...</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">if</span><span class="p">:</span>
+      <span class="nt">condition</span><span class="p">:</span>
+        <span class="c1"># Checks if &quot;my_text_sensor&quot; has state &quot;Hello World&quot;</span>
+        <span class="nt">text_sensor.state</span><span class="p">:</span>
+          <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">my_text_sensor</span>
+          <span class="nt">state</span><span class="p">:</span> <span class="s">&#39;Hello</span><span class="nv"> </span><span class="s">World&#39;</span>
+</pre></div>
+</div>
+<p>Configuration variables:</p>
+<ul class="simple">
+<li><p><strong>id</strong> (<strong>Required</strong>, <a class="reference internal" href="../../guides/configuration-types.html#config-id"><span class="std std-ref">ID</span></a>): The text sensor ID.</p></li>
+<li><p><strong>state</strong> (<strong>Required</strong>, <a class="reference internal" href="../../guides/automations.html#config-templatable"><span class="std std-ref">templatable</span></a>, string): The state to compare
+to.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This condition can also be expressed in <a class="reference internal" href="../../guides/automations.html#config-lambda"><span class="std std-ref">lambdas</span></a>:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="n">id</span><span class="p">(</span><span class="n">my_text_sensor</span><span class="p">).</span><span class="n">state</span> <span class="o">==</span> <span class="s">&quot;Hello World&quot;</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// do something</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<section id="lambda-calls">
+<span id="text-sensor-lambda-calls"></span><h3>lambda calls<a class="headerlink" href="#lambda-calls" title="Permalink to this headline">¶</a></h3>
+<p>From <a class="reference internal" href="../../guides/automations.html#config-lambda"><span class="std std-ref">lambdas</span></a>, you can call several methods on all text sensors to do some
+advanced stuff (see the full API Reference for more info).</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">publish_state()</span></code>: Manually cause the sensor to push out a value.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// Within lambda, push a value of &quot;Hello World&quot;</span>
+<span class="n">id</span><span class="p">(</span><span class="n">my_sensor</span><span class="p">).</span><span class="n">publish_state</span><span class="p">(</span><span class="s">&quot;Hello World&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.state</span></code>: Retrieve the current value of the sensor as an <code class="docutils literal notranslate"><span class="pre">std::string</span></code> object.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// For example, create a custom log message when a value is received:</span>
+<span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">val</span> <span class="o">=</span> <span class="n">id</span><span class="p">(</span><span class="n">my_sensor</span><span class="p">).</span><span class="n">state</span><span class="p">;</span>
+<span class="n">ESP_LOGI</span><span class="p">(</span><span class="s">&quot;main&quot;</span><span class="p">,</span> <span class="s">&quot;Value of my sensor: %s&quot;</span><span class="p">,</span> <span class="n">val</span><span class="p">.</span><span class="n">c_str</span><span class="p">());</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+</section>
+<section id="see-also">
+<h2>See Also<a class="headerlink" href="#see-also" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="../../api/text__sensor_8h.html">API Reference</a></p></li>
+<li><p><a class="reference external" href="https://github.com/esphome/esphome-docs/blob/current/components/text_sensor/index.rst">Edit this page on GitHub</a></p></li>
+</ul>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="ble_scanner.html">ESP32 Bluetooth Low Energy Scanner</a></li>
+<li class="toctree-l1"><a class="reference internal" href="custom.html">Custom Text Sensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="homeassistant.html">Home Assistant Text Sensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mqtt_subscribe.html">MQTT Subscribe Text Sensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="template.html">Template Text Sensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="version.html">Version Text Sensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wifi_info.html">WiFi Info Text Sensor</a></li>
+</ul>
+</div>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+  <div id="upgrade-footer">
+    A new version has been release since you last visited this page: 1.17.2 🎉
+    <div class="footer-button-container">
+      <div role="button" id="upgrade-footer-dismiss" class="footer-button">Dismiss</div>
+      <a id="upgrade-footer-changelog" class="footer-button" href="../../changelog/v1.17.0.html">View Changelog</a>  
+    </div>
+  </div>
+  <script>
+    var old = window.localStorage.getItem("version");
+    if (old === null) { window.localStorage.setItem("version", "1.17");
+    } else if (old !== "1.17") {
+      const footerEl = document.getElementById("upgrade-footer");
+      footerEl.classList.add("not-hidden");
+      footerEl.addEventListener('click', function () {
+        window.localStorage.setItem("version", "1.17");
+        footerEl.classList.remove("not-hidden");
+      });
+    }
+  </script>
+
+  </body>
+
+<!-- Mirrored from esphome.io/components/text_sensor/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 16 May 2021 03:02:06 GMT -->
+</html>

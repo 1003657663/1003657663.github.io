@@ -1,0 +1,422 @@
+
+  <!DOCTYPE html>
+
+
+<html lang="en">
+  
+<!-- Mirrored from esphome.io/guides/faq.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 16 May 2021 02:58:23 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+<meta name="description" content="Frequently asked questions in ESPHome.">
+<meta itemprop="name" content="Frequently Asked Questions">
+<meta itemprop="description" content="Frequently asked questions in ESPHome.">
+<meta itemprop="image" content="../_images/question_answer.png">
+<meta name="twitter:title" content="Frequently Asked Questions">
+<meta name="twitter:image:src" content="../_images/question_answer.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@OttoWinter_">
+<meta name="twitter:description" content="Frequently asked questions in ESPHome.">
+<meta property="og:title" content="Frequently Asked Questions">
+<meta property="og:image" content="../_images/question_answer.png">
+<meta property="og:type" content="website">
+<meta property="og:description" content="Frequently asked questions in ESPHome.">
+
+    <title>Frequently Asked Questions &#8212; ESPHome</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <link rel="canonical" href="faq.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Getting Started with ESPHome" href="getting_started_command_line.html" />
+    <link rel="prev" title="DIY Examples" href="diy.html" />
+  <link rel="stylesheet" href="../_static/customf001.css?hash=f908c2b5" type="text/css" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../_static/apple-touch-icon.png">
+  <link rel="shortcut icon" href="../_static/favicon.ico">
+  <link rel="icon" type="image/png" sizes="512x512" href="../_static/favicon-512x512.png">
+  <link rel="icon" type="image/png" sizes="256x256" href="../_static/favicon-256x256.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="../_static/favicon-192x192.png">
+  <link rel="icon" type="image/png" sizes="128x128" href="../_static/favicon-128x128.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../_static/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../_static/favicon-16x16.png">
+  <link rel="manifest" href="../_static/site.webmanifest">
+  <link rel="mask-icon" href="../_static/safari-pinned-tab.svg" color="#646464">
+  <meta name="apple-mobile-web-app-title" content="ESPHome">
+  <meta name="application-name" content="ESPHome">
+  <meta name="msapplication-TileColor" content="#dfdfdf">
+  <meta name="msapplication-config" content="/_static/browserconfig.xml">
+  <meta name="theme-color" content="#dfdfdf">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta property="og:site_name" content="ESPHome">
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head><body>
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index-2.html">
+              <img class="logo" src="../_static/logo-text.svg" alt="Logo"/>
+            </a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="https://esphome.io/search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+  <h3><a href="../index-2.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Frequently Asked Questions</a><ul>
+<li><a class="reference internal" href="#tips-for-using-esphome">Tips for using ESPHome</a></li>
+<li><a class="reference internal" href="#i-can-t-get-flashing-over-usb-to-work">I can’t get flashing over USB to work.</a></li>
+<li><a class="reference internal" href="#help-something-s-not-working">Help! Something’s not working!!</a></li>
+<li><a class="reference internal" href="#how-to-submit-an-issue-report">How to submit an issue report</a></li>
+<li><a class="reference internal" href="#how-do-i-update-to-the-latest-version">How do I update to the latest version?</a></li>
+<li><a class="reference internal" href="#how-do-i-update-to-the-latest-beta-release">How do I update to the latest beta release?</a></li>
+<li><a class="reference internal" href="#how-do-i-use-the-latest-bleeding-edge-version">How do I use the latest bleeding edge version?</a></li>
+<li><a class="reference internal" href="#how-do-i-use-my-home-assistant-secrets-yaml">How do I use my Home Assistant secrets.yaml?</a></li>
+<li><a class="reference internal" href="#does-esphome-support-this-device-feature">Does ESPHome support [this device/feature]?</a></li>
+<li><a class="reference internal" href="#i-have-a-question-how-can-i-contact-you">I have a question… How can I contact you?</a></li>
+<li><a class="reference internal" href="#my-node-keeps-reconnecting-randomly">My node keeps reconnecting randomly</a></li>
+<li><a class="reference internal" href="#docker-reference">Docker Reference</a></li>
+<li><a class="reference internal" href="#can-configuration-files-be-recovered-from-the-device">Can Configuration Files Be Recovered From The Device?</a></li>
+<li><a class="reference internal" href="#see-also">See Also</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="frequently-asked-questions">
+<h1>Frequently Asked Questions<a class="headerlink" href="#frequently-asked-questions" title="Permalink to this headline">¶</a></h1>
+<section id="tips-for-using-esphome">
+<h2>Tips for using ESPHome<a class="headerlink" href="#tips-for-using-esphome" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic">
+<li><p>ESPHome supports (most of) <a class="reference external" href="https://www.home-assistant.io/docs/configuration/splitting_configuration/">Home Assistant’s YAML configuration directives</a> like
+<code class="docutils literal notranslate"><span class="pre">!include</span></code> and <code class="docutils literal notranslate"><span class="pre">!secret</span></code>. So you can store all your secret WiFi passwords and so on
+in a file called <code class="docutils literal notranslate"><span class="pre">secrets.yaml</span></code> within the directory where the configuration file is.</p>
+<p>For even more configuration templating, take a look at <a class="reference internal" href="configuration-types.html#config-substitutions"><span class="std std-ref">Substitutions</span></a>.</p>
+</li>
+<li><p>If you want to see how ESPHome interprets your configuration, run</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>esphome livingroom.yaml config
+</pre></div>
+</div>
+</li>
+<li><p>To view the logs from your node without uploading, run</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>esphome livingroom.yaml logs
+</pre></div>
+</div>
+</li>
+<li><p>You can always find the source ESPHome generates under <code class="docutils literal notranslate"><span class="pre">&lt;NODE_NAME&gt;/src/</span></code>.</p></li>
+<li><p>You can view the full list of command line interface options here: <a class="reference internal" href="cli.html"><span class="doc">Command Line Interface</span></a></p></li>
+<li><p>Use <a class="reference internal" href="configuration-types.html#config-substitutions"><span class="std std-ref">substitutions</span></a> to reduce repetition in your configuration files.</p></li>
+</ol>
+</section>
+<section id="i-can-t-get-flashing-over-usb-to-work">
+<span id="esphome-flasher"></span><h2>I can’t get flashing over USB to work.<a class="headerlink" href="#i-can-t-get-flashing-over-usb-to-work" title="Permalink to this headline">¶</a></h2>
+<p>ESPHome depends on the operating system the tool is running on to recognize
+the ESP. This can sometimes fail. Common causes are that you did not install
+the drivers (see note below) or you are trying to upload from a Docker container
+and did not mount the ESP device into your container using <code class="docutils literal notranslate"><span class="pre">--device=/dev/ttyUSB0</span></code>.</p>
+<p>Starting with ESPHome 1.9.0, the ESPHome suite provides
+<a class="reference external" href="https://github.com/esphome/esphome-flasher">esphome-flasher</a>, a tool to flash ESPs over USB.</p>
+<p>First, you need to get the firmware file to flash. For Hass.io add-on based installs you can
+use the <code class="docutils literal notranslate"><span class="pre">COMPILE</span></code> button (click the overflow icon with the three dots) and then press
+<code class="docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Binary</span></code>. For command line based installs you can access the file under
+<code class="docutils literal notranslate"><span class="pre">&lt;CONFIG_DIR&gt;/&lt;NODE_NAME&gt;/.pioenvs/&lt;NODE_NAME&gt;/firmware.bin</span></code>.</p>
+<p>Then, install esphome-flasher by going to the <a class="reference external" href="https://github.com/esphome/esphome-flasher/releases">releases page</a>
+and downloading one of the pre-compiled binaries. Open up the application and select the serial port
+you want to flash to (on windows you can use the “device manager” to check if it’s the right one).</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/esphomeflasher-ui.png"><img alt="../_images/esphomeflasher-ui.png" src="../_images/esphomeflasher-ui.png" style="width: 80%;" /></a>
+</figure>
+<p>Select the firmware binary and finally press “Flash ESP”.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If the serial port is not showing up, you might not have the required drivers installed.
+ESPs usually ship with one of these two UART chips:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>CP2102 (square chip): <a class="reference external" href="https://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers">driver</a></p></li>
+<li><p>CH341: <a class="reference external" href="https://github.com/nodemcu/nodemcu-devkit/tree/master/Drivers">driver</a></p></li>
+</ul>
+</div></blockquote>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you’re just seeing <code class="docutils literal notranslate"><span class="pre">Connecting....____....</span></code> on the screen and the flashing fails, that might
+be a sign that the ESP is defect or cannot be programmed. Please double check the UART wires
+are connected correctly if flashing using a USB to UART bridge. For some devices you need to
+keep pressing the BOOT button until flashing has begun (ie. Geekcreit DOIT ESP32 DEVKIT V1).</p>
+</div>
+</section>
+<section id="help-something-s-not-working">
+<h2>Help! Something’s not working!!<a class="headerlink" href="#help-something-s-not-working" title="Permalink to this headline">¶</a></h2>
+<p>That’s no good. Here are some steps that resolve some problems:</p>
+<ul class="simple">
+<li><p><strong>If you’re having WiFi problems</strong>: See <a class="reference internal" href="#wifi-problems"><span class="std std-ref">My node keeps reconnecting randomly</span></a>.</p></li>
+<li><p>Enable verbose logs in the logger: section.</p></li>
+<li><p><strong>Still an error?</strong> Please file a bug report over in the <a class="reference external" href="https://github.com/esphome/issues">ESPHome issue tracker</a>.
+We will take a look at it as soon as we can. Thanks!</p></li>
+</ul>
+</section>
+<section id="how-to-submit-an-issue-report">
+<span id="faq-bug-report"></span><h2>How to submit an issue report<a class="headerlink" href="#how-to-submit-an-issue-report" title="Permalink to this headline">¶</a></h2>
+<p>First of all, thank you very much to everybody submitting issue reports! While we try to test ESPHome/YAML as much as
+we can using our available hardware, we don’t own every single device type and rely on testing done by the community
+and the contributors. When doing some changes in the core, it can quickly happen that something somewhere breaks.
+Issue reports are a great way for us to track and (hopefully) fix issues, so thank you!</p>
+<p>For us to fix the issue quickly, there are some things that would be really helpful:</p>
+<ol class="arabic simple">
+<li><p><strong>Just writing “X doesn’t work” or “X gives bug” is not helpful!!!</strong> Seriously, how do you expect
+help given just that information?</p></li>
+<li><p>A snippet of the code/configuration file used is always great to reproduce this issue.
+Please read <a class="reference external" href="https://stackoverflow.com/help/mcve">How to create a Minimal, Complete, and Verifiable example</a>.</p></li>
+<li><p>If it’s an I²C or hardware communication issue please also try setting the
+<a class="reference internal" href="../components/logger.html#logger-log-levels"><span class="std std-ref">log level</span></a> to <code class="docutils literal notranslate"><span class="pre">VERY_VERBOSE</span></code> as it provides helpful information
+about what is going on.</p></li>
+<li><p>Please also include what you’ve already tried and didn’t work as that can help us track down the issue.</p></li>
+</ol>
+<p>You can find the issue tracker here <a class="reference external" href="https://github.com/esphome/issues">https://github.com/esphome/issues</a></p>
+</section>
+<section id="how-do-i-update-to-the-latest-version">
+<h2>How do I update to the latest version?<a class="headerlink" href="#how-do-i-update-to-the-latest-version" title="Permalink to this headline">¶</a></h2>
+<p>It’s simple. Run:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip3 install -U esphome
+<span class="c1"># From docker:</span>
+docker pull esphome/esphome:latest
+</pre></div>
+</div>
+<p>And in Hass.io, there’s a simple UPDATE button when there’s an update available as with all add-ons</p>
+</section>
+<section id="how-do-i-update-to-the-latest-beta-release">
+<span id="faq-beta"></span><h2>How do I update to the latest beta release?<a class="headerlink" href="#how-do-i-update-to-the-latest-beta-release" title="Permalink to this headline">¶</a></h2>
+<p>ESPHome has a beta release cycle so that new releases can easily be tested before
+the changes are deployed to the stable channel. You can help test ESPHome (and use new features)
+by installing the tested beta:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># For pip-based installs</span>
+pip3 install --pre -U esphome
+
+<span class="c1"># For docker-based installs</span>
+docker run <span class="o">[</span>...<span class="o">]</span> -it esphome/esphome:beta livingroom.yaml run
+</pre></div>
+</div>
+<p>For Home Assistant supervised installs add the community addons beta repository by
+adding
+<a class="reference external" href="https://github.com/hassio-addons/repository-beta">https://github.com/hassio-addons/repository-beta</a>
+in Add-on store -&gt; Repositories.</p>
+<p>The beta docs are available at <a class="reference external" href="https://beta.esphome.io/">beta.esphome.io</a></p>
+</section>
+<section id="how-do-i-use-the-latest-bleeding-edge-version">
+<h2>How do I use the latest bleeding edge version?<a class="headerlink" href="#how-do-i-use-the-latest-bleeding-edge-version" title="Permalink to this headline">¶</a></h2>
+<p>First, a fair warning that the latest bleeding edge version is not always stable and might have issues.
+If you find some, please do however report them.</p>
+<p>To install the dev version of ESPHome:</p>
+<ul>
+<li><p>In Hass.io: Add the ESPHome repository <cite>https://github.com/esphome/hassio &lt;https://github.com/esphome/hassio&gt;</cite>
+in Add-on store -&gt; Repositories. Then install the add-on  <code class="docutils literal notranslate"><span class="pre">ESPHome</span> <span class="pre">Dev</span></code></p></li>
+<li><p>From <code class="docutils literal notranslate"><span class="pre">pip</span></code>: Run <code class="docutils literal notranslate"><span class="pre">pip3</span> <span class="pre">install</span> <span class="pre">https://github.com/esphome/esphome/archive/dev.zip</span></code></p></li>
+<li><p>From docker, use the <a class="reference external" href="https://hub.docker.com/r/esphome/esphome/tags?page=1&amp;name=dev">esphome/esphome:dev</a> image</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker run <span class="o">[</span>...<span class="o">]</span> -it esphome:dev livingroom.yaml compile
+</pre></div>
+</div>
+</li>
+</ul>
+<p>The latest dev docs are here: <a class="reference external" href="https://next.esphome.io/">next.esphome.io</a></p>
+</section>
+<section id="how-do-i-use-my-home-assistant-secrets-yaml">
+<h2>How do I use my Home Assistant secrets.yaml?<a class="headerlink" href="#how-do-i-use-my-home-assistant-secrets-yaml" title="Permalink to this headline">¶</a></h2>
+<p>If you want to keep all your secrets in one place, make a <code class="docutils literal notranslate"><span class="pre">secrets.yaml</span></code> file in the
+esphome directory with these contents (so it pulls in the contents of your main Home Assistant
+<code class="docutils literal notranslate"><span class="pre">secrets.yaml</span></code> file from one directory higher):</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;&lt;</span><span class="p">:</span> <span class="kt">!include</span> <span class="l l-Scalar l-Scalar-Plain">../secrets.yaml</span>
+</pre></div>
+</div>
+</section>
+<section id="does-esphome-support-this-device-feature">
+<h2>Does ESPHome support [this device/feature]?<a class="headerlink" href="#does-esphome-support-this-device-feature" title="Permalink to this headline">¶</a></h2>
+<p>If it’s not in <a class="reference internal" href="../index-2.html"><span class="doc">the docs</span></a>, it’s probably not
+supported. However, we are always trying to add support for new features, so feel free to create a feature
+request in the <a class="reference external" href="https://github.com/esphome/feature-requests">ESPHome feature request tracker</a>. Thanks!</p>
+</section>
+<section id="i-have-a-question-how-can-i-contact-you">
+<h2>I have a question… How can I contact you?<a class="headerlink" href="#i-have-a-question-how-can-i-contact-you" title="Permalink to this headline">¶</a></h2>
+<p>Sure! We are happy to help :) You can contact us here:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://discord.gg/KhAMKrd">Discord</a></p></li>
+<li><p><a class="reference external" href="https://community.home-assistant.io/c/third-party/esphome">Home Assistant Community Forums</a></p></li>
+<li><p>ESPHome <a class="reference external" href="https://github.com/esphome/issues">issue</a> and
+<a class="reference external" href="https://github.com/esphome/feature-requests">feature request</a> issue trackers. Preferably only for issues and
+feature requests.</p></li>
+<li><p>Alternatively, also under contact (at) esphome.io (NO SUPPORT!)</p></li>
+</ul>
+</section>
+<section id="my-node-keeps-reconnecting-randomly">
+<span id="wifi-problems"></span><h2>My node keeps reconnecting randomly<a class="headerlink" href="#my-node-keeps-reconnecting-randomly" title="Permalink to this headline">¶</a></h2>
+<p>Jep, that’s a known issue. However, it seems to be very low-level and we don’t really know
+how to solve it. We are working on possible workarounds for the issue, but currently we do
+not have a real solution.</p>
+<p>Some steps that can help with the issue:</p>
+<ul class="simple">
+<li><p>If you’re using a hidden WiFi network, make sure to enable <code class="docutils literal notranslate"><span class="pre">fast_connect</span></code> mode in the WiFi
+configuration (also sometimes helps with non-hidden networks)</p></li>
+<li><p>Give your ESP a <a class="reference internal" href="../components/wifi.html#wifi-manual-ip"><span class="std std-ref">static IP</span></a>.</p></li>
+<li><p>Set the <code class="docutils literal notranslate"><span class="pre">power_save_mode</span></code> to <code class="docutils literal notranslate"><span class="pre">light</span></code> in the <code class="docutils literal notranslate"><span class="pre">wifi:</span></code> config (only helps in some cases,
+in other it can make things worse). See <a class="reference internal" href="../components/wifi.html#wifi-power-save-mode"><span class="std std-ref">Power Save Mode</span></a>.</p></li>
+<li><p>The issue seems to happen with cheap boards more frequently. Especially the “cheap” NodeMCU
+boards from eBay which sometimes have quite bad antennas.</p></li>
+<li><p>ESPHome reboots on purpose when something is not going right, e.g.
+<a class="reference internal" href="../components/wifi.html"><span class="doc">wifi connection cannot be made</span></a> or
+<a class="reference internal" href="../components/api.html"><span class="doc">api connection is lost</span></a> or
+<a class="reference internal" href="../components/mqtt.html"><span class="doc">mqtt connection is lost</span></a>. So if you are facing this problem you’ll need
+to explicitly set the <code class="docutils literal notranslate"><span class="pre">reboot_timeout</span></code> option to <code class="docutils literal notranslate"><span class="pre">0s</span></code> on the components being used.</p></li>
+<li><p>If you see <code class="docutils literal notranslate"><span class="pre">Error:</span> <span class="pre">Disconnecting</span> <span class="pre">&lt;NODE_NAME&gt;</span></code> in your logs, ESPHome is actively closing
+the native API client connection. Connect a serial console to inspect the reason, which is only
+logged via serial. If you see <code class="docutils literal notranslate"><span class="pre">ack</span> <span class="pre">timeout</span> <span class="pre">4</span></code> right before a disconnect, this might be because
+of a bug in the AsyncTCP library, for which a fix was included in ESPHome version 1.18.0.
+If you are running an ESPHome version, prior to 1.18.0, then upgrade ESPHome and build fresh
+firmware for your devices.</p></li>
+<li><p>We have seen an increase in disconnects while the log level was set to <code class="docutils literal notranslate"><span class="pre">VERY_VERBOSE</span></code>,
+especially on single-core devices, where the logging code might be interfering with the operation
+of the networking code. For this reason, we advise using a lower log level for production
+purposes.</p></li>
+<li><p>Related to this, seems to be the number of clients that are simultaneously connected to the native
+API server on the device. These might for example be Home Assistant (via the ESPHome integration) and
+the log viewer on the web dashboard. In production, you will likely only have a single connection from
+Home Assistant, making this less of an issue. But beware that attaching a log viewer might
+have impact.</p></li>
+</ul>
+</section>
+<section id="docker-reference">
+<h2>Docker Reference<a class="headerlink" href="#docker-reference" title="Permalink to this headline">¶</a></h2>
+<p>Install versions:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Stable Release</span>
+docker pull esphome/esphome
+<span class="c1"># Beta</span>
+docker pull esphome/esphome:beta
+<span class="c1"># Dev version</span>
+docker pull esphome/esphome:dev
+</pre></div>
+</div>
+<p>Command reference:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Start a new file wizard for file livingroom.yaml</span>
+docker run --rm -v <span class="s2">&quot;</span><span class="si">${</span><span class="nv">PWD</span><span class="si">}</span><span class="s2">&quot;</span>:/config -it esphome/esphome livingroom.yaml wizard
+
+<span class="c1"># Compile and upload livingroom.yaml</span>
+docker run --rm -v <span class="s2">&quot;</span><span class="si">${</span><span class="nv">PWD</span><span class="si">}</span><span class="s2">&quot;</span>:/config -it esphome/esphome livingroom.yaml run
+
+<span class="c1"># View logs</span>
+docker run --rm -v <span class="s2">&quot;</span><span class="si">${</span><span class="nv">PWD</span><span class="si">}</span><span class="s2">&quot;</span>:/config -it esphome/esphome livingroom.yaml logs
+
+<span class="c1"># Map /dev/ttyUSB0 into container</span>
+docker run --rm -v <span class="s2">&quot;</span><span class="si">${</span><span class="nv">PWD</span><span class="si">}</span><span class="s2">&quot;</span>:/config --device<span class="o">=</span>/dev/ttyUSB0 -it esphome/esphome ...
+
+<span class="c1"># Start dashboard on port 6052 (general command)</span>
+<span class="c1"># Warning: this command is currently not working with Docker on MacOS. (see note below)</span>
+docker run --rm -v <span class="s2">&quot;</span><span class="si">${</span><span class="nv">PWD</span><span class="si">}</span><span class="s2">&quot;</span>:/config --net<span class="o">=</span>host -it esphome/esphome
+
+<span class="c1"># Start dashboard on port 6052 (MacOS specific command)</span>
+docker run --rm -p <span class="m">6052</span>:6052 -e <span class="nv">ESPHOME_DASHBOARD_USE_PING</span><span class="o">=</span><span class="nb">true</span> -v <span class="s2">&quot;</span><span class="si">${</span><span class="nv">PWD</span><span class="si">}</span><span class="s2">&quot;</span>:/config -it esphome/esphome
+
+<span class="c1"># Setup a bash alias:</span>
+<span class="nb">alias</span> <span class="nv">esphome</span><span class="o">=</span><span class="s1">&#39;docker run --rm -v &quot;${PWD}&quot;:/config --net=host -it esphome/esphome&#39;</span>
+</pre></div>
+</div>
+<p>And a docker compose file looks like this:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">version</span><span class="p">:</span> <span class="s">&#39;3&#39;</span>
+
+<span class="nt">services</span><span class="p">:</span>
+  <span class="nt">esphome</span><span class="p">:</span>
+    <span class="nt">image</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">esphome/esphome</span>
+    <span class="nt">volumes</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">./:/config:rw</span>
+      <span class="c1"># Use local time for logging timestamps</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">/etc/localtime:/etc/localtime:ro</span>
+    <span class="nt">network_mode</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">host</span>
+    <span class="nt">restart</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">always</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>ESPHome uses mDNS to show online/offline state in the dashboard view. So for that feature
+to work you need to enable host networking mode</p>
+<p>On MacOS the networking mode (“-net=host” option) doesn’t work as expected. You have to use
+another way to launch the dashboard with a port mapping option and use alternative to mDNS
+to have the online/offline stat (see below)</p>
+<p>mDNS might not work if your Home Assistant server and your ESPHome nodes are on different subnets.
+If your router supports Avahi, you are able to get mDNS working over different subnets.</p>
+<p>Just follow the next steps:</p>
+<ol class="arabic simple">
+<li><p>Enable Avahi on both subnets.</p></li>
+<li><p>Enable UDP traffic from ESPHome node’s subnet to 224.0.0.251/32 on port 5353.</p></li>
+</ol>
+<p>Alternatively, you can make esphome use ICMP pings to check the status of the device
+with the Hass.io Addon <code class="docutils literal notranslate"><span class="pre">&quot;status_use_ping&quot;:</span> <span class="pre">true,</span></code> option or with docker <code class="docutils literal notranslate"><span class="pre">-e</span> <span class="pre">ESPHOME_DASHBOARD_USE_PING=true</span></code>
+See also <a class="reference external" href="https://github.com/esphome/issues/issues/641#issuecomment-534156628">https://github.com/esphome/issues/issues/641#issuecomment-534156628</a>.</p>
+</div>
+</section>
+<section id="can-configuration-files-be-recovered-from-the-device">
+<h2>Can Configuration Files Be Recovered From The Device?<a class="headerlink" href="#can-configuration-files-be-recovered-from-the-device" title="Permalink to this headline">¶</a></h2>
+<p>If you lost your ESPHome YAML configuration files, there’s no way to recover them.
+The configuration is <em>not</em> stored on the device directly - only the generated firmware is on
+the device itself (technically, the configuration can be reverse-engineered from that, but only
+with a lot of work).</p>
+<p>Always back up all your files!</p>
+</section>
+<section id="see-also">
+<h2>See Also<a class="headerlink" href="#see-also" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="../index-2.html"><span class="doc">ESPHome index</span></a></p></li>
+<li><p><a class="reference internal" href="contributing.html"><span class="doc">Contributing</span></a></p></li>
+<li><p><a class="reference external" href="https://github.com/esphome/esphome-docs/blob/current/guides/faq.rst">Edit this page on GitHub</a></p></li>
+</ul>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+  <div id="upgrade-footer">
+    A new version has been release since you last visited this page: 1.17.2 🎉
+    <div class="footer-button-container">
+      <div role="button" id="upgrade-footer-dismiss" class="footer-button">Dismiss</div>
+      <a id="upgrade-footer-changelog" class="footer-button" href="../changelog/v1.17.0.html">View Changelog</a>  
+    </div>
+  </div>
+  <script>
+    var old = window.localStorage.getItem("version");
+    if (old === null) { window.localStorage.setItem("version", "1.17");
+    } else if (old !== "1.17") {
+      const footerEl = document.getElementById("upgrade-footer");
+      footerEl.classList.add("not-hidden");
+      footerEl.addEventListener('click', function () {
+        window.localStorage.setItem("version", "1.17");
+        footerEl.classList.remove("not-hidden");
+      });
+    }
+  </script>
+
+  </body>
+
+<!-- Mirrored from esphome.io/guides/faq.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 16 May 2021 02:58:24 GMT -->
+</html>

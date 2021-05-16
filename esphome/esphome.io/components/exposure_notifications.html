@@ -1,0 +1,204 @@
+
+  <!DOCTYPE html>
+
+
+<html lang="en">
+  
+<!-- Mirrored from esphome.io/components/exposure_notifications.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 16 May 2021 03:02:38 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+<meta name="description" content="Instructions for setting up exposure notification listeners for ESPHome.">
+<meta itemprop="name" content="Exposure Notification Listener">
+<meta itemprop="description" content="Instructions for setting up exposure notification listeners for ESPHome.">
+<meta itemprop="image" content="../_images/exposure_notifications.png">
+<meta name="twitter:title" content="Exposure Notification Listener">
+<meta name="twitter:image:src" content="../_images/exposure_notifications.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@OttoWinter_">
+<meta name="twitter:description" content="Instructions for setting up exposure notification listeners for ESPHome.">
+<meta property="og:title" content="Exposure Notification Listener">
+<meta property="og:image" content="../_images/exposure_notifications.png">
+<meta property="og:type" content="website">
+<meta property="og:description" content="Instructions for setting up exposure notification listeners for ESPHome.">
+
+    <title>Exposure Notification Listener &#8212; ESPHome</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <link rel="canonical" href="exposure_notifications.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="GPS Component" href="gps.html" />
+    <link rel="prev" title="Ethernet Component" href="ethernet.html" />
+  <link rel="stylesheet" href="../_static/customf001.css?hash=f908c2b5" type="text/css" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../_static/apple-touch-icon.png">
+  <link rel="shortcut icon" href="../_static/favicon.ico">
+  <link rel="icon" type="image/png" sizes="512x512" href="../_static/favicon-512x512.png">
+  <link rel="icon" type="image/png" sizes="256x256" href="../_static/favicon-256x256.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="../_static/favicon-192x192.png">
+  <link rel="icon" type="image/png" sizes="128x128" href="../_static/favicon-128x128.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../_static/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../_static/favicon-16x16.png">
+  <link rel="manifest" href="../_static/site.webmanifest">
+  <link rel="mask-icon" href="../_static/safari-pinned-tab.svg" color="#646464">
+  <meta name="apple-mobile-web-app-title" content="ESPHome">
+  <meta name="application-name" content="ESPHome">
+  <meta name="msapplication-TileColor" content="#dfdfdf">
+  <meta name="msapplication-config" content="/_static/browserconfig.xml">
+  <meta name="theme-color" content="#dfdfdf">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta property="og:site_name" content="ESPHome">
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head><body>
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index-2.html">
+              <img class="logo" src="../_static/logo-text.svg" alt="Logo"/>
+            </a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="https://esphome.io/search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+  <h3><a href="../index-2.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Exposure Notification Listener</a><ul>
+<li><a class="reference internal" href="#configuration-variables">Configuration variables:</a></li>
+<li><a class="reference internal" href="#indicator-of-device-with-exposure-notifications">Indicator of device with exposure notifications</a></li>
+<li><a class="reference internal" href="#see-also">See Also</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="exposure-notification-listener">
+<h1>Exposure Notification Listener<a class="headerlink" href="#exposure-notification-listener" title="Permalink to this headline">¶</a></h1>
+<p>The <code class="docutils literal notranslate"><span class="pre">exposure_notifications</span></code> component uses the <a class="reference internal" href="esp32_ble_tracker.html"><span class="doc">ESP32 Bluetooth Low Energy Tracker Hub</span></a> to discover
+nearby COVID-19 exposure notification bluetooth messages sent by phones running the
+<a class="reference external" href="https://www.google.com/covid19/exposurenotifications/">Google/Apple Exposure Notification service</a>.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example configuration entry</span>
+<span class="nt">esp32_ble_tracker</span><span class="p">:</span>
+
+<span class="nt">exposure_notifications</span><span class="p">:</span>
+  <span class="nt">on_exposure_notification</span><span class="p">:</span>
+    <span class="nt">then</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="nt">lambda</span><span class="p">:</span> <span class="p p-Indicator">|</span>
+          <span class="no">ESP_LOGD(&quot;main&quot;, &quot;Got notification:&quot;);</span>
+          <span class="no">ESP_LOGD(&quot;main&quot;, &quot;  RPI: %s&quot;, hexencode(x.rolling_proximity_identifier).c_str());</span>
+          <span class="no">ESP_LOGD(&quot;main&quot;, &quot;  RSSI: %d&quot;, x.rssi);</span>
+</pre></div>
+</div>
+<section id="configuration-variables">
+<h2>Configuration variables:<a class="headerlink" href="#configuration-variables" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p><strong>on_exposure_notification</strong> (<em>Optional</em>, <a class="reference internal" href="../guides/automations.html#automation"><span class="std std-ref">Automation</span></a>): An automation
+to run when an exposure notification bluetooth message is received.</p>
+<p>A variable <code class="docutils literal notranslate"><span class="pre">x</span></code> of type <a class="reference external" href="../api/structesphome_1_1exposure__notifications_1_1_exposure_notification.html">exposure_notifications::ExposureNotification</a> is passed to the automation.</p>
+</li>
+</ul>
+<p>An exposure notification payload contains:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Rolling proximity identifier (RPI): A 16-byte long value used to identify a given device in a 10-minute window.</p></li>
+<li><p>Associated encrypted metadata (AEM): Additional encrypted metadata, like transmit power.</p></li>
+</ul>
+</div></blockquote>
+<p>Because the GAEN framework is designed to prevent tracking an individual, this data can essentially
+only be used to check whether a device with enabled exposure notifications is nearby (and to limited degree
+also count them).</p>
+</section>
+<section id="indicator-of-device-with-exposure-notifications">
+<h2>Indicator of device with exposure notifications<a class="headerlink" href="#indicator-of-device-with-exposure-notifications" title="Permalink to this headline">¶</a></h2>
+<p>The following configuration can be used as an indicator whether an exposure-notifications
+enabled device is nearby. As long as an exposure notification has been received in the last
+minute, the indicator will be on.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">esp32_ble_tracker</span><span class="p">:</span>
+
+<span class="nt">switch</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">gpio</span>
+    <span class="nt">pin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO22</span>
+    <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">led</span>
+
+<span class="nt">script</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">start_led</span>
+    <span class="nt">then</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="nt">switch.turn_on</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">led</span>
+      <span class="p p-Indicator">-</span> <span class="nt">delay</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">1min</span>
+      <span class="p p-Indicator">-</span> <span class="nt">switch.turn_off</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">led</span>
+
+<span class="nt">exposure_notifications</span><span class="p">:</span>
+  <span class="nt">on_exposure_notification</span><span class="p">:</span>
+    <span class="nt">then</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="nt">lambda</span><span class="p">:</span> <span class="p p-Indicator">|</span>
+          <span class="no">ESP_LOGD(&quot;main&quot;, &quot;Got notification:&quot;);</span>
+          <span class="no">ESP_LOGD(&quot;main&quot;, &quot;  RPI: %s&quot;, hexencode(x.rolling_proximity_identifier).c_str());</span>
+          <span class="no">ESP_LOGD(&quot;main&quot;, &quot;  RSSI: %d&quot;, x.rssi);</span>
+
+      <span class="c1"># Stop existing timer so that turn_off doesn&#39;t get called</span>
+      <span class="p p-Indicator">-</span> <span class="nt">script.stop</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">start_led</span>
+      <span class="p p-Indicator">-</span> <span class="nt">script.execute</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">start_led</span>
+</pre></div>
+</div>
+</section>
+<section id="see-also">
+<h2>See Also<a class="headerlink" href="#see-also" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="esp32_ble_tracker.html"><span class="doc">ESP32 Bluetooth Low Energy Tracker Hub</span></a></p></li>
+<li><p><a class="reference external" href="../api/exposure__notifications_8h.html">API Reference</a></p></li>
+<li><p><a class="reference external" href="https://github.com/esphome/esphome-docs/blob/current/components/exposure_notifications.rst">Edit this page on GitHub</a></p></li>
+</ul>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+  <div id="upgrade-footer">
+    A new version has been release since you last visited this page: 1.17.2 🎉
+    <div class="footer-button-container">
+      <div role="button" id="upgrade-footer-dismiss" class="footer-button">Dismiss</div>
+      <a id="upgrade-footer-changelog" class="footer-button" href="../changelog/v1.17.0.html">View Changelog</a>  
+    </div>
+  </div>
+  <script>
+    var old = window.localStorage.getItem("version");
+    if (old === null) { window.localStorage.setItem("version", "1.17");
+    } else if (old !== "1.17") {
+      const footerEl = document.getElementById("upgrade-footer");
+      footerEl.classList.add("not-hidden");
+      footerEl.addEventListener('click', function () {
+        window.localStorage.setItem("version", "1.17");
+        footerEl.classList.remove("not-hidden");
+      });
+    }
+  </script>
+
+  </body>
+
+<!-- Mirrored from esphome.io/components/exposure_notifications.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 16 May 2021 03:02:38 GMT -->
+</html>

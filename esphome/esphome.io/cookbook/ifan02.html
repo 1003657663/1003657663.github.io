@@ -1,0 +1,327 @@
+
+  <!DOCTYPE html>
+
+
+<html lang="en">
+  
+<!-- Mirrored from esphome.io/cookbook/ifan02.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 16 May 2021 03:02:50 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+<meta name="description" content="Instructions for using Sonoff ifan02 in ESPHome.">
+<meta name="keywords" content="Fan, Sonoff, ifan02">
+<meta itemprop="name" content="Sonoff iFan02">
+<meta itemprop="description" content="Instructions for using Sonoff ifan02 in ESPHome.">
+<meta itemprop="image" content="../_images/fan.svg">
+<meta name="twitter:title" content="Sonoff iFan02">
+<meta name="twitter:image:src" content="../_images/fan.svg">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@OttoWinter_">
+<meta name="twitter:description" content="Instructions for using Sonoff ifan02 in ESPHome.">
+<meta property="og:title" content="Sonoff iFan02">
+<meta property="og:image" content="../_images/fan.svg">
+<meta property="og:type" content="website">
+<meta property="og:description" content="Instructions for using Sonoff ifan02 in ESPHome.">
+
+    <title>Sonoff iFan02 &#8212; ESPHome</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <link rel="canonical" href="ifan02.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Infostripe" href="infostrip.html" />
+    <link rel="prev" title="IAQ (Indoor Air Quality) Board" href="iaq_board.html" />
+  <link rel="stylesheet" href="../_static/customf001.css?hash=f908c2b5" type="text/css" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../_static/apple-touch-icon.png">
+  <link rel="shortcut icon" href="../_static/favicon.ico">
+  <link rel="icon" type="image/png" sizes="512x512" href="../_static/favicon-512x512.png">
+  <link rel="icon" type="image/png" sizes="256x256" href="../_static/favicon-256x256.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="../_static/favicon-192x192.png">
+  <link rel="icon" type="image/png" sizes="128x128" href="../_static/favicon-128x128.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../_static/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../_static/favicon-16x16.png">
+  <link rel="manifest" href="../_static/site.webmanifest">
+  <link rel="mask-icon" href="../_static/safari-pinned-tab.svg" color="#646464">
+  <meta name="apple-mobile-web-app-title" content="ESPHome">
+  <meta name="application-name" content="ESPHome">
+  <meta name="msapplication-TileColor" content="#dfdfdf">
+  <meta name="msapplication-config" content="/_static/browserconfig.xml">
+  <meta name="theme-color" content="#dfdfdf">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta property="og:site_name" content="ESPHome">
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head><body>
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index-2.html">
+              <img class="logo" src="../_static/logo-text.svg" alt="Logo"/>
+            </a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="https://esphome.io/search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+  <h3><a href="../index-2.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Sonoff iFan02</a><ul>
+<li><a class="reference internal" href="#see-also">See Also</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="sonoff-ifan02">
+<h1>Sonoff iFan02<a class="headerlink" href="#sonoff-ifan02" title="Permalink to this headline">¶</a></h1>
+<p>Sonoff iFan02 is a driver for ceiling fans with lights.
+By replacing the old driver with iFan02, your non-smart led ceiling fan will be converted to a smart ceiling fan.
+For more information see <a class="reference external" href="https://www.itead.cc/sonoff-ifan02-wifi-smart-ceiling-fan-with-light.html">iFan02</a></p>
+<p>This configuration will expose a <a class="reference internal" href="../components/light/binary.html"><span class="doc">Binary Light</span></a> and a <a class="reference internal" href="../components/fan/speed.html"><span class="doc">Speed Fan</span></a>.</p>
+<p>To get this working in ESPHome you first need to create a <a class="reference internal" href="../components/output/custom.html"><span class="doc">Custom Output</span></a> to control the iFan02.</p>
+<p>Create an ifan02.h file:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&quot;esphome.h&quot;</span><span class="cp"></span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="nn">esphome</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">IFan02Output</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Component</span><span class="p">,</span> <span class="k">public</span> <span class="n">FloatOutput</span> <span class="p">{</span>
+  <span class="k">public</span><span class="o">:</span>
+    <span class="kt">void</span> <span class="n">write_state</span><span class="p">(</span><span class="kt">float</span> <span class="n">state</span><span class="p">)</span> <span class="k">override</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">state</span> <span class="o">&lt;</span> <span class="mf">0.3</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// OFF</span>
+        <span class="n">digitalWrite</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">LOW</span><span class="p">);</span>
+        <span class="n">digitalWrite</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="n">LOW</span><span class="p">);</span>
+        <span class="n">digitalWrite</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="n">LOW</span><span class="p">);</span>
+      <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">state</span> <span class="o">&lt;</span> <span class="mf">0.6</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// low speed</span>
+        <span class="n">digitalWrite</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">HIGH</span><span class="p">);</span>
+        <span class="n">digitalWrite</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="n">LOW</span><span class="p">);</span>
+        <span class="n">digitalWrite</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="n">LOW</span><span class="p">);</span>
+      <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">state</span> <span class="o">&lt;</span> <span class="mf">0.9</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// medium speed</span>
+        <span class="n">digitalWrite</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">HIGH</span><span class="p">);</span>
+        <span class="n">digitalWrite</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="n">HIGH</span><span class="p">);</span>
+        <span class="n">digitalWrite</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="n">LOW</span><span class="p">);</span>
+      <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="c1">// high speed</span>
+        <span class="n">digitalWrite</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">HIGH</span><span class="p">);</span>
+        <span class="n">digitalWrite</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="n">LOW</span><span class="p">);</span>
+        <span class="n">digitalWrite</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="n">HIGH</span><span class="p">);</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>Then you need to set it up with yaml.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">esphome</span><span class="p">:</span>
+  <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ifan02</span>
+  <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ESP8266</span>
+  <span class="nt">board</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">esp8285</span>
+  <span class="nt">includes</span><span class="p">:</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">ifan02.h</span>
+  <span class="nt">on_boot</span><span class="p">:</span>
+    <span class="nt">priority</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">225</span>
+    <span class="c1"># turn off the light as early as possible</span>
+    <span class="nt">then</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="nt">light.turn_off</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ifan02_light</span>
+
+<span class="nt">wifi</span><span class="p">:</span>
+  <span class="nt">ssid</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">&lt;YOUR_SSID&gt;</span>
+  <span class="nt">password</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">&lt;YOUR_PASSWORD&gt;</span>
+
+<span class="nt">api</span><span class="p">:</span>
+
+<span class="nt">logger</span><span class="p">:</span>
+
+<span class="nt">ota</span><span class="p">:</span>
+
+<span class="nt">binary_sensor</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">gpio</span>
+    <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">vbutton_light</span>
+    <span class="nt">pin</span><span class="p">:</span>
+      <span class="nt">number</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO0</span>
+      <span class="nt">inverted</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">True</span>
+    <span class="nt">on_press</span><span class="p">:</span>
+      <span class="nt">then</span><span class="p">:</span>
+        <span class="p p-Indicator">-</span> <span class="nt">light.toggle</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ifan02_light</span>
+
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">gpio</span>
+    <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">vbutton_relay_1</span>
+    <span class="nt">pin</span><span class="p">:</span>
+      <span class="nt">number</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO9</span>
+      <span class="nt">inverted</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">True</span>
+    <span class="nt">on_press</span><span class="p">:</span>
+      <span class="nt">then</span><span class="p">:</span>
+        <span class="p p-Indicator">-</span> <span class="nt">switch.toggle</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">fan_relay1</span>
+        <span class="p p-Indicator">-</span> <span class="nt">switch.turn_on</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">update_fan_speed</span>
+
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">gpio</span>
+    <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">vbutton_relay_2</span>
+    <span class="nt">pin</span><span class="p">:</span>
+      <span class="nt">number</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO10</span>
+      <span class="nt">inverted</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">True</span>
+    <span class="nt">on_press</span><span class="p">:</span>
+      <span class="nt">then</span><span class="p">:</span>
+        <span class="p p-Indicator">-</span> <span class="nt">switch.toggle</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">fan_relay2</span>
+        <span class="p p-Indicator">-</span> <span class="nt">switch.turn_on</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">update_fan_speed</span>
+
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">gpio</span>
+    <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">vbutton_relay_3</span>
+    <span class="nt">pin</span><span class="p">:</span>
+      <span class="nt">number</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO14</span>
+      <span class="nt">inverted</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">True</span>
+    <span class="nt">on_press</span><span class="p">:</span>
+      <span class="nt">then</span><span class="p">:</span>
+        <span class="p p-Indicator">-</span> <span class="nt">switch.toggle</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">fan_relay3</span>
+        <span class="p p-Indicator">-</span> <span class="nt">switch.turn_on</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">update_fan_speed</span>
+
+<span class="nt">output</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">custom</span>
+    <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">float</span>
+    <span class="nt">outputs</span><span class="p">:</span>
+      <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">fanoutput</span>
+    <span class="nt">lambda</span><span class="p">:</span> <span class="p p-Indicator">|-</span>
+      <span class="no">auto ifan02_fan = new IFan02Output();</span>
+      <span class="no">App.register_component(ifan02_fan);</span>
+      <span class="no">return {ifan02_fan};</span>
+
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">gpio</span>
+    <span class="nt">pin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO12</span>
+    <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">light_output</span>
+
+<span class="nt">light</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">binary</span>
+    <span class="nt">name</span><span class="p">:</span> <span class="s">&quot;iFan02</span><span class="nv"> </span><span class="s">Light&quot;</span>
+    <span class="nt">output</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">light_output</span>
+    <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ifan02_light</span>
+
+<span class="nt">switch</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">template</span>
+    <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">update_fan_speed</span>
+    <span class="nt">optimistic</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">True</span>
+    <span class="nt">turn_on_action</span><span class="p">:</span>
+      <span class="nt">then</span><span class="p">:</span>
+        <span class="p p-Indicator">-</span> <span class="nt">delay</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">200ms</span>
+        <span class="p p-Indicator">-</span> <span class="nt">if</span><span class="p">:</span>
+            <span class="nt">condition</span><span class="p">:</span>
+              <span class="nt">and</span><span class="p">:</span>
+                <span class="p p-Indicator">-</span> <span class="nt">switch.is_off</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">fan_relay1</span>
+                <span class="p p-Indicator">-</span> <span class="nt">switch.is_off</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">fan_relay2</span>
+                <span class="p p-Indicator">-</span> <span class="nt">switch.is_off</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">fan_relay3</span>
+            <span class="nt">then</span><span class="p">:</span>
+              <span class="p p-Indicator">-</span> <span class="nt">fan.turn_off</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ifan02_fan</span>
+        <span class="p p-Indicator">-</span> <span class="nt">if</span><span class="p">:</span>
+            <span class="nt">condition</span><span class="p">:</span>
+              <span class="nt">and</span><span class="p">:</span>
+                <span class="p p-Indicator">-</span> <span class="nt">switch.is_on</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">fan_relay1</span>
+                <span class="p p-Indicator">-</span> <span class="nt">switch.is_off</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">fan_relay2</span>
+                <span class="p p-Indicator">-</span> <span class="nt">switch.is_off</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">fan_relay3</span>
+            <span class="nt">then</span><span class="p">:</span>
+              <span class="p p-Indicator">-</span> <span class="nt">fan.turn_on</span><span class="p">:</span>
+                  <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ifan02_fan</span>
+                  <span class="nt">speed</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">LOW</span>
+        <span class="p p-Indicator">-</span> <span class="nt">if</span><span class="p">:</span>
+            <span class="nt">condition</span><span class="p">:</span>
+              <span class="nt">and</span><span class="p">:</span>
+                <span class="p p-Indicator">-</span> <span class="nt">switch.is_on</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">fan_relay1</span>
+                <span class="p p-Indicator">-</span> <span class="nt">switch.is_on</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">fan_relay2</span>
+                <span class="p p-Indicator">-</span> <span class="nt">switch.is_off</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">fan_relay3</span>
+            <span class="nt">then</span><span class="p">:</span>
+              <span class="p p-Indicator">-</span> <span class="nt">fan.turn_on</span><span class="p">:</span>
+                  <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ifan02_fan</span>
+                  <span class="nt">speed</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">MEDIUM</span>
+        <span class="p p-Indicator">-</span> <span class="nt">if</span><span class="p">:</span>
+            <span class="nt">condition</span><span class="p">:</span>
+              <span class="nt">and</span><span class="p">:</span>
+                <span class="p p-Indicator">-</span> <span class="nt">switch.is_on</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">fan_relay1</span>
+                <span class="p p-Indicator">-</span> <span class="nt">switch.is_off</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">fan_relay2</span>
+                <span class="p p-Indicator">-</span> <span class="nt">switch.is_on</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">fan_relay3</span>
+            <span class="nt">then</span><span class="p">:</span>
+              <span class="p p-Indicator">-</span> <span class="nt">fan.turn_on</span><span class="p">:</span>
+                  <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ifan02_fan</span>
+                  <span class="nt">speed</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">HIGH</span>
+        <span class="p p-Indicator">-</span> <span class="nt">switch.turn_off</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">update_fan_speed</span>
+
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">gpio</span>
+    <span class="nt">pin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO5</span>
+    <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">fan_relay1</span>
+
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">gpio</span>
+    <span class="nt">pin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO4</span>
+    <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">fan_relay2</span>
+
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">gpio</span>
+    <span class="nt">pin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO15</span>
+    <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">fan_relay3</span>
+
+<span class="nt">fan</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">speed</span>
+    <span class="nt">output</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">fanoutput</span>
+    <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ifan02_fan</span>
+    <span class="nt">name</span><span class="p">:</span> <span class="s">&quot;iFan02</span><span class="nv"> </span><span class="s">Fan&quot;</span>
+</pre></div>
+</div>
+<section id="see-also">
+<h2>See Also<a class="headerlink" href="#see-also" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="../components/light/index.html"><span class="doc">Light Component</span></a></p></li>
+<li><p><a class="reference internal" href="../components/light/binary.html"><span class="doc">Binary Light</span></a></p></li>
+<li><p><a class="reference internal" href="../components/fan/index.html"><span class="doc">Fan Component</span></a></p></li>
+<li><p><a class="reference internal" href="../components/fan/speed.html"><span class="doc">Speed Fan</span></a></p></li>
+<li><p><a class="reference internal" href="../components/output/index.html"><span class="doc">Output Component</span></a></p></li>
+<li><p><a class="reference internal" href="../components/output/custom.html"><span class="doc">Custom Output</span></a></p></li>
+<li><p><a class="reference internal" href="../guides/automations.html"><span class="doc">Automations and Templates</span></a></p></li>
+<li><p><a class="reference external" href="https://github.com/esphome/esphome-docs/blob/current/cookbook/ifan02.rst">Edit this page on GitHub</a></p></li>
+</ul>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+  <div id="upgrade-footer">
+    A new version has been release since you last visited this page: 1.17.2 🎉
+    <div class="footer-button-container">
+      <div role="button" id="upgrade-footer-dismiss" class="footer-button">Dismiss</div>
+      <a id="upgrade-footer-changelog" class="footer-button" href="../changelog/v1.17.0.html">View Changelog</a>  
+    </div>
+  </div>
+  <script>
+    var old = window.localStorage.getItem("version");
+    if (old === null) { window.localStorage.setItem("version", "1.17");
+    } else if (old !== "1.17") {
+      const footerEl = document.getElementById("upgrade-footer");
+      footerEl.classList.add("not-hidden");
+      footerEl.addEventListener('click', function () {
+        window.localStorage.setItem("version", "1.17");
+        footerEl.classList.remove("not-hidden");
+      });
+    }
+  </script>
+
+  </body>
+
+<!-- Mirrored from esphome.io/cookbook/ifan02.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 16 May 2021 03:02:50 GMT -->
+</html>

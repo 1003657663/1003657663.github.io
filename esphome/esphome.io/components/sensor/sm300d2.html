@@ -1,0 +1,245 @@
+
+  <!DOCTYPE html>
+
+
+<html lang="en">
+  
+<!-- Mirrored from esphome.io/components/sensor/sm300d2.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 16 May 2021 03:00:13 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+<meta name="description" content="Instructions for setting up SM300D2 sensor to work with ESPHome">
+<meta name="keywords" content="sm300d2">
+<meta itemprop="name" content="SM300D2 7-in-1 Air Quality Sensor">
+<meta itemprop="description" content="Instructions for setting up SM300D2 sensor to work with ESPHome">
+<meta itemprop="image" content="../../_images/sm300d2-full.jpg">
+<meta name="twitter:title" content="SM300D2 7-in-1 Air Quality Sensor">
+<meta name="twitter:image:src" content="../../_images/sm300d2-full.jpg">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@OttoWinter_">
+<meta name="twitter:description" content="Instructions for setting up SM300D2 sensor to work with ESPHome">
+<meta property="og:title" content="SM300D2 7-in-1 Air Quality Sensor">
+<meta property="og:image" content="../../_images/sm300d2-full.jpg">
+<meta property="og:type" content="website">
+<meta property="og:description" content="Instructions for setting up SM300D2 sensor to work with ESPHome">
+
+    <title>SM300D2 7-in-1 Air Quality Sensor &#8212; ESPHome</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/alabaster.css" />
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <link rel="canonical" href="sm300d2.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="SPS30 Particulate Matter Sensor" href="sps30.html" />
+    <link rel="prev" title="SHTCx Temperature+Humidity Sensors" href="shtcx.html" />
+  <link rel="stylesheet" href="../../_static/customf001.css?hash=f908c2b5" type="text/css" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../../_static/apple-touch-icon.png">
+  <link rel="shortcut icon" href="../../_static/favicon.ico">
+  <link rel="icon" type="image/png" sizes="512x512" href="../../_static/favicon-512x512.png">
+  <link rel="icon" type="image/png" sizes="256x256" href="../../_static/favicon-256x256.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="../../_static/favicon-192x192.png">
+  <link rel="icon" type="image/png" sizes="128x128" href="../../_static/favicon-128x128.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../_static/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../../_static/favicon-16x16.png">
+  <link rel="manifest" href="../../_static/site.webmanifest">
+  <link rel="mask-icon" href="../../_static/safari-pinned-tab.svg" color="#646464">
+  <meta name="apple-mobile-web-app-title" content="ESPHome">
+  <meta name="application-name" content="ESPHome">
+  <meta name="msapplication-TileColor" content="#dfdfdf">
+  <meta name="msapplication-config" content="/_static/browserconfig.xml">
+  <meta name="theme-color" content="#dfdfdf">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta property="og:site_name" content="ESPHome">
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head><body>
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../index-2.html">
+              <img class="logo" src="../../_static/logo-text.svg" alt="Logo"/>
+            </a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="https://esphome.io/search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+  <h3><a href="../../index-2.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">SM300D2 7-in-1 Air Quality Sensor</a><ul>
+<li><a class="reference internal" href="#configuration-variables">Configuration variables:</a></li>
+<li><a class="reference internal" href="#see-also">See Also</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="sm300d2-7-in-1-air-quality-sensor">
+<h1>SM300D2 7-in-1 Air Quality Sensor<a class="headerlink" href="#sm300d2-7-in-1-air-quality-sensor" title="Permalink to this headline">¶</a></h1>
+<p>The <code class="docutils literal notranslate"><span class="pre">sm300d2</span></code> sensor platform allows you to use the SM300D2 7-in-1 Air Quality Sensor with ESPHome.</p>
+<figure class="align-center" id="id1">
+<a class="reference internal image-reference" href="../../_images/sm300d2-full.jpg"><img alt="../../_images/sm300d2-full.jpg" src="../../_images/sm300d2-full.jpg" style="width: 50.0%;" /></a>
+<figcaption>
+<p><span class="caption-text">SM300D2 7-in-1 Air Quality Sensor.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../../_images/sm300d2-ui.png"><img alt="../../_images/sm300d2-ui.png" src="../../_images/sm300d2-ui.png" style="width: 50.0%;" /></a>
+</figure>
+<p>The SM300D2 sensor supports connections via UART or RS485. This platform only supports UART-connections.
+Make sure you have a <a class="reference internal" href="../uart.html#uart"><span class="std std-ref">UART bus</span></a> in your configuration with the <code class="docutils literal notranslate"><span class="pre">rx_pin</span></code> connected to the
+TX pin of the sensor. The sensor does not support receiving data, so the <code class="docutils literal notranslate"><span class="pre">tx_pin</span></code> does not need to be
+connected. The sensor expects the baud rate to be set at 9600.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example configuration entry</span>
+<span class="nt">uart</span><span class="p">:</span>
+  <span class="nt">rx_pin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">D0</span>
+  <span class="nt">tx_pin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">D1</span>
+  <span class="nt">baud_rate</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">9600</span>
+
+<span class="nt">sensor</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">sm300d2</span>
+    <span class="nt">co2</span><span class="p">:</span>
+      <span class="nt">name</span><span class="p">:</span> <span class="s">&quot;SM300D2</span><span class="nv"> </span><span class="s">CO2</span><span class="nv"> </span><span class="s">Value&quot;</span>
+    <span class="nt">formaldehyde</span><span class="p">:</span>
+      <span class="nt">name</span><span class="p">:</span> <span class="s">&quot;SM300D2</span><span class="nv"> </span><span class="s">Formaldehyde</span><span class="nv"> </span><span class="s">Value&quot;</span>
+    <span class="nt">tvoc</span><span class="p">:</span>
+      <span class="nt">name</span><span class="p">:</span> <span class="s">&quot;SM300D2</span><span class="nv"> </span><span class="s">TVOC</span><span class="nv"> </span><span class="s">Value&quot;</span>
+    <span class="nt">pm_2_5</span><span class="p">:</span>
+      <span class="nt">name</span><span class="p">:</span> <span class="s">&quot;SM300D2</span><span class="nv"> </span><span class="s">PM2.5</span><span class="nv"> </span><span class="s">Value&quot;</span>
+    <span class="nt">pm_10_0</span><span class="p">:</span>
+      <span class="nt">name</span><span class="p">:</span> <span class="s">&quot;SM300D2</span><span class="nv"> </span><span class="s">PM10</span><span class="nv"> </span><span class="s">Value&quot;</span>
+    <span class="nt">temperature</span><span class="p">:</span>
+      <span class="nt">name</span><span class="p">:</span> <span class="s">&quot;SM300D2</span><span class="nv"> </span><span class="s">Temperature</span><span class="nv"> </span><span class="s">Value&quot;</span>
+    <span class="nt">humidity</span><span class="p">:</span>
+      <span class="nt">name</span><span class="p">:</span> <span class="s">&quot;SM300D2</span><span class="nv"> </span><span class="s">Humidity</span><span class="nv"> </span><span class="s">Value&quot;</span>
+    <span class="nt">update_interval</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">60s</span>
+</pre></div>
+</div>
+<section id="configuration-variables">
+<h2>Configuration variables:<a class="headerlink" href="#configuration-variables" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><strong>co2</strong> (<strong>Required</strong>): The CO₂ data from the sensor in parts per million (ppm).</p>
+<ul>
+<li><p><strong>name</strong> (<strong>Required</strong>, string): The name of the CO₂ sensor.</p></li>
+<li><p><strong>id</strong> (<em>Optional</em>, <a class="reference internal" href="../../guides/configuration-types.html#config-id"><span class="std std-ref">ID</span></a>): Set the ID of this sensor for use in lambdas.</p></li>
+<li><p>All other options from <a class="reference internal" href="index.html#config-sensor"><span class="std std-ref">Sensor</span></a>.</p></li>
+</ul>
+</li>
+<li><p><strong>formaldehyde</strong> (<strong>Required</strong>): The formaldehyde data of the sensor in micrograms per cubic meter air (µg/m³).</p>
+<ul>
+<li><p><strong>name</strong> (<strong>Required</strong>, string): The name of the formaldehyde sensor.</p></li>
+<li><p><strong>id</strong> (<em>Optional</em>, <a class="reference internal" href="../../guides/configuration-types.html#config-id"><span class="std std-ref">ID</span></a>): Set the ID of this sensor for use in lambdas.</p></li>
+<li><p>All other options from <a class="reference internal" href="index.html#config-sensor"><span class="std std-ref">Sensor</span></a>.</p></li>
+</ul>
+</li>
+<li><p><strong>tvoc</strong> (<strong>Required</strong>): The total volatile organic compounds (TVOC) data of the sensor in micrograms per cubic meter air (µg/m³).</p>
+<ul>
+<li><p><strong>name</strong> (<strong>Required</strong>, string): The name of the TVOC sensor.</p></li>
+<li><p><strong>id</strong> (<em>Optional</em>, <a class="reference internal" href="../../guides/configuration-types.html#config-id"><span class="std std-ref">ID</span></a>): Set the ID of this sensor for use in lambdas.</p></li>
+<li><p>All other options from <a class="reference internal" href="index.html#config-sensor"><span class="std std-ref">Sensor</span></a>.</p></li>
+</ul>
+</li>
+<li><p><strong>pm_2_5</strong> (<strong>Required</strong>): The PM2.5 data of the sensor in micrograms per cubic meter air (µg/m³).</p>
+<ul>
+<li><p><strong>name</strong> (<strong>Required</strong>, string): The name of the PM2.5 sensor.</p></li>
+<li><p><strong>id</strong> (<em>Optional</em>, <a class="reference internal" href="../../guides/configuration-types.html#config-id"><span class="std std-ref">ID</span></a>): Set the ID of this sensor for use in lambdas.</p></li>
+<li><p>All other options from <a class="reference internal" href="index.html#config-sensor"><span class="std std-ref">Sensor</span></a>.</p></li>
+</ul>
+</li>
+<li><p><strong>pm_10_0</strong> (<strong>Required</strong>): The PM10 data of the sensor in micrograms per cubic meter air (µg/m³).</p>
+<ul>
+<li><p><strong>name</strong> (<strong>Required</strong>, string): The name of the PM10 sensor.</p></li>
+<li><p><strong>id</strong> (<em>Optional</em>, <a class="reference internal" href="../../guides/configuration-types.html#config-id"><span class="std std-ref">ID</span></a>): Set the ID of this sensor for use in lambdas.</p></li>
+<li><p>All other options from <a class="reference internal" href="index.html#config-sensor"><span class="std std-ref">Sensor</span></a>.</p></li>
+</ul>
+</li>
+<li><p><strong>temperature</strong> (<strong>Required</strong>): The temperature data of the sensor in degrees celsius (°C).</p>
+<ul>
+<li><p><strong>name</strong> (<strong>Required</strong>, string): The name of the temperature sensor.</p></li>
+<li><p><strong>id</strong> (<em>Optional</em>, <a class="reference internal" href="../../guides/configuration-types.html#config-id"><span class="std std-ref">ID</span></a>): Set the ID of this sensor for use in lambdas.</p></li>
+<li><p>All other options from <a class="reference internal" href="index.html#config-sensor"><span class="std std-ref">Sensor</span></a>.</p></li>
+</ul>
+</li>
+<li><p><strong>humidity</strong> (<strong>Required</strong>): The humidity data of the sensor in percent relative humidity (%).</p>
+<ul>
+<li><p><strong>name</strong> (<strong>Required</strong>, string): The name of the humidity sensor.</p></li>
+<li><p><strong>id</strong> (<em>Optional</em>, <a class="reference internal" href="../../guides/configuration-types.html#config-id"><span class="std std-ref">ID</span></a>): Set the ID of this sensor for use in lambdas.</p></li>
+<li><p>All other options from <a class="reference internal" href="index.html#config-sensor"><span class="std std-ref">Sensor</span></a>.</p></li>
+</ul>
+</li>
+<li><p><strong>update_interval</strong> (<em>Optional</em>, <a class="reference internal" href="../../guides/configuration-types.html#config-time"><span class="std std-ref">Time</span></a>): The interval to check the
+sensor. Defaults to <code class="docutils literal notranslate"><span class="pre">60s</span></code>.</p></li>
+<li><p><strong>uart_id</strong> (<em>Optional</em>, <a class="reference internal" href="../../guides/configuration-types.html#config-id"><span class="std std-ref">ID</span></a>): Manually specify the ID of the <a class="reference internal" href="../uart.html#uart"><span class="std std-ref">UART Component</span></a> if you want
+to use multiple UART buses.</p></li>
+<li><p><strong>id</strong> (<em>Optional</em>, <a class="reference internal" href="../../guides/configuration-types.html#config-id"><span class="std std-ref">ID</span></a>): Manually specify the ID used for actions.</p></li>
+</ul>
+<figure class="align-center" id="id2">
+<a class="reference internal image-reference" href="../../_images/sm300d2-pins.jpg"><img alt="../../_images/sm300d2-pins.jpg" src="../../_images/sm300d2-pins.jpg" style="width: 80.0%;" /></a>
+<figcaption>
+<p><span class="caption-text">Pins on the SM300D2. UART RX is not in use.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code class="docutils literal notranslate"><span class="pre">5V</span></code> should be connected to power supply (supported voltage is 4.8 V to 5.2 V), <code class="docutils literal notranslate"><span class="pre">GD</span></code> to <code class="docutils literal notranslate"><span class="pre">GND</span></code> pin</p>
+</div>
+</section>
+<section id="see-also">
+<h2>See Also<a class="headerlink" href="#see-also" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="index.html#sensor-filters"><span class="std std-ref">Sensor Filters</span></a></p></li>
+<li><p><a class="reference external" href="../../api/sm300d2_8h.html">API Reference</a></p></li>
+<li><p><a class="reference external" href="https://github.com/esphome/esphome-docs/blob/current/components/sensor/sm300d2.rst">Edit this page on GitHub</a></p></li>
+</ul>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+  <div id="upgrade-footer">
+    A new version has been release since you last visited this page: 1.17.2 🎉
+    <div class="footer-button-container">
+      <div role="button" id="upgrade-footer-dismiss" class="footer-button">Dismiss</div>
+      <a id="upgrade-footer-changelog" class="footer-button" href="../../changelog/v1.17.0.html">View Changelog</a>  
+    </div>
+  </div>
+  <script>
+    var old = window.localStorage.getItem("version");
+    if (old === null) { window.localStorage.setItem("version", "1.17");
+    } else if (old !== "1.17") {
+      const footerEl = document.getElementById("upgrade-footer");
+      footerEl.classList.add("not-hidden");
+      footerEl.addEventListener('click', function () {
+        window.localStorage.setItem("version", "1.17");
+        footerEl.classList.remove("not-hidden");
+      });
+    }
+  </script>
+
+  </body>
+
+<!-- Mirrored from esphome.io/components/sensor/sm300d2.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 16 May 2021 03:00:15 GMT -->
+</html>

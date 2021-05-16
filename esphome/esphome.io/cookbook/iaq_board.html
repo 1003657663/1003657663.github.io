@@ -1,0 +1,175 @@
+
+  <!DOCTYPE html>
+
+
+<html lang="en">
+  
+<!-- Mirrored from esphome.io/cookbook/iaq_board.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 16 May 2021 03:03:01 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+<meta name="description" content="IAQ (Indoor Air Quality) Board">
+<meta name="keywords" content="IAQ Board">
+<meta itemprop="description" content="IAQ (Indoor Air Quality) Board">
+<meta itemprop="image" content="../_images/iaq_board2.jpg">
+<meta name="twitter:image:src" content="../_images/iaq_board2.jpg">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@OttoWinter_">
+<meta name="twitter:description" content="IAQ (Indoor Air Quality) Board">
+<meta property="og:image" content="../_images/iaq_board2.jpg">
+<meta property="og:type" content="website">
+<meta property="og:description" content="IAQ (Indoor Air Quality) Board">
+
+    <title>IAQ (Indoor Air Quality) Board &#8212; ESPHome</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <link rel="canonical" href="iaq_board.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Sonoff iFan02" href="ifan02.html" />
+    <link rel="prev" title="H801 RGBW LED controller" href="h801.html" />
+  <link rel="stylesheet" href="../_static/customf001.css?hash=f908c2b5" type="text/css" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../_static/apple-touch-icon.png">
+  <link rel="shortcut icon" href="../_static/favicon.ico">
+  <link rel="icon" type="image/png" sizes="512x512" href="../_static/favicon-512x512.png">
+  <link rel="icon" type="image/png" sizes="256x256" href="../_static/favicon-256x256.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="../_static/favicon-192x192.png">
+  <link rel="icon" type="image/png" sizes="128x128" href="../_static/favicon-128x128.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../_static/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../_static/favicon-16x16.png">
+  <link rel="manifest" href="../_static/site.webmanifest">
+  <link rel="mask-icon" href="../_static/safari-pinned-tab.svg" color="#646464">
+  <meta name="apple-mobile-web-app-title" content="ESPHome">
+  <meta name="application-name" content="ESPHome">
+  <meta name="msapplication-TileColor" content="#dfdfdf">
+  <meta name="msapplication-config" content="/_static/browserconfig.xml">
+  <meta name="theme-color" content="#dfdfdf">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta property="og:site_name" content="ESPHome">
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head><body>
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index-2.html">
+              <img class="logo" src="../_static/logo-text.svg" alt="Logo"/>
+            </a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="https://esphome.io/search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+  <h3><a href="../index-2.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">IAQ (Indoor Air Quality) Board</a><ul>
+<li><a class="reference internal" href="#esphome-configuration">ESPHome Configuration</a></li>
+<li><a class="reference internal" href="#see-also">See Also</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="iaq-indoor-air-quality-board">
+<h1>IAQ (Indoor Air Quality) Board<a class="headerlink" href="#iaq-indoor-air-quality-board" title="Permalink to this headline">¶</a></h1>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/iaq_board2.jpg"><img alt="../_images/iaq_board2.jpg" src="../_images/iaq_board2.jpg" style="width: 100.0%;" /></a>
+</figure>
+<p>IAQ Board is a DIY device for measuring internal air quality running with esphome. It’s quite small and is based on a custom PCB where part of the components are soldered and connected.</p>
+<p>Here is what it can measure:</p>
+<ul class="simple">
+<li><p><strong>Temperature / Humidity / Pressure</strong></p></li>
+<li><p><strong>Air particles PM1, PM2.5, PM10</strong></p></li>
+<li><p><strong>Carbon Dioxide with NDIR sensor</strong></p></li>
+<li><p><strong>Air Quality Index by EPA, based on 24h average PM2.5 particles</strong></p></li>
+<li><p><strong>Ambient light</strong></p></li>
+<li><p><strong>Total VOC (volatile organic compound)</strong></p></li>
+<li><p><strong>equivalent CO2 (not very correct compared with the NDIR sensor, but it’s provided by the VOC sensor)</strong></p></li>
+</ul>
+<p>On top of that:</p>
+<ul class="simple">
+<li><p><strong>At least one OLED display to show the data (can have one more on the top of the MCU board)</strong></p></li>
+<li><p><strong>three RGB wide angle LEDs with auto brightness. LED1 indicates PM2.5, LED2 - Air quality index, LED3 - CO2.</strong></p></li>
+<li><p><strong>auto night dimming of the displays and LEDs (can be disabled)</strong></p></li>
+<li><p><strong>MIN/MAX values of Temperature, PM2.5 and CO2, and 24h average PM2.5 value.</strong></p></li>
+<li><p><strong>multi function button for selection of the data to show on the display</strong></p></li>
+</ul>
+<section id="esphome-configuration">
+<h2>ESPHome Configuration<a class="headerlink" href="#esphome-configuration" title="Permalink to this headline">¶</a></h2>
+<p>Full documentation (PCB, Schematic, esphome yaml config) is published here: <a class="reference external" href="https://github.com/nkitanov/iaq_board">https://github.com/nkitanov/iaq_board</a></p>
+<p>YAML configuration is about 700 lines and can be downloaded from here: <a class="reference external" href="https://github.com/nkitanov/iaq_board/blob/master/firmware/iaq_board.yaml">iaq_board.yaml</a></p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/iaq_board1.jpg"><img alt="../_images/iaq_board1.jpg" src="../_images/iaq_board1.jpg" style="width: 100.0%;" /></a>
+</figure>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/X75OGs2TTT8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></section>
+<section id="see-also">
+<h2>See Also<a class="headerlink" href="#see-also" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="../devices/nodemcu_esp8266.html"><span class="doc">NodeMCU ESP8266</span></a></p></li>
+<li><p><a class="reference internal" href="../components/display/ssd1306.html"><span class="doc">SSD1306 OLED Display</span></a></p></li>
+<li><p><a class="reference internal" href="../components/sensor/bme280.html"><span class="doc">BME280 Temperature+Pressure+Humidity Sensor</span></a></p></li>
+<li><p><a class="reference internal" href="../components/sensor/pmsx003.html"><span class="doc">PMSX003 Particulate Matter Sensor</span></a></p></li>
+<li><p><a class="reference internal" href="../components/sensor/mhz19.html"><span class="doc">MH-Z19 CO_2 and Temperature Sensor</span></a></p></li>
+<li><p><a class="reference internal" href="../components/sensor/sgp30.html"><span class="doc">SGP30 CO₂ and Volatile Organic Compound Sensor</span></a></p></li>
+<li><p><a class="reference internal" href="../components/sensor/tsl2561.html"><span class="doc">TSL2561 Ambient Light Sensor</span></a></p></li>
+<li><p><a class="reference internal" href="../components/binary_sensor/gpio.html"><span class="doc">GPIO Binary Sensor</span></a></p></li>
+<li><p><a class="reference internal" href="../components/sensor/template.html"><span class="doc">Template Sensor</span></a></p></li>
+<li><p><a class="reference internal" href="../components/light/neopixelbus.html"><span class="doc">Neopixelbus Light</span></a></p></li>
+<li><p><a class="reference internal" href="../guides/automations.html"><span class="doc">Automations and Templates</span></a></p></li>
+<li><p><a class="reference internal" href="../components/i2c.html"><span class="doc">I²C Bus</span></a></p></li>
+<li><p><a class="reference internal" href="../components/uart.html"><span class="doc">UART Bus</span></a></p></li>
+<li><p><a class="reference external" href="https://github.com/esphome/esphome-docs/blob/current/cookbook/iaq_board.rst">Edit this page on GitHub</a></p></li>
+</ul>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+  <div id="upgrade-footer">
+    A new version has been release since you last visited this page: 1.17.2 🎉
+    <div class="footer-button-container">
+      <div role="button" id="upgrade-footer-dismiss" class="footer-button">Dismiss</div>
+      <a id="upgrade-footer-changelog" class="footer-button" href="../changelog/v1.17.0.html">View Changelog</a>  
+    </div>
+  </div>
+  <script>
+    var old = window.localStorage.getItem("version");
+    if (old === null) { window.localStorage.setItem("version", "1.17");
+    } else if (old !== "1.17") {
+      const footerEl = document.getElementById("upgrade-footer");
+      footerEl.classList.add("not-hidden");
+      footerEl.addEventListener('click', function () {
+        window.localStorage.setItem("version", "1.17");
+        footerEl.classList.remove("not-hidden");
+      });
+    }
+  </script>
+
+  </body>
+
+<!-- Mirrored from esphome.io/cookbook/iaq_board.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 16 May 2021 03:03:01 GMT -->
+</html>

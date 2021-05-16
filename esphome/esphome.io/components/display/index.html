@@ -1,0 +1,643 @@
+
+  <!DOCTYPE html>
+
+
+<html lang="en">
+  
+<!-- Mirrored from esphome.io/components/display/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 16 May 2021 03:01:31 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+<meta name="description" content="Instructions for setting up the display integration.">
+<meta itemprop="name" content="Display Component">
+<meta itemprop="description" content="Instructions for setting up the display integration.">
+<meta itemprop="image" content="../../_images/folder-open.png">
+<meta name="twitter:title" content="Display Component">
+<meta name="twitter:image:src" content="../../_images/folder-open.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@OttoWinter_">
+<meta name="twitter:description" content="Instructions for setting up the display integration.">
+<meta property="og:title" content="Display Component">
+<meta property="og:image" content="../../_images/folder-open.png">
+<meta property="og:type" content="website">
+<meta property="og:description" content="Instructions for setting up the display integration.">
+
+    <title>Display Component &#8212; ESPHome</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/alabaster.css" />
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <link rel="canonical" href="index.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Addressable Light" href="addressable_light.html" />
+    <link rel="prev" title="UART Switch" href="../switch/uart.html" />
+  <link rel="stylesheet" href="../../_static/customf001.css?hash=f908c2b5" type="text/css" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../../_static/apple-touch-icon.png">
+  <link rel="shortcut icon" href="../../_static/favicon.ico">
+  <link rel="icon" type="image/png" sizes="512x512" href="../../_static/favicon-512x512.png">
+  <link rel="icon" type="image/png" sizes="256x256" href="../../_static/favicon-256x256.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="../../_static/favicon-192x192.png">
+  <link rel="icon" type="image/png" sizes="128x128" href="../../_static/favicon-128x128.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../_static/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../../_static/favicon-16x16.png">
+  <link rel="manifest" href="../../_static/site.webmanifest">
+  <link rel="mask-icon" href="../../_static/safari-pinned-tab.svg" color="#646464">
+  <meta name="apple-mobile-web-app-title" content="ESPHome">
+  <meta name="application-name" content="ESPHome">
+  <meta name="msapplication-TileColor" content="#dfdfdf">
+  <meta name="msapplication-config" content="/_static/browserconfig.xml">
+  <meta name="theme-color" content="#dfdfdf">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta property="og:site_name" content="ESPHome">
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head><body>
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../index-2.html">
+              <img class="logo" src="../../_static/logo-text.svg" alt="Logo"/>
+            </a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="https://esphome.io/search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+  <h3><a href="../../index-2.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Display Component</a><ul>
+<li><a class="reference internal" href="#display-rendering-engine">Display Rendering Engine</a><ul>
+<li><a class="reference internal" href="#basic-shapes">Basic Shapes</a></li>
+<li><a class="reference internal" href="#drawing-static-text">Drawing Static Text</a></li>
+<li><a class="reference internal" href="#formatted-text">Formatted Text</a></li>
+<li><a class="reference internal" href="#displaying-time">Displaying Time</a></li>
+<li><a class="reference internal" href="#color">Color</a></li>
+<li><a class="reference internal" href="#images">Images</a></li>
+<li><a class="reference internal" href="#animation">Animation</a><ul>
+<li><a class="reference internal" href="#configuration-variables">Configuration variables:</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#display-pages">Display Pages</a></li>
+<li><a class="reference internal" href="#see-also">See Also</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="display-component">
+<h1>Display Component<a class="headerlink" href="#display-component" title="Permalink to this headline">¶</a></h1>
+<p>The <code class="docutils literal notranslate"><span class="pre">display</span></code> component houses ESPHome’s powerful rendering and display
+engine. Fundamentally, there are these types of displays:</p>
+<ul class="simple">
+<li><p>Text based displays like <a class="reference internal" href="max7219.html"><span class="doc">7-Segment displays</span></a> or
+<a class="reference internal" href="lcd_display.html"><span class="doc">some LCD displays</span></a>.</p></li>
+<li><p>Displays like the <a class="reference internal" href="nextion.html"><span class="doc">Nextion TFT LCD Display</span></a> that have their own processors for rendering.</p></li>
+<li><p>Binary displays which can toggle ON/OFF any pixel, like <a class="reference internal" href="waveshare_epaper.html"><span class="doc">E-Paper displays</span></a> or
+<a class="reference internal" href="ssd1306.html"><span class="doc">OLED displays</span></a>.</p></li>
+</ul>
+<p>For the last type, ESPHome has a powerful rendering engine that can do
+many things like draw some basic shapes, print text with any font you want, or even show images.</p>
+<p>To achieve all this flexibility displays tie in directly into ESPHome’s <a class="reference internal" href="../../guides/automations.html#config-lambda"><span class="std std-ref">lambda system</span></a>.
+So when you want to write some text or sensor values to the screen you will be writing in C++ code
+using an API that is designed to</p>
+<ul class="simple">
+<li><p>be simple and to be used without programming experience</p></li>
+<li><p>but also be flexible enough to work with more complex tasks like displaying an analog clock.</p></li>
+</ul>
+<section id="display-rendering-engine">
+<span id="display-engine"></span><h2>Display Rendering Engine<a class="headerlink" href="#display-rendering-engine" title="Permalink to this headline">¶</a></h2>
+<p>In this section we will be discussing how to use ESPHome’s display rendering engine from ESPHome
+and some basic commands. Please note that this only applies to displays that can control each pixel
+individually.</p>
+<p>So, first a few basics: When setting up a display platform in ESPHome there will be a configuration
+option called <code class="docutils literal notranslate"><span class="pre">lambda:</span></code> which will be called every time ESPHome wants to re-render the display.
+In there, you can write code like in any <a class="reference internal" href="../../guides/automations.html#config-lambda"><span class="std std-ref">lambda</span></a> in ESPHome. Display
+lambdas are additionally passed a variable called <code class="docutils literal notranslate"><span class="pre">it</span></code> which represents the rendering engine object.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">display</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">...</span>
+    <span class="c1"># ...</span>
+    <span class="nt">lambda</span><span class="p">:</span> <span class="p p-Indicator">|-</span>
+      <span class="no">// Write your display rendering code here</span>
+
+      <span class="no">// For example, draw a line from [x=0,y=0] to [x=50,y=50]</span>
+      <span class="no">it.line(0, 0, 50, 50);</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Lambdas are essentially just a lightly modified version of C++. So don’t forget to end each line
+with a semicolon (<code class="docutils literal notranslate"><span class="pre">;</span></code>). Otherwise you will be greeted by a long error message at the compilation stage.</p>
+</div>
+<p>If you compile and upload the configuration above, you should see a black (or white, depending on the display)
+line which starts at the top left and goes a few pixels down at a 45° angle. (If it’s in another corner, use the
+<code class="docutils literal notranslate"><span class="pre">rotation:</span></code> option to rotate the display to your liking)</p>
+<p>This already highlights one of the things you must learn before diving into writing your own custom display code:
+The <strong>top left</strong> is always the origin of the pixel coordinate system. Also, all points in this coordinate system
+are a pair of integers like <code class="docutils literal notranslate"><span class="pre">50,</span> <span class="pre">50</span></code> which represent the shift to the right and shift downwards. So, in other words,
+x always represents the horizontal axis (width) and y the vertical axis (height). And the convention in
+the rendering engine is always first specify the <code class="docutils literal notranslate"><span class="pre">x</span></code> coordinate and then the <code class="docutils literal notranslate"><span class="pre">y</span></code> coordinate.</p>
+<section id="basic-shapes">
+<h3>Basic Shapes<a class="headerlink" href="#basic-shapes" title="Permalink to this headline">¶</a></h3>
+<p>Now that you know a bit more about ESPHome’s coordinate system, let’s draw some basic shapes like lines, rectangles
+and circles:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">display</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">...</span>
+    <span class="c1"># ...</span>
+    <span class="nt">lambda</span><span class="p">:</span> <span class="p p-Indicator">|-</span>
+      <span class="no">// Draw a line from [0,0] to [100,50]</span>
+      <span class="no">it.line(0, 0, 100, 50);</span>
+      <span class="no">// Draw the outline of a rectangle with the top left at [50,60], a width of 30 and a height of 42</span>
+      <span class="no">it.rectangle(50, 60, 30, 42);</span>
+      <span class="no">// Draw the same rectangle, but this time filled.</span>
+      <span class="no">it.filled_rectangle(50, 60, 30, 42);</span>
+
+      <span class="no">// Circles! Let&#39;s draw one with the center at [25,25] and a radius of 10</span>
+      <span class="no">it.circle(25, 25, 10);</span>
+      <span class="no">// ... and the same thing filled again</span>
+      <span class="no">it.filled_circle(25, 25, 10);</span>
+</pre></div>
+</div>
+<p>All the above methods can optionally also be called with an argument at the end which specifies in which
+color to draw. Currently, only <code class="docutils literal notranslate"><span class="pre">COLOR_ON</span></code> (the default if color is not given) and <code class="docutils literal notranslate"><span class="pre">COLOR_OFF</span></code> are supported because
+ESPHome only has implemented binary displays.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">display</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">...</span>
+    <span class="c1"># ...</span>
+    <span class="nt">lambda</span><span class="p">:</span> <span class="p p-Indicator">|-</span>
+      <span class="no">// Turn the whole display on.</span>
+      <span class="no">it.fill(COLOR_ON);</span>
+      <span class="no">// Turn the whole display off.</span>
+      <span class="no">it.fill(COLOR_OFF);</span>
+
+      <span class="no">// Turn a single pixel off at [50,60]</span>
+      <span class="no">it.draw_pixel_at(50, 60, COLOR_OFF);</span>
+
+      <span class="no">// Turn off a whole display portion.</span>
+      <span class="no">it.rectangle(50, 50, 30, 42, COLOR_OFF);</span>
+</pre></div>
+</div>
+<p>Additionally, you have access to two helper methods which will fetch the width and height of the display:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">display</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">...</span>
+    <span class="c1"># ...</span>
+    <span class="nt">lambda</span><span class="p">:</span> <span class="p p-Indicator">|-</span>
+      <span class="no">// Draw a circle in the middle of the display</span>
+      <span class="no">it.filled_circle(it.get_width() / 2, it.get_height() / 2, 20);</span>
+</pre></div>
+</div>
+<p>You can view the full API documentation for the rendering engine in the “API Reference” in the See Also section.</p>
+</section>
+<section id="drawing-static-text">
+<span id="display-static-text"></span><h3>Drawing Static Text<a class="headerlink" href="#drawing-static-text" title="Permalink to this headline">¶</a></h3>
+<p>The rendering engine also has a powerful font drawer which integrates seamlessly into ESPHome.
+Whereas in most Arduino display projects you have to use one of a few pre-defined fonts in very
+specific sizes, with ESPHome you have the option to use <strong>any</strong> TrueType (<code class="docutils literal notranslate"><span class="pre">.ttf</span></code>) font file
+at <strong>any</strong> size! Granted the reason for it is actually not having to worry about the licensing of font files :)</p>
+<p>To use fonts you first have to define a font object in your ESPHome configuration file. Just grab
+a <code class="docutils literal notranslate"><span class="pre">.ttf</span></code> file from somewhere on the internet and place it, for example,
+inside a <code class="docutils literal notranslate"><span class="pre">fonts</span></code> folder next to your configuration file.</p>
+<p>Next, create a <code class="docutils literal notranslate"><span class="pre">font:</span></code> section in your configuration:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">font</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">file</span><span class="p">:</span> <span class="s">&quot;fonts/Comic</span><span class="nv"> </span><span class="s">Sans</span><span class="nv"> </span><span class="s">MS.ttf&quot;</span>
+    <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">my_font</span>
+    <span class="nt">size</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">20</span>
+
+<span class="nt">display</span><span class="p">:</span>
+  <span class="c1"># ...</span>
+</pre></div>
+</div>
+<p>Configuration variables:</p>
+<ul class="simple">
+<li><p><strong>file</strong> (<strong>Required</strong>, string): The path (relative to where the .yaml file is) of the TrueType font
+file.</p></li>
+<li><p><strong>id</strong> (<strong>Required</strong>, <a class="reference internal" href="../../guides/configuration-types.html#config-id"><span class="std std-ref">ID</span></a>): The ID with which you will be able to reference the font later
+in your display code.</p></li>
+<li><p><strong>size</strong> (<em>Optional</em>, int): The size of the font in pt (not pixel!).
+If you want to use the same font in different sizes, create two font objects. Defaults to <code class="docutils literal notranslate"><span class="pre">20</span></code>.</p></li>
+<li><p><strong>glyphs</strong> (<em>Optional</em>, list): A list of characters you plan to use. Only the characters you specify
+here will be compiled into the binary. Adjust this if you need some special characters or want to
+reduce the size of the binary if you don’t plan to use some glyphs. The items in the list can also
+be more than one character long if you for example want to use font ligatures. Defaults to
+<code class="docutils literal notranslate"><span class="pre">!&quot;%()+,-_.:°0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ</span> <span class="pre">abcdefghijklmnopqrstuvwxyz</span></code>.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>To use fonts you will need to have the python <code class="docutils literal notranslate"><span class="pre">pillow</span></code> package installed, as ESPHome uses that package
+to translate the TrueType files into an internal format. If you’re running this as a Hass.io add-on or with
+the official ESPHome docker image, it should already be installed. Otherwise you need to install it using
+<code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">pillow</span></code>.</p>
+</div>
+<p>Then, in your display code just reference the font like so:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">display</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">...</span>
+    <span class="c1"># ...</span>
+    <span class="nt">lambda</span><span class="p">:</span> <span class="p p-Indicator">|-</span>
+      <span class="no">// Print the string &quot;Hello World!&quot; at [0,10]</span>
+      <span class="no">it.print(0, 10, id(my_font), &quot;Hello World!&quot;);</span>
+</pre></div>
+</div>
+<p>By default, ESPHome will <em>align</em> the text at the top left. That means if you enter the coordinates
+<code class="docutils literal notranslate"><span class="pre">[0,10]</span></code> for your text, the top left of the text will be at <code class="docutils literal notranslate"><span class="pre">[0,10]</span></code>. If you want to draw some
+text at the right side of the display, it is however sometimes useful to choose a different <strong>text alignment</strong>.
+When you enter <code class="docutils literal notranslate"><span class="pre">[0,10]</span></code> you’re really telling ESPHome that it should position the <strong>anchor point</strong> of the text
+at <code class="docutils literal notranslate"><span class="pre">[0,10]</span></code>. When using a different alignment, like <code class="docutils literal notranslate"><span class="pre">TOP_RIGHT</span></code>, the text will be positioned left of the anchor
+pointed, so that, as the name implies, the anchor point is a the <em>top right</em> corner of the text.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">display</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">...</span>
+    <span class="c1"># ...</span>
+    <span class="nt">lambda</span><span class="p">:</span> <span class="p p-Indicator">|-</span>
+      <span class="no">// Aligned on left by default</span>
+      <span class="no">it.print(0, 0, id(my_font), &quot;Left aligned&quot;);</span>
+
+      <span class="no">// Aligned on right edge</span>
+      <span class="no">it.print(it.get_width(), 0, id(my_font), TextAlign::TOP_RIGHT, &quot;Right aligned&quot;);</span>
+</pre></div>
+</div>
+<p>As with basic shapes, you can also specify a color for the text:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">display</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">...</span>
+    <span class="c1"># ...</span>
+    <span class="nt">lambda</span><span class="p">:</span> <span class="p p-Indicator">|-</span>
+      <span class="no">// Syntax is always: it.print(&lt;x&gt;, &lt;y&gt;, &lt;font&gt;, [color=COLOR_ON], [align=TextAlign::TOP_LEFT], &lt;text&gt;);</span>
+      <span class="no">it.print(0, 0, id(my_font), COLOR_ON, &quot;Left aligned&quot;);</span>
+</pre></div>
+</div>
+</section>
+<section id="formatted-text">
+<span id="display-printf"></span><h3>Formatted Text<a class="headerlink" href="#formatted-text" title="Permalink to this headline">¶</a></h3>
+<p>Static text by itself is not too impressive. What we really want is to display <em>dynamic</em> content like sensor values
+on the display!. That’s where <code class="docutils literal notranslate"><span class="pre">printf</span></code> comes in. <code class="docutils literal notranslate"><span class="pre">printf</span></code> is a formatting engine from the C era and ESPHome
+chose to use because … well, I’m too lazy to create a fully-fledged format engine where the existing stuff
+is way better documented :)</p>
+<p><code class="docutils literal notranslate"><span class="pre">printf</span></code> can do way more stuff than you will probably ever need, but it’s also quite simple for the basic stuff.
+For example, a printf call can look like this:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">sensor</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">...</span>
+    <span class="c1"># ...</span>
+    <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">my_sensor</span>
+
+<span class="nt">display</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">...</span>
+    <span class="c1"># ...</span>
+    <span class="nt">lambda</span><span class="p">:</span> <span class="p p-Indicator">|-</span>
+      <span class="no">it.printf(0, 0, id(my_font), &quot;The sensor value is: %.1f&quot;, id(my_sensor).state);</span>
+      <span class="no">// If the sensor has the value 30.02, the result will be: &quot;The sensor value is: 30.0&quot;</span>
+</pre></div>
+</div>
+<p>As you can see, when you call <code class="docutils literal notranslate"><span class="pre">printf</span></code> most of the string is printed as-is, but when this weird percent sign with some
+stuff after it is encountered, it is magically replaced by the argument after the format (here <code class="docutils literal notranslate"><span class="pre">id(my_sensor).state</span></code>).</p>
+<p>Every time you type a percent sign <code class="docutils literal notranslate"><span class="pre">%</span></code> in a printf format string, it will treat the following letters as a format tag
+until a so-called “specifier” is encountered (in this case <code class="docutils literal notranslate"><span class="pre">f</span></code>). You can read more about it
+<a class="reference external" href="https://www.tutorialspoint.com/c_standard_library/c_function_printf.htm">here</a>,
+but for ESPHome there are really just a few things you need to know.</p>
+<p>Let’s break <code class="docutils literal notranslate"><span class="pre">%.1f</span></code> down:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">%</span></code> - initiate the format string</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.1</span></code> - round the decimal number to <code class="docutils literal notranslate"><span class="pre">1</span></code> digits after the decimal point.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">f</span></code> - the specifier which tells printf the data type of the argument. Here it is a f(loat).</p></li>
+</ul>
+<p>For example, if you would like to print a sensor value with two digits of accuracy, you would write <code class="docutils literal notranslate"><span class="pre">%.2f</span></code> and with
+zero digits of accuracy (without a decimal) <code class="docutils literal notranslate"><span class="pre">%.0f</span></code>.</p>
+<p>Another interesting format string is <code class="docutils literal notranslate"><span class="pre">%7.2f</span></code>, which would become the right-justified string
+<code class="docutils literal notranslate"><span class="pre">&quot;</span>&#160; <span class="pre">20.51&quot;</span></code> for a value of 20.506.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">%</span></code> - initiate the format</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">7</span></code> - means that the number will be right-justified and be padded on the left by spaces if
+the result would be shorter than 7 characters long.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.2</span></code> - round the decimal number to <code class="docutils literal notranslate"><span class="pre">2</span></code> digits after the decimal point.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">f</span></code> - specifier: f(loat).</p></li>
+</ul>
+<p>You can even have as many format strings as you want in a single printf call. Just make sure the put the
+arguments after the format string in the right order.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">display</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">...</span>
+    <span class="c1"># ...</span>
+    <span class="nt">lambda</span><span class="p">:</span> <span class="p p-Indicator">|-</span>
+      <span class="no">// %% - literal % sign</span>
+      <span class="no">it.printf(0, 0, id(my_font), &quot;Temperature: %.1f°C, Humidity: %.1f%%&quot;, id(temperature).state, id(humidity).state);</span>
+</pre></div>
+</div>
+<p>To display a text string from a <code class="docutils literal notranslate"><span class="pre">text_sensor</span></code>, append <code class="docutils literal notranslate"><span class="pre">.c_str()</span></code> to the end of your variable.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">display</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">...</span>
+    <span class="c1"># ...</span>
+    <span class="nt">lambda</span><span class="p">:</span> <span class="p p-Indicator">|-</span>
+      <span class="no">it.printf(0, 0, id(my_font), &quot;Text to follow: %s&quot;, id(template_text).state.c_str());</span>
+</pre></div>
+</div>
+<p>The last printf tip for use in displays I will discuss here is how to display binary sensor values. You
+<em>could</em> of course just check the state with an <code class="docutils literal notranslate"><span class="pre">if</span></code> statement as the first few lines in the example below, but if
+you want to be efficient you can use an <em>inline if</em> too. With the <code class="docutils literal notranslate"><span class="pre">%s</span></code> print specifier you can tell it to
+use any string you pass it, like <code class="docutils literal notranslate"><span class="pre">&quot;ON&quot;</span></code> or <code class="docutils literal notranslate"><span class="pre">&quot;OFF&quot;</span></code>.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">binary_sensor</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">...</span>
+    <span class="c1"># ...</span>
+    <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">my_binary_sensor</span>
+
+<span class="nt">display</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">...</span>
+    <span class="c1"># ...</span>
+    <span class="nt">lambda</span><span class="p">:</span> <span class="p p-Indicator">|-</span>
+      <span class="no">if (id(my_binary_sensor).state) {</span>
+        <span class="no">it.print(0, 0, id(my_font), &quot;state: ON&quot;);</span>
+      <span class="no">} else {</span>
+        <span class="no">it.print(0, 0, id(my_font), &quot;state: OFF&quot;);</span>
+      <span class="no">}</span>
+      <span class="no">// Shorthand:</span>
+      <span class="no">it.printf(0, 0, id(my_font), &quot;State: %s&quot;, id(my_binary_sensor).state ? &quot;ON&quot; : &quot;OFF&quot;);</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For displaying external data on the display, for example data from your Home Assistant instance,
+you can use the <a class="reference internal" href="../text_sensor/mqtt_subscribe.html"><span class="doc">MQTT Subscribe Text Sensor</span></a> (see the example there for more information).</p>
+</div>
+</section>
+<section id="displaying-time">
+<span id="display-strftime"></span><h3>Displaying Time<a class="headerlink" href="#displaying-time" title="Permalink to this headline">¶</a></h3>
+<p>You can display current time using a time component. Please see the example <a class="reference internal" href="../time.html#strftime"><span class="std std-ref">here</span></a>.</p>
+</section>
+<section id="color">
+<span id="config-color"></span><h3>Color<a class="headerlink" href="#color" title="Permalink to this headline">¶</a></h3>
+<p>When using RGB-capable displays in ESPHome you may wish to use custom colors.
+A <code class="docutils literal notranslate"><span class="pre">color</span></code> component exists for just this purpose:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">color</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">my_light_red</span>
+    <span class="nt">red</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">100%</span>
+    <span class="nt">green</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">20%</span>
+    <span class="nt">blue</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">25%</span>
+    <span class="nt">white</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">0%</span>
+</pre></div>
+</div>
+<p>Configuration variables:</p>
+<ul class="simple">
+<li><p><strong>red</strong> (<em>Optional</em>, percentage): The percentage of the red component. Defaults to <code class="docutils literal notranslate"><span class="pre">100%</span></code>.</p></li>
+<li><p><strong>green</strong> (<em>Optional</em>, percentage): The percentage of the green component. Defaults to <code class="docutils literal notranslate"><span class="pre">100%</span></code>.</p></li>
+<li><p><strong>blue</strong> (<em>Optional</em>, percentage): The percentage of the blue component. Defaults to <code class="docutils literal notranslate"><span class="pre">100%</span></code>.</p></li>
+<li><p><strong>white</strong> (<em>Optional</em>, percentage): The percentage of the white component. Defaults to <code class="docutils literal notranslate"><span class="pre">100%</span></code>.</p></li>
+</ul>
+<p>RGB displays use red, green, and blue, while grayscale displays may use white.</p>
+</section>
+<section id="images">
+<h3>Images<a class="headerlink" href="#images" title="Permalink to this headline">¶</a></h3>
+<p>Use this component to store graphical images on the device, you can then draw the images on compatible displays.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">image</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">file</span><span class="p">:</span> <span class="s">&quot;image.png&quot;</span>
+    <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">my_image</span>
+    <span class="nt">resize</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">100x100</span>
+</pre></div>
+</div>
+<p>Configuration variables:</p>
+<ul class="simple">
+<li><p><strong>file</strong> (<strong>Required</strong>, string): The path (relative to where the .yaml file is) of the image file.</p></li>
+<li><p><strong>id</strong> (<strong>Required</strong>, <a class="reference internal" href="../../guides/configuration-types.html#config-id"><span class="std std-ref">ID</span></a>): The ID with which you will be able to reference the image later
+in your display code.</p></li>
+<li><p><strong>resize</strong> (<em>Optional</em>, string): If set, this will resize the image to fit inside the given dimensions <code class="docutils literal notranslate"><span class="pre">WIDTHxHEIGHT</span></code>
+and preserve the aspect ratio.</p></li>
+<li><p><strong>type</strong> (<em>Optional</em>): Specifies how to encode image internally. Defaults to <code class="docutils literal notranslate"><span class="pre">BINARY</span></code>.</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">BINARY</span></code>: Two colors, suitable for 1 color displays or 2 color image in color displays. Uses 1 bit
+per pixel, 8 pixels per byte.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">GRAYSCALE</span></code>: Full scale grey. Uses 8 bits per pixel, 1 pixel per byte.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">RGB24</span></code>: Full RGB color stored. Uses 3 bytes per pixel.</p></li>
+</ul>
+</li>
+<li><p><strong>dither</strong> (<em>Optional</em>): Specifies which dither method used to process the image, only used in GRAYSCALE and BINARY type image. Defaults to <code class="docutils literal notranslate"><span class="pre">NONE</span></code>. You can read more about it <a class="reference external" href="https://pillow.readthedocs.io/en/stable/reference/Image.html?highlight=Dither#PIL.Image.Image.convert">here</a> and <a class="reference external" href="https://en.wikipedia.org/wiki/Dither">here</a>.</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">NONE</span></code>: Every pixel convert to its nearest color.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">FLOYDSTEINBERG</span></code>: Uses Floyd-Steinberg dither to approximate the original image luminosity levels.</p></li>
+</ul>
+</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>To use images you will need to have the python <code class="docutils literal notranslate"><span class="pre">pillow</span></code> package installed.
+If you’re running this as a Hass.io add-on or with the official ESPHome docker image, it should already be
+installed. Otherwise you need to install it using <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">pillow</span></code>.</p>
+</div>
+<p>And then later in code:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">display</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">...</span>
+    <span class="c1"># ...</span>
+    <span class="nt">lambda</span><span class="p">:</span> <span class="p p-Indicator">|-</span>
+      <span class="no">// Draw the image my_image at position [x=0,y=0]</span>
+      <span class="no">it.image(0, 0, id(my_image));</span>
+</pre></div>
+</div>
+<p>For binary images the <code class="docutils literal notranslate"><span class="pre">image</span></code> method accepts two additional color parameters which can
+be supplied to modify the color used to represent the on and off bits respectively. e.g.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">display</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">...</span>
+    <span class="c1"># ...</span>
+    <span class="nt">lambda</span><span class="p">:</span> <span class="p p-Indicator">|-</span>
+      <span class="no">// Draw the image my_image at position [x=0,y=0]</span>
+      <span class="no">// with front color red and back color blue</span>
+      <span class="no">it.image(0, 0, id(my_image), id(red), id(blue));</span>
+</pre></div>
+</div>
+<p>You can also use this to invert images in two colors display, use <code class="docutils literal notranslate"><span class="pre">COLOR_OFF</span></code> then <code class="docutils literal notranslate"><span class="pre">COLOR_ON</span></code>
+as the additional parameters.</p>
+</section>
+<section id="animation">
+<h3>Animation<a class="headerlink" href="#animation" title="Permalink to this headline">¶</a></h3>
+<p>Allows to use animated images on displays. Animation inherits all options from the image component.
+It adds an additional lambda method: <code class="docutils literal notranslate"><span class="pre">next_frame()</span></code> to change the shown picture of a gif.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">animation</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">file</span><span class="p">:</span> <span class="s">&quot;animation.gif&quot;</span>
+    <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">my_animation</span>
+    <span class="nt">resize</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">100x100</span>
+</pre></div>
+</div>
+<p>The animation can be rendered just like the image component with the <code class="docutils literal notranslate"><span class="pre">image()</span></code> function of the display component.</p>
+<p>To show the next frame of the animation call <code class="docutils literal notranslate"><span class="pre">id(my_animation).next_frame()</span></code>
+This can be combined with all Lambdas:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">display</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">...</span>
+    <span class="c1"># ...</span>
+    <span class="nt">lambda</span><span class="p">:</span> <span class="p p-Indicator">|-</span>
+      <span class="no">//Ingress shown animation Frame.</span>
+      <span class="no">id(my_animation).next_frame();</span>
+      <span class="no">// Draw the animation my_animation at position [x=0,y=0]</span>
+      <span class="no">it.image(0, 0, id(my_animation), COLOR_ON, COLOR_OFF);</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>To draw the next animation independent of Display draw cycle use an interval:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">interval</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">interval</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">5s</span>
+      <span class="l l-Scalar l-Scalar-Plain">then</span><span class="p p-Indicator">:</span>
+        <span class="nt">lambda</span><span class="p">:</span> <span class="p p-Indicator">|-</span>
+          <span class="no">id(my_animation).next_frame();</span>
+</pre></div>
+</div>
+</div>
+<section id="configuration-variables">
+<h4>Configuration variables:<a class="headerlink" href="#configuration-variables" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p><strong>file</strong> (<strong>Required</strong>, string): The path (relative to where the .yaml file is) of the gif file.</p></li>
+<li><p><strong>id</strong> (<strong>Required</strong>, <a class="reference internal" href="../../guides/configuration-types.html#config-id"><span class="std std-ref">ID</span></a>): The ID with which you will be able to reference the animation later
+in your display code.</p></li>
+<li><p><strong>resize</strong> (<em>Optional</em>, string): If set, this will resize all the frames to fit inside the given dimensions <code class="docutils literal notranslate"><span class="pre">WIDTHxHEIGHT</span></code>
+and preserve the aspect ratio.</p></li>
+<li><p><strong>type</strong> (<em>Optional</em>): Specifies how to encode each frame internally. Defaults to <code class="docutils literal notranslate"><span class="pre">BINARY</span></code>.</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">BINARY</span></code>: Two colors, suitable for 1 color displays or 2 color image in color displays. Uses 1 bit
+per pixel, 8 pixels per byte.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">GREYSCALE</span></code>: Full scale grey. Uses 8 bits per pixel, 1 pixel per byte.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">RGB24</span></code>: Full RGB color stored. Uses 3 bytes per pixel.</p></li>
+</ul>
+</li>
+<li><p><strong>dither</strong> (<em>Optional</em>): Specifies which dither method used to process each frame, only used in GREYSCALE and BINARY type image.
+Defaults to <code class="docutils literal notranslate"><span class="pre">NONE</span></code>. You can read more about it <a class="reference external" href="https://pillow.readthedocs.io/en/stable/reference/Image.html?highlight=Dither#PIL.Image.Image.convert">here</a>
+and <a class="reference external" href="https://en.wikipedia.org/wiki/Dither">here</a>.</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">NONE</span></code>: Every pixel convert to its nearest color.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">FLOYDSTEINBERG</span></code>: Uses Floyd-Steinberg dither to approximate the original image luminosity levels.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+</section>
+<section id="display-pages">
+<span id="id1"></span><h2>Display Pages<a class="headerlink" href="#display-pages" title="Permalink to this headline">¶</a></h2>
+<p>Certain display types also allow you to show “pages”. With pages you can create drawing lambdas
+that you can switch between. For example with pages you can set up 3 screens, each with
+different content, and switch between them on a timer.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">display</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">...</span>
+    <span class="c1"># ...</span>
+    <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">my_display</span>
+    <span class="nt">pages</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">page1</span>
+        <span class="nt">lambda</span><span class="p">:</span> <span class="p p-Indicator">|-</span>
+          <span class="no">it.print(0, 10, id(my_font), &quot;This is page 1!&quot;);</span>
+      <span class="p p-Indicator">-</span> <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">page2</span>
+        <span class="nt">lambda</span><span class="p">:</span> <span class="p p-Indicator">|-</span>
+          <span class="no">it.print(0, 10, id(my_font), &quot;This is page 2!&quot;);</span>
+</pre></div>
+</div>
+<p>You can then switch between these with three different actions:</p>
+<p><strong>show_next</strong> / <strong>show_previous</strong>: Shows the next or previous page, wraps around at the end.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">on_...</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">display.page.show_next</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">my_display</span>
+  <span class="p p-Indicator">-</span> <span class="nt">display.page.show_previous</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">my_display</span>
+
+<span class="c1"># For example cycle through pages on a timer</span>
+<span class="nt">interval</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">interval</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">5s</span>
+    <span class="nt">then</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="nt">display.page.show_next</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">my_display</span>
+      <span class="p p-Indicator">-</span> <span class="nt">component.update</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">my_display</span>
+</pre></div>
+</div>
+<p><strong>display.page.show</strong>: Show a specific page</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">on_...</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">display.page.show</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">page1</span>
+
+  <span class="c1"># Templated</span>
+  <span class="p p-Indicator">-</span> <span class="nt">display.page.show</span><span class="p">:</span> <span class="kt">!lambda</span> <span class="p p-Indicator">|-</span>
+      <span class="no">if (id(my_binary_sensor).state) {</span>
+        <span class="no">return id(page1);</span>
+      <span class="no">} else {</span>
+        <span class="no">return id(page2);</span>
+      <span class="no">}</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>To trigger a redraw right after the page show use a <a class="reference internal" href="../../guides/automations.html#component-update-action"><span class="std std-ref">component.update</span></a>
+action:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># For example cycle through pages on a timer</span>
+<span class="nt">interval</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">interval</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">5s</span>
+    <span class="nt">then</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="nt">display.page.show_next</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">my_display</span>
+      <span class="p p-Indicator">-</span> <span class="nt">component.update</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">my_display</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="see-also">
+<h2>See Also<a class="headerlink" href="#see-also" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="../../api/display__buffer_8h.html">API Reference</a></p></li>
+<li><p><a class="reference external" href="https://github.com/esphome/esphome-docs/blob/current/components/display/index.rst">Edit this page on GitHub</a></p></li>
+</ul>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="addressable_light.html">Addressable Light</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ili9341.html">ILI9341 TFT LCD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="inkplate6.html">Inkplate 6</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lcd_display.html">Character-Based LCD Display</a></li>
+<li class="toctree-l1"><a class="reference internal" href="max7219.html">MAX7219 7-Segment Display</a></li>
+<li class="toctree-l1"><a class="reference internal" href="max7219digit.html">MAX7219 Digit Display</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nextion.html">Nextion TFT LCD Display</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pcd8544.html">PCD 8544 Display (Nokia 5110/3310)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ssd1306.html">SSD1306 OLED Display</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ssd1322.html">SSD1322 OLED Display</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ssd1325.html">SSD1325/7 OLED Display</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ssd1327.html">SSD1327 OLED Display</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ssd1331.html">SSD1331 OLED Display</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ssd1351.html">SSD1351 OLED Display</a></li>
+<li class="toctree-l1"><a class="reference internal" href="st7735.html">ST7735 Display</a></li>
+<li class="toctree-l1"><a class="reference internal" href="st7789v.html">ST7789V TFT LCD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tm1637.html">TM1637 7-Segment Display</a></li>
+<li class="toctree-l1"><a class="reference internal" href="waveshare_epaper.html">Waveshare E-Paper Display</a></li>
+</ul>
+</div>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+  <div id="upgrade-footer">
+    A new version has been release since you last visited this page: 1.17.2 🎉
+    <div class="footer-button-container">
+      <div role="button" id="upgrade-footer-dismiss" class="footer-button">Dismiss</div>
+      <a id="upgrade-footer-changelog" class="footer-button" href="../../changelog/v1.17.0.html">View Changelog</a>  
+    </div>
+  </div>
+  <script>
+    var old = window.localStorage.getItem("version");
+    if (old === null) { window.localStorage.setItem("version", "1.17");
+    } else if (old !== "1.17") {
+      const footerEl = document.getElementById("upgrade-footer");
+      footerEl.classList.add("not-hidden");
+      footerEl.addEventListener('click', function () {
+        window.localStorage.setItem("version", "1.17");
+        footerEl.classList.remove("not-hidden");
+      });
+    }
+  </script>
+
+  </body>
+
+<!-- Mirrored from esphome.io/components/display/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 16 May 2021 03:01:31 GMT -->
+</html>

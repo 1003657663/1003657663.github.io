@@ -1,0 +1,272 @@
+
+  <!DOCTYPE html>
+
+
+<html lang="en">
+  
+<!-- Mirrored from esphome.io/cookbook/sonoff-basic-light-switch.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 16 May 2021 03:14:54 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+<meta name="description" content="An example of how to integrate a light switch into Home Assistant using ESPHome">
+<meta name="keywords" content="Relay, Sonoff Basic, Sonoff Dual Dual R1, Light, HASS, Home Assistant, ESPHome">
+<meta itemprop="name" content="DIY Light switch using a Sonoff Basic">
+<meta itemprop="description" content="An example of how to integrate a light switch into Home Assistant using ESPHome">
+<meta itemprop="image" content="../_images/sonoff_light_switch-2.html">
+<meta name="twitter:title" content="DIY Light switch using a Sonoff Basic">
+<meta name="twitter:image:src" content="../_images/sonoff_light_switch-2.html">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@OttoWinter_">
+<meta name="twitter:description" content="An example of how to integrate a light switch into Home Assistant using ESPHome">
+<meta property="og:title" content="DIY Light switch using a Sonoff Basic">
+<meta property="og:image" content="../_images/sonoff_light_switch-2.html">
+<meta property="og:type" content="website">
+<meta property="og:description" content="An example of how to integrate a light switch into Home Assistant using ESPHome">
+
+    <title>DIY Light switch using a Sonoff Basic &#8212; ESPHome</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <link rel="canonical" href="sonoff-basic-light-switch.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="DIY Light switch using a Sonoff Dual" href="sonoff-dual-light-switch.html" />
+    <link rel="prev" title="Relay" href="relay.html" />
+  <link rel="stylesheet" href="../_static/customf001.css?hash=f908c2b5" type="text/css" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../_static/apple-touch-icon.png">
+  <link rel="shortcut icon" href="../_static/favicon.ico">
+  <link rel="icon" type="image/png" sizes="512x512" href="../_static/favicon-512x512.png">
+  <link rel="icon" type="image/png" sizes="256x256" href="../_static/favicon-256x256.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="../_static/favicon-192x192.png">
+  <link rel="icon" type="image/png" sizes="128x128" href="../_static/favicon-128x128.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../_static/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../_static/favicon-16x16.png">
+  <link rel="manifest" href="../_static/site.webmanifest">
+  <link rel="mask-icon" href="../_static/safari-pinned-tab.svg" color="#646464">
+  <meta name="apple-mobile-web-app-title" content="ESPHome">
+  <meta name="application-name" content="ESPHome">
+  <meta name="msapplication-TileColor" content="#dfdfdf">
+  <meta name="msapplication-config" content="/_static/browserconfig.xml">
+  <meta name="theme-color" content="#dfdfdf">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta property="og:site_name" content="ESPHome">
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head><body>
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index-2.html">
+              <img class="logo" src="../_static/logo-text.svg" alt="Logo"/>
+            </a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="https://esphome.io/search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+  <h3><a href="../index-2.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">DIY Light switch using a Sonoff Basic</a><ul>
+<li><a class="reference internal" href="#background">Background</a></li>
+<li><a class="reference internal" href="#the-solution">The Solution</a></li>
+<li><a class="reference internal" href="#implementation">Implementation</a></li>
+<li><a class="reference internal" href="#see-also">See Also</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="diy-light-switch-using-a-sonoff-basic">
+<h1>DIY Light switch using a Sonoff Basic<a class="headerlink" href="#diy-light-switch-using-a-sonoff-basic" title="Permalink to this headline">¶</a></h1>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This is a DIY solution, and you will need to have some knowledge of electrical wiring and enough
+capabilities to do this work safely.</p>
+<p>The author, and the ESPHome team, take no responsibility for any actions, injuries or outcomes
+from following this guide.</p>
+<p>In some countries you may need specific qualifications before you can carry out such work in
+a residential property.</p>
+</div>
+<section id="background">
+<h2>Background<a class="headerlink" href="#background" title="Permalink to this headline">¶</a></h2>
+<p>Moving your entire house to smart lighting can end up being very expense, for instance if you have a
+light fitting with 5 lamps in it that’s 5 expensive smart bulbs to buy just for one room! Smart bulbs
+clearly have some great advantages, dimmable, colour temperature or even full colour changing. What
+if all you’re after is a cost effective way to turn them on and off?</p>
+<p>The ideal solution would be to replace the light switch with one that can be controlled by home
+assistant, whilst retaining the ease of use of a standard light that would also continue to work if
+the network went down, or Home Assistant failed etc.</p>
+<p>It turns out Sonoff do exactly this product, it called a T1-UK (other country options available),
+however you soon found the touch aspect of them might not ‘feel right’ and certainly might not get the
+approval of other members of your household. However if this solution appeals to you, check out the
+<a class="reference internal" href="sonoff-t1-3.html"><span class="doc">Cookbook guide for T1/T2/T3</span></a></p>
+<p>The other option to consider is a standard ‘2 way’ light switch (like you might have on an upstairs
+/ downstairs control in your house) but using relays for the second switch. For many this will have
+the disadvantage that if you remotely changed the light status the switch is then ‘upside down’.</p>
+</section>
+<section id="the-solution">
+<h2>The Solution<a class="headerlink" href="#the-solution" title="Permalink to this headline">¶</a></h2>
+<p>Use a ‘retractive’ style light switch. That is one that is spring loaded and so always returns to the
+‘off’ position. It’s effectively a push button, that looks like a light switch. Combining this with a
+Sonoff Basic gives you the ideal solution for somewhere around £5. That’s much cheaper than buying lots
+of expensive smart bulbs, but of course you only get on / off control.</p>
+<p>You will have several potential hurdles to overcome:</p>
+<ol class="arabic simple">
+<li><p>The first is that you do need to have a neutral at the location of the Sonoff. Many houses will not have
+this as standard at the light switch.</p></li>
+<li><p>You need enough space to accommodate your Sonoff Basic at your chosen location.</p></li>
+</ol>
+<p>If you’re lucky most of the locations will have plasterboard walls, and you will be able to simply drop a neutral
+wire down the inside of the wall to the lights switch (where you locate the Sonoff).</p>
+<p>Also, if you have plasterboard walls, most of the light switch back boxes are the plastic dry lining style boxes.
+This can come in useful because if you remove the PCB from the plastic case it actually fits in the back box nicely.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>If you plan to take the PCB out of the plastic case you need to make sure it’s properly insulated, and that the back
+box is deep enough to hold the PCB as well as the switch. You should also insulate the PCB, for instance by dropping it
+in a heavy duty glue lined heat shrink sleeve.</p>
+<p><strong>The PCB has mains electricity flowing through it, if you are in any doubt about your capabilities do not attempt to do
+this.</strong></p>
+</div>
+<p>If you have a light switch in a brick wall, an option might be to place the Sonoff Basic above the light in the ceiling void,
+and use the cable that ran from the light to the switch as a low voltage cable to connect the Sonoff GPIO.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>If you are going to reuse existing wiring to connect to the GPIO, you must make sure it’s connected directly to the switch
+and does not have mains voltage on it from another circuit.</p>
+</div>
+</section>
+<section id="implementation">
+<h2>Implementation<a class="headerlink" href="#implementation" title="Permalink to this headline">¶</a></h2>
+<p>So having established the pitfalls that you need to overcome lets crack on with making this work.</p>
+<p>Please make sure you have read up about <a class="reference internal" href="../devices/sonoff_basic.html"><span class="doc">the Sonoff Basic and how to flash it with ESPHome</span></a>.
+As that won’t be covered here.Also make sure you know your way around a soldering iron and can find the relevant information
+about the location of the GPIO pins on the Sonoff Basic if you need to.</p>
+<p>If you have a Sonoff Basic V1 devices GPIO14 is already presented on a pin header on the PCB next to the programming pins.
+On the V2 and V3 PCBs, there is a solder pad underneath the PCB that will let you get at this GPIO.</p>
+<p>You have 2 choices when it comes to picking which GPIO to use. GPIO0 or GPIO14. GPIO0 is used by the push button switch on the
+the PCB so you will need to locate the right pin on the switch and solder a wire onto it if you’re going to use that one. Whichever
+one you pick, you will also need to use the ground or 0V pin for the other side of the switch. Once you have soldered your wires
+into place, a handy tip is to add a drop of glue over the wire, a little way away from the solder joint, so give some strain relief
+to the joint.</p>
+<p>Now you have a pair of wires from the GPIO and 0V to your retractive switch lets look at the code.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">esphome</span><span class="p">:</span>
+  <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">my_ls</span>
+  <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ESP8266</span>
+  <span class="nt">board</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">esp01_1m</span>
+
+<span class="nt">wifi</span><span class="p">:</span>
+  <span class="nt">ssid</span><span class="p">:</span> <span class="kt">!secret</span> <span class="l l-Scalar l-Scalar-Plain">wifi_ssid</span>
+  <span class="nt">password</span><span class="p">:</span> <span class="kt">!secret</span> <span class="l l-Scalar l-Scalar-Plain">wifi_password</span>
+
+<span class="nt">logger</span><span class="p">:</span>
+
+<span class="nt">api</span><span class="p">:</span>
+
+<span class="nt">ota</span><span class="p">:</span>
+
+<span class="nt">binary_sensor</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">gpio</span>
+    <span class="nt">pin</span><span class="p">:</span>
+      <span class="nt">number</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO14</span>
+      <span class="nt">mode</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">INPUT_PULLUP</span>
+      <span class="nt">inverted</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">True</span>
+    <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">button_1</span>
+    <span class="nt">on_press</span><span class="p">:</span>
+      <span class="nt">then</span><span class="p">:</span>
+        <span class="p p-Indicator">-</span> <span class="nt">light.toggle</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">light_1</span>
+
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">status</span>
+    <span class="nt">name</span><span class="p">:</span> <span class="s">&quot;My</span><span class="nv"> </span><span class="s">LS</span><span class="nv"> </span><span class="s">Status&quot;</span>
+
+<span class="nt">output</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">gpio</span>
+    <span class="nt">pin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO12</span>
+    <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">relay_1</span>
+
+<span class="nt">light</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">binary</span>
+    <span class="nt">name</span><span class="p">:</span> <span class="s">&quot;My</span><span class="nv"> </span><span class="s">Light&quot;</span>
+    <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">light_1</span>
+    <span class="nt">output</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">relay_1</span>
+
+<span class="nt">status_led</span><span class="p">:</span>
+  <span class="nt">pin</span><span class="p">:</span>
+    <span class="nt">number</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO13</span>
+    <span class="nt">inverted</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">yes</span>
+</pre></div>
+</div>
+<p>In the above code block, there is a <em>secrets.yaml</em> file so that you have just one place to change WiFi
+details for all your devices.</p>
+<p>Although not visible day to day, there is also the status LED configured so that it can be used when setting
+up / debugging. Also a configured binary sensor to give status in case you want to perform an action / alert
+if the light switch disconnects for any reason.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you wanted to use a pull cord switch (in a bathroom for instance) that works like a standard switch and
+changes state each pull (as opposed to a retractive switch that you press and let go) then you can change
+a single line <em>on_press:</em> to <em>on_state:</em> which will trigger the light toggle every time the state of the
+switch changes.</p>
+<p>If you do this it’s important that you do not use GPIO0, otherwise if the device reboots and the switch happens
+to be in the closed state the Sonoff will boot into flash mode and not work.</p>
+</div>
+</section>
+<section id="see-also">
+<h2>See Also<a class="headerlink" href="#see-also" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="sonoff-light-switch.html"><span class="doc">Sonoff Light switch options</span></a></p></li>
+<li><p><a class="reference internal" href="../guides/automations.html"><span class="doc">Automations and Templates</span></a></p></li>
+<li><p><a class="reference internal" href="../devices/sonoff_basic.html"><span class="doc">Using With Sonoff Basic</span></a></p></li>
+</ul>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+  <div id="upgrade-footer">
+    A new version has been release since you last visited this page: 1.17.2 🎉
+    <div class="footer-button-container">
+      <div role="button" id="upgrade-footer-dismiss" class="footer-button">Dismiss</div>
+      <a id="upgrade-footer-changelog" class="footer-button" href="../changelog/v1.17.0.html">View Changelog</a>  
+    </div>
+  </div>
+  <script>
+    var old = window.localStorage.getItem("version");
+    if (old === null) { window.localStorage.setItem("version", "1.17");
+    } else if (old !== "1.17") {
+      const footerEl = document.getElementById("upgrade-footer");
+      footerEl.classList.add("not-hidden");
+      footerEl.addEventListener('click', function () {
+        window.localStorage.setItem("version", "1.17");
+        footerEl.classList.remove("not-hidden");
+      });
+    }
+  </script>
+
+  </body>
+
+<!-- Mirrored from esphome.io/cookbook/sonoff-basic-light-switch.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 16 May 2021 03:14:54 GMT -->
+</html>

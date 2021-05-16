@@ -1,0 +1,178 @@
+
+  <!DOCTYPE html>
+
+
+<html lang="en">
+  
+<!-- Mirrored from esphome.io/guides/migrate_espeasy.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 16 May 2021 03:03:11 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+<meta name="description" content="Migration guide for installing ESPHome on ESPs running ESPEasy.">
+<meta itemprop="name" content="Migrating from ESPEasy">
+<meta itemprop="description" content="Migration guide for installing ESPHome on ESPs running ESPEasy.">
+<meta itemprop="image" content="../_images/espeasy.html">
+<meta name="twitter:title" content="Migrating from ESPEasy">
+<meta name="twitter:image:src" content="../_images/espeasy.html">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@OttoWinter_">
+<meta name="twitter:description" content="Migration guide for installing ESPHome on ESPs running ESPEasy.">
+<meta property="og:title" content="Migrating from ESPEasy">
+<meta property="og:image" content="../_images/espeasy.html">
+<meta property="og:type" content="website">
+<meta property="og:description" content="Migration guide for installing ESPHome on ESPs running ESPEasy.">
+
+    <title>Migrating from ESPEasy &#8212; ESPHome</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <link rel="canonical" href="migrate_espeasy.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Migrating from ESPurna" href="migrate_espurna.html" />
+    <link rel="prev" title="Getting Started with ESPHome and Home Assistant" href="getting_started_hassio.html" />
+  <link rel="stylesheet" href="../_static/customf001.css?hash=f908c2b5" type="text/css" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../_static/apple-touch-icon.png">
+  <link rel="shortcut icon" href="../_static/favicon.ico">
+  <link rel="icon" type="image/png" sizes="512x512" href="../_static/favicon-512x512.png">
+  <link rel="icon" type="image/png" sizes="256x256" href="../_static/favicon-256x256.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="../_static/favicon-192x192.png">
+  <link rel="icon" type="image/png" sizes="128x128" href="../_static/favicon-128x128.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../_static/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../_static/favicon-16x16.png">
+  <link rel="manifest" href="../_static/site.webmanifest">
+  <link rel="mask-icon" href="../_static/safari-pinned-tab.svg" color="#646464">
+  <meta name="apple-mobile-web-app-title" content="ESPHome">
+  <meta name="application-name" content="ESPHome">
+  <meta name="msapplication-TileColor" content="#dfdfdf">
+  <meta name="msapplication-config" content="/_static/browserconfig.xml">
+  <meta name="theme-color" content="#dfdfdf">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta property="og:site_name" content="ESPHome">
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head><body>
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index-2.html">
+              <img class="logo" src="../_static/logo-text.svg" alt="Logo"/>
+            </a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="https://esphome.io/search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+  <h3><a href="../index-2.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Migrating from ESPEasy</a><ul>
+<li><a class="reference internal" href="#getting-binary">Getting Binary</a></li>
+<li><a class="reference internal" href="#uploading-binary">Uploading Binary</a></li>
+<li><a class="reference internal" href="#see-also">See Also</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="migrating-from-espeasy">
+<h1>Migrating from ESPEasy<a class="headerlink" href="#migrating-from-espeasy" title="Permalink to this headline">¶</a></h1>
+<p>Migrating from previous ESPEasy setups is very easy. You just need to have
+ESPHome create a binary for you and then upload that in the ESPEasy web interface.</p>
+<section id="getting-binary">
+<h2>Getting Binary<a class="headerlink" href="#getting-binary" title="Permalink to this headline">¶</a></h2>
+<p>First follow the guides for the <a class="reference internal" href="../index-2.html#devices"><span class="std std-ref">different supported devices</span></a> and create a configuration
+file. Then, generate and download the binary:</p>
+<ul>
+<li><p><strong>Using the Hass.io add-on/dashboard</strong>: Just click the <code class="docutils literal notranslate"><span class="pre">COMPILE</span></code> button, wait for
+the compilation to end and press the <code class="docutils literal notranslate"><span class="pre">DOWNLOAD</span> <span class="pre">BINARY</span></code> button.</p>
+<figure class="align-default">
+<img alt="../_images/download_binary.png" src="../_images/download_binary.png" />
+</figure>
+</li>
+<li><p><strong>Using the command line</strong>: run <code class="docutils literal notranslate"><span class="pre">esphome</span> <span class="pre">livingroom.yaml</span> <span class="pre">compile</span></code> (replacing
+<code class="docutils literal notranslate"><span class="pre">livingroom.yaml</span></code> with your configuration file of course) and navigate to the
+<code class="docutils literal notranslate"><span class="pre">&lt;NODE_NAME&gt;/.pioenvs/&lt;NODE_NAME&gt;/</span></code> folder. There you will find a <code class="docutils literal notranslate"><span class="pre">firmware.bin</span></code> file,
+this is the binary you will upload.</p></li>
+</ul>
+</section>
+<section id="uploading-binary">
+<h2>Uploading Binary<a class="headerlink" href="#uploading-binary" title="Permalink to this headline">¶</a></h2>
+<p>To upload the binary, navigate to the ESPEasy web interface and enter the
+“Tools ” section.</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/espeasy_ota.png"><img alt="../_images/espeasy_ota.png" src="../_images/espeasy_ota.png" style="width: 60.0%;" /></a>
+</figure>
+<p>Press “Load” under Firmware, then select the binary you previously downloaded and upload
+the binary. If everything succeeds, you should now have ESPHome on your node 🎉.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>with ESPHome, you in most cases won’t need to worry about the available flash size, as
+the binary only ever includes the code that you are actually using.</p>
+</div>
+<p>Happy Hacking!</p>
+</section>
+<section id="see-also">
+<h2>See Also<a class="headerlink" href="#see-also" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="../devices/nodemcu_esp8266.html"><span class="doc">NodeMCU ESP8266</span></a></p></li>
+<li><p><a class="reference internal" href="../devices/nodemcu_esp32.html"><span class="doc">NodeMCU ESP32</span></a></p></li>
+<li><p><a class="reference internal" href="../devices/esp8266.html"><span class="doc">Generic ESP8266</span></a></p></li>
+<li><p><a class="reference internal" href="../devices/esp32.html"><span class="doc">Generic ESP32</span></a></p></li>
+<li><p><a class="reference internal" href="../devices/sonoff_s20.html"><span class="doc">Using With Sonoff S20</span></a></p></li>
+<li><p><a class="reference internal" href="../devices/sonoff_4ch.html"><span class="doc">Using With Sonoff 4CH</span></a></p></li>
+<li><p><a class="reference internal" href="migrate_espurna.html"><span class="doc">Migrating from ESPurna</span></a></p></li>
+<li><p><a class="reference internal" href="migrate_sonoff_tasmota.html"><span class="doc">Migrating from Sonoff Tasmota</span></a></p></li>
+<li><p><a class="reference external" href="https://github.com/esphome/esphome-docs/blob/current/guides/migrate_espeasy.rst">Edit this page on GitHub</a></p></li>
+</ul>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+  <div id="upgrade-footer">
+    A new version has been release since you last visited this page: 1.17.2 🎉
+    <div class="footer-button-container">
+      <div role="button" id="upgrade-footer-dismiss" class="footer-button">Dismiss</div>
+      <a id="upgrade-footer-changelog" class="footer-button" href="../changelog/v1.17.0.html">View Changelog</a>  
+    </div>
+  </div>
+  <script>
+    var old = window.localStorage.getItem("version");
+    if (old === null) { window.localStorage.setItem("version", "1.17");
+    } else if (old !== "1.17") {
+      const footerEl = document.getElementById("upgrade-footer");
+      footerEl.classList.add("not-hidden");
+      footerEl.addEventListener('click', function () {
+        window.localStorage.setItem("version", "1.17");
+        footerEl.classList.remove("not-hidden");
+      });
+    }
+  </script>
+
+  </body>
+
+<!-- Mirrored from esphome.io/guides/migrate_espeasy.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 16 May 2021 03:03:12 GMT -->
+</html>

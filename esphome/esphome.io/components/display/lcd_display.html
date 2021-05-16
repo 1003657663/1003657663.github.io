@@ -1,0 +1,328 @@
+
+  <!DOCTYPE html>
+
+
+<html lang="en">
+  
+<!-- Mirrored from esphome.io/components/display/lcd_display.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 16 May 2021 03:01:33 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+<meta name="description" content="Instructions for setting up character-based LCD displays.">
+<meta itemprop="name" content="Character-Based LCD Display">
+<meta itemprop="description" content="Instructions for setting up character-based LCD displays.">
+<meta itemprop="image" content="../../_images/lcd.jpg">
+<meta name="twitter:title" content="Character-Based LCD Display">
+<meta name="twitter:image:src" content="../../_images/lcd.jpg">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@OttoWinter_">
+<meta name="twitter:description" content="Instructions for setting up character-based LCD displays.">
+<meta property="og:title" content="Character-Based LCD Display">
+<meta property="og:image" content="../../_images/lcd.jpg">
+<meta property="og:type" content="website">
+<meta property="og:description" content="Instructions for setting up character-based LCD displays.">
+
+    <title>Character-Based LCD Display &#8212; ESPHome</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/alabaster.css" />
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <link rel="canonical" href="lcd_display.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="MAX7219 7-Segment Display" href="max7219.html" />
+    <link rel="prev" title="Inkplate 6" href="inkplate6.html" />
+  <link rel="stylesheet" href="../../_static/customf001.css?hash=f908c2b5" type="text/css" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../../_static/apple-touch-icon.png">
+  <link rel="shortcut icon" href="../../_static/favicon.ico">
+  <link rel="icon" type="image/png" sizes="512x512" href="../../_static/favicon-512x512.png">
+  <link rel="icon" type="image/png" sizes="256x256" href="../../_static/favicon-256x256.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="../../_static/favicon-192x192.png">
+  <link rel="icon" type="image/png" sizes="128x128" href="../../_static/favicon-128x128.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../_static/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../../_static/favicon-16x16.png">
+  <link rel="manifest" href="../../_static/site.webmanifest">
+  <link rel="mask-icon" href="../../_static/safari-pinned-tab.svg" color="#646464">
+  <meta name="apple-mobile-web-app-title" content="ESPHome">
+  <meta name="application-name" content="ESPHome">
+  <meta name="msapplication-TileColor" content="#dfdfdf">
+  <meta name="msapplication-config" content="/_static/browserconfig.xml">
+  <meta name="theme-color" content="#dfdfdf">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta property="og:site_name" content="ESPHome">
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head><body>
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../index-2.html">
+              <img class="logo" src="../../_static/logo-text.svg" alt="Logo"/>
+            </a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="https://esphome.io/search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+  <h3><a href="../../index-2.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Character-Based LCD Display</a><ul>
+<li><a class="reference internal" href="#lcd-pcf8574-component">lcd_pcf8574 Component</a><ul>
+<li><a class="reference internal" href="#configuration-variables">Configuration variables:</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#lcd-gpio-component">lcd_gpio Component</a><ul>
+<li><a class="reference internal" href="#id1">Configuration variables:</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#rendering-lambda">Rendering Lambda</a></li>
+<li><a class="reference internal" href="#backlight-control">Backlight Control</a></li>
+<li><a class="reference internal" href="#see-also">See Also</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="character-based-lcd-display">
+<h1>Character-Based LCD Display<a class="headerlink" href="#character-based-lcd-display" title="Permalink to this headline">¶</a></h1>
+<section id="lcd-pcf8574-component">
+<span id="lcd-pcf8574"></span><h2>lcd_pcf8574 Component<a class="headerlink" href="#lcd-pcf8574-component" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">lcd_pcf8574</span></code> display platform allows you to use standard character-based LCD displays like
+<a class="reference external" href="https://docs.labs.mediatek.com/resource/linkit7697-arduino/en/tutorial/driving-1602-lcd-with-pcf8574-pcf8574a">this one</a>
+with ESPHome. This integration is only for LCD displays that display individual characters on a screen (usually 16-20 columns
+and 2-4 rows), and not for LCD displays that can control each pixel individually.</p>
+<p>This version of the LCD integration is for LCD displays with a PCF8574 connected to all the data pins. This has
+the benefit that you only need to connect two data wires to the ESP instead of the 6 or 10 with the <a class="reference internal" href="#lcd-gpio"><span class="std std-ref">lcd_gpio Component</span></a>.
+As the communication with the <a class="reference internal" href="../i2c.html#i2c"><span class="std std-ref">I²C Bus</span></a>, you need to have an <code class="docutils literal notranslate"><span class="pre">i2c:</span></code> section in your configuration.</p>
+<figure class="align-center" id="id2">
+<a class="reference internal image-reference" href="../../_images/lcd-pcf8574.jpg"><img alt="../../_images/lcd-pcf8574.jpg" src="../../_images/lcd-pcf8574.jpg" style="width: 75.0%;" /></a>
+<figcaption>
+<p><span class="caption-text">The PCF8574 chip attached to the LCD Display.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../../_images/lcd-hello_world.jpg"><img alt="../../_images/lcd-hello_world.jpg" src="../../_images/lcd-hello_world.jpg" style="width: 60.0%;" /></a>
+</figure>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example configuration entry</span>
+<span class="nt">i2c</span><span class="p">:</span>
+  <span class="nt">sda</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">D0</span>
+  <span class="nt">scl</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">D1</span>
+
+<span class="nt">display</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">lcd_pcf8574</span>
+    <span class="nt">dimensions</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">18x4</span>
+    <span class="nt">address</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">0x3F</span>
+    <span class="nt">lambda</span><span class="p">:</span> <span class="p p-Indicator">|-</span>
+      <span class="no">it.print(&quot;Hello World!&quot;);</span>
+</pre></div>
+</div>
+<section id="configuration-variables">
+<h3>Configuration variables:<a class="headerlink" href="#configuration-variables" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><strong>dimensions</strong> (<strong>Required</strong>, string): The dimensions of the display with <code class="docutils literal notranslate"><span class="pre">COLUMNSxROWS</span></code>. If you’re not
+sure, power the display up and just count them.</p></li>
+<li><p><strong>address</strong> (<em>Optional</em>, int): The <a class="reference internal" href="../i2c.html#i2c"><span class="std std-ref">I²C</span></a> address of the PCF8574 chip, defaults to <code class="docutils literal notranslate"><span class="pre">0x3F</span></code>.</p></li>
+<li><p><strong>lambda</strong> (<em>Optional</em>, <a class="reference internal" href="../../guides/automations.html#config-lambda"><span class="std std-ref">lambda</span></a>): The lambda to use for rendering the content on the display.
+See <a class="reference internal" href="#display-lcd-lambda"><span class="std std-ref">Rendering Lambda</span></a> for more information.</p></li>
+<li><p><strong>update_interval</strong> (<em>Optional</em>, <a class="reference internal" href="../../guides/configuration-types.html#config-time"><span class="std std-ref">Time</span></a>): The interval to re-draw the screen. Defaults to <code class="docutils literal notranslate"><span class="pre">1s</span></code>.</p></li>
+<li><p><strong>id</strong> (<em>Optional</em>, <a class="reference internal" href="../../guides/configuration-types.html#config-id"><span class="std std-ref">ID</span></a>): Manually specify the ID used for code generation.</p></li>
+</ul>
+</section>
+</section>
+<section id="lcd-gpio-component">
+<span id="lcd-gpio"></span><h2>lcd_gpio Component<a class="headerlink" href="#lcd-gpio-component" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">lcd_gpio</span></code> display platform allows you to use standard character-based LCD displays like <a class="reference external" href="https://www.adafruit.com/product/181">this one</a>
+with ESPHome. This integration is only for LCD displays that display individual characters on a screen (usually 16-20 columns
+and 2-4 rows), and not for LCD displays that can control each pixel individually. Also, this is the GPIO version of the LCD
+integration where each of the data pins of the LCD needs a dedicated GPIO pin on the ESP. These LCD displays are also
+commonly sold with a PCF8574 chip which only need two lines to the ESP, for that see <a class="reference internal" href="#lcd-pcf8574"><span class="std std-ref">lcd_pcf8574 Component</span></a>.</p>
+<figure class="align-center" id="id3">
+<a class="reference internal image-reference" href="../../_images/lcd-full.jpg"><img alt="../../_images/lcd-full.jpg" src="../../_images/lcd-full.jpg" style="width: 75.0%;" /></a>
+<figcaption>
+<p><span class="caption-text">LCD Display.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example configuration entry</span>
+<span class="nt">display</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">lcd_gpio</span>
+    <span class="nt">dimensions</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">18x4</span>
+    <span class="nt">data_pins</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">D0</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">D1</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">D2</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">D3</span>
+    <span class="nt">enable_pin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">D4</span>
+    <span class="nt">rs_pin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">D5</span>
+    <span class="nt">lambda</span><span class="p">:</span> <span class="p p-Indicator">|-</span>
+      <span class="no">it.print(&quot;Hello World!&quot;);</span>
+</pre></div>
+</div>
+<section id="id1">
+<h3>Configuration variables:<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><strong>dimensions</strong> (<strong>Required</strong>, string): The dimensions of the display with <code class="docutils literal notranslate"><span class="pre">COLUMNSxROWS</span></code>. If you’re not
+sure, power the display up and just count them.</p></li>
+<li><p><strong>data_pins</strong> (<strong>Required</strong>, list of <a class="reference internal" href="../../guides/configuration-types.html#config-pin-schema"><span class="std std-ref">Pin Schemas</span></a>): A list of the data pins you
+have hooked up to the LCD. The list can either be 8 items long (when you have connected all 8 data pins), or
+4 items long (if you’re operating in 4-bit mode with either the first 4 data pins connected or the last 4 data
+pins connected).</p></li>
+<li><p><strong>enable_pin</strong> (<strong>Required</strong>, <a class="reference internal" href="../../guides/configuration-types.html#config-pin-schema"><span class="std std-ref">Pin Schema</span></a>): The pin you have <code class="docutils literal notranslate"><span class="pre">EN</span></code> hooked up to.</p></li>
+<li><p><strong>rs_pin</strong> (<strong>Required</strong>, <a class="reference internal" href="../../guides/configuration-types.html#config-pin-schema"><span class="std std-ref">Pin Schema</span></a>): The pin you have <code class="docutils literal notranslate"><span class="pre">RS</span></code> hooked up to.</p></li>
+<li><p><strong>rw_pin</strong> (<em>Optional</em>, <a class="reference internal" href="../../guides/configuration-types.html#config-pin-schema"><span class="std std-ref">Pin Schema</span></a>): Optionally set the pin you have <code class="docutils literal notranslate"><span class="pre">RW</span></code> hooked up to.
+You can also just permanently connect that pin to GND.</p></li>
+<li><p><strong>lambda</strong> (<em>Optional</em>, <a class="reference internal" href="../../guides/automations.html#config-lambda"><span class="std std-ref">lambda</span></a>): The lambda to use for rendering the content on the display.
+See <a class="reference internal" href="#display-lcd-lambda"><span class="std std-ref">Rendering Lambda</span></a> for more information.</p></li>
+<li><p><strong>update_interval</strong> (<em>Optional</em>, <a class="reference internal" href="../../guides/configuration-types.html#config-time"><span class="std std-ref">Time</span></a>): The interval to re-draw the screen. Defaults to <code class="docutils literal notranslate"><span class="pre">1s</span></code>.</p></li>
+<li><p><strong>id</strong> (<em>Optional</em>, <a class="reference internal" href="../../guides/configuration-types.html#config-id"><span class="std std-ref">ID</span></a>): Manually specify the ID used for code generation.</p></li>
+</ul>
+</section>
+</section>
+<section id="rendering-lambda">
+<span id="display-lcd-lambda"></span><h2>Rendering Lambda<a class="headerlink" href="#rendering-lambda" title="Permalink to this headline">¶</a></h2>
+<p>The LCD displays has a similar API to the fully fledged <a class="reference internal" href="index.html#display-engine"><span class="std std-ref">Display Rendering Engine</span></a>, but it’s only a subset as LCD displays
+don’t have a concept of individual pixels. In the lambda you’re passed a variable called <code class="docutils literal notranslate"><span class="pre">it</span></code>
+as with all other displays. In this case however, <code class="docutils literal notranslate"><span class="pre">it</span></code> is an instance of either <code class="docutils literal notranslate"><span class="pre">GPIOLCDDisplay</span></code> or <code class="docutils literal notranslate"><span class="pre">PCF8574LCDDisplay</span></code>.</p>
+<p>The most basic operation with LCD Displays is writing static text to the screen as in the configuration example
+at the top of this page.</p>
+<p>Each of the three methods (<code class="docutils literal notranslate"><span class="pre">print</span></code>, <code class="docutils literal notranslate"><span class="pre">printf</span></code> and <code class="docutils literal notranslate"><span class="pre">strftime</span></code>) all optionally take a column and row arguments at the
+beginning which can be used to print the text at a specific position. These arguments are set to <code class="docutils literal notranslate"><span class="pre">0</span></code> (column) and <code class="docutils literal notranslate"><span class="pre">0</span></code> (row)
+by default which means the character at the top left.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">display</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">lcd_gpio</span> <span class="c1"># or lcd_pcf8574</span>
+    <span class="c1"># ...</span>
+    <span class="nt">lambda</span><span class="p">:</span> <span class="p p-Indicator">|-</span>
+      <span class="no">// Print 0 at the top left</span>
+      <span class="no">it.print(&quot;0&quot;);</span>
+
+      <span class="no">// Print 1 at the second row and second column.</span>
+      <span class="no">it.print(1, 1, &quot;1&quot;);</span>
+
+      <span class="no">// Let&#39;s write a sensor value (let&#39;s assume it&#39;s 42.1)</span>
+      <span class="no">it.printf(&quot;%.1f&quot;, id(my_sensor).state);</span>
+      <span class="no">// Result: &quot;42.1&quot; (the dot will appear on the &quot;2&quot; segment)</span>
+
+      <span class="no">// Print a right-padded sensor value with 0 digits after the decimal</span>
+      <span class="no">it.printf(&quot;Sensor value: %8.0f&quot;, id(my_sensor).state);</span>
+      <span class="no">// Result: &quot;Sensor value:       42&quot;</span>
+
+      <span class="no">// Print the current time</span>
+      <span class="no">it.strftime(&quot;It is %H:%M on %d.%m.%Y&quot;, id(my_time).now());</span>
+      <span class="no">// Result for 10:06 on august 21st 2018 -&gt; &quot;It is 10:06 on 21.08.2018&quot;</span>
+
+<span class="c1"># (Optional) For displaying time:</span>
+<span class="nt">time</span><span class="p">:</span>
+<span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">sntp</span>
+  <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">my_time</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you’re not seeing anything on the display, make sure you try turning the contrast potentiometer around.</p>
+</div>
+<p>Please see <a class="reference internal" href="index.html#display-printf"><span class="std std-ref">Formatted Text</span></a> for a quick introduction into the <code class="docutils literal notranslate"><span class="pre">printf</span></code> formatting rules and
+<a class="reference internal" href="index.html#display-strftime"><span class="std std-ref">Displaying Time</span></a> for an introduction into the <code class="docutils literal notranslate"><span class="pre">strftime</span></code> time formatting.</p>
+</section>
+<section id="backlight-control">
+<h2>Backlight Control<a class="headerlink" href="#backlight-control" title="Permalink to this headline">¶</a></h2>
+<p>For the GPIO based display, the backlight is lit by applying Vcc to the A pin and K connected to ground.
+The backlight can draw more power than the microcontroller output pins can supply, so it is advisable to use
+a transistor as a switch to control the power for the backlight pins.</p>
+<p>With the <code class="docutils literal notranslate"><span class="pre">lcd_pcf8574</span></code> the backlight can be turned on by <code class="docutils literal notranslate"><span class="pre">it.backlight()</span></code> and off by <code class="docutils literal notranslate"><span class="pre">it.no_backlight()</span></code> in the
+display lambda definition. The jumper on the PCF8574 board needs to be closed for the backlight control to work.
+Keep in mind that the display lambda runs for every <code class="docutils literal notranslate"><span class="pre">update_interval</span></code>, so if the backlight is turned on/off there,
+it cannot be overridden from other parts.</p>
+<p>Here is one solution for a typical use-case where the backlight is turned on after a motion sensor activates and
+turns off 90 seconds after the last activation of the sensor.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">display</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">lcd_pcf8574</span>
+    <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">mydisplay</span>
+    <span class="c1"># ...</span>
+
+<span class="nt">binary_sensor</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">gpio</span>
+    <span class="c1"># ...</span>
+    <span class="nt">on_press</span><span class="p">:</span>
+      <span class="nt">then</span><span class="p">:</span>
+        <span class="p p-Indicator">-</span> <span class="nt">binary_sensor.template.publish</span><span class="p">:</span>
+            <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">backlight</span>
+            <span class="nt">state</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ON</span>
+        <span class="p p-Indicator">-</span> <span class="nt">binary_sensor.template.publish</span><span class="p">:</span>
+            <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">backlight</span>
+            <span class="nt">state</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">OFF</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">template</span>
+    <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">backlight</span>
+    <span class="nt">filters</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="nt">delayed_off</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">90s</span>
+    <span class="nt">on_press</span><span class="p">:</span>
+      <span class="nt">then</span><span class="p">:</span>
+        <span class="p p-Indicator">-</span> <span class="nt">lambda</span><span class="p">:</span> <span class="p p-Indicator">|-</span>
+            <span class="no">id(mydisplay).backlight();</span>
+    <span class="nt">on_release</span><span class="p">:</span>
+      <span class="nt">then</span><span class="p">:</span>
+        <span class="p p-Indicator">-</span> <span class="nt">lambda</span><span class="p">:</span> <span class="p p-Indicator">|-</span>
+            <span class="no">id(mydisplay).no_backlight();</span>
+</pre></div>
+</div>
+</section>
+<section id="see-also">
+<h2>See Also<a class="headerlink" href="#see-also" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="index.html"><span class="doc">Display Component</span></a></p></li>
+<li><p><a class="reference internal" href="../switch/gpio.html"><span class="doc">GPIO Switch</span></a></p></li>
+<li><p><a class="reference internal" href="../binary_sensor/gpio.html"><span class="doc">GPIO Binary Sensor</span></a></p></li>
+<li><p><a class="reference internal" href="../pcf8574.html"><span class="doc">PCF8574 I/O Expander</span></a></p></li>
+<li><p><a class="reference external" href="../../api/lcd__display_8h.html">API Reference</a></p></li>
+<li><p><a class="reference external" href="https://www.arduino.cc/en/Reference/LiquidCrystal">Arduino LiquidCrystal Library</a></p></li>
+<li><p><a class="reference external" href="https://github.com/esphome/esphome-docs/blob/current/components/display/lcd_display.rst">Edit this page on GitHub</a></p></li>
+</ul>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+  <div id="upgrade-footer">
+    A new version has been release since you last visited this page: 1.17.2 🎉
+    <div class="footer-button-container">
+      <div role="button" id="upgrade-footer-dismiss" class="footer-button">Dismiss</div>
+      <a id="upgrade-footer-changelog" class="footer-button" href="../../changelog/v1.17.0.html">View Changelog</a>  
+    </div>
+  </div>
+  <script>
+    var old = window.localStorage.getItem("version");
+    if (old === null) { window.localStorage.setItem("version", "1.17");
+    } else if (old !== "1.17") {
+      const footerEl = document.getElementById("upgrade-footer");
+      footerEl.classList.add("not-hidden");
+      footerEl.addEventListener('click', function () {
+        window.localStorage.setItem("version", "1.17");
+        footerEl.classList.remove("not-hidden");
+      });
+    }
+  </script>
+
+  </body>
+
+<!-- Mirrored from esphome.io/components/display/lcd_display.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 16 May 2021 03:01:37 GMT -->
+</html>

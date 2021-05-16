@@ -1,0 +1,225 @@
+
+  <!DOCTYPE html>
+
+
+<html lang="en">
+  
+<!-- Mirrored from esphome.io/components/binary_sensor/ttp229.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 16 May 2021 03:00:54 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+<meta name="description" content="Instructions for setting up TTP229 Capacitive Touch Sensor">
+<meta name="keywords" content="TTP229">
+<meta itemprop="name" content="TTP229 Capacitive Touch Sensor">
+<meta itemprop="description" content="Instructions for setting up TTP229 Capacitive Touch Sensor">
+<meta itemprop="image" content="../../_images/ttp229.jpg">
+<meta name="twitter:title" content="TTP229 Capacitive Touch Sensor">
+<meta name="twitter:image:src" content="../../_images/ttp229.jpg">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@OttoWinter_">
+<meta name="twitter:description" content="Instructions for setting up TTP229 Capacitive Touch Sensor">
+<meta property="og:title" content="TTP229 Capacitive Touch Sensor">
+<meta property="og:image" content="../../_images/ttp229.jpg">
+<meta property="og:type" content="website">
+<meta property="og:description" content="Instructions for setting up TTP229 Capacitive Touch Sensor">
+
+    <title>TTP229 Capacitive Touch Sensor &#8212; ESPHome</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/alabaster.css" />
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <link rel="canonical" href="ttp229.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Tuya Binary Sensor" href="tuya.html" />
+    <link rel="prev" title="Template Binary Sensor" href="template.html" />
+  <link rel="stylesheet" href="../../_static/customf001.css?hash=f908c2b5" type="text/css" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../../_static/apple-touch-icon.png">
+  <link rel="shortcut icon" href="../../_static/favicon.ico">
+  <link rel="icon" type="image/png" sizes="512x512" href="../../_static/favicon-512x512.png">
+  <link rel="icon" type="image/png" sizes="256x256" href="../../_static/favicon-256x256.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="../../_static/favicon-192x192.png">
+  <link rel="icon" type="image/png" sizes="128x128" href="../../_static/favicon-128x128.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../_static/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../../_static/favicon-16x16.png">
+  <link rel="manifest" href="../../_static/site.webmanifest">
+  <link rel="mask-icon" href="../../_static/safari-pinned-tab.svg" color="#646464">
+  <meta name="apple-mobile-web-app-title" content="ESPHome">
+  <meta name="application-name" content="ESPHome">
+  <meta name="msapplication-TileColor" content="#dfdfdf">
+  <meta name="msapplication-config" content="/_static/browserconfig.xml">
+  <meta name="theme-color" content="#dfdfdf">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta property="og:site_name" content="ESPHome">
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head><body>
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../index-2.html">
+              <img class="logo" src="../../_static/logo-text.svg" alt="Logo"/>
+            </a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="https://esphome.io/search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+  <h3><a href="../../index-2.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">TTP229 Capacitive Touch Sensor</a><ul>
+<li><a class="reference internal" href="#ttp229-lsf-component"><code class="docutils literal notranslate"><span class="pre">ttp229_lsf</span></code> Component</a><ul>
+<li><a class="reference internal" href="#configuration-variables">Configuration variables:</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#ttp229-lsf-binary-sensor"><code class="docutils literal notranslate"><span class="pre">ttp229_lsf</span></code> Binary Sensor</a></li>
+<li><a class="reference internal" href="#ttp229-bsf-component"><code class="docutils literal notranslate"><span class="pre">ttp229_bsf</span></code> Component</a><ul>
+<li><a class="reference internal" href="#id1">Configuration variables:</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#ttp229-bsf-binary-sensor"><code class="docutils literal notranslate"><span class="pre">ttp229_bsf</span></code> Binary Sensor</a></li>
+<li><a class="reference internal" href="#see-also">See Also</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="ttp229-capacitive-touch-sensor">
+<h1>TTP229 Capacitive Touch Sensor<a class="headerlink" href="#ttp229-capacitive-touch-sensor" title="Permalink to this headline">¶</a></h1>
+<p>The <code class="docutils literal notranslate"><span class="pre">ttp229</span></code> component allows you to use your TTP229 <a class="reference external" href="https://www.tontek.com.tw/uploads/product/106/TTP229-LSF_V1.0_EN.pdf">datasheet</a>
+Capacitive Touch Sensor with ESPHome.</p>
+<p>There are two types of this sensor:</p>
+<ul class="simple">
+<li><p><strong>ttp229_lsf</strong>: The <a class="reference internal" href="../i2c.html#i2c"><span class="std std-ref">I²C</span></a> version of the sensor, uses SDA+SCL pins.</p></li>
+<li><p><strong>ttp229_bsf</strong>: The pin-based version of the sensor, uses SDO+SCL pins.</p></li>
+</ul>
+<figure class="align-center" id="id2">
+<a class="reference internal image-reference" href="../../_images/ttp229-full.jpg"><img alt="../../_images/ttp229-full.jpg" src="../../_images/ttp229-full.jpg" style="width: 50.0%;" /></a>
+<figcaption>
+<p><span class="caption-text">TTP229 Capacitive Touch Sensor. Image by <a class="reference external" href="https://www.tinytronics.nl/shop/nl/sensoren/touch/robotdyn-touch-module-ttp229-lsf-16-kanaals">RobotDyn</a>.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+<section id="ttp229-lsf-component">
+<h2><code class="docutils literal notranslate"><span class="pre">ttp229_lsf</span></code> Component<a class="headerlink" href="#ttp229-lsf-component" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example configuration entry</span>
+<span class="nt">ttp229_lsf</span><span class="p">:</span>
+
+<span class="nt">binary_sensor</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ttp229_lsf</span>
+    <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">TTP229 Channel 0</span>
+    <span class="nt">channel</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">0</span>
+</pre></div>
+</div>
+<section id="configuration-variables">
+<h3>Configuration variables:<a class="headerlink" href="#configuration-variables" title="Permalink to this headline">¶</a></h3>
+<p>The configuration is made up of two parts: The central component, and individual Binary sensors per channel.</p>
+<ul class="simple">
+<li><p><strong>id</strong> (<em>Optional</em>, <a class="reference internal" href="../../guides/configuration-types.html#config-id"><span class="std std-ref">ID</span></a>): Manually set the ID of this sensor.</p></li>
+</ul>
+</section>
+</section>
+<section id="ttp229-lsf-binary-sensor">
+<h2><code class="docutils literal notranslate"><span class="pre">ttp229_lsf</span></code> Binary Sensor<a class="headerlink" href="#ttp229-lsf-binary-sensor" title="Permalink to this headline">¶</a></h2>
+<p>Configuration variables:</p>
+<ul class="simple">
+<li><p><strong>name</strong> (<strong>Required</strong>, string): The name of the binary sensor.</p></li>
+<li><p><strong>channel</strong> (<strong>Required</strong>, integer): The channel number at the TTP229 the touchkey is connected to.</p></li>
+<li><p><strong>id</strong> (<em>Optional</em>, <a class="reference internal" href="../../guides/configuration-types.html#config-id"><span class="std std-ref">ID</span></a>): Manually specify the ID used for code generation.</p></li>
+<li><p>All other options from <a class="reference internal" href="index.html#config-binary-sensor"><span class="std std-ref">Binary Sensor</span></a>.</p></li>
+</ul>
+</section>
+<section id="ttp229-bsf-component">
+<h2><code class="docutils literal notranslate"><span class="pre">ttp229_bsf</span></code> Component<a class="headerlink" href="#ttp229-bsf-component" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example configuration entry</span>
+<span class="nt">ttp229_bsf</span><span class="p">:</span>
+  <span class="nt">sdo_pin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">D0</span>
+  <span class="nt">scl_pin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">D1</span>
+
+<span class="nt">binary_sensor</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ttp229_bsf</span>
+    <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">TTP229 Channel 0</span>
+    <span class="nt">channel</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">0</span>
+</pre></div>
+</div>
+<section id="id1">
+<h3>Configuration variables:<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>The configuration is made up of two parts: The central component, and individual Binary sensors per channel.</p>
+<p>Base Configuration:</p>
+<ul class="simple">
+<li><p><strong>sdo_pin</strong> (<strong>Required</strong>, <a class="reference internal" href="../../guides/configuration-types.html#config-pin-schema"><span class="std std-ref">Pin Schema</span></a>): The pin the
+SDO pin is connected to.</p></li>
+<li><p><strong>scl_pin</strong> (<strong>Required</strong>, <a class="reference internal" href="../../guides/configuration-types.html#config-pin-schema"><span class="std std-ref">Pin Schema</span></a>): The pin the
+SCL pin is connected to.</p></li>
+<li><p><strong>id</strong> (<em>Optional</em>, <a class="reference internal" href="../../guides/configuration-types.html#config-id"><span class="std std-ref">ID</span></a>): Manually set the ID of this component.</p></li>
+</ul>
+</section>
+</section>
+<section id="ttp229-bsf-binary-sensor">
+<h2><code class="docutils literal notranslate"><span class="pre">ttp229_bsf</span></code> Binary Sensor<a class="headerlink" href="#ttp229-bsf-binary-sensor" title="Permalink to this headline">¶</a></h2>
+<p>Configuration variables:</p>
+<ul class="simple">
+<li><p><strong>name</strong> (<strong>Required</strong>, string): The name of the binary sensor.</p></li>
+<li><p><strong>channel</strong> (<strong>Required</strong>, integer): The channel number at the TTP229 the touchkey is connected to.</p></li>
+<li><p><strong>id</strong> (<em>Optional</em>, <a class="reference internal" href="../../guides/configuration-types.html#config-id"><span class="std std-ref">ID</span></a>): Manually specify the ID used for code generation.</p></li>
+<li><p>All other options from <a class="reference internal" href="index.html#config-binary-sensor"><span class="std std-ref">Binary Sensor</span></a>.</p></li>
+</ul>
+</section>
+<section id="see-also">
+<h2>See Also<a class="headerlink" href="#see-also" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="../sensor/index.html#sensor-filters"><span class="std std-ref">Sensor Filters</span></a></p></li>
+<li><p><a class="reference external" href="../../api/ttp229__lsf_8h.html">API Reference</a></p></li>
+<li><p><a class="reference external" href="../../api/ttp229__bsf_8h.html">API Reference</a></p></li>
+<li><p><a class="reference external" href="https://github.com/esphome/esphome-docs/blob/current/components/binary_sensor/ttp229.rst">Edit this page on GitHub</a></p></li>
+</ul>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+  <div id="upgrade-footer">
+    A new version has been release since you last visited this page: 1.17.2 🎉
+    <div class="footer-button-container">
+      <div role="button" id="upgrade-footer-dismiss" class="footer-button">Dismiss</div>
+      <a id="upgrade-footer-changelog" class="footer-button" href="../../changelog/v1.17.0.html">View Changelog</a>  
+    </div>
+  </div>
+  <script>
+    var old = window.localStorage.getItem("version");
+    if (old === null) { window.localStorage.setItem("version", "1.17");
+    } else if (old !== "1.17") {
+      const footerEl = document.getElementById("upgrade-footer");
+      footerEl.classList.add("not-hidden");
+      footerEl.addEventListener('click', function () {
+        window.localStorage.setItem("version", "1.17");
+        footerEl.classList.remove("not-hidden");
+      });
+    }
+  </script>
+
+  </body>
+
+<!-- Mirrored from esphome.io/components/binary_sensor/ttp229.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 16 May 2021 03:00:55 GMT -->
+</html>

@@ -1,0 +1,259 @@
+
+  <!DOCTYPE html>
+
+
+<html lang="en">
+  
+<!-- Mirrored from esphome.io/components/display/addressable_light.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 16 May 2021 03:01:31 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+<meta name="description" content="Instructions for setting up displays using addressable lights and LED matrix">
+<meta itemprop="name" content="Addressable Light">
+<meta itemprop="description" content="Instructions for setting up displays using addressable lights and LED matrix">
+<meta itemprop="image" content="../../_images/addressable_light.jpg">
+<meta name="twitter:title" content="Addressable Light">
+<meta name="twitter:image:src" content="../../_images/addressable_light.jpg">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@OttoWinter_">
+<meta name="twitter:description" content="Instructions for setting up displays using addressable lights and LED matrix">
+<meta property="og:title" content="Addressable Light">
+<meta property="og:image" content="../../_images/addressable_light.jpg">
+<meta property="og:type" content="website">
+<meta property="og:description" content="Instructions for setting up displays using addressable lights and LED matrix">
+
+    <title>Addressable Light &#8212; ESPHome</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/alabaster.css" />
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <link rel="canonical" href="addressable_light.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="ILI9341 TFT LCD" href="ili9341.html" />
+    <link rel="prev" title="Display Component" href="index.html" />
+  <link rel="stylesheet" href="../../_static/customf001.css?hash=f908c2b5" type="text/css" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../../_static/apple-touch-icon.png">
+  <link rel="shortcut icon" href="../../_static/favicon.ico">
+  <link rel="icon" type="image/png" sizes="512x512" href="../../_static/favicon-512x512.png">
+  <link rel="icon" type="image/png" sizes="256x256" href="../../_static/favicon-256x256.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="../../_static/favicon-192x192.png">
+  <link rel="icon" type="image/png" sizes="128x128" href="../../_static/favicon-128x128.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../_static/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../../_static/favicon-16x16.png">
+  <link rel="manifest" href="../../_static/site.webmanifest">
+  <link rel="mask-icon" href="../../_static/safari-pinned-tab.svg" color="#646464">
+  <meta name="apple-mobile-web-app-title" content="ESPHome">
+  <meta name="application-name" content="ESPHome">
+  <meta name="msapplication-TileColor" content="#dfdfdf">
+  <meta name="msapplication-config" content="/_static/browserconfig.xml">
+  <meta name="theme-color" content="#dfdfdf">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta property="og:site_name" content="ESPHome">
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head><body>
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../index-2.html">
+              <img class="logo" src="../../_static/logo-text.svg" alt="Logo"/>
+            </a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="https://esphome.io/search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+  <h3><a href="../../index-2.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Addressable Light</a><ul>
+<li><a class="reference internal" href="#configuration-variables">Configuration variables:</a></li>
+<li><a class="reference internal" href="#pixel-mapper">pixel_mapper</a><ul>
+<li><a class="reference internal" href="#default">Default</a></li>
+<li><a class="reference internal" href="#btf-lighting-8x32-ws2812b-flexible-led-matrix">BTF-Lighting 8x32 WS2812B Flexible LED Matrix</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#see-also">See Also</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="addressable-light">
+<h1>Addressable Light<a class="headerlink" href="#addressable-light" title="Permalink to this headline">¶</a></h1>
+<p>The <code class="docutils literal notranslate"><span class="pre">addressable_light</span></code> display platform allows to display text and graphics on an addressable
+light that has been arranged in a display matrix.</p>
+<p>The display requires that an <a class="reference external" href="../../api/classesphome_1_1light_1_1_addressable_light.html">AddressableLight </a> component, such as
+<a class="reference internal" href="../light/fastled.html"><span class="doc">FastLED Light</span></a> or <a class="reference internal" href="../light/neopixelbus.html"><span class="doc">Neopixelbus Light</span></a>, be defined.</p>
+<figure class="align-center" id="id1">
+<a class="reference internal image-reference" href="../../_images/addressable_light.jpg"><img alt="../../_images/addressable_light.jpg" src="../../_images/addressable_light.jpg" style="width: 75.0%;" /></a>
+<figcaption>
+<p><span class="caption-text">WS2812B Addressable Light Display</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">light</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">fastled_clockless</span>
+    <span class="nt">chipset</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">WS2812B</span>
+    <span class="nt">pin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GPIO4</span>
+    <span class="nt">num_leds</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">64</span>
+    <span class="nt">rgb_order</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GRB</span>
+    <span class="nt">name</span><span class="p">:</span> <span class="s">&quot;led_matrix&quot;</span>
+    <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">led_matrix_light</span>
+    <span class="nt">default_transition_length</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">0s</span>
+    <span class="nt">color_correct</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="nv">50%</span><span class="p p-Indicator">,</span> <span class="nv">50%</span><span class="p p-Indicator">,</span> <span class="nv">50%</span><span class="p p-Indicator">]</span>
+    <span class="nt">restore_mode</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ALWAYS_ON</span>
+
+<span class="nt">display</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">addressable_light</span>
+    <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">led_matrix_display</span>
+    <span class="nt">addressable_light_id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">led_matrix_light</span>
+    <span class="nt">width</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">8</span>
+    <span class="nt">height</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">8</span>
+    <span class="nt">rotation</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">180°</span>
+    <span class="nt">update_interval</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">16ms</span>
+    <span class="nt">lambda</span><span class="p">:</span> <span class="p p-Indicator">|-</span>
+          <span class="no">// Draw a bulls-eye pattern</span>
+          <span class="no">Color red = Color(0xFF0000);</span>
+          <span class="no">Color green = Color(0x00FF00);</span>
+          <span class="no">Color blue = Color(0x0000FF);</span>
+          <span class="no">it.rectangle(0, 0, 8, 8, red);</span>
+          <span class="no">it.rectangle(1, 1, 6, 6, green);</span>
+          <span class="no">it.rectangle(2, 2, 4, 4, blue);</span>
+          <span class="no">it.rectangle(3, 3, 2, 2, red);</span>
+</pre></div>
+</div>
+<section id="configuration-variables">
+<h2>Configuration variables:<a class="headerlink" href="#configuration-variables" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><strong>addressable_light_id</strong> (<strong>Required</strong>, <a class="reference internal" href="../../guides/configuration-types.html#config-id"><span class="std std-ref">ID</span></a>): The id of the addressable light component to use
+as a display.</p></li>
+<li><p><strong>width</strong> (<strong>Required</strong>, int): The width of the LED matrix in pixels.</p></li>
+<li><p><strong>height</strong> (<strong>Required</strong>, int): The height of the LED matrix in pixels.</p></li>
+<li><p><strong>rotation</strong> (<em>Optional</em>): Set the rotation of the display. Everything you draw in <code class="docutils literal notranslate"><span class="pre">lambda:</span></code> will be rotated
+by this option. One of <code class="docutils literal notranslate"><span class="pre">0°</span></code> (default), <code class="docutils literal notranslate"><span class="pre">90°</span></code>, <code class="docutils literal notranslate"><span class="pre">180°</span></code>, <code class="docutils literal notranslate"><span class="pre">270°</span></code>.</p></li>
+<li><p><strong>update_interval</strong> (<em>Optional</em>, <a class="reference internal" href="../../guides/configuration-types.html#config-time"><span class="std std-ref">Time</span></a>): The interval to call the lambda to update the display.
+Defaults to <code class="docutils literal notranslate"><span class="pre">16ms</span></code>.</p></li>
+<li><p><strong>pixel_mapper</strong> (<em>Optional</em>, <a class="reference internal" href="../../guides/automations.html#config-lambda"><span class="std std-ref">lambda</span></a>): A lambda that returns the integer address of the LED
+given the supplied the <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code> pixel coordinate. By default, a left-to-right direct pixel mapper is used.</p></li>
+<li><p><strong>lambda</strong> (<em>Optional</em>, <a class="reference internal" href="../../guides/automations.html#config-lambda"><span class="std std-ref">lambda</span></a>): The lambda to use for rendering the content on the display.
+<code class="docutils literal notranslate"><span class="pre">it</span></code> will be an instance of <a class="reference external" href="../../api/classesphome_1_1display_1_1_display_buffer.html">DisplayBuffer </a>.
+See <a class="reference internal" href="index.html#display-engine"><span class="std std-ref">Display Rendering Engine</span></a> for more information.</p></li>
+<li><p><strong>id</strong> (<em>Optional</em>, <a class="reference internal" href="../../guides/configuration-types.html#config-id"><span class="std std-ref">ID</span></a>): Manually specify the ID used for code generation.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When enabled (the default, but also via <code class="docutils literal notranslate"><span class="pre">it.set_enabled(true)</span></code>), any effect currently running on the
+addressable light will be disabled. When disabled (<code class="docutils literal notranslate"><span class="pre">it.set_enabled(false)</span></code>), the last configured effect will
+be restored.</p>
+<p>While the display is enabled, it is still possible to control the parent addressable light component in some
+limited capacity. Changing the brightness will still work, but changing the color will have no affect. It is not
+adivsable to enable any effects (ex: rainbow, color wipe, etc) while the display is enabled, as this will cause a
+great deal of flickering while the effect competes with the display for rendering.</p>
+</div>
+</section>
+<section id="pixel-mapper">
+<h2>pixel_mapper<a class="headerlink" href="#pixel-mapper" title="Permalink to this headline">¶</a></h2>
+<p>An addressable LED matrix is just an addressable LED strip laid out in a matrix – the path often snaking
+down-up-down, left-right-left, or whichever way the manufacturer has chosen. Like an addressable LED strip,
+each pixel on a matrix is addressed as an offset from the first pixel (0). The job of the pixel mapper is
+to translate a logical x-y pixel coordinate to the address of the expected physical LED.</p>
+<p>Determining the correct algorithm for the pixel mapper for your matrix will hopefully only require some graph paper and a little bit of math.</p>
+<section id="default">
+<h3>Default<a class="headerlink" href="#default" title="Permalink to this headline">¶</a></h3>
+<p>The default pixel mapper assumes that the led matrix is addressed starting with the top left LED, moving to the right, and
+then starting with the left-most row of the next row.</p>
+<figure class="align-center" id="id2">
+<a class="reference internal image-reference" href="../../_images/addressable_light_pixel_map_default.png"><img alt="../../_images/addressable_light_pixel_map_default.png" src="../../_images/addressable_light_pixel_map_default.png" style="width: 75.0%;" /></a>
+<figcaption>
+<p><span class="caption-text">Default pixel_mapper as used with a 4x4 led matrix</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="btf-lighting-8x32-ws2812b-flexible-led-matrix">
+<h3>BTF-Lighting 8x32 WS2812B Flexible LED Matrix<a class="headerlink" href="#btf-lighting-8x32-ws2812b-flexible-led-matrix" title="Permalink to this headline">¶</a></h3>
+<p>The following image illustrates the path the addressable strip takes through the common the BTF-Lighting 8x32 matrix.</p>
+<figure class="align-center" id="id3">
+<a class="reference internal image-reference" href="../../_images/addressable_light_pixel_map_8x32.png"><img alt="../../_images/addressable_light_pixel_map_8x32.png" src="../../_images/addressable_light_pixel_map_8x32.png" style="width: 75.0%;" /></a>
+<figcaption>
+<p><span class="caption-text">LED layout for BTF-Lighting 8x32 WS2812B Flexible LED Matrix</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+<p>Below is a definition that includes a pixel_mapper suitable for these 8x32 matrices.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">display</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">addressable_light</span>
+    <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">led_matrix_32x8_display</span>
+    <span class="nt">addressable_light_id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">led_matrix_32x8</span>
+    <span class="nt">width</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">32</span>
+    <span class="nt">height</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">8</span>
+    <span class="nt">pixel_mapper</span><span class="p">:</span> <span class="p p-Indicator">|-</span>
+      <span class="no">if (x % 2 == 0) {</span>
+        <span class="no">return (x * 8) + y;</span>
+      <span class="no">}</span>
+      <span class="no">return (x * 8) + (7 - y);</span>
+    <span class="nt">rotation</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">0°</span>
+    <span class="nt">update_interval</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">16ms</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="see-also">
+<h2>See Also<a class="headerlink" href="#see-also" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="../../api/addressable__light__display_8h.html">API Reference</a></p></li>
+<li><p><a class="reference internal" href="../light/index.html"><span class="doc">Light Component</span></a></p></li>
+<li><p><a class="reference internal" href="../light/fastled.html"><span class="doc">FastLED Light</span></a></p></li>
+<li><p><a class="reference internal" href="../light/neopixelbus.html"><span class="doc">Neopixelbus Light</span></a></p></li>
+<li><p><a class="reference internal" href="../light/partition.html"><span class="doc">Light Partition</span></a></p></li>
+<li><p><a class="reference external" href="https://github.com/esphome/esphome-docs/blob/current/components/display/addressable_light.rst">Edit this page on GitHub</a></p></li>
+</ul>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+  <div id="upgrade-footer">
+    A new version has been release since you last visited this page: 1.17.2 🎉
+    <div class="footer-button-container">
+      <div role="button" id="upgrade-footer-dismiss" class="footer-button">Dismiss</div>
+      <a id="upgrade-footer-changelog" class="footer-button" href="../../changelog/v1.17.0.html">View Changelog</a>  
+    </div>
+  </div>
+  <script>
+    var old = window.localStorage.getItem("version");
+    if (old === null) { window.localStorage.setItem("version", "1.17");
+    } else if (old !== "1.17") {
+      const footerEl = document.getElementById("upgrade-footer");
+      footerEl.classList.add("not-hidden");
+      footerEl.addEventListener('click', function () {
+        window.localStorage.setItem("version", "1.17");
+        footerEl.classList.remove("not-hidden");
+      });
+    }
+  </script>
+
+  </body>
+
+<!-- Mirrored from esphome.io/components/display/addressable_light.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 16 May 2021 03:01:33 GMT -->
+</html>
